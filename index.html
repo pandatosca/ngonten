@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Engine — 2026@HERRY</title>
+    <title>Content Engine Pro</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -18,24 +18,28 @@
       }
       :root {
         --bg: #09080f;
-        --surface: #121020;
-        --surface2: #1a1729;
-        --surface3: #232035;
-        --border: rgba(255, 255, 255, 0.07);
-        --border2: rgba(255, 255, 255, 0.14);
-        --text: #ede8f8;
-        --muted: rgba(237, 232, 248, 0.46);
-        --muted2: rgba(237, 232, 248, 0.22);
-        --accent: #eeaa11;
-        --pink: #bb3381;
-        --teal: #4fb3b3;
-        --green: #4fc88c;
+        --s1: #121020;
+        --s2: #1a1729;
+        --s3: #232035;
+        --bd: rgba(255, 255, 255, 0.07);
+        --bd2: rgba(255, 255, 255, 0.14);
+        --tx: #ede8f8;
+        --mu: rgba(237, 232, 248, 0.46);
+        --mu2: rgba(237, 232, 248, 0.22);
+        --ac: #eeaa11;
+        --pk: #bb3381;
+        --tl: #4fb3b3;
+        --gr: #4fc88c;
+        --r: 12px;
+        --r2: 10px;
+        --r3: 8px;
       }
       body {
         font-family: "DM Sans", sans-serif;
         background: var(--bg);
-        color: var(--text);
+        color: var(--tx);
         min-height: 100vh;
+        font-size: 14px;
       }
       .orb {
         position: fixed;
@@ -45,114 +49,108 @@
         z-index: 0;
       }
       .orb1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(238, 170, 17, 0.09),
+          transparent
+        );
+        top: -140px;
+        right: -60px;
+      }
+      .orb2 {
         width: 480px;
         height: 480px;
         background: radial-gradient(
           circle,
-          rgba(238, 170, 17, 0.1),
+          rgba(187, 51, 129, 0.07),
           transparent
         );
-        top: -160px;
-        right: -80px;
-      }
-      .orb2 {
-        width: 560px;
-        height: 560px;
-        background: radial-gradient(
-          circle,
-          rgba(187, 51, 129, 0.08),
-          transparent
-        );
-        bottom: -180px;
-        left: -130px;
+        bottom: -160px;
+        left: -100px;
       }
       .wrap {
         position: relative;
         z-index: 1;
-        max-width: 920px;
+        max-width: 860px;
         margin: 0 auto;
-        padding: 44px 22px 100px;
+        padding: 36px 16px 80px;
       }
 
       /* HEADER */
       .badge {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         background: rgba(238, 170, 17, 0.1);
         border: 1px solid rgba(238, 170, 17, 0.2);
-        color: var(--accent);
-        font-size: 11px;
+        color: var(--ac);
+        font-size: 10px;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        padding: 5px 12px;
+        padding: 4px 10px;
         border-radius: 100px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
       h1 {
         font-family: "Syne", sans-serif;
-        font-size: clamp(26px, 5vw, 48px);
+        font-size: clamp(22px, 4vw, 40px);
         font-weight: 800;
         line-height: 1.05;
-        background: linear-gradient(
-          135deg,
-          #eeaa11 0%,
-          #bb3381 55%,
-          #4fb3b3 100%
-        );
+        background: linear-gradient(135deg, #eeaa11, #bb3381 55%, #4fb3b3);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
       .sub {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.6;
-        max-width: 500px;
-        margin-bottom: 36px;
+        color: var(--mu);
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 28px;
       }
 
       /* PHASE BAR */
       .phase-bar {
         display: flex;
         align-items: center;
-        margin-bottom: 28px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 5px;
+        margin-bottom: 22px;
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
+        padding: 4px;
       }
-      .phase-btn {
+      .pbtn {
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 6px;
-        padding: 10px 6px;
-        border-radius: 10px;
+        gap: 5px;
+        padding: 8px 4px;
+        border-radius: 9px;
         border: none;
         background: transparent;
-        color: var(--muted);
+        color: var(--mu);
         cursor: pointer;
         font-family: "DM Sans", sans-serif;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
         white-space: nowrap;
       }
-      .phase-btn.active {
-        background: var(--surface2);
-        color: var(--text);
-        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+      .pbtn.active {
+        background: var(--s2);
+        color: var(--tx);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
       }
-      .phase-num {
-        width: 20px;
-        height: 20px;
+      .pnum {
+        width: 18px;
+        height: 18px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.05);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -160,20 +158,20 @@
         flex-shrink: 0;
         transition: all 0.2s;
       }
-      .phase-btn.active .phase-num {
+      .pbtn.active .pnum {
         background: linear-gradient(135deg, #eeaa11, #bb3381);
         color: #fff;
       }
-      .phase-btn.done .phase-num {
+      .pbtn.done .pnum {
         background: rgba(79, 200, 140, 0.18);
-        color: var(--green);
+        color: var(--gr);
       }
-      .phase-btn.done {
-        color: var(--muted);
+      .pbtn.done {
+        color: var(--mu);
       }
-      .phase-arrow {
-        color: var(--muted2);
-        font-size: 12px;
+      .parr {
+        color: var(--mu2);
+        font-size: 11px;
         padding: 0 1px;
         flex-shrink: 0;
       }
@@ -184,425 +182,81 @@
         display: block;
       }
 
-      /* CARDS */
+      /* CARD */
       .card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 22px;
-        margin-bottom: 12px;
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
+        padding: 18px;
+        margin-bottom: 10px;
       }
-      .card-label {
-        font-size: 11px;
+      .clabel {
+        font-size: 10px;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 14px;
+        color: var(--mu);
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
       }
-      .card-label::after {
+      .clabel::after {
         content: "";
         flex: 1;
         height: 1px;
-        background: var(--border);
+        background: var(--bd);
       }
 
-      /* TOGGLE BUTTONS */
-      .mode-toggle {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 18px;
-      }
-      .mode-btn {
-        flex: 1;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        transition: all 0.2s;
-        text-align: center;
-      }
-      .mode-btn.active {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
-      }
-
-      /* GREETING */
-      .greet-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 7px;
-        margin-bottom: 14px;
-      }
-      .greet-chip {
-        padding: 8px 6px;
-        border-radius: 9px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-size: 11px;
-        font-weight: 500;
-        text-align: center;
-        transition: all 0.2s;
-        line-height: 1.3;
-      }
-      .greet-chip:hover {
-        border-color: var(--border2);
-        color: var(--text);
-      }
-      .greet-chip.active {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
-      }
-
-      /* BG TABS */
-      .bg-tabs {
+      /* TOGGLE ROW */
+      .trow {
         display: flex;
         gap: 5px;
         margin-bottom: 14px;
-      }
-      .bg-tab {
-        padding: 7px 16px;
-        border-radius: 8px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-size: 12px;
-        font-weight: 500;
-        transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
-      }
-      .bg-tab.active {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
-      }
-
-      /* GRADIENT */
-      .grad-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 7px;
-      }
-      .grad-opt,
-      .solid-opt {
-        border: 1.5px solid transparent;
-        border-radius: 10px;
-        padding: 8px 6px;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-align: center;
-        background: var(--surface2);
-      }
-      .grad-opt:hover,
-      .solid-opt:hover {
-        border-color: var(--border2);
-        transform: translateY(-1px);
-      }
-      .grad-opt.sel,
-      .solid-opt.sel {
-        border-color: rgba(238, 170, 17, 0.7);
-        box-shadow: 0 0 10px rgba(238, 170, 17, 0.14);
-      }
-      .grad-swatch,
-      .solid-swatch {
-        height: 38px;
-        border-radius: 6px;
-        margin-bottom: 5px;
-      }
-      .grad-name,
-      .solid-name {
-        font-size: 9.5px;
-        font-weight: 500;
-        color: var(--muted);
-        line-height: 1.3;
-      }
-      .grad-opt.sel .grad-name,
-      .solid-opt.sel .solid-name {
-        color: var(--accent);
-      }
-      .solid-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 7px;
-        margin-bottom: 12px;
-      }
-
-      /* CUSTOM HEX */
-      .custom-hex-row {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        margin-top: 10px;
         flex-wrap: wrap;
       }
-      .hex-wrap {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 6px 10px;
-        flex: 1;
-        min-width: 130px;
-      }
-      .hex-wrap input {
-        background: transparent;
-        border: none;
-        color: var(--text);
-        font-family: "DM Sans", sans-serif;
-        font-size: 13px;
-        outline: none;
-        width: 100%;
-      }
-      .hex-wrap input::placeholder {
-        color: var(--muted);
-      }
-      .color-prev {
-        width: 22px;
-        height: 22px;
-        border-radius: 5px;
-        flex-shrink: 0;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-      }
-      .btn-apply {
-        background: rgba(238, 170, 17, 0.12);
-        border: 1px solid rgba(238, 170, 17, 0.3);
-        color: var(--accent);
-        font-size: 12px;
-        font-weight: 600;
-        padding: 7px 14px;
-        border-radius: 8px;
+      .tbtn {
+        padding: 7px 12px;
+        border-radius: var(--r3);
+        border: 1.5px solid var(--bd);
+        background: var(--s2);
+        color: var(--mu);
         cursor: pointer;
         font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        transition: all 0.2s;
         white-space: nowrap;
-        transition: all 0.2s;
       }
-      .btn-apply:hover {
-        background: rgba(238, 170, 17, 0.22);
+      .tbtn:hover {
+        border-color: var(--bd2);
+        color: var(--tx);
       }
-      .bg-preview {
-        height: 10px;
-        border-radius: 6px;
-        margin-top: 12px;
-        transition: all 0.4s;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      /* RATIO SELECTOR */
-      .ratio-wrap {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-        margin-top: 4px;
-      }
-      .ratio-options {
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-        flex: 1;
-      }
-      .ratio-opt {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
-        border-radius: 10px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .ratio-opt:hover {
-        border-color: var(--border2);
-      }
-      .ratio-opt.sel {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.06);
-      }
-      .ratio-radio {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        border: 2px solid var(--muted2);
-        flex-shrink: 0;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .ratio-opt.sel .ratio-radio {
-        border-color: var(--accent);
-      }
-      .ratio-radio::after {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--accent);
-        display: none;
-      }
-      .ratio-opt.sel .ratio-radio::after {
-        display: block;
-      }
-      .ratio-info {
-        flex: 1;
-      }
-      .ratio-name {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text);
-      }
-      .ratio-opt.sel .ratio-name {
-        color: var(--accent);
-      }
-      .ratio-desc {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 2px;
-      }
-      .ratio-dim {
-        font-size: 10px;
-        color: var(--muted2);
-        font-family: "Courier New", monospace;
-      }
-
-      /* RATIO WIREFRAME PREVIEW */
-      .ratio-preview-wrap {
-        width: 120px;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-      }
-      .ratio-preview-label {
-        font-size: 10px;
-        color: var(--muted2);
-        text-align: center;
-      }
-      .ratio-canvas {
-        background: var(--surface3);
-        border: 1px solid var(--border2);
-        border-radius: 6px;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s;
-      }
-      .wf-zone {
-        position: absolute;
-        border: 1px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 7px;
-        color: rgba(255, 255, 255, 0.3);
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-align: center;
-        line-height: 1.2;
-      }
-      .wf-hl {
-        background: rgba(238, 170, 17, 0.12);
-        border-color: rgba(238, 170, 17, 0.3);
-        color: rgba(238, 170, 17, 0.7);
-      }
-      .wf-vis {
-        background: rgba(187, 51, 129, 0.1);
-        border-color: rgba(187, 51, 129, 0.25);
-        color: rgba(187, 51, 129, 0.7);
-      }
-      .wf-kp {
-        background: rgba(79, 179, 179, 0.08);
-        border-color: rgba(79, 179, 179, 0.2);
-        color: rgba(79, 179, 179, 0.6);
-      }
-      .wf-ft {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.3);
-        font-size: 6px;
-      }
-
-      /* MARKER SELECTOR */
-      .marker-cat-tabs {
-        display: flex;
-        gap: 5px;
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-      }
-      .mcat-btn {
-        padding: 6px 12px;
-        border-radius: 7px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-size: 11px;
-        font-weight: 500;
-        transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
-      }
-      .mcat-btn.active {
+      .tbtn.on {
         border-color: rgba(238, 170, 17, 0.6);
         background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
-      }
-      .marker-row {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .marker-opt {
-        padding: 6px 12px;
-        border-radius: 8px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-size: 12px;
-        font-weight: 500;
-        transition: all 0.2s;
-      }
-      .marker-opt:hover {
-        border-color: var(--border2);
-        color: var(--text);
-      }
-      .marker-opt.sel {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
+        color: var(--ac);
       }
 
       /* FORM */
-      .row {
+      .frow {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 11px;
-        margin-bottom: 11px;
+        gap: 10px;
+        margin-bottom: 10px;
       }
-      .row.full {
+      .frow.full {
         grid-template-columns: 1fr;
       }
+      .frow.tri {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      lbl,
       label {
         display: block;
-        font-size: 12px;
-        color: var(--muted);
-        margin-bottom: 5px;
+        font-size: 11px;
+        color: var(--mu);
+        margin-bottom: 4px;
         font-weight: 500;
       }
       input[type="text"],
@@ -610,16 +264,17 @@
       textarea,
       select {
         width: 100%;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        color: var(--text);
-        border-radius: 10px;
-        padding: 10px 13px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        color: var(--tx);
+        border-radius: var(--r2);
+        padding: 9px 12px;
         font-family: "DM Sans", sans-serif;
-        font-size: 13.5px;
+        font-size: 13px;
         outline: none;
         transition: border-color 0.2s;
         resize: vertical;
+        -webkit-appearance: none;
       }
       input[type="text"]:focus,
       input[type="url"]:focus,
@@ -631,10 +286,448 @@
         line-height: 1.6;
       }
       .hint {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 5px;
+        font-size: 10px;
+        color: var(--mu);
+        margin-top: 4px;
         line-height: 1.5;
+      }
+
+      /* SELECT WITH SWATCH */
+      .sel-wrap {
+        position: relative;
+      }
+      .sel-wrap select {
+        padding-left: 36px;
+      }
+      .sel-swatch {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        pointer-events: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      /* BG DROPDOWN */
+      .bg-preview-bar {
+        height: 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s;
+      }
+
+      /* RATIO ROW */
+      .ratio-wrap {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .ratio-sel-col {
+        flex: 1;
+      }
+      .ratio-wf-col {
+        width: 110px;
+        flex-shrink: 0;
+        text-align: center;
+      }
+      .ratio-wf-lbl {
+        font-size: 10px;
+        color: var(--mu2);
+        margin-bottom: 5px;
+      }
+      .ratio-canvas {
+        background: var(--s3);
+        border: 1px solid var(--bd2);
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+      .wfz {
+        position: absolute;
+        border: 1px dashed rgba(255, 255, 255, 0.12);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6px;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-align: center;
+        line-height: 1.2;
+      }
+      .wfz.hl {
+        background: rgba(238, 170, 17, 0.1);
+        border-color: rgba(238, 170, 17, 0.28);
+        color: rgba(238, 170, 17, 0.7);
+      }
+      .wfz.vs {
+        background: rgba(187, 51, 129, 0.08);
+        border-color: rgba(187, 51, 129, 0.22);
+        color: rgba(187, 51, 129, 0.6);
+      }
+      .wfz.kp {
+        background: rgba(79, 179, 179, 0.06);
+        border-color: rgba(79, 179, 179, 0.18);
+        color: rgba(79, 179, 179, 0.55);
+      }
+      .wfz.ft {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.08);
+        font-size: 5px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* MARKER */
+      .mcat-row {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+
+      /* COMPONENT CHECKLIST */
+      .comp-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .comp-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        background: var(--s2);
+        border: 1.5px solid var(--bd);
+        border-radius: var(--r2);
+        cursor: pointer;
+        transition: all 0.2s;
+        user-select: none;
+      }
+      .comp-item.checked {
+        border-color: rgba(238, 170, 17, 0.4);
+        background: rgba(238, 170, 17, 0.05);
+      }
+      .comp-item.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .comp-cb {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        border: 2px solid var(--mu2);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .comp-item.checked .comp-cb {
+        background: var(--ac);
+        border-color: var(--ac);
+      }
+      .comp-cb svg {
+        display: none;
+      }
+      .comp-item.checked .comp-cb svg {
+        display: block;
+      }
+      .comp-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--mu);
+      }
+      .comp-item.checked .comp-label {
+        color: var(--tx);
+      }
+      .comp-desc {
+        font-size: 10px;
+        color: var(--mu2);
+        margin-left: auto;
+      }
+
+      /* KP DYNAMIC */
+      .kp-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin-top: 8px;
+      }
+      .kp-item {
+        display: grid;
+        grid-template-columns: 1fr 1.8fr auto;
+        gap: 6px;
+        align-items: start;
+      }
+      .ksub {
+        background: var(--s3);
+        border: 1px solid var(--bd);
+        border-radius: var(--r3);
+        padding: 7px 10px;
+      }
+      .ksub-k {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--mu2);
+        margin-bottom: 3px;
+      }
+      .ksub-v {
+        font-size: 12px;
+        color: var(--tx);
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-family: "DM Sans", sans-serif;
+        resize: none;
+        line-height: 1.45;
+      }
+      .btn-del {
+        background: transparent;
+        border: none;
+        color: var(--mu2);
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px;
+        transition: color 0.15s;
+        line-height: 1;
+      }
+      .btn-del:hover {
+        color: #e05;
+      }
+      .btn-add {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(79, 179, 179, 0.07);
+        border: 1px dashed rgba(79, 179, 179, 0.25);
+        color: var(--tl);
+        font-size: 11px;
+        padding: 6px 12px;
+        border-radius: var(--r3);
+        cursor: pointer;
+        margin-top: 6px;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .btn-add:hover {
+        background: rgba(79, 179, 179, 0.14);
+      }
+      .kp-counter {
+        font-size: 10px;
+        color: var(--mu2);
+        margin-top: 4px;
+      }
+
+      /* PARA */
+      .para-wrap {
+        position: relative;
+        margin-top: 8px;
+      }
+      .para-cnt {
+        position: absolute;
+        bottom: 8px;
+        right: 10px;
+        font-size: 10px;
+        color: var(--mu2);
+        pointer-events: none;
+      }
+      .para-cnt.warn {
+        color: var(--ac);
+      }
+      .para-cnt.over {
+        color: #e05;
+      }
+
+      /* ASSET */
+      .asset-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 7px;
+        margin-top: 8px;
+      }
+      .asub {
+        background: var(--s3);
+        border: 1px solid var(--bd);
+        border-radius: var(--r3);
+        padding: 8px 10px;
+      }
+      .asub-k {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--mu2);
+        margin-bottom: 5px;
+      }
+      .asel {
+        width: 100%;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        color: var(--tx);
+        border-radius: 6px;
+        padding: 6px 9px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        outline: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+      }
+      .asel:focus {
+        border-color: rgba(238, 170, 17, 0.4);
+      }
+      .acustom {
+        display: none;
+        margin-top: 5px;
+        font-size: 11px;
+        color: var(--tx);
+        width: 100%;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 6px;
+        padding: 6px 9px;
+        font-family: "DM Sans", sans-serif;
+        outline: none;
+        resize: none;
+        line-height: 1.45;
+      }
+      .acustom:focus {
+        border-color: rgba(238, 170, 17, 0.4);
+      }
+
+      /* IMAGE LINKS */
+      .img-link-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .img-link-item {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .img-link-item input {
+        flex: 1;
+      }
+      .btn-del-link {
+        background: transparent;
+        border: none;
+        color: var(--mu2);
+        cursor: pointer;
+        font-size: 14px;
+        padding: 4px;
+        transition: color 0.15s;
+        flex-shrink: 0;
+      }
+      .btn-del-link:hover {
+        color: #e05;
+      }
+      .btn-add-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: rgba(79, 179, 179, 0.07);
+        border: 1px dashed rgba(79, 179, 179, 0.25);
+        color: var(--tl);
+        font-size: 11px;
+        padding: 5px 11px;
+        border-radius: var(--r3);
+        cursor: pointer;
+        margin-top: 5px;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      /* FOOTER TOGGLE */
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .toggle-sw {
+        position: relative;
+        width: 36px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+      .toggle-sw input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+      .toggle-track {
+        position: absolute;
+        inset: 0;
+        background: var(--s3);
+        border-radius: 100px;
+        cursor: pointer;
+        border: 1px solid var(--bd);
+        transition: all 0.2s;
+      }
+      .toggle-sw input:checked + .toggle-track {
+        background: rgba(238, 170, 17, 0.25);
+        border-color: rgba(238, 170, 17, 0.5);
+      }
+      .toggle-track::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--mu);
+        top: 2px;
+        left: 2px;
+        transition: all 0.2s;
+      }
+      .toggle-sw input:checked + .toggle-track::after {
+        background: var(--ac);
+        left: 18px;
+      }
+      .toggle-lbl {
+        font-size: 12px;
+        color: var(--mu);
+        font-weight: 500;
+      }
+
+      /* GREET */
+      .greet-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .gchip {
+        padding: 7px 5px;
+        border-radius: var(--r3);
+        border: 1.5px solid var(--bd);
+        background: var(--s2);
+        color: var(--mu);
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.2s;
+        line-height: 1.3;
+      }
+      .gchip:hover {
+        border-color: var(--bd2);
+        color: var(--tx);
+      }
+      .gchip.on {
+        border-color: rgba(238, 170, 17, 0.6);
+        background: rgba(238, 170, 17, 0.08);
+        color: var(--ac);
       }
 
       /* BUTTONS */
@@ -642,21 +735,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 7px;
         background: linear-gradient(135deg, #eeaa11, #bb3381);
         color: #fff;
         font-family: "Syne", sans-serif;
         font-weight: 700;
-        font-size: 15px;
-        padding: 14px 24px;
-        border-radius: 12px;
+        font-size: 14px;
+        padding: 13px 20px;
+        border-radius: var(--r);
         border: none;
         cursor: pointer;
         width: 100%;
         transition:
           opacity 0.2s,
           transform 0.1s;
-        margin-top: 16px;
+        margin-top: 14px;
       }
       .btn-gen:hover {
         opacity: 0.87;
@@ -668,97 +761,77 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 7px;
-        background: var(--surface2);
+        gap: 6px;
+        background: var(--s2);
         border: 1px solid rgba(238, 170, 17, 0.28);
-        color: var(--accent);
-        font-family: "Syne", sans-serif;
+        color: var(--ac);
+        font-family: "DM Sans", sans-serif;
         font-weight: 600;
-        font-size: 13px;
-        padding: 11px 18px;
-        border-radius: 11px;
+        font-size: 12px;
+        padding: 10px 16px;
+        border-radius: var(--r2);
         cursor: pointer;
         width: 100%;
-        margin-top: 10px;
+        margin-top: 8px;
         transition: all 0.2s;
       }
       .btn-sec:hover {
         background: rgba(238, 170, 17, 0.07);
       }
-      .btn-add-kp {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(79, 179, 179, 0.08);
-        border: 1px dashed rgba(79, 179, 179, 0.3);
-        color: #4fb3b3;
-        font-size: 12px;
-        font-weight: 500;
-        padding: 8px 14px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 8px;
-        transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
-      }
-      .btn-add-kp:hover {
-        background: rgba(79, 179, 179, 0.15);
-      }
 
       /* OUTPUT */
       .out-block {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 12px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
         overflow: hidden;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .out-hdr {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--border);
+        padding: 9px 13px;
+        border-bottom: 1px solid var(--bd);
       }
       .out-title {
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 700;
-        color: var(--muted);
+        color: var(--mu);
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
-      .copy-btn {
+      .cbtn {
         display: flex;
         align-items: center;
-        gap: 4px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 500;
-        padding: 5px 10px;
-        border-radius: 6px;
+        gap: 3px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--bd);
+        color: var(--mu);
+        font-size: 10px;
+        padding: 4px 9px;
+        border-radius: 5px;
         cursor: pointer;
         font-family: "DM Sans", sans-serif;
         transition: all 0.15s;
         white-space: nowrap;
       }
-      .copy-btn:hover {
+      .cbtn:hover {
         background: rgba(238, 170, 17, 0.1);
-        color: var(--accent);
+        color: var(--ac);
         border-color: rgba(238, 170, 17, 0.28);
       }
-      .copy-btn.ok {
+      .cbtn.ok {
         background: rgba(79, 200, 140, 0.1);
-        color: var(--green);
+        color: var(--gr);
         border-color: rgba(79, 200, 140, 0.28);
       }
-      .out-text {
-        padding: 15px;
-        font-size: 12.5px;
+      .out-txt {
+        padding: 14px;
+        font-size: 12px;
         line-height: 1.8;
         white-space: pre-wrap;
-        color: var(--text);
+        color: var(--tx);
         font-family: "Courier New", monospace;
         max-height: 460px;
         overflow-y: auto;
@@ -768,14 +841,14 @@
       .info {
         display: flex;
         align-items: flex-start;
-        gap: 8px;
-        background: rgba(79, 179, 179, 0.07);
-        border: 1px solid rgba(79, 179, 179, 0.18);
+        gap: 7px;
+        background: rgba(79, 179, 179, 0.06);
+        border: 1px solid rgba(79, 179, 179, 0.16);
         color: #5ec8c8;
-        font-size: 12px;
-        padding: 10px 13px;
-        border-radius: 9px;
-        margin-bottom: 16px;
+        font-size: 11px;
+        padding: 9px 12px;
+        border-radius: var(--r3);
+        margin-bottom: 14px;
         line-height: 1.5;
       }
       .info svg {
@@ -783,276 +856,74 @@
         margin-top: 1px;
       }
 
-      /* FIELD BOXES */
-      .field-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-        margin-bottom: 9px;
-      }
-      .field-grid.full {
-        grid-template-columns: 1fr;
-      }
-      .field-box {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 11px 13px;
-        transition: border-color 0.2s;
-      }
-      .field-box:focus-within {
-        border-color: rgba(238, 170, 17, 0.35);
-      }
-      .field-key {
-        font-size: 10px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.09em;
-        color: var(--muted);
-        margin-bottom: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .field-val {
-        font-size: 13px;
-        color: var(--text);
-        width: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: "DM Sans", sans-serif;
-        resize: none;
-        line-height: 1.55;
-      }
-
-      /* KEY POINTS DYNAMIC */
-      .kp-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .kp-item {
-        display: grid;
-        grid-template-columns: 1fr 2fr 28px;
-        gap: 7px;
-        align-items: start;
-      }
-      .kp-num {
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--accent);
-        padding-top: 10px;
-        text-align: center;
-      }
-      .kp-sub {
-        background: var(--surface3);
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 8px 11px;
-      }
-      .kp-sub-key {
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--muted2);
-        margin-bottom: 4px;
-      }
-      .kp-sub-val {
-        font-size: 12.5px;
-        color: var(--text);
-        width: 100%;
-        background: transparent;
-        border: none;
-        outline: none;
-        font-family: "DM Sans", sans-serif;
-        resize: none;
-        line-height: 1.5;
-      }
-      .btn-del-kp {
-        background: transparent;
-        border: none;
-        color: var(--muted2);
-        cursor: pointer;
-        font-size: 15px;
-        padding: 6px 0;
-        transition: color 0.15s;
-        line-height: 1;
-      }
-      .btn-del-kp:hover {
-        color: #e05;
-      }
-      .kp-count {
-        font-size: 10px;
-        color: var(--muted2);
-        margin-top: 4px;
-      }
-
-      /* CONTENT MODE TOGGLE */
-      .content-mode-toggle {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 12px;
-      }
-      .cm-btn {
-        flex: 1;
-        padding: 9px 12px;
-        border-radius: 9px;
-        border: 1.5px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        cursor: pointer;
-        font-family: "DM Sans", sans-serif;
-        font-size: 12.5px;
-        font-weight: 500;
-        transition: all 0.2s;
-        text-align: center;
-      }
-      .cm-btn.active {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
-        color: var(--accent);
-      }
-
-      /* PARA COUNTER */
-      .para-wrap {
-        position: relative;
-      }
-      .para-counter {
-        position: absolute;
-        bottom: 8px;
-        right: 10px;
-        font-size: 10px;
-        color: var(--muted2);
-      }
-
-      /* ASSET SUB */
-      .asset-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 7px;
-        margin-top: 8px;
-      }
-      .asset-sub {
-        background: var(--surface3);
-        border: 1px solid var(--border);
-        border-radius: 9px;
-        padding: 9px 11px;
-      }
-      .asset-sub-key {
-        font-size: 9.5px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--muted2);
-        margin-bottom: 5px;
-      }
-      .asset-sel {
-        width: 100%;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        color: var(--text);
-        border-radius: 8px;
-        padding: 7px 10px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 12px;
-        outline: none;
-        cursor: pointer;
-        transition: border-color 0.2s;
-      }
-      .asset-sel:focus {
-        border-color: rgba(238, 170, 17, 0.4);
-      }
-      .asset-custom {
-        margin-top: 5px;
-        font-size: 12px;
-        color: var(--text);
-        width: 100%;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 7px;
-        padding: 7px 9px;
-        font-family: "DM Sans", sans-serif;
-        outline: none;
-        resize: none;
-        line-height: 1.5;
-        display: none;
-      }
-      .asset-custom:focus {
-        border-color: rgba(238, 170, 17, 0.4);
-      }
-
-      /* PRESETS */
-      .preset-row {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-        margin-bottom: 10px;
-      }
-      .preset-chip {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 5px 10px;
-        border-radius: 7px;
-        border: 1px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        font-size: 11px;
-        cursor: pointer;
-        transition: all 0.2s;
-      }
-      .preset-chip:hover {
-        border-color: var(--border2);
-        color: var(--text);
-      }
-      .preset-chip .del {
-        color: rgba(237, 232, 248, 0.3);
-        font-size: 12px;
-        line-height: 1;
-        margin-left: 2px;
-      }
-      .preset-chip .del:hover {
-        color: #e05;
-      }
-
+      /* SEP */
       .sep {
         display: flex;
         align-items: center;
-        gap: 10px;
-        color: var(--muted2);
-        font-size: 11px;
+        gap: 8px;
+        color: var(--mu2);
+        font-size: 10px;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin: 18px 0;
+        margin: 16px 0;
       }
       .sep::before,
       .sep::after {
         content: "";
         flex: 1;
         height: 1px;
-        background: var(--border);
-      }
-      .footer {
-        text-align: center;
-        color: var(--muted2);
-        font-size: 11px;
-        margin-top: 52px;
-        letter-spacing: 0.06em;
+        background: var(--bd);
       }
 
-      @media (max-width: 640px) {
-        .row,
-        .field-grid,
-        .asset-grid {
+      /* PRESETS */
+      .preset-row {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+      .pchip {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 9px;
+        border-radius: 6px;
+        border: 1px solid var(--bd);
+        background: var(--s2);
+        color: var(--mu);
+        font-size: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .pchip:hover {
+        border-color: var(--bd2);
+        color: var(--tx);
+      }
+      .pdel {
+        color: rgba(237, 232, 248, 0.3);
+        font-size: 11px;
+        margin-left: 2px;
+      }
+      .pdel:hover {
+        color: #e05;
+      }
+
+      /* PAGE FOOTER */
+      .pg-footer {
+        text-align: center;
+        color: var(--mu2);
+        font-size: 10px;
+        margin-top: 44px;
+        letter-spacing: 0.05em;
+      }
+
+      @media (max-width: 600px) {
+        .frow,
+        .frow.tri {
           grid-template-columns: 1fr;
         }
-        .grad-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-        .solid-grid {
-          grid-template-columns: repeat(4, 1fr);
+        .asset-grid {
+          grid-template-columns: 1fr;
         }
         .greet-grid {
           grid-template-columns: repeat(3, 1fr);
@@ -1060,14 +931,14 @@
         .ratio-wrap {
           flex-direction: column;
         }
-        .ratio-preview-wrap {
+        .ratio-wf-col {
           width: 100%;
-          flex-direction: row;
-          gap: 12px;
+          display: flex;
           align-items: center;
+          gap: 10px;
         }
         .kp-item {
-          grid-template-columns: 1fr 1.5fr 28px;
+          grid-template-columns: 1fr 1fr auto;
         }
       }
     </style>
@@ -1083,58 +954,50 @@
       </p>
 
       <div class="phase-bar">
-        <button class="phase-btn active" id="pbtn-0" onclick="goPhase(0)">
-          <span class="phase-num">1</span>&nbsp;Input
+        <button class="pbtn active" id="pbtn-0" onclick="goPhase(0)">
+          <span class="pnum">1</span>&nbsp;Input
         </button>
-        <span class="phase-arrow">›</span>
-        <button class="phase-btn" id="pbtn-1" onclick="goPhase(1)">
-          <span class="phase-num">2</span>&nbsp;Analisis
+        <span class="parr">›</span>
+        <button class="pbtn" id="pbtn-1" onclick="goPhase(1)">
+          <span class="pnum">2</span>&nbsp;Analisis
         </button>
-        <span class="phase-arrow">›</span>
-        <button class="phase-btn" id="pbtn-2" onclick="goPhase(2)">
-          <span class="phase-num">3</span>&nbsp;Prompt Final
+        <span class="parr">›</span>
+        <button class="pbtn" id="pbtn-2" onclick="goPhase(2)">
+          <span class="pnum">3</span>&nbsp;Prompt Final
         </button>
       </div>
 
-      <!-- ══════════════════ PHASE 1 ══════════════════ -->
+      <!-- ══ PHASE 1 ══ -->
       <div class="panel active" id="phase-0">
         <!-- INPUT MODE -->
         <div class="card">
-          <div class="card-label">Mode Input</div>
-          <div class="mode-toggle">
-            <div
-              class="mode-btn active"
-              id="mode-link"
-              onclick="setMode('link')"
-            >
+          <div class="clabel">Mode Input</div>
+          <div class="trow">
+            <div class="tbtn on" id="mode-link" onclick="setMode('link')">
               🔗 Link Konten
             </div>
-            <div class="mode-btn" id="mode-custom" onclick="setMode('custom')">
+            <div class="tbtn" id="mode-custom" onclick="setMode('custom')">
               ✨ Custom / Greeting
             </div>
           </div>
-          <div id="section-link">
-            <div class="row full">
+          <div id="sec-link">
+            <div class="frow full">
               <div>
-                <label>URL Artikel / Blog / Video</label>
-                <input
-                  type="url"
-                  id="inp-link"
-                  placeholder="https://example.com/artikel..."
-                />
+                <label>URL Artikel / Blog / Video</label
+                ><input type="url" id="inp-link" placeholder="https://..." />
               </div>
             </div>
           </div>
-          <div id="section-custom" style="display: none">
-            <div class="card-label" style="margin-top: 4px">Template Cepat</div>
+          <div id="sec-custom" style="display: none">
+            <div class="clabel" style="margin-top: 2px">Template Cepat</div>
             <div class="greet-grid" id="greet-grid"></div>
-            <div class="row">
+            <div class="frow">
               <div>
                 <label>Jenis Konten</label
                 ><input
                   type="text"
                   id="inp-jenis"
-                  placeholder="e.g. Ucapan HUT RI..."
+                  placeholder="e.g. Ucapan HUT RI"
                 />
               </div>
               <div>
@@ -1142,27 +1005,27 @@
                 ><input
                   type="text"
                   id="inp-tema"
-                  placeholder="e.g. semangat kebangsaan..."
+                  placeholder="e.g. semangat kebangsaan"
                 />
               </div>
             </div>
-            <div class="row full">
+            <div class="frow full">
               <div>
                 <label>Elemen Visual / Suasana</label
                 ><input
                   type="text"
                   id="inp-visual"
-                  placeholder="e.g. bendera merah putih, suasana meriah..."
+                  placeholder="e.g. bendera merah putih, meriah"
                 />
               </div>
             </div>
-            <div class="row full">
+            <div class="frow full">
               <div>
                 <label>Target Audiens</label
                 ><input
                   type="text"
                   id="inp-audience"
-                  placeholder="e.g. anak muda, profesional muda..."
+                  placeholder="e.g. anak muda, profesional"
                 />
               </div>
             </div>
@@ -1171,126 +1034,49 @@
 
         <!-- BACKGROUND -->
         <div class="card">
-          <div class="card-label">Background Poster</div>
-          <div class="bg-preview" id="bg-preview"></div>
-          <div style="margin-top: 12px; margin-bottom: 10px">
-            <div class="bg-tabs">
-              <button class="bg-tab active" onclick="setBgMode('gradient')">
-                Gradient
-              </button>
-              <button class="bg-tab" onclick="setBgMode('solid')">Solid</button>
-              <button class="bg-tab" onclick="setBgMode('custom')">
-                Custom Hex
-              </button>
-            </div>
-          </div>
-          <div id="bg-gradient-section">
-            <div class="grad-grid" id="grad-grid"></div>
-          </div>
-          <div id="bg-solid-section" style="display: none">
-            <div class="solid-grid" id="solid-grid"></div>
-          </div>
-          <div id="bg-custom-section" style="display: none">
-            <label style="margin-bottom: 8px; display: block">Mode</label>
-            <div style="display: flex; gap: 6px; margin-bottom: 12px">
-              <div
-                class="mode-btn active"
-                id="cm-grad"
-                onclick="setCustomMode('gradient')"
-                style="flex: none; padding: 7px 14px; font-size: 12px"
-              >
-                Gradient
-              </div>
-              <div
-                class="mode-btn"
-                id="cm-solid"
-                onclick="setCustomMode('solid')"
-                style="flex: none; padding: 7px 14px; font-size: 12px"
-              >
-                Solid
-              </div>
-            </div>
-            <div id="cr-grad" class="custom-hex-row">
-              <div class="hex-wrap">
-                <div
-                  class="color-prev"
-                  id="prev1"
-                  style="background: #eeaa11"
-                ></div>
-                <input
-                  type="text"
-                  id="hex1"
-                  placeholder="#EEAA11"
-                  value="#EEAA11"
-                  maxlength="7"
-                  oninput="updatePrev('hex1', 'prev1')"
-                />
-              </div>
-              <span style="color: var(--muted)">→</span>
-              <div class="hex-wrap">
-                <div
-                  class="color-prev"
-                  id="prev2"
-                  style="background: #bb3381"
-                ></div>
-                <input
-                  type="text"
-                  id="hex2"
-                  placeholder="#BB3381"
-                  value="#BB3381"
-                  maxlength="7"
-                  oninput="updatePrev('hex2', 'prev2')"
-                />
-              </div>
-              <button class="btn-apply" onclick="applyGradHex()">
-                Terapkan
-              </button>
-            </div>
-            <div id="cr-solid" class="custom-hex-row" style="display: none">
-              <div class="hex-wrap">
-                <div
-                  class="color-prev"
-                  id="prev-s"
-                  style="background: #2b3681"
-                ></div>
-                <input
-                  type="text"
-                  id="hex-s"
-                  placeholder="#2b3681"
-                  value="#2b3681"
-                  maxlength="7"
-                  oninput="updatePrev('hex-s', 'prev-s')"
-                />
-              </div>
-              <button class="btn-apply" onclick="applySolidHex()">
-                Terapkan
-              </button>
+          <div class="clabel">Background Poster</div>
+          <div class="bg-preview-bar" id="bg-bar"></div>
+          <div class="frow full">
+            <div class="sel-wrap">
+              <div class="sel-swatch" id="bg-swatch"></div>
+              <select id="bg-sel" onchange="onBgChange()"></select>
             </div>
           </div>
         </div>
 
-        <!-- UKURAN / RASIO -->
+        <!-- RASIO -->
         <div class="card">
-          <div class="card-label">Ukuran &amp; Rasio Poster</div>
+          <div class="clabel">Ukuran &amp; Rasio Poster</div>
           <div class="ratio-wrap">
-            <div class="ratio-options" id="ratio-options"></div>
-            <div class="ratio-preview-wrap">
-              <div class="ratio-preview-label">Preview Layout</div>
+            <div class="ratio-sel-col">
+              <select id="ratio-sel" onchange="onRatioChange()">
+                <option value="9:16">
+                  9:16 — Reels / TikTok / Stories (1080×1920)
+                </option>
+                <option value="4:5">4:5 — IG Feed Portrait (1080×1350)</option>
+                <option value="1:1">1:1 — Square Feed (1080×1080)</option>
+                <option value="16:9">
+                  16:9 — YouTube / LinkedIn (1920×1080)
+                </option>
+              </select>
+            </div>
+            <div class="ratio-wf-col">
+              <div class="ratio-wf-lbl">Preview Layout</div>
               <div class="ratio-canvas" id="ratio-canvas"></div>
             </div>
           </div>
         </div>
 
-        <!-- MARKER -->
+        <!-- PREFERENSI -->
         <div class="card">
-          <div class="card-label">Preferensi Konten</div>
-          <div class="row">
+          <div class="clabel">Preferensi Konten</div>
+          <div class="frow">
             <div>
-              <label>Niche / Industri (opsional)</label
+              <label>Niche / Industri</label
               ><input
                 type="text"
                 id="inp-niche"
-                placeholder="kesehatan, bisnis, parenting…"
+                placeholder="kesehatan, bisnis..."
               />
             </div>
             <div>
@@ -1300,7 +1086,7 @@
                   Auto (dari konten)
                 </option>
                 <option
-                  value="semi-casual, relatable, conversational — like a smart friend talking"
+                  value="semi-casual, relatable, conversational — like a smart friend"
                 >
                   Semi-Casual / Relatable ✨
                 </option>
@@ -1319,52 +1105,43 @@
             </div>
           </div>
           <div style="margin-top: 10px">
-            <label style="margin-bottom: 8px; display: block"
+            <label style="margin-bottom: 7px; display: block"
               >Marker Key Points</label
             >
-            <div class="marker-cat-tabs">
-              <button class="mcat-btn active" onclick="setMarkerCat('basic')">
-                Simbol
-              </button>
-              <button class="mcat-btn" onclick="setMarkerCat('line')">
-                Icon Line
-              </button>
-              <button class="mcat-btn" onclick="setMarkerCat('fill')">
-                Icon Fill
-              </button>
-              <button class="mcat-btn" onclick="setMarkerCat('color')">
-                Icon Color
-              </button>
-            </div>
-            <div class="marker-row" id="marker-row"></div>
+            <div class="mcat-row" id="mcat-row"></div>
+            <div
+              class="trow"
+              id="marker-row"
+              style="margin-top: 6px; margin-bottom: 0"
+            ></div>
           </div>
         </div>
 
         <!-- PRESETS -->
         <div class="card" id="preset-card" style="display: none">
-          <div class="card-label">Preset Tersimpan</div>
+          <div class="clabel">Preset Tersimpan</div>
           <div class="preset-row" id="preset-row"></div>
         </div>
 
-        <!-- OUTPUT ANALISIS -->
+        <!-- ANALISIS OUTPUT -->
         <div id="out-a-wrap" style="display: none">
-          <div class="sep">Prompt Analisis — Copy &amp; Paste ke ChatGPT</div>
+          <div class="sep">Prompt Analisis → Copy &amp; Paste ke ChatGPT</div>
           <div class="out-block">
             <div class="out-hdr">
               <span class="out-title">Prompt Analisis</span
-              ><button class="copy-btn" id="cpbtn-a">⎘ Copy</button>
+              ><button class="cbtn" id="cpbtn-a">⎘ Copy</button>
             </div>
-            <div class="out-text" id="out-a-text"></div>
+            <div class="out-txt" id="out-a-txt"></div>
           </div>
           <button class="btn-sec" onclick="goPhase(1)">
-            Sudah dapat hasil? Lanjut → Isi Hasil Analisis
+            Sudah dapat hasil? → Lanjut Isi Analisis
           </button>
         </div>
 
         <button class="btn-gen" onclick="genAnalisis()">
           <svg
-            width="16"
-            height="16"
+            width="15"
+            height="15"
             fill="none"
             stroke="currentColor"
             stroke-width="2.2"
@@ -1376,12 +1153,12 @@
         </button>
       </div>
 
-      <!-- ══════════════════ PHASE 2 ══════════════════ -->
+      <!-- ══ PHASE 2 ══ -->
       <div class="panel" id="phase-1">
         <div class="info">
           <svg
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
@@ -1390,29 +1167,144 @@
             <circle cx="12" cy="12" r="10" />
             <path d="M12 8v4M12 16h.01" />
           </svg>
-          Paste output ChatGPT → otomatis ter-parse. Edit sesuai kebutuhan, lalu
-          generate.
+          Paste output ChatGPT → otomatis ter-parse. Centang komponen yang ingin
+          masuk ke poster.
         </div>
 
         <div class="card">
-          <div class="card-label">Paste Hasil ChatGPT (Raw)</div>
+          <div class="clabel">Paste Hasil ChatGPT (Raw)</div>
           <textarea
             id="raw-paste"
-            style="min-height: 110px; font-size: 13px"
+            style="min-height: 100px; font-size: 12px"
             placeholder="Paste output ChatGPT di sini...&#10;HEADLINE: ...&#10;KEY POINT 1: ..."
             oninput="parseRaw()"
           ></textarea>
-          <p class="hint">Otomatis ter-parse ke field di bawah.</p>
+          <p class="hint">Auto-parse ke semua field di bawah.</p>
         </div>
 
+        <!-- COMPONENT CHECKLIST -->
         <div class="card">
-          <div class="card-label">Detail Konten</div>
+          <div class="clabel">
+            Komponen Poster (centang yang ingin ditampilkan)
+          </div>
+          <div class="comp-list">
+            <div class="comp-item checked disabled" id="comp-headline">
+              <div class="comp-cb">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="comp-label">Headline</span>
+              <span class="comp-desc">Wajib ada</span>
+            </div>
+            <div
+              class="comp-item checked"
+              id="comp-sub"
+              onclick="toggleComp(this)"
+            >
+              <div class="comp-cb">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="comp-label">Subheadline</span>
+              <span class="comp-desc">Kalimat pendukung</span>
+            </div>
+            <div
+              class="comp-item checked"
+              id="comp-asset"
+              onclick="toggleComp(this)"
+            >
+              <div class="comp-cb">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="comp-label">3D Asset / Visual Utama</span>
+              <span class="comp-desc">Elemen visual 3D</span>
+            </div>
+            <div
+              class="comp-item checked"
+              id="comp-content"
+              onclick="toggleComp(this)"
+            >
+              <div class="comp-cb">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="comp-label">Key Points / Paragraf</span>
+              <span class="comp-desc">Zona konten bawah</span>
+            </div>
+          </div>
+        </div>
 
-          <div class="field-grid full" style="margin-bottom: 9px">
-            <div class="field-box">
-              <div class="field-key">Headline</div>
+        <!-- DETAIL KONTEN -->
+        <div class="card">
+          <div class="clabel">Detail Konten</div>
+
+          <!-- HEADLINE -->
+          <div id="sec-headline" style="margin-bottom: 9px">
+            <div
+              style="
+                background: var(--s2);
+                border: 1px solid var(--bd);
+                border-radius: var(--r2);
+                padding: 10px 12px;
+              "
+            >
+              <div
+                style="
+                  font-size: 10px;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.09em;
+                  color: var(--mu);
+                  margin-bottom: 5px;
+                "
+              >
+                Headline
+              </div>
               <textarea
-                class="field-val"
+                style="
+                  width: 100%;
+                  background: transparent;
+                  border: none;
+                  outline: none;
+                  font-family: &quot;DM Sans&quot;, sans-serif;
+                  font-size: 13px;
+                  color: var(--tx);
+                  resize: none;
+                  line-height: 1.5;
+                "
                 id="f-headline"
                 rows="2"
                 placeholder="Headline utama — maks 8 kata, ngehook"
@@ -1420,11 +1312,40 @@
             </div>
           </div>
 
-          <div class="field-grid full" style="margin-bottom: 9px">
-            <div class="field-box">
-              <div class="field-key">Subheadline</div>
+          <!-- SUBHEADLINE -->
+          <div id="sec-sub" style="margin-bottom: 9px">
+            <div
+              style="
+                background: var(--s2);
+                border: 1px solid var(--bd);
+                border-radius: var(--r2);
+                padding: 10px 12px;
+              "
+            >
+              <div
+                style="
+                  font-size: 10px;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.09em;
+                  color: var(--mu);
+                  margin-bottom: 5px;
+                "
+              >
+                Subheadline
+              </div>
               <textarea
-                class="field-val"
+                style="
+                  width: 100%;
+                  background: transparent;
+                  border: none;
+                  outline: none;
+                  font-family: &quot;DM Sans&quot;, sans-serif;
+                  font-size: 13px;
+                  color: var(--tx);
+                  resize: none;
+                  line-height: 1.5;
+                "
                 id="f-sub"
                 rows="2"
                 placeholder="Kalimat pendukung — maks 12 kata, natural"
@@ -1433,75 +1354,105 @@
           </div>
 
           <!-- CONTENT MODE -->
-          <div class="field-box" style="margin-bottom: 9px">
-            <div class="field-key">Mode Konten Zona Bawah</div>
-            <div class="content-mode-toggle" style="margin-top: 8px">
+          <div id="sec-content" style="margin-bottom: 9px">
+            <div
+              style="
+                background: var(--s2);
+                border: 1px solid var(--bd);
+                border-radius: var(--r2);
+                padding: 10px 12px;
+              "
+            >
               <div
-                class="cm-btn active"
-                id="cm-kp"
-                onclick="setContentMode('kp')"
+                style="
+                  font-size: 10px;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.09em;
+                  color: var(--mu);
+                  margin-bottom: 8px;
+                "
               >
-                📋 Key Points (1–5)
+                Konten Zona Bawah
               </div>
-              <div class="cm-btn" id="cm-para" onclick="setContentMode('para')">
-                📝 Paragraf Deskripsi
+              <div class="trow" style="margin-bottom: 10px">
+                <div class="tbtn on" id="cm-kp" onclick="setContentMode('kp')">
+                  📋 Key Points
+                </div>
+                <div class="tbtn" id="cm-para" onclick="setContentMode('para')">
+                  📝 Paragraf
+                </div>
               </div>
-            </div>
-
-            <!-- KEY POINTS MODE -->
-            <div id="section-kp">
-              <div class="kp-list" id="kp-list"></div>
-              <button class="btn-add-kp" id="btn-add-kp" onclick="addKp()">
-                <svg
-                  width="13"
-                  height="13"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                Tambah Poin
-              </button>
-              <div class="kp-count" id="kp-count">3 / 5 poin</div>
-            </div>
-
-            <!-- PARAGRAPH MODE -->
-            <div id="section-para" style="display: none">
-              <div class="para-wrap" style="margin-top: 8px">
-                <textarea
-                  id="f-para"
-                  rows="9"
-                  style="min-height: 160px"
-                  placeholder="Tulis paragraf deskripsi konten di sini (maks 9 baris)..."
-                  oninput="countParaLines()"
-                ></textarea>
-                <div class="para-counter" id="para-counter">0 / 9 baris</div>
+              <!-- KP -->
+              <div id="sec-kp">
+                <div class="kp-list" id="kp-list"></div>
+                <button class="btn-add" id="btn-add-kp" onclick="addKp()">
+                  <svg
+                    width="11"
+                    height="11"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  Tambah Poin
+                </button>
+                <div class="kp-counter" id="kp-counter">3 / 5 poin</div>
               </div>
-              <p class="hint">
-                Paragraf ini akan menggantikan zona key points di poster.
-              </p>
+              <!-- PARA -->
+              <div id="sec-para" style="display: none">
+                <div class="para-wrap">
+                  <textarea
+                    id="f-para"
+                    rows="9"
+                    style="min-height: 140px; padding-bottom: 22px"
+                    placeholder="Paragraf deskripsi (maks 9 baris)..."
+                    oninput="countPara()"
+                  ></textarea>
+                  <div class="para-cnt" id="para-cnt">0 / 9</div>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- 3D ASSET -->
-          <div class="field-grid full" style="margin-bottom: 9px">
-            <div class="field-box">
-              <div class="field-key">3D Asset — Visual Utama</div>
+          <div id="sec-asset" style="margin-bottom: 9px">
+            <div
+              style="
+                background: var(--s2);
+                border: 1px solid var(--bd);
+                border-radius: var(--r2);
+                padding: 10px 12px;
+              "
+            >
+              <div
+                style="
+                  font-size: 10px;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 0.09em;
+                  color: var(--mu);
+                  margin-bottom: 8px;
+                "
+              >
+                3D Asset — Visual Utama
+              </div>
               <textarea
-                class="field-val"
-                id="f-asset-main"
+                id="f-asset"
                 rows="2"
-                placeholder="Objek/karakter utama (bahasa Inggris) — e.g. confident woman holding glowing smartphone"
+                placeholder="Deskripsi objek/karakter (Inggris) — e.g. confident woman holding glowing smartphone"
+                oninput="autoSuggestAsset()"
+                style="margin-bottom: 8px"
               ></textarea>
               <div class="asset-grid">
-                <div class="asset-sub">
-                  <div class="asset-sub-key">Lighting / Mood</div>
+                <div class="asub">
+                  <div class="asub-k">Lighting / Mood</div>
                   <select
-                    class="asset-sel"
+                    class="asel"
                     id="sel-light"
-                    onchange="syncSel('sel-light', 'ac-light')"
+                    onchange="syncAsel('sel-light', 'ac-light')"
                   >
                     <option
                       value="warm golden backlight with cool rim highlight, cinematic depth"
@@ -1509,111 +1460,107 @@
                       ☀️ Golden Backlight
                     </option>
                     <option
-                      value="dramatic side lighting with deep chiaroscuro shadows, high contrast"
+                      value="dramatic side lighting with deep shadows, high contrast chiaroscuro"
                     >
                       🎭 Dramatic Side
                     </option>
                     <option
-                      value="neon cyberpunk glow — magenta and cyan rim lights, dark atmosphere"
+                      value="neon cyberpunk glow — magenta and cyan rim lights"
                     >
                       🌆 Neon Cyberpunk
                     </option>
                     <option
-                      value="soft diffused studio lighting, even and flattering, clean shadows"
+                      value="soft diffused studio lighting, even and flattering"
                     >
                       💡 Soft Studio
                     </option>
-                    <option
-                      value="natural outdoor sunlight, bright and fresh, airy feel"
-                    >
+                    <option value="natural outdoor sunlight, bright and airy">
                       🌿 Natural Sunlight
                     </option>
                     <option
-                      value="dark moody atmosphere with single spotlight, high drama"
+                      value="dark moody with single spotlight, dramatic atmosphere"
                     >
                       🌑 Moody Spotlight
                     </option>
                     <option
-                      value="cinematic orange and teal color grade, Hollywood film style"
+                      value="cinematic orange and teal color grade, Hollywood style"
                     >
-                      🎬 Cinematic Orange-Teal
+                      🎬 Orange-Teal
                     </option>
                     <option
-                      value="ethereal backlight glow, soft haze, dreamy pastel atmosphere"
+                      value="ethereal backlight glow, soft haze, dreamy pastel"
                     >
-                      ✨ Ethereal Glow
+                      ✨ Ethereal
                     </option>
                     <option value="custom">✏️ Custom...</option>
                   </select>
                   <textarea
-                    class="asset-custom"
+                    class="acustom"
                     id="ac-light"
                     rows="2"
-                    placeholder="Tulis lighting custom..."
+                    placeholder="Lighting custom..."
                   ></textarea>
                 </div>
-                <div class="asset-sub">
-                  <div class="asset-sub-key">Material / Finish</div>
+                <div class="asub">
+                  <div class="asub-k">Material / Finish</div>
                   <select
-                    class="asset-sel"
+                    class="asel"
                     id="sel-mat"
-                    onchange="syncSel('sel-mat', 'ac-mat')"
+                    onchange="syncAsel('sel-mat', 'ac-mat')"
                   >
                     <option
-                      value="hyper-realistic skin texture, glossy premium fabric, metallic badge accents"
+                      value="hyper-realistic skin, glossy premium fabric, metallic accents"
                     >
                       ✨ Hyper-Realistic
                     </option>
                     <option
-                      value="matte premium fabric, subtle texture weave, brushed metallic details"
+                      value="matte premium fabric, brushed metallic details"
                     >
                       🪨 Matte Premium
                     </option>
-                    <option
-                      value="high-gloss plastic surfaces, chrome reflections, mirror-like finish"
-                    >
+                    <option value="high-gloss surfaces, chrome reflections">
                       🪞 Glossy Chrome
                     </option>
                     <option
-                      value="soft pastel clay style, smooth rounded surfaces, matte finish"
+                      value="soft pastel clay style, smooth matte surfaces"
                     >
                       🎨 Soft Clay
                     </option>
                     <option
-                      value="glass and transparent elements, refraction and crystal clarity"
+                      value="glass and transparent elements, crystal refraction"
                     >
                       💎 Glass Crystal
                     </option>
                     <option
-                      value="fine fabric texture, leather accents, stitching detail, warm tones"
+                      value="fabric texture, leather accents, stitching detail"
                     >
                       👜 Fabric & Leather
                     </option>
                     <option
-                      value="holographic iridescent surface, color-shifting, futuristic sheen"
+                      value="holographic iridescent, color-shifting futuristic sheen"
                     >
                       🌈 Holographic
                     </option>
                     <option
-                      value="rough concrete texture mixed with glowing neon elements"
+                      value="concrete texture mixed with neon glow elements"
                     >
-                      ⚡ Concrete + Neon
+                      ⚡ Concrete+Neon
                     </option>
                     <option value="custom">✏️ Custom...</option>
                   </select>
                   <textarea
-                    class="asset-custom"
+                    class="acustom"
                     id="ac-mat"
                     rows="2"
-                    placeholder="Tulis material custom..."
+                    placeholder="Material custom..."
                   ></textarea>
                 </div>
-                <div class="asset-sub">
-                  <div class="asset-sub-key">Pose / Action</div>
+                <div class="asub">
+                  <div class="asub-k">Pose / Action</div>
                   <select
-                    class="asset-sel"
+                    class="asel"
                     id="sel-pose"
-                    onchange="syncSel('sel-pose', 'ac-pose')"
+                    onchange="syncAsel('sel-pose', 'ac-pose')"
                   >
                     <option
                       value="confident arms crossed, direct powerful gaze at viewer"
@@ -1621,75 +1568,168 @@
                       💪 Arms Crossed
                     </option>
                     <option
-                      value="dynamic forward lean toward camera, energetic and engaging"
+                      value="dynamic forward lean toward camera, energetic"
                     >
                       ⚡ Forward Lean
                     </option>
                     <option
-                      value="jumping or leaping with full energy, mid-air, euphoric expression"
+                      value="jumping mid-air, euphoric expression, full energy"
                     >
                       🦘 Jumping
                     </option>
                     <option
-                      value="pointing finger directly at viewer, strong call-to-action pose"
+                      value="pointing finger directly at viewer, call-to-action"
                     >
-                      👆 Pointing at Viewer
+                      👆 Pointing
                     </option>
-                    <option
-                      value="holding product or object prominently in front, showcasing it"
-                    >
+                    <option value="holding product prominently, showcasing it">
                       🤲 Holding Object
                     </option>
                     <option
-                      value="side profile, looking purposefully into distance, contemplative"
+                      value="side profile, looking purposefully into distance"
                     >
                       👤 Side Profile
                     </option>
                     <option
-                      value="relaxed open body language, sitting or leaning, approachable smile"
+                      value="relaxed open body language, approachable smile"
                     >
                       😊 Relaxed Open
                     </option>
-                    <option
-                      value="arms wide open, welcoming gesture, joyful expression"
-                    >
+                    <option value="arms wide open, welcoming gesture, joyful">
                       🙌 Open Arms
                     </option>
                     <option
-                      value="looking at phone or device, thumb scrolling, relatable everyday moment"
+                      value="looking at phone, thumb scrolling, relatable"
                     >
-                      📱 Looking at Phone
+                      📱 On Phone
                     </option>
                     <option value="custom">✏️ Custom...</option>
                   </select>
                   <textarea
-                    class="asset-custom"
+                    class="acustom"
                     id="ac-pose"
                     rows="2"
-                    placeholder="Tulis pose custom..."
+                    placeholder="Pose custom..."
                   ></textarea>
                 </div>
+              </div>
+              <!-- IMAGE LINKS -->
+              <div style="margin-top: 10px">
+                <div
+                  style="
+                    font-size: 10px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.07em;
+                    color: var(--mu2);
+                    margin-bottom: 5px;
+                  "
+                >
+                  Link Gambar Referensi (opsional)
+                </div>
+                <div class="img-link-list" id="img-link-list"></div>
+                <button class="btn-add-link" onclick="addImgLink()">
+                  <svg
+                    width="11"
+                    height="11"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  Tambah Link
+                </button>
+                <p class="hint">
+                  GPT-4o dapat menggunakan gambar publik sebagai referensi
+                  gaya/komposisi.
+                </p>
               </div>
             </div>
           </div>
 
-          <div class="field-grid full">
-            <div class="field-box">
-              <div class="field-key">Caption (TikTok / WA)</div>
-              <textarea
-                class="field-val"
-                id="f-caption"
-                rows="5"
-                placeholder="Hook singkat + 2-3 baris insight + CTA + hashtag..."
-              ></textarea>
+          <!-- CAPTION -->
+          <div
+            style="
+              background: var(--s2);
+              border: 1px solid var(--bd);
+              border-radius: var(--r2);
+              padding: 10px 12px;
+            "
+          >
+            <div
+              style="
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.09em;
+                color: var(--mu);
+                margin-bottom: 5px;
+              "
+            >
+              Caption (TikTok / WA)
+            </div>
+            <textarea
+              style="
+                width: 100%;
+                background: transparent;
+                border: none;
+                outline: none;
+                font-family: &quot;DM Sans&quot;, sans-serif;
+                font-size: 13px;
+                color: var(--tx);
+                resize: none;
+                line-height: 1.6;
+              "
+              id="f-caption"
+              rows="5"
+              placeholder="Hook + 2 baris insight + CTA + hashtag..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FOOTER TOGGLE -->
+        <div class="card">
+          <div class="clabel">Footer Poster</div>
+          <div class="toggle-row">
+            <label class="toggle-sw"
+              ><input
+                type="checkbox"
+                id="footer-toggle"
+                checked
+                onchange="toggleFooter()" />
+              <div class="toggle-track"></div
+            ></label>
+            <span class="toggle-lbl">Tampilkan Footer</span>
+          </div>
+          <div id="footer-fields">
+            <div class="frow">
+              <div>
+                <label>Teks Footer</label
+                ><input
+                  type="text"
+                  id="footer-txt"
+                  placeholder="e.g. 2026@HERRY"
+                  value="2026@HERRY"
+                />
+              </div>
+              <div>
+                <label>Posisi</label>
+                <select id="footer-pos">
+                  <option value="bottom-right">Kanan Bawah</option>
+                  <option value="bottom-center">Tengah Bawah</option>
+                  <option value="bottom-left">Kiri Bawah</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
 
         <button class="btn-gen" onclick="genFinal()">
           <svg
-            width="16"
-            height="16"
+            width="15"
+            height="15"
             fill="none"
             stroke="currentColor"
             stroke-width="2.2"
@@ -1702,12 +1742,12 @@
         <button class="btn-sec" onclick="goPhase(0)">← Kembali ke Input</button>
       </div>
 
-      <!-- ══════════════════ PHASE 3 ══════════════════ -->
+      <!-- ══ PHASE 3 ══ -->
       <div class="panel" id="phase-2">
         <div class="info">
           <svg
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
@@ -1721,24 +1761,22 @@
         </div>
         <div id="out-poster-wrap"></div>
         <div id="out-caption-wrap"></div>
-        <button class="btn-sec" onclick="goPhase(1)">
-          ← Edit Hasil Analisis
-        </button>
+        <button class="btn-sec" onclick="goPhase(1)">← Edit Analisis</button>
         <button class="btn-sec" style="margin-top: 8px" onclick="savePreset()">
-          💾 Simpan sebagai Preset
+          💾 Simpan Preset
         </button>
         <button class="btn-sec" style="margin-top: 8px" onclick="goPhase(0)">
           ← Mulai dari Awal
         </button>
       </div>
 
-      <div class="footer">2026@HERRY — Content Engine Pro</div>
+      <div class="pg-footer">2026@HERRY — Content Engine Pro</div>
     </div>
 
     <script>
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       // DATA
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       const GRADS = [
         { from: "#EEAA11", to: "#BB3381", name: "Energik" },
         { from: "#4FB3B3", to: "#BB3381", name: "Segar" },
@@ -1746,15 +1784,15 @@
         { from: "#EEAA11", to: "#3F1D50", name: "Bold" },
         { from: "#4FB3B3", to: "#3F1D50", name: "Deep" },
         { from: "#EEAA11", to: "#4FB3B3", name: "Playful" },
-        { from: "#E7E4DE", to: "#EEAA11", name: "Warm" },
+        { from: "#E7E4DE", to: "#EEAA11", name: "Warm Light" },
         { from: "#BB3381", to: "#16141C", name: "Dark Pink" },
         { from: "#007CBE", to: "#FFF7AE", name: "Ocean Sun" },
-        { from: "#E57A44", to: "#251351", name: "Sunset" },
+        { from: "#E57A44", to: "#251351", name: "Sunset Dusk" },
         { from: "#F1FEC6", to: "#A882DD", name: "Lavender" },
         { from: "#DB5375", to: "#B3FFB3", name: "Rose Mint" },
         { from: "#02C3BD", to: "#4E148C", name: "Teal Violet" },
-        { from: "#629460", to: "#F4D35E", name: "Forest" },
-        { from: "#414288", to: "#B0DB43", name: "Indigo" },
+        { from: "#629460", to: "#F4D35E", name: "Forest Gold" },
+        { from: "#414288", to: "#B0DB43", name: "Indigo Lime" },
         { from: "#FFC145", to: "#EC368D", name: "Mango Pink" },
         { from: "#FF6B6B", to: "#4ECDC4", name: "Coral Teal" },
         { from: "#A8EDEA", to: "#FED6E3", name: "Pastel" },
@@ -1783,274 +1821,273 @@
       ];
       const MARKERS = {
         basic: [
-          { val: "number", label: "① ② ③ Angka" },
-          { val: "letter", label: "Ⓐ Ⓑ Ⓒ Huruf" },
-          { val: "arrow", label: "→ → → Panah" },
-          { val: "star", label: "✦ ✦ ✦ Bintang" },
-          { val: "diamond", label: "◆ ◆ ◆ Diamond" },
-          { val: "check", label: "✓ ✓ ✓ Centang" },
-          { val: "dot", label: "● ● ● Dot" },
-          { val: "emoji", label: "🔥 💡 ⚡ Emoji" },
+          { v: "number", l: "① ② ③ Angka" },
+          { v: "letter", l: "Ⓐ Ⓑ Ⓒ Huruf" },
+          { v: "arrow", l: "→ Panah" },
+          { v: "star", l: "✦ Bintang" },
+          { v: "diamond", l: "◆ Diamond" },
+          { v: "check", l: "✓ Centang" },
+          { v: "dot", l: "● Dot" },
+          { v: "emoji", l: "🔥 Emoji" },
         ],
         line: [
-          { val: "icon-line-check", label: "☐ Check outline" },
-          { val: "icon-line-star", label: "☆ Star outline" },
-          { val: "icon-line-arrow", label: "➔ Arrow outline" },
-          { val: "icon-line-bolt", label: "⚡ Bolt outline" },
-          { val: "icon-line-heart", label: "♡ Heart outline" },
-          { val: "icon-line-target", label: "◎ Target outline" },
-          { val: "icon-line-flag", label: "⚑ Flag outline" },
-          { val: "icon-line-leaf", label: "♧ Leaf outline" },
+          { v: "icon-line-check", l: "☐ Check" },
+          { v: "icon-line-star", l: "☆ Star" },
+          { v: "icon-line-arrow", l: "➔ Arrow" },
+          { v: "icon-line-bolt", l: "⚡ Bolt" },
+          { v: "icon-line-heart", l: "♡ Heart" },
+          { v: "icon-line-target", l: "◎ Target" },
+          { v: "icon-line-flag", l: "⚑ Flag" },
+          { v: "icon-line-leaf", l: "♧ Leaf" },
         ],
         fill: [
-          { val: "icon-fill-check", label: "✅ Check filled" },
-          { val: "icon-fill-star", label: "★ Star filled" },
-          { val: "icon-fill-arrow", label: "▶ Arrow filled" },
-          { val: "icon-fill-bolt", label: "⚡ Bolt filled" },
-          { val: "icon-fill-heart", label: "♥ Heart filled" },
-          { val: "icon-fill-circle", label: "● Circle filled" },
-          { val: "icon-fill-diamond", label: "◆ Diamond filled" },
-          { val: "icon-fill-flag", label: "⚑ Flag filled" },
+          { v: "icon-fill-check", l: "✅ Check" },
+          { v: "icon-fill-star", l: "★ Star" },
+          { v: "icon-fill-arrow", l: "▶ Arrow" },
+          { v: "icon-fill-bolt", l: "⚡ Bolt" },
+          { v: "icon-fill-heart", l: "♥ Heart" },
+          { v: "icon-fill-circle", l: "● Circle" },
+          { v: "icon-fill-diamond", l: "◆ Diamond" },
+          { v: "icon-fill-flag", l: "⚑ Flag" },
         ],
         color: [
-          { val: "icon-color-fire", label: "🔥 Api" },
-          { val: "icon-color-rocket", label: "🚀 Roket" },
-          { val: "icon-color-bulb", label: "💡 Lampu" },
-          { val: "icon-color-trophy", label: "🏆 Trofi" },
-          { val: "icon-color-target", label: "🎯 Target" },
-          { val: "icon-color-gem", label: "💎 Berlian" },
-          { val: "icon-color-chart", label: "📈 Grafik" },
-          { val: "icon-color-crown", label: "👑 Mahkota" },
+          { v: "icon-color-fire", l: "🔥 Api" },
+          { v: "icon-color-rocket", l: "🚀 Roket" },
+          { v: "icon-color-bulb", l: "💡 Lampu" },
+          { v: "icon-color-trophy", l: "🏆 Trofi" },
+          { v: "icon-color-target", l: "🎯 Target" },
+          { v: "icon-color-gem", l: "💎 Berlian" },
+          { v: "icon-color-chart", l: "📈 Grafik" },
+          { v: "icon-color-crown", l: "👑 Mahkota" },
         ],
       };
-      const RATIOS = [
+      const GREET = [
         {
-          val: "9:16",
-          w: 1080,
-          h: 1920,
-          label: "9:16 — Reels / TikTok / Stories",
-          platform: "Instagram Reels, TikTok, Stories",
+          l: "🇮🇩 HUT RI",
+          j: "Ucapan HUT Kemerdekaan RI",
+          t: "semangat nasionalisme dan kebangsaan",
+          v: "bendera merah putih, garuda, meriah",
+          a: "seluruh masyarakat Indonesia",
         },
         {
-          val: "4:5",
-          w: 1080,
-          h: 1350,
-          label: "4:5 — IG Feed Portrait",
-          platform: "Instagram Feed (portrait)",
+          l: "🕌 Lebaran",
+          j: "Ucapan Hari Raya Idul Fitri",
+          t: "maaf lahir batin, kebersamaan keluarga",
+          v: "ketupat, bulan sabit, nuansa hijau emas",
+          a: "umat Muslim Indonesia",
         },
         {
-          val: "1:1",
-          w: 1080,
-          h: 1080,
-          label: "1:1 — Square",
-          platform: "Instagram Feed, Facebook",
+          l: "🎄 Natal",
+          j: "Ucapan Hari Natal",
+          t: "damai, kasih sayang, dan syukur",
+          v: "pohon natal, bintang, merah dan hijau",
+          a: "umat Kristiani",
         },
         {
-          val: "16:9",
-          w: 1920,
-          h: 1080,
-          label: "16:9 — Landscape",
-          platform: "YouTube, LinkedIn, Twitter",
+          l: "💕 Hari Ibu",
+          j: "Ucapan Hari Ibu",
+          t: "terima kasih dan penghargaan untuk ibu",
+          v: "bunga, pink dan putih, hangat",
+          a: "semua orang",
+        },
+        {
+          l: "💼 Motivasi",
+          j: "Konten Motivasi Kerja",
+          t: "semangat produktif dan pantang menyerah",
+          v: "karakter profesional dinamis, energik",
+          a: "profesional muda",
+        },
+        {
+          l: "💰 Finansial",
+          j: "Tips Keuangan",
+          t: "cara kelola uang yang smart",
+          v: "koin, grafik naik, modern",
+          a: "anak muda, milenial",
+        },
+        {
+          l: "🏋️ Kesehatan",
+          j: "Tips Hidup Sehat",
+          t: "gaya hidup sehat yang mudah",
+          v: "makanan sehat, olahraga, bersemangat",
+          a: "semua usia",
+        },
+        {
+          l: "📱 Teknologi",
+          j: "Konten Teknologi Digital",
+          t: "tren teknologi terkini",
+          v: "perangkat digital, neon, futuristik",
+          a: "tech enthusiast",
         },
       ];
-      const GREET_TEMPLATES = [
+      const RATIOS = {
+        "9:16": { w: 1080, h: 1920, plat: "Instagram Reels, TikTok, Stories" },
+        "4:5": { w: 1080, h: 1350, plat: "Instagram Feed (portrait)" },
+        "1:1": { w: 1080, h: 1080, plat: "Instagram Feed, Facebook" },
+        "16:9": { w: 1920, h: 1080, plat: "YouTube, LinkedIn, Twitter" },
+      };
+
+      // ASSET KEYWORD RULES for auto-suggest
+      const ASSET_RULES = [
         {
-          label: "🇮🇩 HUT RI",
-          jenis: "Ucapan HUT Kemerdekaan RI",
-          tema: "semangat nasionalisme dan kebangsaan",
-          visual: "bendera merah putih, garuda, suasana meriah dan heroik",
-          audience: "seluruh masyarakat Indonesia",
+          kw: ["woman", "wanita", "girl", "perempuan", "female"],
+          light: 0,
+          mat: 0,
+          pose: 0,
+        },
+        { kw: ["man", "pria", "guy", "male"], light: 0, mat: 1, pose: 0 },
+        {
+          kw: ["food", "makanan", "buah", "fruit", "sayur"],
+          light: 3,
+          mat: 5,
+          pose: 3,
         },
         {
-          label: "🕌 Lebaran",
-          jenis: "Ucapan Hari Raya Idul Fitri",
-          tema: "maaf lahir batin, kembali suci, kebersamaan keluarga",
-          visual: "ketupat, bulan sabit, nuansa hijau dan emas",
-          audience: "umat Muslim Indonesia",
+          kw: ["business", "bisnis", "office", "profesional"],
+          light: 3,
+          mat: 1,
+          pose: 0,
         },
         {
-          label: "🎄 Natal",
-          jenis: "Ucapan Hari Natal",
-          tema: "damai, kasih sayang, dan syukur",
-          visual: "pohon natal, salju, bintang, nuansa merah dan hijau",
-          audience: "umat Kristiani",
+          kw: ["sport", "olahraga", "fitness", "gym"],
+          light: 0,
+          mat: 0,
+          pose: 2,
         },
         {
-          label: "💕 Hari Ibu",
-          jenis: "Ucapan Hari Ibu",
-          tema: "terima kasih dan penghargaan untuk ibu",
-          visual: "bunga, warna lembut pink dan putih, suasana hangat",
-          audience: "semua orang",
+          kw: ["tech", "teknologi", "phone", "laptop", "gadget"],
+          light: 2,
+          mat: 2,
+          pose: 8,
         },
         {
-          label: "💼 Motivasi",
-          jenis: "Konten Motivasi Kerja",
-          tema: "semangat produktif dan pantang menyerah",
-          visual: "karakter profesional dinamis, suasana energik",
-          audience: "profesional muda",
+          kw: ["nature", "alam", "green", "hijau", "plant"],
+          light: 4,
+          mat: 5,
+          pose: 3,
         },
+        { kw: ["night", "malam", "dark", "gelap"], light: 5, mat: 6, pose: 6 },
         {
-          label: "💰 Finansial",
-          jenis: "Tips Keuangan",
-          tema: "cara kelola uang yang smart",
-          visual: "koin, grafik naik, dompet, modern",
-          audience: "anak muda, milenial",
-        },
-        {
-          label: "🏋️ Kesehatan",
-          jenis: "Tips Hidup Sehat",
-          tema: "gaya hidup sehat yang mudah",
-          visual: "makanan sehat, olahraga, bersemangat",
-          audience: "semua usia",
-        },
-        {
-          label: "📱 Teknologi",
-          jenis: "Konten Teknologi / Digital",
-          tema: "tren teknologi terkini",
-          visual: "perangkat digital, neon, futuristik",
-          audience: "tech enthusiast",
+          kw: ["celebration", "perayaan", "party", "pesta"],
+          light: 7,
+          mat: 6,
+          pose: 7,
         },
       ];
 
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       // STATE
-      // ════════════════════════════════════════
-      let bgMode = "gradient",
-        customMode = "gradient";
-      let selectedGrad = GRADS[0],
-        selectedSolid = null;
-      let selectedMarker = "number",
-        markerCat = "basic";
-      let selectedRatio = RATIOS[0];
-      let inputMode = "link",
-        contentMode = "kp";
+      // ══════════════════════════════════════
+      let selectedBg = GRADS[0];
+      let selectedRatio = "9:16";
+      let selectedMarker = "number";
+      let markerCat = "basic";
+      let inputMode = "link";
+      let contentMode = "kp";
       let kpCount = 3;
+      let imgLinkCount = 0;
+      let assetSuggestTimer = null;
 
-      // ════════════════════════════════════════
-      // BUILD UI
-      // ════════════════════════════════════════
-      function buildAll() {
-        buildGradGrid();
-        buildSolidGrid();
-        buildMarkerRow("basic");
+      // ══════════════════════════════════════
+      // INIT
+      // ══════════════════════════════════════
+      function init() {
+        buildBgDropdown();
         buildGreetGrid();
-        buildRatioOptions();
-        buildKpList();
+        buildMarkerCats();
+        buildMarkerRow("basic");
+        buildKpList(3);
+        buildImgLinks(1);
+        drawWireframe("9:16");
         updateBgPreview();
         loadPresets();
       }
 
-      function buildGradGrid() {
-        const g = document.getElementById("grad-grid");
-        g.innerHTML = "";
+      // ══════════════════════════════════════
+      // BG DROPDOWN
+      // ══════════════════════════════════════
+      function buildBgDropdown() {
+        const sel = document.getElementById("bg-sel");
+        sel.innerHTML = "";
+        // Gradients group
+        const g1 = document.createElement("optgroup");
+        g1.label = "── Gradient";
         GRADS.forEach((gr, i) => {
-          const d = document.createElement("div");
-          d.className = "grad-opt" + (i === 0 ? " sel" : "");
-          d.onclick = () => selGrad(d, gr);
-          d.innerHTML = `<div class="grad-swatch" style="background:linear-gradient(135deg,${gr.from},${gr.to})"></div><div class="grad-name">${gr.name}</div>`;
-          g.appendChild(d);
+          const o = document.createElement("option");
+          o.value = "grad:" + i;
+          o.textContent = gr.name + " (" + gr.from + "→" + gr.to + ")";
+          g1.appendChild(o);
         });
+        sel.appendChild(g1);
+        // Solids group
+        const g2 = document.createElement("optgroup");
+        g2.label = "── Solid";
+        SOLIDS.forEach((s, i) => {
+          const o = document.createElement("option");
+          o.value = "solid:" + i;
+          o.textContent = s.name + " (" + s.hex + ")";
+          g2.appendChild(o);
+        });
+        sel.appendChild(g2);
+        updateBgPreview();
       }
 
-      function buildSolidGrid() {
-        const g = document.getElementById("solid-grid");
-        g.innerHTML = "";
-        SOLIDS.forEach((s) => {
-          const d = document.createElement("div");
-          d.className = "solid-opt";
-          d.onclick = () => selSolid(d, s);
-          d.innerHTML = `<div class="solid-swatch" style="background:${s.hex}"></div><div class="solid-name">${s.name}</div>`;
-          g.appendChild(d);
-        });
+      function onBgChange() {
+        const v = document.getElementById("bg-sel").value;
+        if (v.startsWith("grad:")) {
+          selectedBg = { type: "grad", ...GRADS[+v.split(":")[1]] };
+        } else {
+          selectedBg = { type: "solid", ...SOLIDS[+v.split(":")[1]] };
+        }
+        updateBgPreview();
       }
 
-      function buildMarkerRow(cat) {
-        markerCat = cat;
-        document.querySelectorAll(".mcat-btn").forEach((b, i) => {
-          b.classList.toggle(
-            "active",
-            ["basic", "line", "fill", "color"][i] === cat,
-          );
-        });
-        const r = document.getElementById("marker-row");
-        r.innerHTML = "";
-        MARKERS[cat].forEach((m) => {
-          const d = document.createElement("div");
-          d.className = "marker-opt" + (m.val === selectedMarker ? " sel" : "");
-          d.onclick = () => {
-            document
-              .querySelectorAll(".marker-opt")
-              .forEach((e) => e.classList.remove("sel"));
-            d.classList.add("sel");
-            selectedMarker = m.val;
+      function updateBgPreview() {
+        const bar = document.getElementById("bg-bar");
+        const sw = document.getElementById("bg-swatch");
+        const v = document.getElementById("bg-sel").value;
+        let css, acc;
+        if (v.startsWith("grad:")) {
+          const gr = GRADS[+v.split(":")[1]];
+          css = `linear-gradient(135deg,${gr.from},${gr.to})`;
+          acc = gr.from;
+          selectedBg = { type: "grad", ...gr };
+        } else {
+          const s = SOLIDS[+v.split(":")[1]];
+          css = s.hex;
+          acc = "#EEAA11";
+          selectedBg = { type: "solid", ...s };
+        }
+        bar.style.background = css;
+        sw.style.background = css;
+      }
+
+      function getBgPrompt() {
+        if (selectedBg.type === "solid")
+          return {
+            str: `Solid flat background: ${selectedBg.hex} (${selectedBg.name}). No gradient.`,
+            acc: "#EEAA11",
           };
-          d.textContent = m.label;
-          r.appendChild(d);
-        });
+        return {
+          str: `Full smooth gradient: ${selectedBg.from} → ${selectedBg.to} at 135° diagonal. Mood: ${selectedBg.name}. Subtle radial vignette at edges (8% darker).`,
+          acc: selectedBg.from || "#EEAA11",
+        };
       }
 
-      function setMarkerCat(cat) {
-        buildMarkerRow(cat);
+      // ══════════════════════════════════════
+      // RATIO
+      // ══════════════════════════════════════
+      function onRatioChange() {
+        selectedRatio = document.getElementById("ratio-sel").value;
+        drawWireframe(selectedRatio);
       }
 
-      function buildGreetGrid() {
-        const g = document.getElementById("greet-grid");
-        g.innerHTML = "";
-        GREET_TEMPLATES.forEach((t) => {
-          const d = document.createElement("div");
-          d.className = "greet-chip";
-          d.textContent = t.label;
-          d.onclick = () => {
-            document
-              .querySelectorAll(".greet-chip")
-              .forEach((e) => e.classList.remove("active"));
-            d.classList.add("active");
-            document.getElementById("inp-jenis").value = t.jenis;
-            document.getElementById("inp-tema").value = t.tema;
-            document.getElementById("inp-visual").value = t.visual;
-            document.getElementById("inp-audience").value = t.audience;
-          };
-          g.appendChild(d);
-        });
-      }
-
-      // ════════════════════════════════════════
-      // RATIO OPTIONS + WIREFRAME
-      // ════════════════════════════════════════
-      function buildRatioOptions() {
-        const wrap = document.getElementById("ratio-options");
-        wrap.innerHTML = "";
-        RATIOS.forEach((r, i) => {
-          const d = document.createElement("div");
-          d.className = "ratio-opt" + (i === 0 ? " sel" : "");
-          d.onclick = () => selRatio(d, r);
-          d.innerHTML = `
-      <div class="ratio-radio"></div>
-      <div class="ratio-info">
-        <div class="ratio-name">${r.label}</div>
-        <div class="ratio-desc">${r.platform}</div>
-        <div class="ratio-dim">${r.w} × ${r.h} px</div>
-      </div>`;
-          wrap.appendChild(d);
-        });
-        drawWireframe(RATIOS[0]);
-      }
-
-      function selRatio(el, r) {
-        document
-          .querySelectorAll(".ratio-opt")
-          .forEach((e) => e.classList.remove("sel"));
-        el.classList.add("sel");
-        selectedRatio = r;
-        drawWireframe(r);
-      }
-
-      function drawWireframe(r) {
-        const canvas = document.getElementById("ratio-canvas");
-        const maxW = 120,
-          maxH = 200;
-        let cw, ch;
+      function drawWireframe(ratio) {
+        const c = document.getElementById("ratio-canvas");
+        const maxW = 90,
+          maxH = 150;
+        const r = RATIOS[ratio];
         const ar = r.w / r.h;
+        let cw, ch;
         if (ar >= 1) {
           cw = maxW;
           ch = Math.round(maxW / ar);
@@ -2058,675 +2095,519 @@
           ch = maxH;
           cw = Math.round(maxH * ar);
         }
-        canvas.style.width = cw + "px";
-        canvas.style.height = ch + "px";
-        canvas.innerHTML = "";
-
-        // Zone definitions per ratio
-        const zones = getWireframeZones(r.val, cw, ch);
+        c.style.width = cw + "px";
+        c.style.height = ch + "px";
+        c.innerHTML = "";
+        const p = 2;
+        // Check active components
+        const hasSub = document
+          .getElementById("comp-sub")
+          ?.classList.contains("checked");
+        const hasAsset = document
+          .getElementById("comp-asset")
+          ?.classList.contains("checked");
+        const hasCont = document
+          .getElementById("comp-content")
+          ?.classList.contains("checked");
+        const zones = getZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont);
         zones.forEach((z) => {
           const el = document.createElement("div");
-          el.className = "wf-zone " + z.cls;
+          el.className = "wfz " + z.c;
           el.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;`;
-          el.textContent = z.label;
-          canvas.appendChild(el);
+          el.textContent = z.t;
+          c.appendChild(el);
         });
       }
 
-      function getWireframeZones(ratio, cw, ch) {
-        const p = 3; // padding
+      function getZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont) {
+        const z = [];
         if (ratio === "9:16") {
-          const hl = Math.round(ch * 0.3),
-            vis = Math.round(ch * 0.36),
-            kp = ch - hl - vis - p * 2;
-          return [
-            {
+          const hlH = Math.round(ch * (hasSub ? 0.26 : 0.2));
+          const visH = hasAsset ? Math.round(ch * 0.38) : 0;
+          const kpH = hasCont ? ch - hlH - visH - p * 3 : 0;
+          z.push({
+            x: p,
+            y: p,
+            w: cw - p * 2,
+            h: hlH,
+            c: "wfz hl",
+            t: "HEADLINE" + (hasSub ? "\nSub" : ""),
+          });
+          if (hasAsset)
+            z.push({
               x: p,
-              y: p,
+              y: hlH + p,
               w: cw - p * 2,
-              h: hl - 2,
-              cls: "wf-hl",
-              label: "HEADLINE\nSubheadline",
-            },
-            {
+              h: visH,
+              c: "wfz vs",
+              t: "3D\nASSET",
+            });
+          if (hasCont)
+            z.push({
               x: p,
-              y: hl + 2,
+              y: hlH + visH + p * 2,
               w: cw - p * 2,
-              h: vis - 2,
-              cls: "wf-vis",
-              label: "3D\nASSET",
-            },
-            {
+              h: kpH,
+              c: "wfz kp",
+              t: "KONTEN",
+            });
+          z.push({
+            x: cw - 22,
+            y: ch - 8,
+            w: 20,
+            h: 6,
+            c: "wfz ft",
+            t: "FOOTER",
+          });
+        } else if (ratio === "4:5") {
+          const hlH = Math.round(ch * 0.26);
+          const midH = ch - hlH - p * 3;
+          const asW = hasAsset ? Math.round(cw * 0.55) : 0;
+          z.push({
+            x: p,
+            y: p,
+            w: cw - p * 2,
+            h: hlH,
+            c: "wfz hl",
+            t: "HEADLINE",
+          });
+          if (hasAsset)
+            z.push({
               x: p,
-              y: hl + vis + 2,
+              y: hlH + p,
+              w: asW - 2,
+              h: midH,
+              c: "wfz vs",
+              t: "3D",
+            });
+          if (hasCont)
+            z.push({
+              x: asW + 2,
+              y: hlH + p,
+              w: cw - asW - p - 2,
+              h: midH,
+              c: "wfz kp",
+              t: "KP",
+            });
+          else if (!hasAsset && hasCont)
+            z.push({
+              x: p,
+              y: hlH + p,
               w: cw - p * 2,
-              h: kp - 8,
-              cls: "wf-kp",
-              label: "KEY\nPOINTS",
-            },
-            {
-              x: cw - 28,
-              y: ch - 10,
-              w: 25,
-              h: 8,
-              cls: "wf-ft",
-              label: "FOOTER",
-            },
-          ];
-        }
-        if (ratio === "4:5") {
-          const hlH = Math.round(ch * 0.28),
-            midH = Math.round(ch * 0.64),
-            ftH = ch - hlH - midH;
-          const midW = Math.round(cw * 0.55);
-          return [
-            {
-              x: p,
-              y: p,
-              w: cw - p * 2,
-              h: hlH - 2,
-              cls: "wf-hl",
-              label: "HEADLINE",
-            },
-            {
-              x: p,
-              y: hlH + 1,
-              w: midW - 2,
-              h: midH - 2,
-              cls: "wf-vis",
-              label: "3D\nASSET",
-            },
-            {
-              x: midW + 2,
-              y: hlH + 1,
-              w: cw - midW - p - 2,
-              h: midH - 2,
-              cls: "wf-kp",
-              label: "KEY\nPTS",
-            },
-            {
-              x: cw - 28,
-              y: ch - 8,
-              w: 25,
-              h: 7,
-              cls: "wf-ft",
-              label: "FOOTER",
-            },
-          ];
-        }
-        if (ratio === "1:1") {
-          const topH = Math.round(ch * 0.38),
-            visH = Math.round(ch * 0.44);
-          const hlW = Math.round(cw * 0.6);
-          return [
-            {
-              x: p,
-              y: p,
-              w: hlW - 4,
-              h: topH - 2,
-              cls: "wf-hl",
-              label: "HEADLINE",
-            },
-            {
+              h: midH,
+              c: "wfz kp",
+              t: "KONTEN",
+            });
+          z.push({
+            x: cw - 22,
+            y: ch - 7,
+            w: 20,
+            h: 6,
+            c: "wfz ft",
+            t: "FOOTER",
+          });
+        } else if (ratio === "1:1") {
+          const topH = Math.round(ch * 0.38);
+          const hlW = Math.round(cw * 0.58);
+          const kpH = ch - topH - p * 3;
+          z.push({ x: p, y: p, w: hlW - 2, h: topH, c: "wfz hl", t: "HL" });
+          if (hasAsset)
+            z.push({
               x: hlW + 1,
               y: p,
               w: cw - hlW - p - 1,
-              h: topH - 2,
-              cls: "wf-vis",
-              label: "3D",
-            },
-            {
+              h: topH,
+              c: "wfz vs",
+              t: "3D",
+            });
+          if (hasCont)
+            z.push({
               x: p,
-              y: topH + 1,
+              y: topH + p,
               w: cw - p * 2,
-              h: visH - 2,
-              cls: "wf-kp",
-              label: "KEY POINTS (2-col)",
-            },
-            {
-              x: cw - 28,
-              y: ch - 8,
-              w: 25,
-              h: 7,
-              cls: "wf-ft",
-              label: "FOOTER",
-            },
-          ];
-        }
-        if (ratio === "16:9") {
-          const assetW = Math.round(cw * 0.3),
-            kpW = Math.round(cw * 0.3),
-            hlW = cw - assetW - kpW - p * 2;
-          return [
-            {
+              h: kpH,
+              c: "wfz kp",
+              t: "KP",
+            });
+          z.push({
+            x: cw - 22,
+            y: ch - 7,
+            w: 20,
+            h: 6,
+            c: "wfz ft",
+            t: "FOOTER",
+          });
+        } else if (ratio === "16:9") {
+          const asW = hasAsset ? Math.round(cw * 0.28) : 0;
+          const kpW = hasCont ? Math.round(cw * 0.28) : 0;
+          const hlW = cw - asW - kpW - p * 2;
+          if (hasAsset)
+            z.push({
               x: p,
               y: p,
-              w: assetW - 2,
+              w: asW - 2,
               h: ch - p * 2,
-              cls: "wf-vis",
-              label: "3D\nASSET",
-            },
-            {
-              x: assetW + 1,
-              y: p,
-              w: hlW - 2,
-              h: ch - p * 2,
-              cls: "wf-hl",
-              label: "HEADLINE\nSubheadline",
-            },
-            {
-              x: assetW + hlW + 1,
+              c: "wfz vs",
+              t: "3D",
+            });
+          z.push({
+            x: asW + p,
+            y: p,
+            w: hlW - 2,
+            h: ch - p * 2,
+            c: "wfz hl",
+            t: "HEADLINE\nSub",
+          });
+          if (hasCont)
+            z.push({
+              x: asW + hlW + p,
               y: p,
               w: kpW - 2,
               h: ch - p * 2,
-              cls: "wf-kp",
-              label: "KEY\nPTS",
-            },
-            {
-              x: cw - 28,
-              y: ch - 8,
-              w: 25,
-              h: 7,
-              cls: "wf-ft",
-              label: "FOOTER",
-            },
-          ];
+              c: "wfz kp",
+              t: "KP",
+            });
+          z.push({
+            x: cw - 22,
+            y: ch - 7,
+            w: 20,
+            h: 6,
+            c: "wfz ft",
+            t: "FOOTER",
+          });
         }
-        return [];
+        return z;
       }
 
-      // ════════════════════════════════════════
-      // KEY POINTS DYNAMIC
-      // ════════════════════════════════════════
-      function buildKpList() {
-        const list = document.getElementById("kp-list");
-        list.innerHTML = "";
-        for (let i = 1; i <= kpCount; i++) appendKpRow(i);
-        updateKpCount();
-      }
-
-      function appendKpRow(n) {
-        const list = document.getElementById("kp-list");
-        const div = document.createElement("div");
-        div.className = "kp-item";
-        div.id = "kp-item-" + n;
-        div.innerHTML = `
-    <div class="kp-sub">
-      <div class="kp-sub-key">Poin ${n} — Label</div>
-      <textarea class="kp-sub-val" id="f-kp${n}-label" rows="1" placeholder="maks 4 kata..."></textarea>
-    </div>
-    <div class="kp-sub">
-      <div class="kp-sub-key">Poin ${n} — Deskripsi</div>
-      <textarea class="kp-sub-val" id="f-kp${n}-desc" rows="1" placeholder="1 kalimat singkat..."></textarea>
-    </div>
-    <button class="btn-del-kp" onclick="delKp(${n})" title="Hapus poin ini">✕</button>`;
-        list.appendChild(div);
-      }
-
-      function addKp() {
-        if (kpCount >= 5) return;
-        kpCount++;
-        appendKpRow(kpCount);
-        updateKpCount();
-      }
-
-      function delKp(n) {
-        if (kpCount <= 1) return;
-        const el = document.getElementById("kp-item-" + n);
-        if (el) el.remove();
-        // renumber remaining
-        kpCount = 0;
-        document.querySelectorAll(".kp-item").forEach((item) => {
-          kpCount++;
-          item.id = "kp-item-" + kpCount;
-          const lbl = item.querySelector(".kp-sub-key");
-          const lbl2 = item.querySelectorAll(".kp-sub-key")[1];
-          const ta1 = item.querySelector("textarea:first-of-type");
-          const ta2 = item.querySelectorAll("textarea")[1];
-          const delbtn = item.querySelector(".btn-del-kp");
-          if (lbl) lbl.textContent = `Poin ${kpCount} — Label`;
-          if (lbl2) lbl2.textContent = `Poin ${kpCount} — Deskripsi`;
-          if (ta1) {
-            ta1.id = `f-kp${kpCount}-label`;
-          }
-          if (ta2) {
-            ta2.id = `f-kp${kpCount}-desc`;
-          }
-          if (delbtn) delbtn.setAttribute("onclick", `delKp(${kpCount})`);
+      // ══════════════════════════════════════
+      // MARKER
+      // ══════════════════════════════════════
+      function buildMarkerCats() {
+        const r = document.getElementById("mcat-row");
+        ["Simbol", "Icon Line", "Icon Fill", "Icon Color"].forEach((l, i) => {
+          const cats = ["basic", "line", "fill", "color"];
+          const d = document.createElement("div");
+          d.className = "tbtn" + (i === 0 ? " on" : "");
+          d.textContent = l;
+          d.onclick = () => buildMarkerRow(cats[i]);
+          r.appendChild(d);
         });
-        updateKpCount();
       }
 
-      function updateKpCount() {
-        document.getElementById("kp-count").textContent = `${kpCount} / 5 poin`;
-        document.getElementById("btn-add-kp").style.display =
-          kpCount >= 5 ? "none" : "flex";
-      }
-
-      function getKpData() {
-        const items = [];
-        document.querySelectorAll(".kp-item").forEach((item, i) => {
-          const n = i + 1;
-          const lbl =
-            (document.getElementById(`f-kp${n}-label`) || {}).value?.trim() ||
-            "";
-          const desc =
-            (document.getElementById(`f-kp${n}-desc`) || {}).value?.trim() ||
-            "";
-          if (lbl || desc) items.push({ label: lbl, desc: desc, n: n });
-        });
-        return items;
-      }
-
-      function countParaLines() {
-        const ta = document.getElementById("f-para");
-        const lines = ta.value.split("\n").length;
-        const capped = Math.min(lines, 9);
-        document.getElementById("para-counter").textContent =
-          `${capped} / 9 baris`;
-      }
-
-      // ════════════════════════════════════════
-      // MODE SWITCHES
-      // ════════════════════════════════════════
-      function setMode(m) {
-        inputMode = m;
-        document.getElementById("section-link").style.display =
-          m === "link" ? "block" : "none";
-        document.getElementById("section-custom").style.display =
-          m === "custom" ? "block" : "none";
-        document
-          .getElementById("mode-link")
-          .classList.toggle("active", m === "link");
-        document
-          .getElementById("mode-custom")
-          .classList.toggle("active", m === "custom");
-      }
-
-      function setBgMode(m) {
-        bgMode = m;
-        document
-          .querySelectorAll(".bg-tab")
-          .forEach((t, i) =>
-            t.classList.toggle(
-              "active",
-              ["gradient", "solid", "custom"][i] === m,
-            ),
+      function buildMarkerRow(cat) {
+        markerCat = cat;
+        document.querySelectorAll("#mcat-row .tbtn").forEach((b, i) => {
+          b.classList.toggle(
+            "on",
+            ["basic", "line", "fill", "color"][i] === cat,
           );
-        document.getElementById("bg-gradient-section").style.display =
-          m === "gradient" ? "block" : "none";
-        document.getElementById("bg-solid-section").style.display =
-          m === "solid" ? "block" : "none";
-        document.getElementById("bg-custom-section").style.display =
-          m === "custom" ? "block" : "none";
-      }
-
-      function setCustomMode(m) {
-        customMode = m;
-        document
-          .getElementById("cm-grad")
-          .classList.toggle("active", m === "gradient");
-        document
-          .getElementById("cm-solid")
-          .classList.toggle("active", m === "solid");
-        document.getElementById("cr-grad").style.display =
-          m === "gradient" ? "flex" : "none";
-        document.getElementById("cr-solid").style.display =
-          m === "solid" ? "flex" : "none";
-      }
-
-      function setContentMode(m) {
-        contentMode = m;
-        document.getElementById("cm-kp").classList.toggle("active", m === "kp");
-        document
-          .getElementById("cm-para")
-          .classList.toggle("active", m === "para");
-        document.getElementById("section-kp").style.display =
-          m === "kp" ? "block" : "none";
-        document.getElementById("section-para").style.display =
-          m === "para" ? "block" : "none";
-      }
-
-      // ════════════════════════════════════════
-      // SELECTION
-      // ════════════════════════════════════════
-      function selGrad(el, gr) {
-        document
-          .querySelectorAll(".grad-opt")
-          .forEach((e) => e.classList.remove("sel"));
-        el.classList.add("sel");
-        selectedGrad = gr;
-        selectedSolid = null;
-        updateBgPreview();
-      }
-      function selSolid(el, s) {
-        document
-          .querySelectorAll(".solid-opt")
-          .forEach((e) => e.classList.remove("sel"));
-        el.classList.add("sel");
-        selectedSolid = s;
-        selectedGrad = null;
-        updateBgPreview();
-      }
-      function updateBgPreview() {
-        const p = document.getElementById("bg-preview");
-        if (selectedSolid) p.style.background = selectedSolid.hex;
-        else if (selectedGrad)
-          p.style.background = `linear-gradient(135deg,${selectedGrad.from},${selectedGrad.to})`;
-      }
-      function updatePrev(inpId, prevId) {
-        const h = document.getElementById(inpId).value;
-        if (/^#[0-9A-Fa-f]{6}$/.test(h))
-          document.getElementById(prevId).style.background = h;
-      }
-      function applyGradHex() {
-        const h1 = document.getElementById("hex1").value.trim(),
-          h2 = document.getElementById("hex2").value.trim();
-        if (!/^#[0-9A-Fa-f]{6}$/.test(h1) || !/^#[0-9A-Fa-f]{6}$/.test(h2)) {
-          alert("Format hex tidak valid (#RRGGBB)");
-          return;
-        }
-        selectedGrad = { from: h1, to: h2, name: "Custom" };
-        selectedSolid = null;
-        updateBgPreview();
-      }
-      function applySolidHex() {
-        const h = document.getElementById("hex-s").value.trim();
-        if (!/^#[0-9A-Fa-f]{6}$/.test(h)) {
-          alert("Format hex tidak valid (#RRGGBB)");
-          return;
-        }
-        selectedSolid = { hex: h, name: "Custom" };
-        selectedGrad = null;
-        updateBgPreview();
-      }
-
-      // ════════════════════════════════════════
-      // ASSET SELECT
-      // ════════════════════════════════════════
-      function syncSel(selId, customId) {
-        const sel = document.getElementById(selId);
-        const ta = document.getElementById(customId);
-        ta.style.display = sel.value === "custom" ? "block" : "none";
-        if (sel.value === "custom") ta.focus();
-      }
-      function getAssetVal(selId, customId) {
-        const sel = document.getElementById(selId);
-        if (sel.value === "custom")
-          return document.getElementById(customId).value.trim();
-        return sel.value;
-      }
-
-      // ════════════════════════════════════════
-      // BG & MARKER STRINGS FOR PROMPT
-      // ════════════════════════════════════════
-      function getBg() {
-        if (selectedSolid)
-          return {
-            prompt: `Solid flat background: ${selectedSolid.hex} (${selectedSolid.name}). No gradient. Clean and bold.`,
-            accent: selectedSolid.hex === "#FFFFFF" ? "#222222" : "#EEAA11",
+        });
+        const r = document.getElementById("marker-row");
+        r.innerHTML = "";
+        MARKERS[cat].forEach((m) => {
+          const d = document.createElement("div");
+          d.className = "tbtn" + (m.v === selectedMarker ? " on" : "");
+          d.textContent = m.l;
+          d.onclick = () => {
+            document
+              .querySelectorAll("#marker-row .tbtn")
+              .forEach((e) => e.classList.remove("on"));
+            d.classList.add("on");
+            selectedMarker = m.v;
           };
-        if (selectedGrad)
-          return {
-            prompt: `Full smooth gradient: ${selectedGrad.from} → ${selectedGrad.to} at 135° diagonal. Mood: ${selectedGrad.name}. Add subtle radial vignette at edges (8% darker).`,
-            accent: selectedGrad.from,
-          };
-        return { prompt: "Dark background #1a1729.", accent: "#EEAA11" };
+          r.appendChild(d);
+        });
       }
 
       function getMarkerPrompt() {
         const map = {
           number:
-            "Circular numbered badges ❶ ❷ ❸ — bold, filled with accent color, white number inside, 32px",
-          letter:
-            "Circular letter badges A B C — bold, filled with accent color, 32px",
-          arrow:
-            "Bold arrow → in accent color, 20pt, slightly 3D extruded look",
-          star: "Star icon ✦ in accent color, 20pt, subtle glow",
-          diamond: "Diamond ◆ in accent color, 18pt",
-          check: "Bold checkmark ✓ in accent color, 20pt",
-          dot: "Filled circle ● in accent color, 14pt",
-          emoji: "Contextually relevant emoji as marker, 22pt",
+            "Circular numbered badges ❶ ❷ ❸ — filled accent color, white number, 32px",
+          letter: "Circular letter badges A B C — filled accent color, 32px",
+          arrow: "Bold arrow → accent color, 20pt",
+          star: "Star ✦ accent color, 20pt, subtle glow",
+          diamond: "Diamond ◆ accent color, 18pt",
+          check: "Checkmark ✓ accent color, bold, 20pt",
+          dot: "Filled circle ● accent color, 14pt",
+          emoji: "Contextually relevant emoji, 22pt",
           "icon-line-check":
-            "Outlined checkbox icon, thin stroke 2px, accent color, 24px",
-          "icon-line-star":
-            "Outlined star icon, thin stroke 2px, accent color, 24px",
-          "icon-line-arrow":
-            "Outlined arrow icon, thin stroke, accent color, 24px",
+            "Outlined checkbox icon, 2px stroke, accent color, 24px",
+          "icon-line-star": "Outlined star, 2px stroke, accent color, 24px",
+          "icon-line-arrow": "Outlined arrow, thin stroke, accent color, 24px",
           "icon-line-bolt":
-            "Outlined lightning bolt icon, thin stroke, accent color, 24px",
-          "icon-line-heart":
-            "Outlined heart icon, thin stroke, accent color, 24px",
+            "Outlined lightning bolt, thin stroke, accent color, 24px",
+          "icon-line-heart": "Outlined heart, thin stroke, accent color, 24px",
           "icon-line-target":
-            "Outlined target/bullseye icon, thin stroke, accent color, 24px",
-          "icon-line-flag":
-            "Outlined flag icon, thin stroke, accent color, 24px",
-          "icon-line-leaf":
-            "Outlined leaf icon, thin stroke, accent color, 24px",
+            "Outlined bullseye, thin stroke, accent color, 24px",
+          "icon-line-flag": "Outlined flag, thin stroke, accent color, 24px",
+          "icon-line-leaf": "Outlined leaf, thin stroke, accent color, 24px",
           "icon-fill-check":
-            "Solid filled checkmark icon in rounded square, accent color, 26px",
-          "icon-fill-star": "Solid filled star icon, accent color, 26px",
-          "icon-fill-arrow":
-            "Solid filled play/arrow triangle, accent color, 26px",
-          "icon-fill-bolt": "Solid filled lightning bolt, accent color, 26px",
-          "icon-fill-heart": "Solid filled heart, accent color, 26px",
-          "icon-fill-circle":
-            "Solid filled circle with inner icon, accent color, 26px",
-          "icon-fill-diamond": "Solid filled diamond, accent color, 26px",
-          "icon-fill-flag": "Solid filled flag, accent color, 26px",
-          "icon-color-fire": "Full color fire emoji icon 🔥, 24px, vibrant",
-          "icon-color-rocket": "Full color rocket emoji 🚀, 24px",
-          "icon-color-bulb": "Full color light bulb 💡, 24px",
-          "icon-color-trophy": "Full color trophy 🏆, 24px",
-          "icon-color-target": "Full color bullseye 🎯, 24px",
-          "icon-color-gem": "Full color gem 💎, 24px",
-          "icon-color-chart": "Full color chart 📈, 24px",
-          "icon-color-crown": "Full color crown 👑, 24px",
+            "Solid filled checkmark in rounded square, accent color, 26px",
+          "icon-fill-star": "Solid star, accent color, 26px",
+          "icon-fill-arrow": "Solid triangle arrow, accent color, 26px",
+          "icon-fill-bolt": "Solid lightning bolt, accent color, 26px",
+          "icon-fill-heart": "Solid heart, accent color, 26px",
+          "icon-fill-circle": "Solid circle, accent color, 26px",
+          "icon-fill-diamond": "Solid diamond, accent color, 26px",
+          "icon-fill-flag": "Solid flag, accent color, 26px",
+          "icon-color-fire": "🔥 fire emoji, 24px, vibrant",
+          "icon-color-rocket": "🚀 rocket emoji, 24px",
+          "icon-color-bulb": "💡 light bulb, 24px",
+          "icon-color-trophy": "🏆 trophy, 24px",
+          "icon-color-target": "🎯 bullseye, 24px",
+          "icon-color-gem": "💎 gem, 24px",
+          "icon-color-chart": "📈 chart, 24px",
+          "icon-color-crown": "👑 crown, 24px",
         };
         return map[selectedMarker] || map["number"];
       }
 
-      // ════════════════════════════════════════
-      // LAYOUT PROMPT PER RATIO
-      // ════════════════════════════════════════
-      function getLayoutPrompt(
-        ratio,
-        hl,
-        sub,
-        contentBlock,
-        ast,
-        light,
-        mat,
-        pose,
-        accent,
-        marker,
-      ) {
-        const baseAsset = `Subject: ${ast}
-  Lighting: ${light}
-  Materials: ${mat}
-  Pose/action: ${pose}
-  Render style: hyperrealistic 3D · octane quality · depth-of-field background blur
-  Effects: soft drop shadow · subtle rim glow in accent color ${accent}`;
-
-        const deco = `Background decoration (behind 3D asset):
-  · 1 large semi-transparent typographic element ~550pt · opacity 7% · Poppins ExtraBold
-  · 5–7 small contextual icons · opacity 10–14% · slightly defocused`;
-
-        const cardStyle = `Card style per item:
-  · Background: white 9% opacity · frosted glass
-  · Border: 1px solid white 16% opacity · border-radius 14px
-  · Padding: 14px 18px
-  · Left: marker — ${marker} · vertical center-aligned
-  · Right: text block (14px margin from marker)
-    Line 1 — Label: Poppins SemiBold 600 · 17pt · white · line-height 1.3
-    Line 2 — Desc: Poppins Regular 400 · 13pt · white 65% opacity · line-height 1.7 · letter-spacing +0.01em · margin-top 3px`;
-
-        if (ratio === "9:16") {
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1920 px · 9:16 · ultra high quality
-
-━━━ LAYOUT ━━━
-Safe margins: 48px left and right
-
-── ZONE 1 — HEADLINE (top 30%) ──
-  Headline: "${hl}"
-  · Poppins ExtraBold 800 · 96–108pt · white
-  · Line-height: 1.15 · Letter-spacing: -0.01em · max 2 lines · left-aligned
-
-  Subheadline: "${sub}"
-  · Poppins Regular 400 · 26pt · white 72% opacity
-  · Line-height: 1.65 · Letter-spacing: +0.02em · 20px below headline
-
-── ZONE 2 — 3D VISUAL (middle 36%) ──
-  ${baseAsset}
-  Placement: right or left side · large scale
-  Bleeds slightly into Zone 1 bottom and Zone 3 top for depth
-  ${deco}
-
-── ZONE 3 — CONTENT (lower 30%) ──
-${contentBlock}
-  ${contentBlock.startsWith("PARAGRAPH") ? "" : cardStyle}
-
-── FOOTER ──
-  Bottom-right corner · "2026@HERRY"
-  Poppins Regular · 11pt · white 36% opacity · 18px from edges`;
-        }
-
-        if (ratio === "4:5") {
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1350 px · 4:5 · ultra high quality
-
-━━━ LAYOUT ━━━
-Safe margins: 44px left and right
-
-── ZONE 1 — HEADLINE (top 28%, full width) ──
-  Headline: "${hl}"
-  · Poppins ExtraBold 800 · 88–96pt · white
-  · Line-height: 1.15 · Letter-spacing: -0.01em · max 2 lines · left-aligned
-
-  Subheadline: "${sub}"
-  · Poppins Regular 400 · 24pt · white 72% opacity
-  · Line-height: 1.65 · 18px below headline
-
-── ZONE 2+3 — SPLIT LAYOUT (middle 64%, horizontal) ──
-  LEFT COLUMN (55% width):
-  ${baseAsset}
-  Placement: fills left column, large scale, can bleed slightly top
-  ${deco}
-
-  RIGHT COLUMN (45% width):
-${contentBlock}
-  ${contentBlock.startsWith("PARAGRAPH") ? "" : cardStyle.replace("17pt", "15pt").replace("13pt", "11pt")}
-  Max 4 items in this ratio — if more, reduce font size proportionally
-
-── FOOTER ──
-  Bottom-right of right column · "2026@HERRY"
-  Poppins Regular · 10pt · white 36% opacity · 16px from edges`;
-        }
-
-        if (ratio === "1:1") {
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1080 px · 1:1 · ultra high quality
-
-━━━ LAYOUT ━━━
-Safe margins: 44px all sides
-
-── ZONE 1 — TOP ROW (top 38%, horizontal split) ──
-  LEFT (60% width):
-  Headline: "${hl}"
-  · Poppins ExtraBold 800 · 72–80pt · white
-  · Line-height: 1.15 · Letter-spacing: -0.01em · max 2 lines · left-aligned
-
-  Subheadline: "${sub}"
-  · Poppins Regular 400 · 22pt · white 72% opacity
-  · Line-height: 1.65 · 16px below headline
-
-  RIGHT (40% width, top-right area):
-  ${baseAsset}
-  Placement: fills top-right zone · max 40% of total canvas area
-  Scale: medium (not full bleed — must not cover headline)
-  ${deco}
-
-── ZONE 2 — CONTENT (lower 50%) ──
-  Full width. ${contentBlock.startsWith("PARAGRAPH") ? "Paragraph centered." : "2-column grid layout for key points:"}
-${contentBlock}
-  ${contentBlock.startsWith("PARAGRAPH") ? "" : cardStyle.replace("17pt", "16pt").replace("13pt", "12pt")}
-
-── FOOTER ──
-  Bottom-right corner · "2026@HERRY"
-  Poppins Regular · 10pt · white 36% opacity · 16px from edges`;
-        }
-
-        if (ratio === "16:9") {
-          return `━━━ CANVAS ━━━
-Size: 1920 × 1080 px · 16:9 · ultra high quality
-
-━━━ LAYOUT ━━━
-Safe margins: 60px left and right · 48px top and bottom
-IMPORTANT: Keep all content within safe area — edges may be cropped on YouTube.
-
-── 3-COLUMN LAYOUT ──
-
-LEFT COLUMN (30% width — 3D Asset):
-  ${baseAsset}
-  Placement: fills left column, can extend to full height, slight overlap into center
-  ${deco}
-
-CENTER COLUMN (40% width — Text):
-  Headline: "${hl}"
-  · Poppins ExtraBold 800 · 72–80pt · white
-  · Line-height: 1.15 · Letter-spacing: -0.01em · max 2 lines · left-aligned
-
-  Subheadline: "${sub}"
-  · Poppins Regular 400 · 22pt · white 72% opacity
-  · Line-height: 1.65 · 16px below headline
-
-RIGHT COLUMN (30% width — Key Points):
-${contentBlock}
-  ${contentBlock.startsWith("PARAGRAPH") ? "" : cardStyle.replace("17pt", "15pt").replace("13pt", "11pt")}
-  Max 4 items in this ratio
-
-── FOOTER ──
-  Bottom-right corner of right column · "2026@HERRY"
-  Poppins Regular · 10pt · white 36% opacity · 20px from edges`;
-        }
-        return "";
+      // ══════════════════════════════════════
+      // GREET GRID
+      // ══════════════════════════════════════
+      function buildGreetGrid() {
+        const g = document.getElementById("greet-grid");
+        g.innerHTML = "";
+        GREET.forEach((t) => {
+          const d = document.createElement("div");
+          d.className = "gchip";
+          d.textContent = t.l;
+          d.onclick = () => {
+            document
+              .querySelectorAll(".gchip")
+              .forEach((e) => e.classList.remove("on"));
+            d.classList.add("on");
+            document.getElementById("inp-jenis").value = t.j;
+            document.getElementById("inp-tema").value = t.t;
+            document.getElementById("inp-visual").value = t.v;
+            document.getElementById("inp-audience").value = t.a;
+          };
+          g.appendChild(d);
+        });
       }
 
-      // ════════════════════════════════════════
-      // CONTENT BLOCK (KP or PARA)
-      // ════════════════════════════════════════
-      function buildContentBlock() {
-        if (contentMode === "para") {
-          const para =
-            document.getElementById("f-para").value.trim() ||
-            "[PARAGRAF DESKRIPSI]";
-          const lines = para.split("\n").slice(0, 9).join("\n");
-          return `PARAGRAPH MODE:
-  "${lines}"
-  · Poppins Regular 400 · 14–15pt · white 88% opacity
-  · Line-height: 1.75 · Letter-spacing: +0.01em
-  · Max 9 lines · left-aligned`;
-        }
-        // Key points
-        const kps = getKpData();
-        if (!kps.length) return "Key points: [tidak diisi]";
-        const lines = kps
-          .map(
-            (k) => `  Card ${k.n}: ${k.label}${k.desc ? " — " + k.desc : ""}`,
-          )
-          .join("\n");
-        return `KEY POINTS (${kps.length} item, stacked vertically):\n${lines}`;
+      // ══════════════════════════════════════
+      // INPUT MODE
+      // ══════════════════════════════════════
+      function setMode(m) {
+        inputMode = m;
+        document.getElementById("sec-link").style.display =
+          m === "link" ? "block" : "none";
+        document.getElementById("sec-custom").style.display =
+          m === "custom" ? "block" : "none";
+        document
+          .getElementById("mode-link")
+          .classList.toggle("on", m === "link");
+        document
+          .getElementById("mode-custom")
+          .classList.toggle("on", m === "custom");
       }
 
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
+      // COMPONENT TOGGLE
+      // ══════════════════════════════════════
+      function toggleComp(el) {
+        if (el.classList.contains("disabled")) return;
+        el.classList.toggle("checked");
+        // show/hide field sections
+        const id = el.id;
+        if (id === "comp-sub")
+          document.getElementById("sec-sub").style.display =
+            el.classList.contains("checked") ? "block" : "none";
+        if (id === "comp-asset")
+          document.getElementById("sec-asset").style.display =
+            el.classList.contains("checked") ? "block" : "none";
+        if (id === "comp-content")
+          document.getElementById("sec-content").style.display =
+            el.classList.contains("checked") ? "block" : "none";
+        // redraw wireframe
+        drawWireframe(selectedRatio);
+      }
+
+      function isChecked(id) {
+        return document.getElementById(id)?.classList.contains("checked");
+      }
+
+      // ══════════════════════════════════════
+      // CONTENT MODE
+      // ══════════════════════════════════════
+      function setContentMode(m) {
+        contentMode = m;
+        document.getElementById("cm-kp").classList.toggle("on", m === "kp");
+        document.getElementById("cm-para").classList.toggle("on", m === "para");
+        document.getElementById("sec-kp").style.display =
+          m === "kp" ? "block" : "none";
+        document.getElementById("sec-para").style.display =
+          m === "para" ? "block" : "none";
+      }
+
+      // ══════════════════════════════════════
+      // KEY POINTS
+      // ══════════════════════════════════════
+      function buildKpList(n) {
+        kpCount = 0;
+        document.getElementById("kp-list").innerHTML = "";
+        for (let i = 1; i <= n; i++) addKp();
+      }
+
+      function addKp() {
+        if (kpCount >= 5) return;
+        kpCount++;
+        const n = kpCount;
+        const list = document.getElementById("kp-list");
+        const d = document.createElement("div");
+        d.className = "kp-item";
+        d.id = "kpi-" + n;
+        d.innerHTML = `
+    <div class="ksub"><div class="ksub-k">Poin ${n} Label</div><textarea class="ksub-v" id="kpl${n}" rows="1" placeholder="maks 4 kata..."></textarea></div>
+    <div class="ksub"><div class="ksub-k">Poin ${n} Deskripsi</div><textarea class="ksub-v" id="kpd${n}" rows="1" placeholder="1 kalimat..."></textarea></div>
+    <button class="btn-del" onclick="delKp(${n})">✕</button>`;
+        list.appendChild(d);
+        updateKpUi();
+      }
+
+      function delKp(n) {
+        if (kpCount <= 1) return;
+        document.getElementById("kpi-" + n)?.remove();
+        kpCount = 0;
+        document.querySelectorAll(".kp-item").forEach((item) => {
+          kpCount++;
+          item.id = "kpi-" + kpCount;
+          const subs = item.querySelectorAll(".ksub-k");
+          if (subs[0]) subs[0].textContent = `Poin ${kpCount} Label`;
+          if (subs[1]) subs[1].textContent = `Poin ${kpCount} Deskripsi`;
+          const tas = item.querySelectorAll("textarea");
+          if (tas[0]) tas[0].id = `kpl${kpCount}`;
+          if (tas[1]) tas[1].id = `kpd${kpCount}`;
+          const btn = item.querySelector(".btn-del");
+          if (btn) btn.setAttribute("onclick", `delKp(${kpCount})`);
+        });
+        updateKpUi();
+      }
+
+      function updateKpUi() {
+        document.getElementById("kp-counter").textContent =
+          `${kpCount} / 5 poin`;
+        document.getElementById("btn-add-kp").style.display =
+          kpCount >= 5 ? "none" : "inline-flex";
+      }
+
+      function getKpData() {
+        const items = [];
+        for (let i = 1; i <= 5; i++) {
+          const l = document.getElementById("kpl" + i)?.value.trim();
+          const d = document.getElementById("kpd" + i)?.value.trim();
+          if (l || d) items.push({ n: i, label: l || "", desc: d || "" });
+        }
+        return items;
+      }
+
+      function countPara() {
+        const ta = document.getElementById("f-para");
+        const lines = ta.value.split("\n").length;
+        const cnt = document.getElementById("para-cnt");
+        const capped = Math.min(lines, 9);
+        cnt.textContent = `${capped} / 9`;
+        cnt.className =
+          "para-cnt" + (lines > 9 ? " over" : lines > 6 ? " warn" : "");
+        if (lines > 9) {
+          const rows = ta.value.split("\n").slice(0, 9);
+          ta.value = rows.join("\n");
+        }
+      }
+
+      // ══════════════════════════════════════
+      // IMAGE LINKS
+      // ══════════════════════════════════════
+      function buildImgLinks(n) {
+        imgLinkCount = 0;
+        document.getElementById("img-link-list").innerHTML = "";
+        for (let i = 0; i < n; i++) addImgLink();
+      }
+
+      function addImgLink() {
+        imgLinkCount++;
+        const n = imgLinkCount;
+        const list = document.getElementById("img-link-list");
+        const d = document.createElement("div");
+        d.className = "img-link-item";
+        d.id = "imglink-" + n;
+        d.innerHTML = `<input type="url" id="imglink-url-${n}" placeholder="https://example.com/image.jpg"/>
+    <button class="btn-del-link" onclick="delImgLink(${n})">✕</button>`;
+        list.appendChild(d);
+      }
+
+      function delImgLink(n) {
+        document.getElementById("imglink-" + n)?.remove();
+      }
+
+      function getImgLinks() {
+        const links = [];
+        document.querySelectorAll('[id^="imglink-url-"]').forEach((inp) => {
+          const v = inp.value.trim();
+          if (v) links.push(v);
+        });
+        return links;
+      }
+
+      // ══════════════════════════════════════
+      // ASSET AUTO-SUGGEST
+      // ══════════════════════════════════════
+      function autoSuggestAsset() {
+        clearTimeout(assetSuggestTimer);
+        assetSuggestTimer = setTimeout(() => {
+          const txt = document.getElementById("f-asset").value.toLowerCase();
+          if (!txt || txt.length < 4) return;
+          let matched = null;
+          for (const rule of ASSET_RULES) {
+            if (rule.kw.some((k) => txt.includes(k))) {
+              matched = rule;
+              break;
+            }
+          }
+          if (!matched) return;
+          // Only set if currently not on custom
+          const selL = document.getElementById("sel-light");
+          const selM = document.getElementById("sel-mat");
+          const selP = document.getElementById("sel-pose");
+          if (selL.value !== "custom") selL.selectedIndex = matched.light;
+          if (selM.value !== "custom") selM.selectedIndex = matched.mat;
+          if (selP.value !== "custom") selP.selectedIndex = matched.pose;
+        }, 600);
+      }
+
+      function syncAsel(selId, customId) {
+        const sel = document.getElementById(selId);
+        const ta = document.getElementById(customId);
+        ta.style.display = sel.value === "custom" ? "block" : "none";
+        if (sel.value === "custom") ta.focus();
+      }
+
+      function getAval(selId, customId) {
+        const sel = document.getElementById(selId);
+        if (sel.value === "custom")
+          return document.getElementById(customId).value.trim() || "";
+        return sel.value;
+      }
+
+      // ══════════════════════════════════════
+      // FOOTER TOGGLE
+      // ══════════════════════════════════════
+      function toggleFooter() {
+        const on = document.getElementById("footer-toggle").checked;
+        document.getElementById("footer-fields").style.display = on
+          ? "block"
+          : "none";
+      }
+
+      // ══════════════════════════════════════
       // PHASE NAV
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       function goPhase(i) {
         document
           .querySelectorAll(".panel")
           .forEach((p, idx) => p.classList.toggle("active", idx === i));
-        document.querySelectorAll(".phase-btn").forEach((b, idx) => {
+        document.querySelectorAll(".pbtn").forEach((b, idx) => {
           b.classList.toggle("active", idx === i);
           idx < i ? b.classList.add("done") : b.classList.remove("done");
         });
@@ -2749,8 +2630,8 @@ ${contentBlock}
         const id = "cpbtn-" + bid;
         document.getElementById(cid).innerHTML = `
     <div class="out-block">
-      <div class="out-hdr"><span class="out-title">${title}</span><button class="copy-btn" id="${id}">⎘ Copy</button></div>
-      <div class="out-text">${esc(text)}</div>
+      <div class="out-hdr"><span class="out-title">${title}</span><button class="cbtn" id="${id}">⎘ Copy</button></div>
+      <div class="out-txt">${esc(text)}</div>
     </div>`;
         document.getElementById(id).onclick = () => cpBtn(id, text);
       }
@@ -2762,9 +2643,9 @@ ${contentBlock}
           .replace(/>/g, "&gt;");
       }
 
-      // ════════════════════════════════════════
-      // PHASE 1 — GENERATE ANALISIS
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
+      // PHASE 1 — GEN ANALISIS
+      // ══════════════════════════════════════
       function genAnalisis() {
         const niche = document.getElementById("inp-niche").value.trim();
         const tone = document.getElementById("inp-tone").value;
@@ -2773,13 +2654,13 @@ ${contentBlock}
           const link =
             document.getElementById("inp-link").value.trim() ||
             "[PASTE LINK DI SINI]";
-          ctx = `Read and analyze this content: ${link}`;
+          ctx = `Analyze this content: ${link}`;
         } else {
-          ctx = `Custom content request:
-Content type: ${document.getElementById("inp-jenis").value.trim() || "-"}
+          ctx = `Custom content:
+Type: ${document.getElementById("inp-jenis").value.trim() || "-"}
 Theme: ${document.getElementById("inp-tema").value.trim() || "-"}
 Visual elements: ${document.getElementById("inp-visual").value.trim() || "-"}
-Target audience: ${document.getElementById("inp-audience").value.trim() || "-"}`;
+Audience: ${document.getElementById("inp-audience").value.trim() || "-"}`;
         }
 
         const p = `You are a professional content strategist for Indonesian social media.
@@ -2788,58 +2669,65 @@ ${ctx}
 ${niche ? "Niche: " + niche : ""}
 Tone: ${tone}
 
-Write in natural semi-casual Bahasa Indonesia — like a smart relatable friend, not a textbook. Hook-driven. Punchy. No stiff formal language.
+Write in natural semi-casual Bahasa Indonesia — like a smart relatable friend, punchy and hook-driven. No formal stiff language.
 
-Return ONLY this structured output. No extra text.
+Return ONLY this structured output. No extra commentary.
 
 TOPIC: [maks 5 kata]
-BIG IDEA: [1 kalimat insight terkuat, semi-casual]
-HEADLINE: [maks 8 kata · stop-scroll · pakai angka atau pertanyaan provokatif · semi-casual]
-SUBHEADLINE: [1 kalimat pendukung · maks 12 kata · natural dan ringan]
+BIG IDEA: [1 kalimat insight terkuat, semi-casual, bahasa Indonesia]
+HEADLINE: [maks 8 kata · stop-scroll · gunakan angka atau pertanyaan provokatif · semi-casual]
+SUBHEADLINE: [1 kalimat pendukung · maks 12 kata · ringan dan natural]
 KEY POINT 1: [maks 4 kata · kalimat aktif · semi-casual]
 KEY POINT 2: [maks 4 kata · kalimat aktif · semi-casual]
 KEY POINT 3: [maks 4 kata · kalimat aktif · semi-casual]
-3D ASSET: [English only — cinematic description: who/what, expression, outfit, specific action. Be visual and detailed.]
+KEY POINT 4: [maks 4 kata · opsional, isi jika relevan]
+KEY POINT 5: [maks 4 kata · opsional, isi jika relevan]
+PARAGRAPH: [rangkuman 3-5 kalimat dari keseluruhan konten, bahasa Indonesia semi-casual, padat dan jelas]
+3D ASSET: [English only — cinematic: who/what, expression, outfit, specific action, environment hints]
 
-CAPTION HOOK: [1 baris · maks 10 kata · langsung relate · pakai angka/pertanyaan/fakta]
-CAPTION BODY: [2 baris maks · insight utama · santai tapi berisi · langsung ke poin]
+CAPTION HOOK: [1 baris · maks 10 kata · langsung relate · angka/pertanyaan/fakta]
+CAPTION BODY: [2 baris maks · insight utama · santai tapi berisi]
 CAPTION CTA: [1 baris · ajakan ringan dan natural]
 CAPTION HASHTAGS: [8 hashtag · mix niche + umum]`;
 
         const w = document.getElementById("out-a-wrap");
         w.style.display = "block";
-        document.getElementById("out-a-text").textContent = p;
+        document.getElementById("out-a-txt").textContent = p;
         document.getElementById("cpbtn-a").onclick = () => cpBtn("cpbtn-a", p);
         w.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       // PHASE 2 — PARSE RAW
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       function parseRaw() {
         const raw = document.getElementById("raw-paste").value;
         function ext(key) {
-          const m = raw.match(new RegExp(key + "[:\\s]+(.+)", "i"));
+          const m = raw.match(new RegExp("^" + key + "[:\\s]+(.+)", "im"));
           return m ? m[1].trim() : "";
         }
+
         const hl = ext("HEADLINE");
         if (hl) document.getElementById("f-headline").value = hl;
         const sub = ext("SUBHEADLINE");
         if (sub) document.getElementById("f-sub").value = sub;
+        const ast = ext("3D ASSET");
+        if (ast) document.getElementById("f-asset").value = ast;
+        const para = ext("PARAGRAPH");
+        if (para) document.getElementById("f-para").value = para;
+
         // Parse up to 5 key points
+        let parsedKp = 0;
         for (let i = 1; i <= 5; i++) {
           const v = ext(`KEY POINT ${i}`);
-          const el = document.getElementById(`f-kp${i}-label`);
-          if (v && el) el.value = v;
-          else if (v && i > kpCount) {
-            kpCount = i;
-            appendKpRow(i);
-            updateKpCount();
-            if (el) el.value = v;
-          }
+          if (!v) continue;
+          if (i > kpCount) addKp();
+          const el = document.getElementById(`kpl${i}`);
+          if (el) el.value = v;
+          parsedKp = i;
         }
-        const ast = ext("3D ASSET");
-        if (ast) document.getElementById("f-asset-main").value = ast;
+
+        // Caption
         const hook = ext("CAPTION HOOK"),
           body = ext("CAPTION BODY"),
           cta = ext("CAPTION CTA"),
@@ -2848,66 +2736,286 @@ CAPTION HASHTAGS: [8 hashtag · mix niche + umum]`;
         if (cap) document.getElementById("f-caption").value = cap;
       }
 
-      // ════════════════════════════════════════
-      // PHASE 3 — GENERATE FINAL
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
+      // CONTENT BLOCK FOR PROMPT
+      // ══════════════════════════════════════
+      function buildContentBlock(ratio) {
+        if (contentMode === "para") {
+          const para =
+            document.getElementById("f-para").value.trim() ||
+            "[PARAGRAF DESKRIPSI]";
+          const lines = para.split("\n").slice(0, 9).join("\n");
+          return `PARAGRAPH:
+  Text: "${lines}"
+  · Font: Poppins Regular 400 · 14–15pt · white 88% opacity
+  · Line-height: 1.75 · Letter-spacing: +0.01em · max 9 lines · left-aligned`;
+        }
+        const kps = getKpData();
+        if (!kps.length) return "KEY POINTS: [tidak ada data]";
+        const marker = getMarkerPrompt();
+        const lines = kps
+          .map(
+            (k) => `  Card ${k.n}: ${k.label}${k.desc ? " — " + k.desc : ""}`,
+          )
+          .join("\n");
+        return `KEY POINTS (${kps.length} items):
+${lines}
+  Card style:
+  · Background: white 9% opacity · frosted glass · border 1px white 16% · radius 14px · padding 14px 18px
+  · Left marker: ${marker} · vertically centered
+  · Label: Poppins SemiBold 600 · 17pt · white · line-height 1.3
+  · Desc: Poppins Regular 400 · 13pt · white 65% opacity · line-height 1.7 · letter-spacing +0.01em`;
+      }
+
+      // ══════════════════════════════════════
+      // LAYOUT PROMPT PER RATIO
+      // ══════════════════════════════════════
+      function getLayoutPrompt(
+        ratio,
+        hl,
+        hasSub,
+        sub,
+        hasAsset,
+        assetBlock,
+        hasContent,
+        contentBlock,
+        hasFooter,
+        footerTxt,
+        footerPos,
+        accent,
+      ) {
+        const safeM = {
+          "9:16": "48px",
+          "4:5": "44px",
+          "1:1": "44px",
+          "16:9": "60px",
+        };
+        const sm = safeM[ratio] || "48px";
+
+        const hlStyle = (pt) => `  Headline: "${hl}"
+  · Poppins ExtraBold 800 · ${pt} · white · line-height 1.15 · letter-spacing -0.01em · max 2 lines · left-aligned`;
+
+        const subStyle = (pt) =>
+          hasSub
+            ? `  Subheadline: "${sub}"
+  · Poppins Regular 400 · ${pt} · white 72% opacity · line-height 1.65 · letter-spacing +0.02em · 18px below headline`
+            : "  [No subheadline]";
+
+        const assetStr = hasAsset
+          ? `  ${assetBlock}`
+          : "  [No 3D asset — typography-focused layout]";
+
+        const footerStr = hasFooter
+          ? `── FOOTER ──
+  ${footerPos}: "${footerTxt}" · Poppins Regular · 11pt · white 36% opacity · 18px from edges`
+          : "[No footer]";
+
+        const deco = `  Background deco: 1 large semi-transparent number/letter ~550pt opacity 7%, 5-7 small contextual icons opacity 12%`;
+
+        if (ratio === "9:16") {
+          const hlH = hasSub ? "28%" : "22%";
+          const visH = hasAsset ? "38%" : "0%";
+          const kpH = hasContent ? (hasSub ? "30%" : "36%") : "0%";
+          return `━━━ CANVAS ━━━
+Size: 1080 × 1920 px · 9:16 · ultra high quality
+
+━━━ VISUAL HIERARCHY LAYOUT ━━━
+Safe margins: ${sm} left and right
+
+── ZONE 1 — HEADLINE (top ${hlH}) ──
+${hlStyle("96–108pt")}
+${subStyle("26pt")}
+
+── ZONE 2 — 3D VISUAL (middle ${visH}) ──
+${assetStr}
+${hasAsset ? deco : ""}
+${hasAsset ? "  Placement: right or left · large scale · bleeds into Zone 1 bottom and Zone 3 top" : ""}
+
+${
+  hasContent
+    ? `── ZONE 3 — CONTENT (lower ${kpH}) ──
+${contentBlock}`
+    : ""
+}
+
+${footerStr}`;
+        }
+
+        if (ratio === "4:5") {
+          return `━━━ CANVAS ━━━
+Size: 1080 × 1350 px · 4:5 · ultra high quality
+
+━━━ VISUAL HIERARCHY LAYOUT ━━━
+Safe margins: ${sm} left and right
+
+── ZONE 1 — HEADLINE (top 26%, full width) ──
+${hlStyle("88–96pt")}
+${subStyle("24pt")}
+
+── SPLIT ZONE (remaining height) ──
+${
+  hasAsset
+    ? `LEFT COLUMN (55% width — 3D Asset):
+${assetStr}
+${deco}`
+    : "FULL WIDTH CONTENT:"
+}
+
+${
+  hasContent
+    ? `${hasAsset ? "RIGHT COLUMN (45% width — Content):" : ""}
+${contentBlock}
+${hasAsset ? "  Font sizes: label 15pt, desc 11pt" : ""}`
+    : ""
+}
+
+${footerStr}`;
+        }
+
+        if (ratio === "1:1") {
+          return `━━━ CANVAS ━━━
+Size: 1080 × 1080 px · 1:1 · ultra high quality
+
+━━━ VISUAL HIERARCHY LAYOUT ━━━
+Safe margins: ${sm} all sides
+
+── TOP ROW (top 38%, horizontal split) ──
+LEFT (60% width):
+${hlStyle("72–80pt")}
+${subStyle("22pt")}
+
+${
+  hasAsset
+    ? `RIGHT (40% width):
+${assetStr}
+  Scale: medium · max 40% of total canvas · must not overlap headline
+${deco}`
+    : ""
+}
+
+── LOWER ZONE (lower 50%) ──
+${
+  hasContent
+    ? `Full width · ${contentMode === "kp" ? "2-column grid layout" : "Paragraph centered"}
+${contentBlock}`
+    : "[Empty — typography layout only]"
+}
+
+${footerStr}`;
+        }
+
+        if (ratio === "16:9") {
+          return `━━━ CANVAS ━━━
+Size: 1920 × 1080 px · 16:9 · ultra high quality
+
+━━━ VISUAL HIERARCHY LAYOUT ━━━
+Safe margins: ${sm} horizontal · 48px vertical
+IMPORTANT: Keep all content within safe area — edges may crop on YouTube.
+
+── 3-COLUMN LAYOUT ──
+${
+  hasAsset
+    ? `LEFT COLUMN (30% width — 3D Asset):
+${assetStr}
+${deco}`
+    : ""
+}
+
+CENTER COLUMN (${hasAsset ? (hasContent ? "40%" : "70%") : "70%"} width):
+${hlStyle("72–80pt")}
+${subStyle("22pt")}
+
+${
+  hasContent
+    ? `RIGHT COLUMN (30% width):
+${contentBlock}
+  Font sizes: label 15pt, desc 11pt`
+    : ""
+}
+
+${footerStr}`;
+        }
+        return "";
+      }
+
+      // ══════════════════════════════════════
+      // PHASE 3 — GEN FINAL
+      // ══════════════════════════════════════
       function genFinal() {
         const hl =
           document.getElementById("f-headline").value.trim() || "[HEADLINE]";
         const sub =
           document.getElementById("f-sub").value.trim() || "[SUBHEADLINE]";
         const ast =
-          document.getElementById("f-asset-main").value.trim() || "[3D ASSET]";
-        const light = getAssetVal("sel-light", "ac-light");
-        const mat = getAssetVal("sel-mat", "ac-mat");
-        const pose = getAssetVal("sel-pose", "ac-pose");
+          document.getElementById("f-asset").value.trim() || "[3D ASSET]";
+        const light = getAval("sel-light", "ac-light");
+        const mat = getAval("sel-mat", "ac-mat");
+        const pose = getAval("sel-pose", "ac-pose");
         const cap =
           document.getElementById("f-caption").value.trim() || "[CAPTION]";
-        const bg = getBg();
-        const marker = getMarkerPrompt();
-        const content = buildContentBlock();
+        const bg = getBgPrompt();
+        const links = getImgLinks();
+        const hasSub = isChecked("comp-sub");
+        const hasAsset = isChecked("comp-asset");
+        const hasCont = isChecked("comp-content");
+        const hasFooter = document.getElementById("footer-toggle").checked;
+        const footerTxt =
+          document.getElementById("footer-txt").value.trim() || "";
+        const footerPos = document.getElementById("footer-pos").value;
+        const content = buildContentBlock(selectedRatio);
+        const assetBlock = `Subject: ${ast}
+  Lighting: ${light}
+  Materials: ${mat}
+  Pose/action: ${pose}
+  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur
+  Effects: soft drop shadow · subtle rim glow in ${bg.acc}${
+    links.length
+      ? `
+  Reference images: ${links.join(", ")}`
+      : ""
+  }`;
+
         const layout = getLayoutPrompt(
-          selectedRatio.val,
+          selectedRatio,
           hl,
+          hasSub,
           sub,
+          hasAsset,
+          assetBlock,
+          hasCont,
           content,
-          ast,
-          light,
-          mat,
-          pose,
-          bg.accent,
-          marker,
+          hasFooter,
+          footerTxt,
+          footerPos,
+          bg.acc,
         );
 
         const poster = `Create a single ready-to-post social media poster.
 NOT a mockup. NOT a template. NOT in any device frame.
-Output: the finished poster only, bleeding to all 4 edges.
+Output: finished poster only, bleeding to all 4 edges.
 
 ━━━ BACKGROUND ━━━
-${bg.prompt}
+${bg.str}
 
 ━━━ DESIGN SYSTEM ━━━
 Font: Poppins (Google Fonts)
-  · Headline: ExtraBold 800
-  · Subheadline: Regular 400
-  · Key point label: SemiBold 600
-  · Key point description: Regular 400
-Primary text: white · Accent: ${bg.accent}
+Accent color: ${bg.acc}
 All text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholder text
 
 ${layout}
 
 ━━━ FINAL RULES ━━━
 · Poster bleeds to all 4 edges — no white border
-· No device frame, no browser chrome, no drop shadow outside canvas
-· All text fully readable at mobile screen size
-· Visual hierarchy: Headline first → 3D Asset second → Key Points third → Footer last
-· Consistent visual weight — nothing overpowers the whole composition`;
+· No device frame, no browser chrome
+· All text readable at mobile size
+· Visual hierarchy: Headline → 3D Asset → Key Points/Content → Footer
+· Consistent visual weight — nothing overpowers the whole`;
 
         goPhase(2);
+        const r = RATIOS[selectedRatio];
         makeBlock(
           "out-poster-wrap",
-          `Prompt Poster ${selectedRatio.val} — Paste ke GPT-4o Image`,
+          `Prompt Poster ${selectedRatio} (${r.w}×${r.h}) — Paste ke GPT-4o Image`,
           poster,
           "poster",
         );
@@ -2919,21 +3027,20 @@ ${layout}
         );
       }
 
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       // PRESETS
-      // ════════════════════════════════════════
+      // ══════════════════════════════════════
       function savePreset() {
         const name = prompt("Nama preset:");
         if (!name) return;
         const presets = JSON.parse(localStorage.getItem("ce_presets") || "[]");
         presets.push({
           name,
-          grad: selectedGrad,
-          solid: selectedSolid,
+          bgIdx: document.getElementById("bg-sel").value,
           marker: selectedMarker,
           niche: document.getElementById("inp-niche").value,
           tone: document.getElementById("inp-tone").value,
-          ratio: selectedRatio.val,
+          ratio: selectedRatio,
           ts: Date.now(),
         });
         localStorage.setItem("ce_presets", JSON.stringify(presets));
@@ -2953,15 +3060,19 @@ ${layout}
         row.innerHTML = "";
         presets.forEach((p, i) => {
           const chip = document.createElement("div");
-          chip.className = "preset-chip";
-          const bg = p.grad
-            ? `linear-gradient(135deg,${p.grad.from},${p.grad.to})`
-            : p.solid
-              ? p.solid.hex
-              : "#444";
-          chip.innerHTML = `<span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:${bg};flex-shrink:0"></span>${p.name}<span class="del" onclick="delPreset(${i},event)">✕</span>`;
+          chip.className = "pchip";
+          let bgCss = "#444";
+          if (p.bgIdx) {
+            if (p.bgIdx.startsWith("grad:")) {
+              const gr = GRADS[+p.bgIdx.split(":")[1]];
+              bgCss = `linear-gradient(135deg,${gr.from},${gr.to})`;
+            } else {
+              bgCss = SOLIDS[+p.bgIdx.split(":")[1]]?.hex || "#444";
+            }
+          }
+          chip.innerHTML = `<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${bgCss};flex-shrink:0"></span>${p.name}<span class="pdel" onclick="delPreset(${i},event)">✕</span>`;
           chip.onclick = (e) => {
-            if (e.target.classList.contains("del")) return;
+            if (e.target.classList.contains("pdel")) return;
             applyPreset(p);
           };
           row.appendChild(chip);
@@ -2969,26 +3080,20 @@ ${layout}
       }
 
       function applyPreset(p) {
-        if (p.grad) {
-          selectedGrad = p.grad;
-          selectedSolid = null;
+        if (p.bgIdx) {
+          document.getElementById("bg-sel").value = p.bgIdx;
+          onBgChange();
         }
-        if (p.solid) {
-          selectedSolid = p.solid;
-          selectedGrad = null;
+        if (p.marker) {
+          selectedMarker = p.marker;
+          buildMarkerRow(markerCat);
         }
-        if (p.marker) selectedMarker = p.marker;
         if (p.niche) document.getElementById("inp-niche").value = p.niche;
         if (p.tone) document.getElementById("inp-tone").value = p.tone;
         if (p.ratio) {
-          const r = RATIOS.find((r) => r.val === p.ratio);
-          if (r) {
-            selectedRatio = r;
-            document.querySelectorAll(".ratio-opt").forEach((el, i) => {
-              el.classList.toggle("sel", RATIOS[i].val === p.ratio);
-            });
-            drawWireframe(r);
-          }
+          document.getElementById("ratio-sel").value = p.ratio;
+          selectedRatio = p.ratio;
+          drawWireframe(p.ratio);
         }
         updateBgPreview();
       }
@@ -3001,7 +3106,7 @@ ${layout}
         loadPresets();
       }
 
-      buildAll();
+      init();
     </script>
   </body>
 </html>
