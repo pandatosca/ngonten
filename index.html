@@ -3322,6 +3322,7 @@
         logoPos,
         acc,
         flip,
+        hlTopPad,
       ) {
         const hlPt =
           {
@@ -3381,11 +3382,7 @@
             " · max height 70px · width auto-proportional (do not distort)\n  20px from canvas edges · transparent background · do not recolor\n  " +
             logoSafeZone
           : "";
-        const hlTopPad = hasLogo
-          ? "Top padding before headline: " +
-            logoPadPx +
-            " minimum (to clear logo area)."
-          : "";
+        // hlTopPad received as parameter — not redeclared here
 
         if (ratio === "9:16") {
           const z1 =
@@ -3548,6 +3545,14 @@
           bg.acc +
           (links.length ? "\n  Reference images: " + links.join(", ") : "");
         const contentBlock = buildContentBlock();
+        const _logoPad = window._logoPad || "s";
+        const _logoPadPx =
+          { s: "100px", m: "130px", l: "160px" }[_logoPad] || "100px";
+        const hlTopPad = hasLogo
+          ? "Top padding before headline: " +
+            _logoPadPx +
+            " minimum (to clear logo area)."
+          : "";
         const layout = buildLayoutPrompt(
           ratio,
           hl,
@@ -3562,11 +3567,12 @@
           hasFooter,
           footerTxt,
           footerPos,
-          !!logoUrl,
+          hasLogo,
           logoUrl,
           logoPos,
           bg.acc,
           flip,
+          hlTopPad,
         );
         const poster =
           "Create a single ready-to-post social media poster.\nNOT a mockup. NOT a template. NOT in any frame.\nOutput: finished poster only, bleeding to all 4 edges.\n\nCANVAS: " +
