@@ -29,7 +29,7 @@
         --ac: #eeaa11;
         --pk: #bb3381;
         --tl: #4fb3b3;
-        --gr: #4fc88c;
+        --gn: #4fc88c;
         --r: 12px;
         --r2: 10px;
         --r3: 8px;
@@ -73,7 +73,7 @@
       .wrap {
         position: relative;
         z-index: 1;
-        max-width: 860px;
+        max-width: 880px;
         margin: 0 auto;
         padding: 36px 16px 80px;
       }
@@ -164,7 +164,7 @@
       }
       .pbtn.done .pnum {
         background: rgba(79, 200, 140, 0.18);
-        color: var(--gr);
+        color: var(--gn);
       }
       .pbtn.done {
         color: var(--mu);
@@ -208,15 +208,15 @@
         background: var(--bd);
       }
 
-      /* TOGGLE ROW */
+      /* TOGGLE */
       .trow {
         display: flex;
         gap: 5px;
-        margin-bottom: 14px;
         flex-wrap: wrap;
+        margin-bottom: 12px;
       }
       .tbtn {
-        padding: 7px 12px;
+        padding: 6px 11px;
         border-radius: var(--r3);
         border: 1.5px solid var(--bd);
         background: var(--s2);
@@ -227,6 +227,7 @@
         font-weight: 500;
         transition: all 0.2s;
         white-space: nowrap;
+        user-select: none;
       }
       .tbtn:hover {
         border-color: var(--bd2);
@@ -236,6 +237,10 @@
         border-color: rgba(238, 170, 17, 0.6);
         background: rgba(238, 170, 17, 0.08);
         color: var(--ac);
+      }
+      .tbtn.sm {
+        font-size: 11px;
+        padding: 5px 9px;
       }
 
       /* FORM */
@@ -251,7 +256,6 @@
       .frow.tri {
         grid-template-columns: 1fr 1fr 1fr;
       }
-      lbl,
       label {
         display: block;
         font-size: 11px;
@@ -275,9 +279,9 @@
         transition: border-color 0.2s;
         resize: vertical;
         -webkit-appearance: none;
+        appearance: none;
       }
-      input[type="text"]:focus,
-      input[type="url"]:focus,
+      input:focus,
       textarea:focus,
       select:focus {
         border-color: rgba(238, 170, 17, 0.4);
@@ -292,27 +296,32 @@
         line-height: 1.5;
       }
 
-      /* SELECT WITH SWATCH */
-      .sel-wrap {
-        position: relative;
+      /* BG TABS */
+      .bg-tabs {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 12px;
       }
-      .sel-wrap select {
-        padding-left: 36px;
+      .bg-tab {
+        padding: 6px 14px;
+        border-radius: var(--r3);
+        border: 1.5px solid var(--bd);
+        background: var(--s2);
+        color: var(--mu);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 500;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
       }
-      .sel-swatch {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 18px;
-        height: 18px;
-        border-radius: 4px;
-        pointer-events: none;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+      .bg-tab.on {
+        border-color: rgba(238, 170, 17, 0.6);
+        background: rgba(238, 170, 17, 0.08);
+        color: var(--ac);
       }
 
-      /* BG DROPDOWN */
-      .bg-preview-bar {
+      /* BG PREVIEW BAR */
+      .bg-bar {
         height: 8px;
         border-radius: 5px;
         margin-bottom: 10px;
@@ -320,7 +329,142 @@
         transition: all 0.3s;
       }
 
-      /* RATIO ROW */
+      /* GRADIENT CARD GRID */
+      .grad-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        margin-bottom: 8px;
+      }
+      .gc {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        overflow: hidden;
+        aspect-ratio: 1;
+      }
+      .gc:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .gc.sel {
+        border-color: var(--ac);
+        box-shadow: 0 0 8px rgba(238, 170, 17, 0.3);
+      }
+      .gc-sw {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+      }
+      .grad-more-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px dashed var(--bd2);
+        color: var(--mu);
+        font-size: 11px;
+        padding: 6px;
+        border-radius: var(--r3);
+        cursor: pointer;
+        margin-top: 4px;
+        font-family: "DM Sans", sans-serif;
+        transition: all 0.2s;
+        width: 100%;
+      }
+      .grad-more-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--tx);
+      }
+
+      /* SOLID GRID */
+      .solid-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+      }
+      .sc {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        overflow: hidden;
+      }
+      .sc:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .sc.sel {
+        border-color: var(--ac);
+        box-shadow: 0 0 8px rgba(238, 170, 17, 0.3);
+      }
+      .sc-sw {
+        height: 36px;
+        border-radius: 5px;
+      }
+      .sc-name {
+        font-size: 9px;
+        color: var(--mu);
+        text-align: center;
+        padding: 3px 2px;
+        line-height: 1.2;
+      }
+
+      /* CUSTOM HEX */
+      .hex-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+      .hex-inp-w {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 9px;
+        padding: 6px 10px;
+        flex: 1;
+        min-width: 120px;
+      }
+      .hex-prev {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .hex-inp-w input {
+        background: transparent;
+        border: none;
+        color: var(--tx);
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        outline: none;
+        width: 100%;
+      }
+      .btn-apply {
+        background: rgba(238, 170, 17, 0.12);
+        border: 1px solid rgba(238, 170, 17, 0.3);
+        color: var(--ac);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 7px 12px;
+        border-radius: var(--r3);
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+      .btn-apply:hover {
+        background: rgba(238, 170, 17, 0.22);
+      }
+
+      /* RATIO */
       .ratio-wrap {
         display: flex;
         gap: 12px;
@@ -330,7 +474,7 @@
         flex: 1;
       }
       .ratio-wf-col {
-        width: 110px;
+        width: 100px;
         flex-shrink: 0;
         text-align: center;
       }
@@ -357,7 +501,6 @@
         font-size: 6px;
         color: rgba(255, 255, 255, 0.3);
         font-weight: 600;
-        letter-spacing: 0.03em;
         text-align: center;
         line-height: 1.2;
       }
@@ -400,8 +543,8 @@
       .comp-item {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 9px 12px;
+        gap: 9px;
+        padding: 8px 11px;
         background: var(--s2);
         border: 1.5px solid var(--bd);
         border-radius: var(--r2);
@@ -409,17 +552,17 @@
         transition: all 0.2s;
         user-select: none;
       }
-      .comp-item.checked {
+      .comp-item.on {
         border-color: rgba(238, 170, 17, 0.4);
-        background: rgba(238, 170, 17, 0.05);
+        background: rgba(238, 170, 17, 0.04);
       }
       .comp-item.disabled {
-        opacity: 0.4;
+        opacity: 0.45;
         cursor: not-allowed;
       }
       .comp-cb {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
         border-radius: 4px;
         border: 2px solid var(--mu2);
         flex-shrink: 0;
@@ -428,41 +571,45 @@
         justify-content: center;
         transition: all 0.2s;
       }
-      .comp-item.checked .comp-cb {
+      .comp-item.on .comp-cb {
         background: var(--ac);
         border-color: var(--ac);
       }
-      .comp-cb svg {
+      .comp-cb-inner {
         display: none;
+        color: #000;
+        font-size: 9px;
+        font-weight: 900;
+        line-height: 1;
       }
-      .comp-item.checked .comp-cb svg {
+      .comp-item.on .comp-cb-inner {
         display: block;
       }
-      .comp-label {
+      .comp-lbl {
         font-size: 12px;
         font-weight: 500;
         color: var(--mu);
       }
-      .comp-item.checked .comp-label {
+      .comp-item.on .comp-lbl {
         color: var(--tx);
       }
-      .comp-desc {
+      .comp-sub {
         font-size: 10px;
         color: var(--mu2);
         margin-left: auto;
       }
 
-      /* KP DYNAMIC */
+      /* KP */
       .kp-list {
         display: flex;
         flex-direction: column;
-        gap: 7px;
+        gap: 6px;
         margin-top: 8px;
       }
       .kp-item {
         display: grid;
-        grid-template-columns: 1fr 1.8fr auto;
-        gap: 6px;
+        grid-template-columns: 1fr 1.8fr 24px;
+        gap: 5px;
         align-items: start;
       }
       .ksub {
@@ -495,10 +642,11 @@
         border: none;
         color: var(--mu2);
         cursor: pointer;
-        font-size: 14px;
-        padding: 5px;
+        font-size: 13px;
+        padding: 4px;
         transition: color 0.15s;
         line-height: 1;
+        text-align: center;
       }
       .btn-del:hover {
         color: #e05;
@@ -511,10 +659,10 @@
         border: 1px dashed rgba(79, 179, 179, 0.25);
         color: var(--tl);
         font-size: 11px;
-        padding: 6px 12px;
+        padding: 5px 11px;
         border-radius: var(--r3);
         cursor: pointer;
-        margin-top: 6px;
+        margin-top: 5px;
         transition: all 0.2s;
         font-family: "DM Sans", sans-serif;
       }
@@ -524,7 +672,7 @@
       .kp-counter {
         font-size: 10px;
         color: var(--mu2);
-        margin-top: 4px;
+        margin-top: 3px;
       }
 
       /* PARA */
@@ -537,8 +685,8 @@
         bottom: 8px;
         right: 10px;
         font-size: 10px;
-        color: var(--mu2);
         pointer-events: none;
+        color: var(--mu2);
       }
       .para-cnt.warn {
         color: var(--ac);
@@ -551,14 +699,14 @@
       .asset-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 7px;
+        gap: 6px;
         margin-top: 8px;
       }
       .asub {
         background: var(--s3);
         border: 1px solid var(--bd);
         border-radius: var(--r3);
-        padding: 8px 10px;
+        padding: 7px 9px;
       }
       .asub-k {
         font-size: 9px;
@@ -566,7 +714,7 @@
         text-transform: uppercase;
         letter-spacing: 0.07em;
         color: var(--mu2);
-        margin-bottom: 5px;
+        margin-bottom: 4px;
       }
       .asel {
         width: 100%;
@@ -574,99 +722,126 @@
         border: 1px solid var(--bd);
         color: var(--tx);
         border-radius: 6px;
-        padding: 6px 9px;
+        padding: 6px 8px;
         font-family: "DM Sans", sans-serif;
         font-size: 11px;
         outline: none;
         cursor: pointer;
         -webkit-appearance: none;
+        appearance: none;
       }
       .asel:focus {
         border-color: rgba(238, 170, 17, 0.4);
       }
       .acustom {
         display: none;
-        margin-top: 5px;
-        font-size: 11px;
-        color: var(--tx);
+        margin-top: 4px;
         width: 100%;
         background: var(--s2);
         border: 1px solid var(--bd);
+        color: var(--tx);
         border-radius: 6px;
-        padding: 6px 9px;
+        padding: 6px 8px;
         font-family: "DM Sans", sans-serif;
+        font-size: 11px;
         outline: none;
         resize: none;
-        line-height: 1.45;
+        line-height: 1.4;
       }
       .acustom:focus {
         border-color: rgba(238, 170, 17, 0.4);
       }
 
-      /* IMAGE LINKS */
+      /* IMG LINKS */
       .img-link-list {
         display: flex;
         flex-direction: column;
-        gap: 6px;
-        margin-top: 8px;
+        gap: 5px;
+        margin-top: 6px;
       }
-      .img-link-item {
+      .img-link-row {
         display: flex;
-        gap: 6px;
+        gap: 5px;
         align-items: center;
       }
-      .img-link-item input {
+      .img-link-row input {
         flex: 1;
+        font-size: 12px;
+        padding: 7px 10px;
       }
-      .btn-del-link {
+      .btn-del-lnk {
         background: transparent;
         border: none;
         color: var(--mu2);
         cursor: pointer;
-        font-size: 14px;
-        padding: 4px;
-        transition: color 0.15s;
+        font-size: 13px;
+        padding: 3px;
         flex-shrink: 0;
+        transition: color 0.15s;
       }
-      .btn-del-link:hover {
+      .btn-del-lnk:hover {
         color: #e05;
       }
-      .btn-add-link {
+      .btn-add-lnk {
         display: inline-flex;
         align-items: center;
         gap: 4px;
         background: rgba(79, 179, 179, 0.07);
         border: 1px dashed rgba(79, 179, 179, 0.25);
         color: var(--tl);
-        font-size: 11px;
-        padding: 5px 11px;
+        font-size: 10px;
+        padding: 4px 10px;
         border-radius: var(--r3);
         cursor: pointer;
-        margin-top: 5px;
+        margin-top: 4px;
         transition: all 0.2s;
         font-family: "DM Sans", sans-serif;
       }
 
-      /* FOOTER TOGGLE */
-      .toggle-row {
+      /* ALIGN OPTS */
+      .align-row {
+        display: flex;
+        gap: 5px;
+        margin-top: 6px;
+      }
+      .align-btn {
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: 1.5px solid var(--bd);
+        background: var(--s3);
+        color: var(--mu);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 500;
+        transition: all 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .align-btn.on {
+        border-color: rgba(238, 170, 17, 0.6);
+        background: rgba(238, 170, 17, 0.08);
+        color: var(--ac);
+      }
+
+      /* TOGGLE SWITCH */
+      .sw-row {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
+        gap: 9px;
+        margin-bottom: 8px;
       }
-      .toggle-sw {
+      .sw {
         position: relative;
-        width: 36px;
-        height: 20px;
+        width: 34px;
+        height: 18px;
         flex-shrink: 0;
       }
-      .toggle-sw input {
+      .sw input {
         opacity: 0;
         width: 0;
         height: 0;
         position: absolute;
       }
-      .toggle-track {
+      .sw-track {
         position: absolute;
         inset: 0;
         background: var(--s3);
@@ -675,26 +850,26 @@
         border: 1px solid var(--bd);
         transition: all 0.2s;
       }
-      .toggle-sw input:checked + .toggle-track {
-        background: rgba(238, 170, 17, 0.25);
-        border-color: rgba(238, 170, 17, 0.5);
+      .sw input:checked + .sw-track {
+        background: rgba(238, 170, 17, 0.2);
+        border-color: rgba(238, 170, 17, 0.4);
       }
-      .toggle-track::after {
+      .sw-track::after {
         content: "";
         position: absolute;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         background: var(--mu);
         top: 2px;
         left: 2px;
         transition: all 0.2s;
       }
-      .toggle-sw input:checked + .toggle-track::after {
+      .sw input:checked + .sw-track::after {
         background: var(--ac);
         left: 18px;
       }
-      .toggle-lbl {
+      .sw-lbl {
         font-size: 12px;
         color: var(--mu);
         font-weight: 500;
@@ -719,6 +894,7 @@
         text-align: center;
         transition: all 0.2s;
         line-height: 1.3;
+        user-select: none;
       }
       .gchip:hover {
         border-color: var(--bd2);
@@ -779,6 +955,43 @@
         background: rgba(238, 170, 17, 0.07);
       }
 
+      /* INLINE FIELD BOX */
+      .fbox {
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        transition: border-color 0.2s;
+      }
+      .fbox:focus-within {
+        border-color: rgba(238, 170, 17, 0.35);
+      }
+      .fbox-k {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: var(--mu);
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .fbox-v {
+        font-size: 13px;
+        color: var(--tx);
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-family: "DM Sans", sans-serif;
+        resize: none;
+        line-height: 1.5;
+      }
+
       /* OUTPUT */
       .out-block {
         background: var(--s2);
@@ -794,7 +1007,7 @@
         padding: 9px 13px;
         border-bottom: 1px solid var(--bd);
       }
-      .out-title {
+      .out-ttl {
         font-size: 10px;
         font-weight: 700;
         color: var(--mu);
@@ -823,7 +1036,7 @@
       }
       .cbtn.ok {
         background: rgba(79, 200, 140, 0.1);
-        color: var(--gr);
+        color: var(--gn);
         border-color: rgba(79, 200, 140, 0.28);
       }
       .out-txt {
@@ -880,7 +1093,6 @@
         display: flex;
         gap: 5px;
         flex-wrap: wrap;
-        margin-bottom: 8px;
       }
       .pchip {
         display: flex;
@@ -900,12 +1112,17 @@
         color: var(--tx);
       }
       .pdel {
-        color: rgba(237, 232, 248, 0.3);
+        color: rgba(237, 232, 248, 0.25);
         font-size: 11px;
         margin-left: 2px;
       }
       .pdel:hover {
         color: #e05;
+      }
+
+      /* FOOTER POSTER SETTINGS */
+      .footer-settings {
+        margin-top: 8px;
       }
 
       /* PAGE FOOTER */
@@ -915,6 +1132,7 @@
         font-size: 10px;
         margin-top: 44px;
         letter-spacing: 0.05em;
+        padding: 16px 0;
       }
 
       @media (max-width: 600px) {
@@ -928,17 +1146,17 @@
         .greet-grid {
           grid-template-columns: repeat(3, 1fr);
         }
+        .grad-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+        .solid-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
         .ratio-wrap {
           flex-direction: column;
         }
-        .ratio-wf-col {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
         .kp-item {
-          grid-template-columns: 1fr 1fr auto;
+          grid-template-columns: 1fr 1fr 22px;
         }
       }
     </style>
@@ -959,15 +1177,15 @@
         </button>
         <span class="parr">›</span>
         <button class="pbtn" id="pbtn-1" onclick="goPhase(1)">
-          <span class="pnum">2</span>&nbsp;Analisis
+          <span class="pnum">2</span>&nbsp;Detail
         </button>
         <span class="parr">›</span>
         <button class="pbtn" id="pbtn-2" onclick="goPhase(2)">
-          <span class="pnum">3</span>&nbsp;Prompt Final
+          <span class="pnum">3</span>&nbsp;Prompt
         </button>
       </div>
 
-      <!-- ══ PHASE 1 ══ -->
+      <!-- ═══════════════════ PHASE 1 ═══════════════════ -->
       <div class="panel active" id="phase-0">
         <!-- INPUT MODE -->
         <div class="card">
@@ -981,15 +1199,11 @@
             </div>
           </div>
           <div id="sec-link">
-            <div class="frow full">
-              <div>
-                <label>URL Artikel / Blog / Video</label
-                ><input type="url" id="inp-link" placeholder="https://..." />
-              </div>
-            </div>
+            <label>URL Artikel / Blog / Video</label>
+            <input type="url" id="inp-link" placeholder="https://..." />
           </div>
           <div id="sec-custom" style="display: none">
-            <div class="clabel" style="margin-top: 2px">Template Cepat</div>
+            <div class="clabel" style="margin-top: 10px">Template Cepat</div>
             <div class="greet-grid" id="greet-grid"></div>
             <div class="frow">
               <div>
@@ -1011,7 +1225,7 @@
             </div>
             <div class="frow full">
               <div>
-                <label>Elemen Visual / Suasana</label
+                <label>Elemen Visual</label
                 ><input
                   type="text"
                   id="inp-visual"
@@ -1035,11 +1249,90 @@
         <!-- BACKGROUND -->
         <div class="card">
           <div class="clabel">Background Poster</div>
-          <div class="bg-preview-bar" id="bg-bar"></div>
-          <div class="frow full">
-            <div class="sel-wrap">
-              <div class="sel-swatch" id="bg-swatch"></div>
-              <select id="bg-sel" onchange="onBgChange()"></select>
+          <div class="bg-bar" id="bg-bar"></div>
+          <div class="bg-tabs">
+            <button class="bg-tab on" onclick="setBgTab('grad')">
+              Gradient
+            </button>
+            <button class="bg-tab" onclick="setBgTab('solid')">Solid</button>
+            <button class="bg-tab" onclick="setBgTab('custom')">
+              Custom Hex
+            </button>
+          </div>
+          <!-- GRADIENT -->
+          <div id="bg-grad-sec">
+            <div class="grad-grid" id="grad-grid-a"></div>
+            <div class="grad-grid" id="grad-grid-b" style="display: none"></div>
+            <button
+              class="grad-more-btn"
+              id="grad-more-btn"
+              onclick="toggleMoreGrads()"
+            >
+              ▼ Lihat lebih banyak
+            </button>
+          </div>
+          <!-- SOLID -->
+          <div id="bg-solid-sec" style="display: none">
+            <div class="solid-grid" id="solid-grid"></div>
+          </div>
+          <!-- CUSTOM -->
+          <div id="bg-custom-sec" style="display: none">
+            <div class="trow" style="margin-bottom: 8px">
+              <div class="tbtn on" id="cm-g" onclick="setCustomMode('grad')">
+                Gradient
+              </div>
+              <div class="tbtn" id="cm-s" onclick="setCustomMode('solid')">
+                Solid
+              </div>
+            </div>
+            <div id="cr-grad" class="hex-row">
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hp1"
+                  style="background: #eeaa11"
+                ></div>
+                <input
+                  type="text"
+                  id="hx1"
+                  value="#EEAA11"
+                  maxlength="7"
+                  oninput="hprev('hx1', 'hp1')"
+                />
+              </div>
+              <span style="color: var(--mu); font-size: 12px">→</span>
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hp2"
+                  style="background: #bb3381"
+                ></div>
+                <input
+                  type="text"
+                  id="hx2"
+                  value="#BB3381"
+                  maxlength="7"
+                  oninput="hprev('hx2', 'hp2')"
+                />
+              </div>
+              <button class="btn-apply" onclick="applyGrad()">Terapkan</button>
+            </div>
+            <div id="cr-solid" class="hex-row" style="display: none">
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hps"
+                  style="background: #2b3681"
+                ></div>
+                <input
+                  type="text"
+                  id="hxs"
+                  value="#2b3681"
+                  maxlength="7"
+                  oninput="hprev('hxs', 'hps')"
+                />
+              </div>
+              <button class="btn-apply" onclick="applySolid()">Terapkan</button>
             </div>
           </div>
         </div>
@@ -1059,6 +1352,9 @@
                   16:9 — YouTube / LinkedIn (1920×1080)
                 </option>
               </select>
+              <div class="hint" id="ratio-hint" style="margin-top: 6px">
+                Instagram Reels, TikTok, Stories
+              </div>
             </div>
             <div class="ratio-wf-col">
               <div class="ratio-wf-lbl">Preview Layout</div>
@@ -1082,25 +1378,19 @@
             <div>
               <label>Tone Konten</label>
               <select id="inp-tone">
-                <option value="auto-select based on content mood">
-                  Auto (dari konten)
-                </option>
+                <option value="auto-select based on content mood">Auto</option>
                 <option
-                  value="semi-casual, relatable, conversational — like a smart friend"
+                  value="semi-casual, relatable, like a smart friend talking"
                 >
-                  Semi-Casual / Relatable ✨
+                  Semi-Casual ✨
                 </option>
-                <option value="informative and educational">
-                  Informatif / Edukatif
-                </option>
+                <option value="informative and educational">Informatif</option>
                 <option value="inspirational and motivational">
-                  Inspiratif / Motivasi
+                  Inspiratif
                 </option>
                 <option value="persuasive and action-driving">Persuasif</option>
                 <option value="bold and provocative">Bold / Provokatif</option>
-                <option value="warm, celebratory and festive">
-                  Perayaan / Hari Besar
-                </option>
+                <option value="warm, celebratory and festive">Perayaan</option>
               </select>
             </div>
           </div>
@@ -1109,11 +1399,7 @@
               >Marker Key Points</label
             >
             <div class="mcat-row" id="mcat-row"></div>
-            <div
-              class="trow"
-              id="marker-row"
-              style="margin-top: 6px; margin-bottom: 0"
-            ></div>
+            <div class="trow" id="marker-row" style="margin-bottom: 0"></div>
           </div>
         </div>
 
@@ -1128,20 +1414,20 @@
           <div class="sep">Prompt Analisis → Copy &amp; Paste ke ChatGPT</div>
           <div class="out-block">
             <div class="out-hdr">
-              <span class="out-title">Prompt Analisis</span
+              <span class="out-ttl">Prompt Analisis</span
               ><button class="cbtn" id="cpbtn-a">⎘ Copy</button>
             </div>
             <div class="out-txt" id="out-a-txt"></div>
           </div>
           <button class="btn-sec" onclick="goPhase(1)">
-            Sudah dapat hasil? → Lanjut Isi Analisis
+            Sudah dapat hasil? → Lanjut Isi Detail
           </button>
         </div>
 
         <button class="btn-gen" onclick="genAnalisis()">
           <svg
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             fill="none"
             stroke="currentColor"
             stroke-width="2.2"
@@ -1153,7 +1439,7 @@
         </button>
       </div>
 
-      <!-- ══ PHASE 2 ══ -->
+      <!-- ═══════════════════ PHASE 2 ═══════════════════ -->
       <div class="panel" id="phase-1">
         <div class="info">
           <svg
@@ -1167,102 +1453,75 @@
             <circle cx="12" cy="12" r="10" />
             <path d="M12 8v4M12 16h.01" />
           </svg>
-          Paste output ChatGPT → otomatis ter-parse. Centang komponen yang ingin
-          masuk ke poster.
+          Paste output ChatGPT → otomatis ter-parse ke semua field. Centang
+          komponen yang ingin tampil di poster.
         </div>
 
+        <!-- RAW PASTE -->
         <div class="card">
           <div class="clabel">Paste Hasil ChatGPT (Raw)</div>
           <textarea
             id="raw-paste"
-            style="min-height: 100px; font-size: 12px"
+            style="min-height: 90px; font-size: 12px"
             placeholder="Paste output ChatGPT di sini...&#10;HEADLINE: ...&#10;KEY POINT 1: ..."
             oninput="parseRaw()"
           ></textarea>
-          <p class="hint">Auto-parse ke semua field di bawah.</p>
+          <p class="hint">Auto-parse ke semua field.</p>
         </div>
 
-        <!-- COMPONENT CHECKLIST -->
+        <!-- KOMPONEN CHECKLIST -->
         <div class="card">
-          <div class="clabel">
-            Komponen Poster (centang yang ingin ditampilkan)
-          </div>
+          <div class="clabel">Komponen Poster</div>
           <div class="comp-list">
-            <div class="comp-item checked disabled" id="comp-headline">
-              <div class="comp-cb">
-                <svg
-                  width="10"
-                  height="10"
-                  fill="none"
-                  stroke="white"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-              </div>
-              <span class="comp-label">Headline</span>
-              <span class="comp-desc">Wajib ada</span>
+            <div class="comp-item on disabled" id="comp-hl">
+              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
+              <span class="comp-lbl">Headline</span
+              ><span class="comp-sub">Wajib</span>
+            </div>
+            <div class="comp-item on" id="comp-sub" onclick="toggleComp(this)">
+              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
+              <span class="comp-lbl">Subheadline</span
+              ><span class="comp-sub">Kalimat pendukung (text only)</span>
             </div>
             <div
-              class="comp-item checked"
-              id="comp-sub"
-              onclick="toggleComp(this)"
-            >
-              <div class="comp-cb">
-                <svg
-                  width="10"
-                  height="10"
-                  fill="none"
-                  stroke="white"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-              </div>
-              <span class="comp-label">Subheadline</span>
-              <span class="comp-desc">Kalimat pendukung</span>
-            </div>
-            <div
-              class="comp-item checked"
+              class="comp-item on"
               id="comp-asset"
               onclick="toggleComp(this)"
             >
-              <div class="comp-cb">
-                <svg
-                  width="10"
-                  height="10"
-                  fill="none"
-                  stroke="white"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-              </div>
-              <span class="comp-label">3D Asset / Visual Utama</span>
-              <span class="comp-desc">Elemen visual 3D</span>
+              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
+              <span class="comp-lbl">3D Asset / Visual Utama</span
+              ><span class="comp-sub">Elemen visual 3D</span>
             </div>
             <div
-              class="comp-item checked"
+              class="comp-item on"
               id="comp-content"
               onclick="toggleComp(this)"
             >
-              <div class="comp-cb">
-                <svg
-                  width="10"
-                  height="10"
-                  fill="none"
-                  stroke="white"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-              </div>
-              <span class="comp-label">Key Points / Paragraf</span>
-              <span class="comp-desc">Zona konten bawah</span>
+              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
+              <span class="comp-lbl">Key Points / Paragraf</span
+              ><span class="comp-sub">Zona konten bawah</span>
+            </div>
+          </div>
+
+          <!-- LAYOUT FLIP -->
+          <div
+            style="
+              margin-top: 12px;
+              padding-top: 12px;
+              border-top: 1px solid var(--bd);
+            "
+          >
+            <div class="sw-row">
+              <label class="sw"
+                ><input
+                  type="checkbox"
+                  id="layout-flip"
+                  onchange="drawWireframe(selRatio())" />
+                <div class="sw-track"></div
+              ></label>
+              <span class="sw-lbl"
+                >Flip Layout: 3D Asset di atas, Headline di tengah</span
+              >
             </div>
           </div>
         </div>
@@ -1272,464 +1531,429 @@
           <div class="clabel">Detail Konten</div>
 
           <!-- HEADLINE -->
-          <div id="sec-headline" style="margin-bottom: 9px">
-            <div
-              style="
-                background: var(--s2);
-                border: 1px solid var(--bd);
-                border-radius: var(--r2);
-                padding: 10px 12px;
-              "
-            >
-              <div
-                style="
-                  font-size: 10px;
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  letter-spacing: 0.09em;
-                  color: var(--mu);
-                  margin-bottom: 5px;
-                "
-              >
-                Headline
+          <div id="sec-hl" class="fbox">
+            <div class="fbox-k">
+              Headline
+              <div class="align-row">
+                <div
+                  class="align-btn on"
+                  id="ahl-l"
+                  onclick="setAlign('hl', 'left')"
+                >
+                  ← Kiri
+                </div>
+                <div
+                  class="align-btn"
+                  id="ahl-c"
+                  onclick="setAlign('hl', 'center')"
+                >
+                  ↔ Tengah
+                </div>
               </div>
-              <textarea
-                style="
-                  width: 100%;
-                  background: transparent;
-                  border: none;
-                  outline: none;
-                  font-family: &quot;DM Sans&quot;, sans-serif;
-                  font-size: 13px;
-                  color: var(--tx);
-                  resize: none;
-                  line-height: 1.5;
-                "
-                id="f-headline"
-                rows="2"
-                placeholder="Headline utama — maks 8 kata, ngehook"
-              ></textarea>
             </div>
+            <textarea
+              class="fbox-v"
+              id="f-headline"
+              rows="2"
+              placeholder="Headline utama — maks 8 kata, ngehook"
+            ></textarea>
           </div>
 
           <!-- SUBHEADLINE -->
-          <div id="sec-sub" style="margin-bottom: 9px">
-            <div
-              style="
-                background: var(--s2);
-                border: 1px solid var(--bd);
-                border-radius: var(--r2);
-                padding: 10px 12px;
-              "
-            >
-              <div
-                style="
-                  font-size: 10px;
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  letter-spacing: 0.09em;
-                  color: var(--mu);
-                  margin-bottom: 5px;
-                "
-              >
-                Subheadline
+          <div id="sec-sub" class="fbox">
+            <div class="fbox-k">
+              Subheadline (text only)
+              <div class="align-row">
+                <div
+                  class="align-btn on"
+                  id="asub-l"
+                  onclick="setAlign('sub', 'left')"
+                >
+                  ← Kiri
+                </div>
+                <div
+                  class="align-btn"
+                  id="asub-c"
+                  onclick="setAlign('sub', 'center')"
+                >
+                  ↔ Tengah
+                </div>
               </div>
-              <textarea
-                style="
-                  width: 100%;
-                  background: transparent;
-                  border: none;
-                  outline: none;
-                  font-family: &quot;DM Sans&quot;, sans-serif;
-                  font-size: 13px;
-                  color: var(--tx);
-                  resize: none;
-                  line-height: 1.5;
-                "
-                id="f-sub"
-                rows="2"
-                placeholder="Kalimat pendukung — maks 12 kata, natural"
-              ></textarea>
             </div>
+            <textarea
+              class="fbox-v"
+              id="f-sub"
+              rows="2"
+              placeholder="Kalimat pendukung — maks 12 kata, natural"
+            ></textarea>
           </div>
 
           <!-- CONTENT MODE -->
-          <div id="sec-content" style="margin-bottom: 9px">
-            <div
-              style="
-                background: var(--s2);
-                border: 1px solid var(--bd);
-                border-radius: var(--r2);
-                padding: 10px 12px;
-              "
-            >
-              <div
-                style="
-                  font-size: 10px;
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  letter-spacing: 0.09em;
-                  color: var(--mu);
-                  margin-bottom: 8px;
-                "
-              >
-                Konten Zona Bawah
+          <div id="sec-content" class="fbox">
+            <div class="fbox-k">Konten Zona Bawah</div>
+            <div class="trow" style="margin-top: 8px; margin-bottom: 10px">
+              <div class="tbtn on" id="cm-kp" onclick="setContentMode('kp')">
+                📋 Key Points
               </div>
-              <div class="trow" style="margin-bottom: 10px">
-                <div class="tbtn on" id="cm-kp" onclick="setContentMode('kp')">
-                  📋 Key Points
+              <div class="tbtn" id="cm-para" onclick="setContentMode('para')">
+                📝 Paragraf
+              </div>
+            </div>
+            <!-- KP -->
+            <div id="sec-kp">
+              <div class="kp-list" id="kp-list"></div>
+              <button class="btn-add" id="btn-add-kp" onclick="addKp()">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Tambah Poin
+              </button>
+              <div class="kp-counter" id="kp-counter">3 / 5 poin</div>
+            </div>
+            <!-- PARA -->
+            <div id="sec-para" style="display: none">
+              <div class="align-row" style="margin-bottom: 6px">
+                <div
+                  class="align-btn on"
+                  id="apara-l"
+                  onclick="setAlign('para', 'left')"
+                >
+                  ← Kiri
                 </div>
-                <div class="tbtn" id="cm-para" onclick="setContentMode('para')">
-                  📝 Paragraf
-                </div>
-              </div>
-              <!-- KP -->
-              <div id="sec-kp">
-                <div class="kp-list" id="kp-list"></div>
-                <button class="btn-add" id="btn-add-kp" onclick="addKp()">
-                  <svg
-                    width="11"
-                    height="11"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                  Tambah Poin
-                </button>
-                <div class="kp-counter" id="kp-counter">3 / 5 poin</div>
-              </div>
-              <!-- PARA -->
-              <div id="sec-para" style="display: none">
-                <div class="para-wrap">
-                  <textarea
-                    id="f-para"
-                    rows="9"
-                    style="min-height: 140px; padding-bottom: 22px"
-                    placeholder="Paragraf deskripsi (maks 9 baris)..."
-                    oninput="countPara()"
-                  ></textarea>
-                  <div class="para-cnt" id="para-cnt">0 / 9</div>
+                <div
+                  class="align-btn"
+                  id="apara-c"
+                  onclick="setAlign('para', 'center')"
+                >
+                  ↔ Tengah
                 </div>
               </div>
+              <div class="para-wrap">
+                <textarea
+                  id="f-para"
+                  rows="9"
+                  style="min-height: 140px; padding-bottom: 20px"
+                  placeholder="Paragraf deskripsi — maks 9 baris..."
+                  oninput="countPara()"
+                ></textarea>
+                <div class="para-cnt" id="para-cnt">0/9</div>
+              </div>
+              <p class="hint">Font akan menyesuaikan jika paragraf pendek.</p>
             </div>
           </div>
 
           <!-- 3D ASSET -->
-          <div id="sec-asset" style="margin-bottom: 9px">
-            <div
-              style="
-                background: var(--s2);
-                border: 1px solid var(--bd);
-                border-radius: var(--r2);
-                padding: 10px 12px;
-              "
-            >
-              <div
-                style="
-                  font-size: 10px;
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  letter-spacing: 0.09em;
-                  color: var(--mu);
-                  margin-bottom: 8px;
-                "
-              >
-                3D Asset — Visual Utama
-              </div>
-              <textarea
-                id="f-asset"
-                rows="2"
-                placeholder="Deskripsi objek/karakter (Inggris) — e.g. confident woman holding glowing smartphone"
-                oninput="autoSuggestAsset()"
-                style="margin-bottom: 8px"
-              ></textarea>
-              <div class="asset-grid">
-                <div class="asub">
-                  <div class="asub-k">Lighting / Mood</div>
-                  <select
-                    class="asel"
-                    id="sel-light"
-                    onchange="syncAsel('sel-light', 'ac-light')"
-                  >
-                    <option
-                      value="warm golden backlight with cool rim highlight, cinematic depth"
-                    >
-                      ☀️ Golden Backlight
-                    </option>
-                    <option
-                      value="dramatic side lighting with deep shadows, high contrast chiaroscuro"
-                    >
-                      🎭 Dramatic Side
-                    </option>
-                    <option
-                      value="neon cyberpunk glow — magenta and cyan rim lights"
-                    >
-                      🌆 Neon Cyberpunk
-                    </option>
-                    <option
-                      value="soft diffused studio lighting, even and flattering"
-                    >
-                      💡 Soft Studio
-                    </option>
-                    <option value="natural outdoor sunlight, bright and airy">
-                      🌿 Natural Sunlight
-                    </option>
-                    <option
-                      value="dark moody with single spotlight, dramatic atmosphere"
-                    >
-                      🌑 Moody Spotlight
-                    </option>
-                    <option
-                      value="cinematic orange and teal color grade, Hollywood style"
-                    >
-                      🎬 Orange-Teal
-                    </option>
-                    <option
-                      value="ethereal backlight glow, soft haze, dreamy pastel"
-                    >
-                      ✨ Ethereal
-                    </option>
-                    <option value="custom">✏️ Custom...</option>
-                  </select>
-                  <textarea
-                    class="acustom"
-                    id="ac-light"
-                    rows="2"
-                    placeholder="Lighting custom..."
-                  ></textarea>
-                </div>
-                <div class="asub">
-                  <div class="asub-k">Material / Finish</div>
-                  <select
-                    class="asel"
-                    id="sel-mat"
-                    onchange="syncAsel('sel-mat', 'ac-mat')"
-                  >
-                    <option
-                      value="hyper-realistic skin, glossy premium fabric, metallic accents"
-                    >
-                      ✨ Hyper-Realistic
-                    </option>
-                    <option
-                      value="matte premium fabric, brushed metallic details"
-                    >
-                      🪨 Matte Premium
-                    </option>
-                    <option value="high-gloss surfaces, chrome reflections">
-                      🪞 Glossy Chrome
-                    </option>
-                    <option
-                      value="soft pastel clay style, smooth matte surfaces"
-                    >
-                      🎨 Soft Clay
-                    </option>
-                    <option
-                      value="glass and transparent elements, crystal refraction"
-                    >
-                      💎 Glass Crystal
-                    </option>
-                    <option
-                      value="fabric texture, leather accents, stitching detail"
-                    >
-                      👜 Fabric & Leather
-                    </option>
-                    <option
-                      value="holographic iridescent, color-shifting futuristic sheen"
-                    >
-                      🌈 Holographic
-                    </option>
-                    <option
-                      value="concrete texture mixed with neon glow elements"
-                    >
-                      ⚡ Concrete+Neon
-                    </option>
-                    <option value="custom">✏️ Custom...</option>
-                  </select>
-                  <textarea
-                    class="acustom"
-                    id="ac-mat"
-                    rows="2"
-                    placeholder="Material custom..."
-                  ></textarea>
-                </div>
-                <div class="asub">
-                  <div class="asub-k">Pose / Action</div>
-                  <select
-                    class="asel"
-                    id="sel-pose"
-                    onchange="syncAsel('sel-pose', 'ac-pose')"
-                  >
-                    <option
-                      value="confident arms crossed, direct powerful gaze at viewer"
-                    >
-                      💪 Arms Crossed
-                    </option>
-                    <option
-                      value="dynamic forward lean toward camera, energetic"
-                    >
-                      ⚡ Forward Lean
-                    </option>
-                    <option
-                      value="jumping mid-air, euphoric expression, full energy"
-                    >
-                      🦘 Jumping
-                    </option>
-                    <option
-                      value="pointing finger directly at viewer, call-to-action"
-                    >
-                      👆 Pointing
-                    </option>
-                    <option value="holding product prominently, showcasing it">
-                      🤲 Holding Object
-                    </option>
-                    <option
-                      value="side profile, looking purposefully into distance"
-                    >
-                      👤 Side Profile
-                    </option>
-                    <option
-                      value="relaxed open body language, approachable smile"
-                    >
-                      😊 Relaxed Open
-                    </option>
-                    <option value="arms wide open, welcoming gesture, joyful">
-                      🙌 Open Arms
-                    </option>
-                    <option
-                      value="looking at phone, thumb scrolling, relatable"
-                    >
-                      📱 On Phone
-                    </option>
-                    <option value="custom">✏️ Custom...</option>
-                  </select>
-                  <textarea
-                    class="acustom"
-                    id="ac-pose"
-                    rows="2"
-                    placeholder="Pose custom..."
-                  ></textarea>
-                </div>
-              </div>
-              <!-- IMAGE LINKS -->
-              <div style="margin-top: 10px">
-                <div
-                  style="
-                    font-size: 10px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.07em;
-                    color: var(--mu2);
-                    margin-bottom: 5px;
-                  "
+          <div id="sec-asset" class="fbox">
+            <div class="fbox-k">3D Asset — Visual Utama</div>
+            <textarea
+              class="fbox-v"
+              id="f-asset"
+              rows="2"
+              style="margin-top: 4px"
+              placeholder="Deskripsi objek/karakter (Inggris) — e.g. confident woman holding glowing smartphone"
+              oninput="scheduleAutoSuggest()"
+            ></textarea>
+            <div class="asset-grid">
+              <div class="asub">
+                <div class="asub-k">Lighting / Mood</div>
+                <select
+                  class="asel"
+                  id="sel-light"
+                  onchange="syncAsel('sel-light', 'ac-light')"
                 >
-                  Link Gambar Referensi (opsional)
-                </div>
-                <div class="img-link-list" id="img-link-list"></div>
-                <button class="btn-add-link" onclick="addImgLink()">
-                  <svg
-                    width="11"
-                    height="11"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    viewBox="0 0 24 24"
+                  <option
+                    value="warm golden backlight with cool rim highlight, cinematic depth"
                   >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                  Tambah Link
-                </button>
-                <p class="hint">
-                  GPT-4o dapat menggunakan gambar publik sebagai referensi
-                  gaya/komposisi.
-                </p>
+                    ☀️ Golden Backlight
+                  </option>
+                  <option
+                    value="dramatic side lighting, deep shadows, high contrast chiaroscuro"
+                  >
+                    🎭 Dramatic Side
+                  </option>
+                  <option
+                    value="neon cyberpunk — magenta and cyan rim lights, dark atmosphere"
+                  >
+                    🌆 Neon Cyberpunk
+                  </option>
+                  <option
+                    value="soft diffused studio lighting, even and flattering"
+                  >
+                    💡 Soft Studio
+                  </option>
+                  <option value="natural outdoor sunlight, bright and airy">
+                    🌿 Natural Sunlight
+                  </option>
+                  <option value="dark moody single spotlight, dramatic">
+                    🌑 Moody Spotlight
+                  </option>
+                  <option
+                    value="cinematic orange and teal color grade, Hollywood style"
+                  >
+                    🎬 Orange-Teal Film
+                  </option>
+                  <option
+                    value="ethereal backlight glow, soft haze, dreamy pastel"
+                  >
+                    ✨ Ethereal Glow
+                  </option>
+                  <option value="custom">✏️ Custom...</option>
+                </select>
+                <textarea
+                  class="acustom"
+                  id="ac-light"
+                  rows="2"
+                  placeholder="Lighting custom..."
+                ></textarea>
               </div>
+              <div class="asub">
+                <div class="asub-k">Material / Finish</div>
+                <select
+                  class="asel"
+                  id="sel-mat"
+                  onchange="syncAsel('sel-mat', 'ac-mat')"
+                >
+                  <option
+                    value="hyper-realistic skin, glossy premium fabric, metallic accents"
+                  >
+                    ✨ Hyper-Realistic
+                  </option>
+                  <option
+                    value="matte premium fabric, brushed metallic details"
+                  >
+                    🪨 Matte Premium
+                  </option>
+                  <option
+                    value="high-gloss surfaces, chrome reflections, mirror finish"
+                  >
+                    🪞 Glossy Chrome
+                  </option>
+                  <option
+                    value="soft pastel clay style, smooth matte rounded surfaces"
+                  >
+                    🎨 Soft Clay
+                  </option>
+                  <option
+                    value="glass and transparent elements, crystal refraction"
+                  >
+                    💎 Glass Crystal
+                  </option>
+                  <option
+                    value="fabric texture, leather accents, stitching detail"
+                  >
+                    👜 Fabric & Leather
+                  </option>
+                  <option
+                    value="holographic iridescent surface, color-shifting futuristic sheen"
+                  >
+                    🌈 Holographic
+                  </option>
+                  <option
+                    value="concrete texture mixed with neon glow elements"
+                  >
+                    ⚡ Concrete+Neon
+                  </option>
+                  <option value="custom">✏️ Custom...</option>
+                </select>
+                <textarea
+                  class="acustom"
+                  id="ac-mat"
+                  rows="2"
+                  placeholder="Material custom..."
+                ></textarea>
+              </div>
+              <div class="asub">
+                <div class="asub-k">Pose / Action</div>
+                <select
+                  class="asel"
+                  id="sel-pose"
+                  onchange="syncAsel('sel-pose', 'ac-pose')"
+                >
+                  <option
+                    value="confident arms crossed, direct powerful gaze at viewer"
+                  >
+                    💪 Arms Crossed
+                  </option>
+                  <option
+                    value="dynamic forward lean toward camera, energetic and engaging"
+                  >
+                    ⚡ Forward Lean
+                  </option>
+                  <option
+                    value="jumping mid-air, euphoric expression, full energy"
+                  >
+                    🦘 Jumping
+                  </option>
+                  <option
+                    value="pointing finger directly at viewer, call-to-action pose"
+                  >
+                    👆 Pointing
+                  </option>
+                  <option
+                    value="holding product prominently, showcasing it toward viewer"
+                  >
+                    🤲 Holding Object
+                  </option>
+                  <option
+                    value="side profile, looking purposefully into distance"
+                  >
+                    👤 Side Profile
+                  </option>
+                  <option
+                    value="relaxed open body language, approachable smile, seated"
+                  >
+                    😊 Relaxed Open
+                  </option>
+                  <option
+                    value="arms wide open, welcoming gesture, joyful expression"
+                  >
+                    🙌 Open Arms
+                  </option>
+                  <option value="looking at phone, thumb scrolling, relatable">
+                    📱 On Phone
+                  </option>
+                  <option value="custom">✏️ Custom...</option>
+                </select>
+                <textarea
+                  class="acustom"
+                  id="ac-pose"
+                  rows="2"
+                  placeholder="Pose custom..."
+                ></textarea>
+              </div>
+            </div>
+            <!-- IMAGE LINKS -->
+            <div style="margin-top: 10px">
+              <div class="asub-k" style="margin-bottom: 5px">
+                Link Gambar Referensi (opsional)
+              </div>
+              <div class="img-link-list" id="img-link-list"></div>
+              <button class="btn-add-lnk" onclick="addImgLink()">
+                <svg
+                  width="10"
+                  height="10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Tambah Link
+              </button>
+              <p class="hint">
+                Gambar publik digunakan GPT-4o sebagai referensi gaya/komposisi.
+              </p>
             </div>
           </div>
 
-          <!-- CAPTION -->
-          <div
-            style="
-              background: var(--s2);
-              border: 1px solid var(--bd);
-              border-radius: var(--r2);
-              padding: 10px 12px;
-            "
-          >
-            <div
-              style="
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.09em;
-                color: var(--mu);
-                margin-bottom: 5px;
-              "
-            >
-              Caption (TikTok / WA)
+          <!-- LOGO -->
+          <div class="fbox">
+            <div class="fbox-k">
+              Logo (opsional)
+              <select
+                id="logo-pos"
+                style="
+                  font-size: 11px;
+                  padding: 3px 8px;
+                  width: auto;
+                  border-radius: 6px;
+                "
+              >
+                <option value="top-right">Kanan Atas</option>
+                <option value="top-left">Kiri Atas</option>
+                <option value="top-center">Tengah Atas</option>
+              </select>
             </div>
+            <input
+              type="url"
+              id="f-logo"
+              placeholder="https://... (link URL logo)"
+              style="margin-top: 5px; font-size: 12px"
+            />
+            <p class="hint">
+              Ukuran: ~70px height, proporsional. Kosong = tidak masuk prompt.
+            </p>
+          </div>
+
+          <!-- CAPTION -->
+          <div class="fbox">
+            <div class="fbox-k">Caption (TikTok / WA)</div>
             <textarea
-              style="
-                width: 100%;
-                background: transparent;
-                border: none;
-                outline: none;
-                font-family: &quot;DM Sans&quot;, sans-serif;
-                font-size: 13px;
-                color: var(--tx);
-                resize: none;
-                line-height: 1.6;
-              "
+              class="fbox-v"
               id="f-caption"
               rows="5"
+              style="margin-top: 4px"
               placeholder="Hook + 2 baris insight + CTA + hashtag..."
             ></textarea>
           </div>
         </div>
 
-        <!-- FOOTER TOGGLE -->
+        <!-- FOOTER POSTER -->
         <div class="card">
           <div class="clabel">Footer Poster</div>
-          <div class="toggle-row">
-            <label class="toggle-sw"
+          <div class="sw-row">
+            <label class="sw"
               ><input
                 type="checkbox"
                 id="footer-toggle"
                 checked
-                onchange="toggleFooter()" />
-              <div class="toggle-track"></div
+                onchange="toggleFooterFields()" />
+              <div class="sw-track"></div
             ></label>
-            <span class="toggle-lbl">Tampilkan Footer</span>
+            <span class="sw-lbl">Tampilkan Footer</span>
           </div>
-          <div id="footer-fields">
+          <div id="footer-fields" class="footer-settings">
             <div class="frow">
               <div>
                 <label>Teks Footer</label
-                ><input
-                  type="text"
-                  id="footer-txt"
-                  placeholder="e.g. 2026@HERRY"
-                  value="2026@HERRY"
-                />
+                ><input type="text" id="footer-txt" value="2026@HERRY" />
               </div>
               <div>
                 <label>Posisi</label>
                 <select id="footer-pos">
-                  <option value="bottom-right">Kanan Bawah</option>
+                  <option value="bottom-right corner">Kanan Bawah</option>
                   <option value="bottom-center">Tengah Bawah</option>
-                  <option value="bottom-left">Kiri Bawah</option>
+                  <option value="bottom-left corner">Kiri Bawah</option>
                 </select>
               </div>
             </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 14px;
+              padding-top: 12px;
+              border-top: 1px solid var(--bd);
+            "
+          >
+            <div class="clabel" style="margin-bottom: 8px">Simpan Preset</div>
+            <div
+              class="preset-row"
+              id="preset-row2"
+              style="margin-bottom: 8px"
+            ></div>
+            <button
+              class="btn-sec"
+              onclick="savePreset()"
+              style="margin-top: 0"
+            >
+              💾 Simpan Konfigurasi sebagai Preset
+            </button>
           </div>
         </div>
 
         <button class="btn-gen" onclick="genFinal()">
           <svg
-            width="15"
-            height="15"
+            width="14"
+            height="14"
             fill="none"
             stroke="currentColor"
             stroke-width="2.2"
@@ -1742,7 +1966,7 @@
         <button class="btn-sec" onclick="goPhase(0)">← Kembali ke Input</button>
       </div>
 
-      <!-- ══ PHASE 3 ══ -->
+      <!-- ═══════════════════ PHASE 3 ═══════════════════ -->
       <div class="panel" id="phase-2">
         <div class="info">
           <svg
@@ -1761,10 +1985,7 @@
         </div>
         <div id="out-poster-wrap"></div>
         <div id="out-caption-wrap"></div>
-        <button class="btn-sec" onclick="goPhase(1)">← Edit Analisis</button>
-        <button class="btn-sec" style="margin-top: 8px" onclick="savePreset()">
-          💾 Simpan Preset
-        </button>
+        <button class="btn-sec" onclick="goPhase(1)">← Edit Detail</button>
         <button class="btn-sec" style="margin-top: 8px" onclick="goPhase(0)">
           ← Mulai dari Awal
         </button>
@@ -1774,55 +1995,120 @@
     </div>
 
     <script>
-      // ══════════════════════════════════════
-      // DATA
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      // GRADIENT DATA — semua dari referensi
+      // ════════════════════════════════════════
       const GRADS = [
-        { from: "#EEAA11", to: "#BB3381", name: "Energik" },
-        { from: "#4FB3B3", to: "#BB3381", name: "Segar" },
-        { from: "#BB3381", to: "#3F1D50", name: "Premium" },
-        { from: "#EEAA11", to: "#3F1D50", name: "Bold" },
-        { from: "#4FB3B3", to: "#3F1D50", name: "Deep" },
-        { from: "#EEAA11", to: "#4FB3B3", name: "Playful" },
-        { from: "#E7E4DE", to: "#EEAA11", name: "Warm Light" },
-        { from: "#BB3381", to: "#16141C", name: "Dark Pink" },
-        { from: "#007CBE", to: "#FFF7AE", name: "Ocean Sun" },
-        { from: "#E57A44", to: "#251351", name: "Sunset Dusk" },
-        { from: "#F1FEC6", to: "#A882DD", name: "Lavender" },
-        { from: "#DB5375", to: "#B3FFB3", name: "Rose Mint" },
-        { from: "#02C3BD", to: "#4E148C", name: "Teal Violet" },
-        { from: "#629460", to: "#F4D35E", name: "Forest Gold" },
-        { from: "#414288", to: "#B0DB43", name: "Indigo Lime" },
-        { from: "#FFC145", to: "#EC368D", name: "Mango Pink" },
-        { from: "#FF6B6B", to: "#4ECDC4", name: "Coral Teal" },
-        { from: "#A8EDEA", to: "#FED6E3", name: "Pastel" },
-        { from: "#D4145A", to: "#FBB03B", name: "Fire" },
-        { from: "#3D5AFE", to: "#00BCD4", name: "Electric" },
+        // Set Original
+        { f: "#EEAA11", t: "#BB3381", n: "Energik" },
+        { f: "#4FB3B3", t: "#BB3381", n: "Segar" },
+        { f: "#BB3381", t: "#3F1D50", n: "Premium" },
+        { f: "#EEAA11", t: "#3F1D50", n: "Bold" },
+        { f: "#4FB3B3", t: "#3F1D50", n: "Deep" },
+        { f: "#EEAA11", t: "#4FB3B3", n: "Playful" },
+        { f: "#E7E4DE", t: "#EEAA11", n: "Warm Light" },
+        { f: "#BB3381", t: "#16141C", n: "Dark Pink" },
+        // Set Extended
+        { f: "#007CBE", t: "#FFF7AE", n: "Ocean Sun" },
+        { f: "#E57A44", t: "#251351", n: "Sunset Dusk" },
+        { f: "#F1FEC6", t: "#A882DD", n: "Lavender" },
+        { f: "#DB5375", t: "#B3FFB3", n: "Rose Mint" },
+        { f: "#02C3BD", t: "#4E148C", n: "Teal Violet" },
+        { f: "#629460", t: "#F4D35E", n: "Forest Gold" },
+        { f: "#414288", t: "#B0DB43", n: "Indigo Lime" },
+        { f: "#FFC145", t: "#EC368D", n: "Mango Pink" },
+        // From image ref
+        { f: "#F40076", t: "#DF98FA", n: "Pink Dream" },
+        { f: "#F06966", t: "#FAD6A6", n: "Peach" },
+        { f: "#FF0076", t: "#590FB7", n: "Neon Purple" },
+        { f: "#9055FF", t: "#13E2DA", n: "Cyber Mint" },
+        { f: "#0863F6", t: "#003CC5", n: "Deep Blue" },
+        { f: "#D6FF7F", t: "#00B3CC", n: "Lime Teal" },
+        { f: "#E233FF", t: "#FF6800", n: "Violet Fire" },
+        { f: "#DF98FA", t: "#9055FF", n: "Soft Violet" },
+        { f: "#ED7BB4", t: "#9055FF", n: "Pink Violet" },
+        { f: "#402565", t: "#30BE96", n: "Dark Teal" },
+        { f: "#402662", t: "#3900A6", n: "Dark Purple" },
+        { f: "#F14658", t: "#DC2537", n: "Red Hot" },
+        { f: "#F40076", t: "#342711", n: "Dark Rose" },
+        { f: "#000066", t: "#6699FF", n: "Navy Blue" },
+        { f: "#CB5EEE", t: "#4BE1EC", n: "Electric Lilac" },
+        { f: "#FA7CBB", t: "#F14658", n: "Hot Pink" },
+        { f: "#737DFE", t: "#FFCAC9", n: "Soft Periwinkle" },
+        { f: "#2FB0ED", t: "#2AFFDA", n: "Aqua" },
+        { f: "#D5E1DD", t: "#747E80", n: "Cool Grey" },
+        { f: "#462066", t: "#A3E7FC", n: "Purple Sky" },
+        { f: "#1B7877", t: "#0B2A50", n: "Deep Ocean" },
+        { f: "#F7F3E9", t: "#D5E1DD", n: "Ivory" },
+        { f: "#6699FF", t: "#FF3366", n: "Blue Rose" },
+        { f: "#FF6B00", t: "#FAD6A6", n: "Amber" },
+        { f: "#FF6B00", t: "#FAD6A6", n: "Sunset Orange" },
+        { f: "#00F0FF", t: "#8000FF", n: "Neon Blue" },
+        { f: "#ED7BB4", t: "#51C1F0", n: "Cotton Candy" },
+        { f: "#3900A6", t: "#342771", n: "Royal Indigo" },
+        { f: "#00EACB", t: "#00D098", n: "Emerald" },
+        { f: "#FFE174", t: "#FFBF40", n: "Gold" },
+        { f: "#402662", t: "#8000FF", n: "Ultra Violet" },
+        { f: "#F7F3E9", t: "#F59ABE", n: "Blush" },
+        { f: "#F06969", t: "#FAD6A6", n: "Peachy" },
+        { f: "#402662", t: "#F59ABE", n: "Plum Rose" },
+        { f: "#F14658", t: "#342771", n: "Berry" },
+        { f: "#54D2EF", t: "#2AA6DA", n: "Sky Blue" },
+        { f: "#33CC99", t: "#FFCC33", n: "Tropical" },
+        { f: "#FF5A09", t: "#DC2537", n: "Lava" },
+        { f: "#FF6800", t: "#030086", n: "Volcano" },
+        { f: "#0002D2", t: "#FF785E", n: "Cobalt Salmon" },
+        { f: "#5B5151", t: "#FBCEAE", n: "Warm Sand" },
+        { f: "#000066", t: "#33CC99", n: "Night Mint" },
+        { f: "#FFC200", t: "#FF785E", n: "Mango" },
+        { f: "#0F0C29", t: "#1E5198", n: "Midnight Navy" },
+        { f: "#462066", t: "#FCF4D9", n: "Purple Cream" },
+        { f: "#F40076", t: "#342771", n: "Magenta Dark" },
+        { f: "#000066", t: "#000000", n: "Abyss" },
+        { f: "#04633F", t: "#02341E", n: "Forest Deep" },
+        { f: "#FFCC33", t: "#E233FF", n: "Gold Purple" },
+        { f: "#DF98FA", t: "#3D0075", n: "Orchid" },
+        { f: "#9EC500", t: "#63FCA9", n: "Lime Green" },
+        { f: "#84AF9C", t: "#FBCEAE", n: "Sage Peach" },
+        { f: "#82FFDA", t: "#33CC99", n: "Mint Fresh" },
+        { f: "#8000FF", t: "#DC2537", n: "Purple Red" },
+        { f: "#6699FF", t: "#31408F", n: "Cornflower" },
+        { f: "#EA4C89", t: "#82FFDA", n: "Pink Mint" },
+        { f: "#F8C9C9", t: "#9EBDFB", n: "Powder Blue" },
+        { f: "#FFBF00", t: "#4A33E8", n: "Electric Gold" },
+        { f: "#DF98FA", t: "#1E5198", n: "Cosmic" },
+        { f: "#FFC200", t: "#FA0026", n: "Flame" },
+        { f: "#2AA6DA", t: "#1B7877", n: "Teal Blue" },
+        { f: "#DF9FA", t: "#FBC9C9", n: "Sakura" },
+        { f: "#737DFE", t: "#FFCAC9", n: "Dreamy" },
+        { f: "#CECED8", t: "#FFFFFF", n: "Silver White" },
       ];
+
       const SOLIDS = [
-        { hex: "#2b3681", name: "Navy" },
-        { hex: "#0064c9", name: "Royal Blue" },
-        { hex: "#de0b28", name: "Red" },
-        { hex: "#FFFFFF", name: "White" },
-        { hex: "#1a1a2e", name: "Midnight" },
-        { hex: "#0f3460", name: "Deep Blue" },
-        { hex: "#16213e", name: "Dark Navy" },
-        { hex: "#533483", name: "Purple" },
-        { hex: "#e94560", name: "Crimson" },
-        { hex: "#0a3d62", name: "Ocean" },
-        { hex: "#1e3799", name: "Cobalt" },
-        { hex: "#006266", name: "Teal Dark" },
-        { hex: "#130f40", name: "Ultra Dark" },
-        { hex: "#2C3E50", name: "Wet Asphalt" },
-        { hex: "#1B1B2F", name: "Ebony" },
-        { hex: "#212121", name: "Charcoal" },
-        { hex: "#4a0e8f", name: "Violet" },
-        { hex: "#b71540", name: "Burgundy" },
+        { h: "#2b3681", n: "Navy" },
+        { h: "#0064c9", n: "Royal Blue" },
+        { h: "#de0b28", n: "Red" },
+        { h: "#FFFFFF", n: "White" },
+        { h: "#1a1a2e", n: "Midnight" },
+        { h: "#0f3460", n: "Deep Blue" },
+        { h: "#16213e", n: "Dark Navy" },
+        { h: "#533483", n: "Purple" },
+        { h: "#e94560", n: "Crimson" },
+        { h: "#0a3d62", n: "Ocean" },
+        { h: "#1e3799", n: "Cobalt" },
+        { h: "#006266", n: "Teal Dark" },
+        { h: "#130f40", n: "Ultra Dark" },
+        { h: "#2C3E50", n: "Asphalt" },
+        { h: "#1B1B2F", n: "Ebony" },
+        { h: "#212121", n: "Charcoal" },
+        { h: "#4a0e8f", n: "Violet" },
+        { h: "#b71540", n: "Burgundy" },
       ];
+
       const MARKERS = {
         basic: [
-          { v: "number", l: "① ② ③ Angka" },
-          { v: "letter", l: "Ⓐ Ⓑ Ⓒ Huruf" },
+          { v: "number", l: "① ② ③" },
+          { v: "letter", l: "Ⓐ Ⓑ Ⓒ" },
           { v: "arrow", l: "→ Panah" },
           { v: "star", l: "✦ Bintang" },
           { v: "diamond", l: "◆ Diamond" },
@@ -1831,42 +2117,139 @@
           { v: "emoji", l: "🔥 Emoji" },
         ],
         line: [
-          { v: "icon-line-check", l: "☐ Check" },
-          { v: "icon-line-star", l: "☆ Star" },
-          { v: "icon-line-arrow", l: "➔ Arrow" },
-          { v: "icon-line-bolt", l: "⚡ Bolt" },
-          { v: "icon-line-heart", l: "♡ Heart" },
-          { v: "icon-line-target", l: "◎ Target" },
-          { v: "icon-line-flag", l: "⚑ Flag" },
-          { v: "icon-line-leaf", l: "♧ Leaf" },
+          { v: "il-check", l: "☐ Check" },
+          { v: "il-star", l: "☆ Star" },
+          { v: "il-arrow", l: "➔ Arrow" },
+          { v: "il-bolt", l: "⚡ Bolt" },
+          { v: "il-heart", l: "♡ Heart" },
+          { v: "il-target", l: "◎ Target" },
+          { v: "il-flag", l: "⚑ Flag" },
+          { v: "il-leaf", l: "♧ Leaf" },
         ],
         fill: [
-          { v: "icon-fill-check", l: "✅ Check" },
-          { v: "icon-fill-star", l: "★ Star" },
-          { v: "icon-fill-arrow", l: "▶ Arrow" },
-          { v: "icon-fill-bolt", l: "⚡ Bolt" },
-          { v: "icon-fill-heart", l: "♥ Heart" },
-          { v: "icon-fill-circle", l: "● Circle" },
-          { v: "icon-fill-diamond", l: "◆ Diamond" },
-          { v: "icon-fill-flag", l: "⚑ Flag" },
+          { v: "if-check", l: "✅ Check" },
+          { v: "if-star", l: "★ Star" },
+          { v: "if-arrow", l: "▶ Arrow" },
+          { v: "if-bolt", l: "⚡ Bolt" },
+          { v: "if-heart", l: "♥ Heart" },
+          { v: "if-circle", l: "● Circle" },
+          { v: "if-diamond", l: "◆ Diamond" },
+          { v: "if-flag", l: "⚑ Flag" },
         ],
         color: [
-          { v: "icon-color-fire", l: "🔥 Api" },
-          { v: "icon-color-rocket", l: "🚀 Roket" },
-          { v: "icon-color-bulb", l: "💡 Lampu" },
-          { v: "icon-color-trophy", l: "🏆 Trofi" },
-          { v: "icon-color-target", l: "🎯 Target" },
-          { v: "icon-color-gem", l: "💎 Berlian" },
-          { v: "icon-color-chart", l: "📈 Grafik" },
-          { v: "icon-color-crown", l: "👑 Mahkota" },
+          { v: "ic-fire", l: "🔥 Api" },
+          { v: "ic-rocket", l: "🚀 Roket" },
+          { v: "ic-bulb", l: "💡 Lampu" },
+          { v: "ic-trophy", l: "🏆 Trofi" },
+          { v: "ic-target", l: "🎯 Target" },
+          { v: "ic-gem", l: "💎 Berlian" },
+          { v: "ic-chart", l: "📈 Grafik" },
+          { v: "ic-crown", l: "👑 Mahkota" },
         ],
       };
+
+      const MARKER_PROMPTS = {
+        number:
+          "Circular numbered badges ❶ ❷ ❸ — filled accent color, white number inside, 32px diameter",
+        letter:
+          "Circular letter badges A B C — filled accent color, white letter, 32px",
+        arrow: "Bold arrow → in accent color, 20pt",
+        star: "Star ✦ accent color, 20pt, subtle glow",
+        diamond: "Diamond ◆ accent color, 18pt",
+        check: "Checkmark ✓ accent color, bold 20pt",
+        dot: "Filled circle ● accent color, 14pt",
+        emoji: "Contextually relevant emoji, 22pt",
+        "il-check": "Outlined checkbox, 2px stroke, accent color, 24px",
+        "il-star": "Outlined star, 2px stroke, 24px",
+        "il-arrow": "Outlined arrow, thin stroke, 24px",
+        "il-bolt": "Outlined lightning bolt, 24px",
+        "il-heart": "Outlined heart, 24px",
+        "il-target": "Outlined bullseye, 24px",
+        "il-flag": "Outlined flag, 24px",
+        "il-leaf": "Outlined leaf, 24px",
+        "if-check": "Solid filled checkmark in rounded square, accent, 26px",
+        "if-star": "Solid star accent, 26px",
+        "if-arrow": "Solid triangle arrow accent, 26px",
+        "if-bolt": "Solid lightning bolt, 26px",
+        "if-heart": "Solid heart accent, 26px",
+        "if-circle": "Solid circle accent, 26px",
+        "if-diamond": "Solid diamond, 26px",
+        "if-flag": "Solid flag, 26px",
+        "ic-fire": "🔥 fire emoji 24px",
+        "ic-rocket": "🚀 rocket 24px",
+        "ic-bulb": "💡 bulb 24px",
+        "ic-trophy": "🏆 trophy 24px",
+        "ic-target": "🎯 target 24px",
+        "ic-gem": "💎 gem 24px",
+        "ic-chart": "📈 chart 24px",
+        "ic-crown": "👑 crown 24px",
+      };
+
+      const ASSET_RULES = [
+        {
+          kw: ["woman", "wanita", "girl", "female"],
+          light: 0,
+          mat: 0,
+          pose: 0,
+        },
+        { kw: ["man", "pria", "male", "guy"], light: 0, mat: 1, pose: 0 },
+        {
+          kw: ["food", "makanan", "buah", "fruit", "sayur"],
+          light: 3,
+          mat: 5,
+          pose: 3,
+        },
+        {
+          kw: ["business", "bisnis", "office", "profesional", "suit"],
+          light: 3,
+          mat: 1,
+          pose: 0,
+        },
+        {
+          kw: ["sport", "olahraga", "fitness", "gym", "athlete"],
+          light: 0,
+          mat: 0,
+          pose: 2,
+        },
+        {
+          kw: ["tech", "teknologi", "phone", "laptop", "gadget", "device"],
+          light: 2,
+          mat: 2,
+          pose: 8,
+        },
+        {
+          kw: ["nature", "alam", "green", "plant", "leaf"],
+          light: 4,
+          mat: 5,
+          pose: 3,
+        },
+        { kw: ["night", "malam", "dark", "gelap"], light: 5, mat: 6, pose: 6 },
+        {
+          kw: ["celebration", "perayaan", "party", "pesta", "festive"],
+          light: 7,
+          mat: 6,
+          pose: 7,
+        },
+        {
+          kw: ["doctor", "nurse", "medical", "health", "dokter"],
+          light: 3,
+          mat: 0,
+          pose: 0,
+        },
+        {
+          kw: ["chef", "cook", "restaurant", "food"],
+          light: 3,
+          mat: 1,
+          pose: 3,
+        },
+      ];
+
       const GREET = [
         {
           l: "🇮🇩 HUT RI",
           j: "Ucapan HUT Kemerdekaan RI",
           t: "semangat nasionalisme dan kebangsaan",
-          v: "bendera merah putih, garuda, meriah",
+          v: "bendera merah putih, garuda, suasana meriah heroik",
           a: "seluruh masyarakat Indonesia",
         },
         {
@@ -1879,7 +2262,7 @@
         {
           l: "🎄 Natal",
           j: "Ucapan Hari Natal",
-          t: "damai, kasih sayang, dan syukur",
+          t: "damai, kasih sayang, syukur",
           v: "pohon natal, bintang, merah dan hijau",
           a: "umat Kristiani",
         },
@@ -1887,13 +2270,13 @@
           l: "💕 Hari Ibu",
           j: "Ucapan Hari Ibu",
           t: "terima kasih dan penghargaan untuk ibu",
-          v: "bunga, pink dan putih, hangat",
+          v: "bunga, pink dan putih, suasana hangat",
           a: "semua orang",
         },
         {
           l: "💼 Motivasi",
           j: "Konten Motivasi Kerja",
-          t: "semangat produktif dan pantang menyerah",
+          t: "semangat produktif pantang menyerah",
           v: "karakter profesional dinamis, energik",
           a: "profesional muda",
         },
@@ -1919,174 +2302,219 @@
           a: "tech enthusiast",
         },
       ];
-      const RATIOS = {
-        "9:16": { w: 1080, h: 1920, plat: "Instagram Reels, TikTok, Stories" },
-        "4:5": { w: 1080, h: 1350, plat: "Instagram Feed (portrait)" },
-        "1:1": { w: 1080, h: 1080, plat: "Instagram Feed, Facebook" },
-        "16:9": { w: 1920, h: 1080, plat: "YouTube, LinkedIn, Twitter" },
+
+      const RATIO_INFO = {
+        "9:16": { w: 1080, h: 1920, p: "Instagram Reels, TikTok, Stories" },
+        "4:5": { w: 1080, h: 1350, p: "Instagram Feed (portrait)" },
+        "1:1": { w: 1080, h: 1080, p: "Instagram Feed, Facebook" },
+        "16:9": { w: 1920, h: 1080, p: "YouTube, LinkedIn, Twitter" },
       };
 
-      // ASSET KEYWORD RULES for auto-suggest
-      const ASSET_RULES = [
-        {
-          kw: ["woman", "wanita", "girl", "perempuan", "female"],
-          light: 0,
-          mat: 0,
-          pose: 0,
-        },
-        { kw: ["man", "pria", "guy", "male"], light: 0, mat: 1, pose: 0 },
-        {
-          kw: ["food", "makanan", "buah", "fruit", "sayur"],
-          light: 3,
-          mat: 5,
-          pose: 3,
-        },
-        {
-          kw: ["business", "bisnis", "office", "profesional"],
-          light: 3,
-          mat: 1,
-          pose: 0,
-        },
-        {
-          kw: ["sport", "olahraga", "fitness", "gym"],
-          light: 0,
-          mat: 0,
-          pose: 2,
-        },
-        {
-          kw: ["tech", "teknologi", "phone", "laptop", "gadget"],
-          light: 2,
-          mat: 2,
-          pose: 8,
-        },
-        {
-          kw: ["nature", "alam", "green", "hijau", "plant"],
-          light: 4,
-          mat: 5,
-          pose: 3,
-        },
-        { kw: ["night", "malam", "dark", "gelap"], light: 5, mat: 6, pose: 6 },
-        {
-          kw: ["celebration", "perayaan", "party", "pesta"],
-          light: 7,
-          mat: 6,
-          pose: 7,
-        },
-      ];
-
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // STATE
-      // ══════════════════════════════════════
-      let selectedBg = GRADS[0];
-      let selectedRatio = "9:16";
-      let selectedMarker = "number";
-      let markerCat = "basic";
-      let inputMode = "link";
-      let contentMode = "kp";
+      // ════════════════════════════════════════
+      let bgState = { type: "grad", idx: 0 }; // {type:'grad'|'solid'|'custom', idx, from, to, hex}
+      let bgTab = "grad",
+        customGradMode = "grad";
+      let gradsExpanded = false;
+      let selectedMarker = "number",
+        markerCat = "basic";
+      let inputMode = "link",
+        contentMode = "kp";
       let kpCount = 3;
       let imgLinkCount = 0;
-      let assetSuggestTimer = null;
+      let suggestTimer = null;
+      let alignState = { hl: "left", sub: "left", para: "left" };
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // INIT
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       function init() {
-        buildBgDropdown();
-        buildGreetGrid();
+        buildGradGrid();
+        buildSolidGrid();
         buildMarkerCats();
         buildMarkerRow("basic");
+        buildGreetGrid();
         buildKpList(3);
-        buildImgLinks(1);
+        addImgLink();
         drawWireframe("9:16");
         updateBgPreview();
         loadPresets();
       }
 
-      // ══════════════════════════════════════
-      // BG DROPDOWN
-      // ══════════════════════════════════════
-      function buildBgDropdown() {
-        const sel = document.getElementById("bg-sel");
-        sel.innerHTML = "";
-        // Gradients group
-        const g1 = document.createElement("optgroup");
-        g1.label = "── Gradient";
-        GRADS.forEach((gr, i) => {
-          const o = document.createElement("option");
-          o.value = "grad:" + i;
-          o.textContent = gr.name + " (" + gr.from + "→" + gr.to + ")";
-          g1.appendChild(o);
+      // ════════════════════════════════════════
+      // BG GRID
+      // ════════════════════════════════════════
+      function buildGradGrid() {
+        const ga = document.getElementById("grad-grid-a");
+        const gb = document.getElementById("grad-grid-b");
+        ga.innerHTML = "";
+        gb.innerHTML = "";
+        GRADS.forEach((g, i) => {
+          const d = document.createElement("div");
+          d.className = "gc" + (i === 0 ? " sel" : "");
+          d.title = g.n + " " + g.f + "→" + g.t;
+          d.innerHTML = `<div class="gc-sw" style="background:linear-gradient(135deg,${g.f},${g.t})"></div>`;
+          d.onclick = () => selGrad(i);
+          // first 16 in row a, rest in row b
+          if (i < 16) ga.appendChild(d);
+          else gb.appendChild(d);
         });
-        sel.appendChild(g1);
-        // Solids group
-        const g2 = document.createElement("optgroup");
-        g2.label = "── Solid";
+      }
+
+      function buildSolidGrid() {
+        const g = document.getElementById("solid-grid");
+        g.innerHTML = "";
         SOLIDS.forEach((s, i) => {
-          const o = document.createElement("option");
-          o.value = "solid:" + i;
-          o.textContent = s.name + " (" + s.hex + ")";
-          g2.appendChild(o);
+          const d = document.createElement("div");
+          d.className = "sc";
+          d.innerHTML = `<div class="sc-sw" style="background:${s.h}"></div><div class="sc-name">${s.n}</div>`;
+          d.onclick = () => selSolid(i);
+          g.appendChild(d);
         });
-        sel.appendChild(g2);
+      }
+
+      function toggleMoreGrads() {
+        gradsExpanded = !gradsExpanded;
+        document.getElementById("grad-grid-b").style.display = gradsExpanded
+          ? "grid"
+          : "none";
+        document.getElementById("grad-more-btn").textContent = gradsExpanded
+          ? "▲ Lebih sedikit"
+          : "▼ Lihat lebih banyak";
+      }
+
+      function selGrad(i) {
+        bgState = { type: "grad", idx: i };
+        document
+          .querySelectorAll(".gc")
+          .forEach((el, j) => el.classList.toggle("sel", j === i));
         updateBgPreview();
       }
 
-      function onBgChange() {
-        const v = document.getElementById("bg-sel").value;
-        if (v.startsWith("grad:")) {
-          selectedBg = { type: "grad", ...GRADS[+v.split(":")[1]] };
-        } else {
-          selectedBg = { type: "solid", ...SOLIDS[+v.split(":")[1]] };
-        }
+      function selSolid(i) {
+        bgState = { type: "solid", idx: i };
+        document
+          .querySelectorAll(".sc")
+          .forEach((el, j) => el.classList.toggle("sel", j === i));
         updateBgPreview();
       }
 
-      function updateBgPreview() {
-        const bar = document.getElementById("bg-bar");
-        const sw = document.getElementById("bg-swatch");
-        const v = document.getElementById("bg-sel").value;
-        let css, acc;
-        if (v.startsWith("grad:")) {
-          const gr = GRADS[+v.split(":")[1]];
-          css = `linear-gradient(135deg,${gr.from},${gr.to})`;
-          acc = gr.from;
-          selectedBg = { type: "grad", ...gr };
-        } else {
-          const s = SOLIDS[+v.split(":")[1]];
-          css = s.hex;
-          acc = "#EEAA11";
-          selectedBg = { type: "solid", ...s };
+      function setBgTab(t) {
+        bgTab = t;
+        document
+          .querySelectorAll(".bg-tab")
+          .forEach((b, i) =>
+            b.classList.toggle("on", ["grad", "solid", "custom"][i] === t),
+          );
+        document.getElementById("bg-grad-sec").style.display =
+          t === "grad" ? "block" : "none";
+        document.getElementById("bg-solid-sec").style.display =
+          t === "solid" ? "block" : "none";
+        document.getElementById("bg-custom-sec").style.display =
+          t === "custom" ? "block" : "none";
+      }
+
+      function setCustomMode(m) {
+        customGradMode = m;
+        document.getElementById("cm-g").classList.toggle("on", m === "grad");
+        document.getElementById("cm-s").classList.toggle("on", m === "solid");
+        document.getElementById("cr-grad").style.display =
+          m === "grad" ? "flex" : "none";
+        document.getElementById("cr-solid").style.display =
+          m === "solid" ? "flex" : "none";
+      }
+
+      function hprev(inpId, prevId) {
+        const v = document.getElementById(inpId).value;
+        if (/^#[0-9A-Fa-f]{6}$/.test(v))
+          document.getElementById(prevId).style.background = v;
+      }
+
+      function applyGrad() {
+        const f = document.getElementById("hx1").value.trim(),
+          t = document.getElementById("hx2").value.trim();
+        if (!/^#[0-9A-Fa-f]{6}$/.test(f) || !/^#[0-9A-Fa-f]{6}$/.test(t)) {
+          alert("Format hex tidak valid (#RRGGBB)");
+          return;
         }
-        bar.style.background = css;
-        sw.style.background = css;
+        bgState = { type: "custom-grad", from: f, to: t };
+        updateBgPreview();
+      }
+
+      function applySolid() {
+        const h = document.getElementById("hxs").value.trim();
+        if (!/^#[0-9A-Fa-f]{6}$/.test(h)) {
+          alert("Format hex tidak valid (#RRGGBB)");
+          return;
+        }
+        bgState = { type: "custom-solid", hex: h };
+        updateBgPreview();
+      }
+
+      function getBgCSS() {
+        if (bgState.type === "grad")
+          return `linear-gradient(135deg,${GRADS[bgState.idx].f},${GRADS[bgState.idx].t})`;
+        if (bgState.type === "solid") return SOLIDS[bgState.idx].h;
+        if (bgState.type === "custom-grad")
+          return `linear-gradient(135deg,${bgState.from},${bgState.to})`;
+        if (bgState.type === "custom-solid") return bgState.hex;
+        return "#1a1729";
       }
 
       function getBgPrompt() {
-        if (selectedBg.type === "solid")
+        if (bgState.type === "grad") {
+          const g = GRADS[bgState.idx];
           return {
-            str: `Solid flat background: ${selectedBg.hex} (${selectedBg.name}). No gradient.`,
+            str: `Full smooth gradient: ${g.f} → ${g.t} at 135° diagonal. Mood label: ${g.n}.`,
+            acc: g.f,
+          };
+        }
+        if (bgState.type === "solid") {
+          const s = SOLIDS[bgState.idx];
+          return {
+            str: `Solid flat background: ${s.h} (${s.n}). No gradient.`,
             acc: "#EEAA11",
           };
-        return {
-          str: `Full smooth gradient: ${selectedBg.from} → ${selectedBg.to} at 135° diagonal. Mood: ${selectedBg.name}. Subtle radial vignette at edges (8% darker).`,
-          acc: selectedBg.from || "#EEAA11",
-        };
+        }
+        if (bgState.type === "custom-grad")
+          return {
+            str: `Full smooth gradient: ${bgState.from} → ${bgState.to} at 135° diagonal.`,
+            acc: bgState.from,
+          };
+        if (bgState.type === "custom-solid")
+          return {
+            str: `Solid flat background: ${bgState.hex}.`,
+            acc: "#EEAA11",
+          };
+        return { str: "Dark background #1a1729.", acc: "#EEAA11" };
       }
 
-      // ══════════════════════════════════════
+      function updateBgPreview() {
+        const css = getBgCSS();
+        document.getElementById("bg-bar").style.background = css;
+      }
+
+      // ════════════════════════════════════════
       // RATIO
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      function selRatio() {
+        return document.getElementById("ratio-sel").value;
+      }
+
       function onRatioChange() {
-        selectedRatio = document.getElementById("ratio-sel").value;
-        drawWireframe(selectedRatio);
+        const r = selRatio();
+        const info = RATIO_INFO[r];
+        document.getElementById("ratio-hint").textContent = info ? info.p : "";
+        drawWireframe(r);
       }
 
       function drawWireframe(ratio) {
         const c = document.getElementById("ratio-canvas");
-        const maxW = 90,
-          maxH = 150;
-        const r = RATIOS[ratio];
-        const ar = r.w / r.h;
+        const maxW = 88,
+          maxH = 148;
+        const ri = RATIO_INFO[ratio] || { w: 1080, h: 1920 };
+        const ar = ri.w / ri.h;
         let cw, ch;
         if (ar >= 1) {
           cw = maxW;
@@ -2099,195 +2527,248 @@
         c.style.height = ch + "px";
         c.innerHTML = "";
         const p = 2;
-        // Check active components
-        const hasSub = document
-          .getElementById("comp-sub")
-          ?.classList.contains("checked");
-        const hasAsset = document
-          .getElementById("comp-asset")
-          ?.classList.contains("checked");
-        const hasCont = document
-          .getElementById("comp-content")
-          ?.classList.contains("checked");
-        const zones = getZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont);
-        zones.forEach((z) => {
-          const el = document.createElement("div");
-          el.className = "wfz " + z.c;
-          el.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;`;
-          el.textContent = z.t;
-          c.appendChild(el);
-        });
+        const hasSub = isOn("comp-sub"),
+          hasAsset = isOn("comp-asset"),
+          hasCont = isOn("comp-content");
+        const flip = document.getElementById("layout-flip")?.checked || false;
+        getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip).forEach(
+          (z) => {
+            const el = document.createElement("div");
+            el.className = "wfz " + z.c;
+            el.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;`;
+            el.textContent = z.t;
+            c.appendChild(el);
+          },
+        );
       }
 
-      function getZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont) {
+      function getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip) {
         const z = [];
         if (ratio === "9:16") {
           const hlH = Math.round(ch * (hasSub ? 0.26 : 0.2));
           const visH = hasAsset ? Math.round(ch * 0.38) : 0;
-          const kpH = hasCont ? ch - hlH - visH - p * 3 : 0;
-          z.push({
-            x: p,
-            y: p,
-            w: cw - p * 2,
-            h: hlH,
-            c: "wfz hl",
-            t: "HEADLINE" + (hasSub ? "\nSub" : ""),
-          });
-          if (hasAsset)
+          const kpH = hasCont ? Math.max(ch - hlH - visH - p * 4, 20) : 0;
+          if (!flip) {
             z.push({
               x: p,
-              y: hlH + p,
-              w: cw - p * 2,
-              h: visH,
-              c: "wfz vs",
-              t: "3D\nASSET",
-            });
-          if (hasCont)
-            z.push({
-              x: p,
-              y: hlH + visH + p * 2,
-              w: cw - p * 2,
-              h: kpH,
-              c: "wfz kp",
-              t: "KONTEN",
-            });
-          z.push({
-            x: cw - 22,
-            y: ch - 8,
-            w: 20,
-            h: 6,
-            c: "wfz ft",
-            t: "FOOTER",
-          });
-        } else if (ratio === "4:5") {
-          const hlH = Math.round(ch * 0.26);
-          const midH = ch - hlH - p * 3;
-          const asW = hasAsset ? Math.round(cw * 0.55) : 0;
-          z.push({
-            x: p,
-            y: p,
-            w: cw - p * 2,
-            h: hlH,
-            c: "wfz hl",
-            t: "HEADLINE",
-          });
-          if (hasAsset)
-            z.push({
-              x: p,
-              y: hlH + p,
-              w: asW - 2,
-              h: midH,
-              c: "wfz vs",
-              t: "3D",
-            });
-          if (hasCont)
-            z.push({
-              x: asW + 2,
-              y: hlH + p,
-              w: cw - asW - p - 2,
-              h: midH,
-              c: "wfz kp",
-              t: "KP",
-            });
-          else if (!hasAsset && hasCont)
-            z.push({
-              x: p,
-              y: hlH + p,
-              w: cw - p * 2,
-              h: midH,
-              c: "wfz kp",
-              t: "KONTEN",
-            });
-          z.push({
-            x: cw - 22,
-            y: ch - 7,
-            w: 20,
-            h: 6,
-            c: "wfz ft",
-            t: "FOOTER",
-          });
-        } else if (ratio === "1:1") {
-          const topH = Math.round(ch * 0.38);
-          const hlW = Math.round(cw * 0.58);
-          const kpH = ch - topH - p * 3;
-          z.push({ x: p, y: p, w: hlW - 2, h: topH, c: "wfz hl", t: "HL" });
-          if (hasAsset)
-            z.push({
-              x: hlW + 1,
               y: p,
-              w: cw - hlW - p - 1,
-              h: topH,
-              c: "wfz vs",
-              t: "3D",
+              w: cw - p * 2,
+              h: hlH,
+              c: "hl",
+              t: "HL" + (hasSub ? "+Sub" : ""),
             });
+            if (hasAsset)
+              z.push({
+                x: p,
+                y: hlH + p,
+                w: cw - p * 2,
+                h: visH,
+                c: "vs",
+                t: "3D",
+              });
+            if (hasCont)
+              z.push({
+                x: p,
+                y: hlH + visH + p * 2,
+                w: cw - p * 2,
+                h: kpH,
+                c: "kp",
+                t: "KP",
+              });
+          } else {
+            if (hasAsset)
+              z.push({ x: p, y: p, w: cw - p * 2, h: visH, c: "vs", t: "3D" });
+            z.push({
+              x: p,
+              y: (hasAsset ? visH : 0) + p,
+              w: cw - p * 2,
+              h: hlH,
+              c: "hl",
+              t: "HL",
+            });
+            if (hasCont)
+              z.push({
+                x: p,
+                y: (hasAsset ? visH : 0) + hlH + p * 2,
+                w: cw - p * 2,
+                h: kpH,
+                c: "kp",
+                t: "KP",
+              });
+          }
+          z.push({ x: cw - 22, y: ch - 8, w: 20, h: 6, c: "ft", t: "FT" });
+        } else if (ratio === "4:5") {
+          const hlH = Math.round(ch * 0.26),
+            midH = ch - hlH - p * 3;
+          const asW = hasAsset ? Math.round(cw * 0.55) : 0;
+          z.push({ x: p, y: p, w: cw - p * 2, h: hlH, c: "hl", t: "HL" });
+          if (!flip) {
+            if (hasAsset)
+              z.push({
+                x: p,
+                y: hlH + p,
+                w: asW - 2,
+                h: midH,
+                c: "vs",
+                t: "3D",
+              });
+            if (hasCont)
+              z.push({
+                x: asW + 2,
+                y: hlH + p,
+                w: cw - asW - p - 2,
+                h: midH,
+                c: "kp",
+                t: "KP",
+              });
+            else if (!hasAsset)
+              z.push({
+                x: p,
+                y: hlH + p,
+                w: cw - p * 2,
+                h: midH,
+                c: "kp",
+                t: "KP",
+              });
+          } else {
+            if (hasCont)
+              z.push({
+                x: p,
+                y: hlH + p,
+                w: cw - asW - p - 2,
+                h: midH,
+                c: "kp",
+                t: "KP",
+              });
+            if (hasAsset)
+              z.push({
+                x: cw - asW - 2,
+                y: hlH + p,
+                w: asW - 2,
+                h: midH,
+                c: "vs",
+                t: "3D",
+              });
+          }
+          z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
+        } else if (ratio === "1:1") {
+          const topH = Math.round(ch * 0.38),
+            hlW = Math.round(cw * 0.58),
+            kpH = ch - topH - p * 3;
+          if (!flip) {
+            z.push({ x: p, y: p, w: hlW - 2, h: topH, c: "hl", t: "HL" });
+            if (hasAsset)
+              z.push({
+                x: hlW + 1,
+                y: p,
+                w: cw - hlW - p - 1,
+                h: topH,
+                c: "vs",
+                t: "3D",
+              });
+          } else {
+            if (hasAsset)
+              z.push({
+                x: p,
+                y: p,
+                w: cw - hlW - p - 1,
+                h: topH,
+                c: "vs",
+                t: "3D",
+              });
+            z.push({
+              x: cw - hlW + 1,
+              y: p,
+              w: hlW - 2,
+              h: topH,
+              c: "hl",
+              t: "HL",
+            });
+          }
           if (hasCont)
             z.push({
               x: p,
               y: topH + p,
               w: cw - p * 2,
               h: kpH,
-              c: "wfz kp",
+              c: "kp",
               t: "KP",
             });
-          z.push({
-            x: cw - 22,
-            y: ch - 7,
-            w: 20,
-            h: 6,
-            c: "wfz ft",
-            t: "FOOTER",
-          });
+          z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
         } else if (ratio === "16:9") {
-          const asW = hasAsset ? Math.round(cw * 0.28) : 0;
-          const kpW = hasCont ? Math.round(cw * 0.28) : 0;
+          const asW = hasAsset ? Math.round(cw * 0.28) : 0,
+            kpW = hasCont ? Math.round(cw * 0.28) : 0;
           const hlW = cw - asW - kpW - p * 2;
-          if (hasAsset)
+          if (!flip) {
+            if (hasAsset)
+              z.push({
+                x: p,
+                y: p,
+                w: asW - 2,
+                h: ch - p * 2,
+                c: "vs",
+                t: "3D",
+              });
             z.push({
-              x: p,
+              x: asW + p,
               y: p,
-              w: asW - 2,
+              w: hlW - 2,
               h: ch - p * 2,
-              c: "wfz vs",
-              t: "3D",
+              c: "hl",
+              t: "HL",
             });
-          z.push({
-            x: asW + p,
-            y: p,
-            w: hlW - 2,
-            h: ch - p * 2,
-            c: "wfz hl",
-            t: "HEADLINE\nSub",
-          });
-          if (hasCont)
+            if (hasCont)
+              z.push({
+                x: asW + hlW + p,
+                y: p,
+                w: kpW - 2,
+                h: ch - p * 2,
+                c: "kp",
+                t: "KP",
+              });
+          } else {
+            if (hasCont)
+              z.push({
+                x: p,
+                y: p,
+                w: kpW - 2,
+                h: ch - p * 2,
+                c: "kp",
+                t: "KP",
+              });
             z.push({
-              x: asW + hlW + p,
+              x: kpW + p,
               y: p,
-              w: kpW - 2,
+              w: hlW - 2,
               h: ch - p * 2,
-              c: "wfz kp",
-              t: "KP",
+              c: "hl",
+              t: "HL",
             });
-          z.push({
-            x: cw - 22,
-            y: ch - 7,
-            w: 20,
-            h: 6,
-            c: "wfz ft",
-            t: "FOOTER",
-          });
+            if (hasAsset)
+              z.push({
+                x: kpW + hlW + p,
+                y: p,
+                w: asW - 2,
+                h: ch - p * 2,
+                c: "vs",
+                t: "3D",
+              });
+          }
+          z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
         }
-        return z;
+        return z.map((zz) => ({ ...zz, c: "wfz " + zz.c }));
       }
 
-      // ══════════════════════════════════════
-      // MARKER
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      // MARKERS
+      // ════════════════════════════════════════
       function buildMarkerCats() {
         const r = document.getElementById("mcat-row");
+        r.innerHTML = "";
         ["Simbol", "Icon Line", "Icon Fill", "Icon Color"].forEach((l, i) => {
           const cats = ["basic", "line", "fill", "color"];
           const d = document.createElement("div");
-          d.className = "tbtn" + (i === 0 ? " on" : "");
+          d.className = "tbtn sm" + (i === 0 ? " on" : "");
           d.textContent = l;
           d.onclick = () => buildMarkerRow(cats[i]);
           r.appendChild(d);
@@ -2296,17 +2777,19 @@
 
       function buildMarkerRow(cat) {
         markerCat = cat;
-        document.querySelectorAll("#mcat-row .tbtn").forEach((b, i) => {
-          b.classList.toggle(
-            "on",
-            ["basic", "line", "fill", "color"][i] === cat,
+        document
+          .querySelectorAll("#mcat-row .tbtn")
+          .forEach((b, i) =>
+            b.classList.toggle(
+              "on",
+              ["basic", "line", "fill", "color"][i] === cat,
+            ),
           );
-        });
         const r = document.getElementById("marker-row");
         r.innerHTML = "";
         MARKERS[cat].forEach((m) => {
           const d = document.createElement("div");
-          d.className = "tbtn" + (m.v === selectedMarker ? " on" : "");
+          d.className = "tbtn sm" + (m.v === selectedMarker ? " on" : "");
           d.textContent = m.l;
           d.onclick = () => {
             document
@@ -2319,52 +2802,9 @@
         });
       }
 
-      function getMarkerPrompt() {
-        const map = {
-          number:
-            "Circular numbered badges ❶ ❷ ❸ — filled accent color, white number, 32px",
-          letter: "Circular letter badges A B C — filled accent color, 32px",
-          arrow: "Bold arrow → accent color, 20pt",
-          star: "Star ✦ accent color, 20pt, subtle glow",
-          diamond: "Diamond ◆ accent color, 18pt",
-          check: "Checkmark ✓ accent color, bold, 20pt",
-          dot: "Filled circle ● accent color, 14pt",
-          emoji: "Contextually relevant emoji, 22pt",
-          "icon-line-check":
-            "Outlined checkbox icon, 2px stroke, accent color, 24px",
-          "icon-line-star": "Outlined star, 2px stroke, accent color, 24px",
-          "icon-line-arrow": "Outlined arrow, thin stroke, accent color, 24px",
-          "icon-line-bolt":
-            "Outlined lightning bolt, thin stroke, accent color, 24px",
-          "icon-line-heart": "Outlined heart, thin stroke, accent color, 24px",
-          "icon-line-target":
-            "Outlined bullseye, thin stroke, accent color, 24px",
-          "icon-line-flag": "Outlined flag, thin stroke, accent color, 24px",
-          "icon-line-leaf": "Outlined leaf, thin stroke, accent color, 24px",
-          "icon-fill-check":
-            "Solid filled checkmark in rounded square, accent color, 26px",
-          "icon-fill-star": "Solid star, accent color, 26px",
-          "icon-fill-arrow": "Solid triangle arrow, accent color, 26px",
-          "icon-fill-bolt": "Solid lightning bolt, accent color, 26px",
-          "icon-fill-heart": "Solid heart, accent color, 26px",
-          "icon-fill-circle": "Solid circle, accent color, 26px",
-          "icon-fill-diamond": "Solid diamond, accent color, 26px",
-          "icon-fill-flag": "Solid flag, accent color, 26px",
-          "icon-color-fire": "🔥 fire emoji, 24px, vibrant",
-          "icon-color-rocket": "🚀 rocket emoji, 24px",
-          "icon-color-bulb": "💡 light bulb, 24px",
-          "icon-color-trophy": "🏆 trophy, 24px",
-          "icon-color-target": "🎯 bullseye, 24px",
-          "icon-color-gem": "💎 gem, 24px",
-          "icon-color-chart": "📈 chart, 24px",
-          "icon-color-crown": "👑 crown, 24px",
-        };
-        return map[selectedMarker] || map["number"];
-      }
-
-      // ══════════════════════════════════════
-      // GREET GRID
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      // GREET
+      // ════════════════════════════════════════
       function buildGreetGrid() {
         const g = document.getElementById("greet-grid");
         g.innerHTML = "";
@@ -2386,9 +2826,9 @@
         });
       }
 
-      // ══════════════════════════════════════
-      // INPUT MODE
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      // MODE
+      // ════════════════════════════════════════
       function setMode(m) {
         inputMode = m;
         document.getElementById("sec-link").style.display =
@@ -2403,34 +2843,36 @@
           .classList.toggle("on", m === "custom");
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // COMPONENT TOGGLE
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       function toggleComp(el) {
         if (el.classList.contains("disabled")) return;
-        el.classList.toggle("checked");
-        // show/hide field sections
+        const wasOn = el.classList.contains("on");
+        el.classList.toggle("on");
         const id = el.id;
         if (id === "comp-sub")
-          document.getElementById("sec-sub").style.display =
-            el.classList.contains("checked") ? "block" : "none";
+          document.getElementById("sec-sub").style.display = !wasOn
+            ? "block"
+            : "none";
         if (id === "comp-asset")
-          document.getElementById("sec-asset").style.display =
-            el.classList.contains("checked") ? "block" : "none";
+          document.getElementById("sec-asset").style.display = !wasOn
+            ? "block"
+            : "none";
         if (id === "comp-content")
-          document.getElementById("sec-content").style.display =
-            el.classList.contains("checked") ? "block" : "none";
-        // redraw wireframe
-        drawWireframe(selectedRatio);
+          document.getElementById("sec-content").style.display = !wasOn
+            ? "block"
+            : "none";
+        drawWireframe(selRatio());
       }
 
-      function isChecked(id) {
-        return document.getElementById(id)?.classList.contains("checked");
+      function isOn(id) {
+        return document.getElementById(id)?.classList.contains("on") || false;
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // CONTENT MODE
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       function setContentMode(m) {
         contentMode = m;
         document.getElementById("cm-kp").classList.toggle("on", m === "kp");
@@ -2441,27 +2883,40 @@
           m === "para" ? "block" : "none";
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
+      // ALIGN
+      // ════════════════════════════════════════
+      function setAlign(field, val) {
+        alignState[field] = val;
+        document
+          .getElementById("a" + field + "-l")
+          .classList.toggle("on", val === "left");
+        document
+          .getElementById("a" + field + "-c")
+          .classList.toggle("on", val === "center");
+      }
+
+      // ════════════════════════════════════════
       // KEY POINTS
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       function buildKpList(n) {
         kpCount = 0;
         document.getElementById("kp-list").innerHTML = "";
-        for (let i = 1; i <= n; i++) addKp();
+        for (let i = 0; i < n; i++) addKp();
       }
 
       function addKp() {
         if (kpCount >= 5) return;
         kpCount++;
-        const n = kpCount;
-        const list = document.getElementById("kp-list");
+        const n = kpCount,
+          list = document.getElementById("kp-list");
         const d = document.createElement("div");
         d.className = "kp-item";
         d.id = "kpi-" + n;
         d.innerHTML = `
     <div class="ksub"><div class="ksub-k">Poin ${n} Label</div><textarea class="ksub-v" id="kpl${n}" rows="1" placeholder="maks 4 kata..."></textarea></div>
     <div class="ksub"><div class="ksub-k">Poin ${n} Deskripsi</div><textarea class="ksub-v" id="kpd${n}" rows="1" placeholder="1 kalimat..."></textarea></div>
-    <button class="btn-del" onclick="delKp(${n})">✕</button>`;
+    <button class="btn-del" onclick="delKp(${n})" title="Hapus">✕</button>`;
         list.appendChild(d);
         updateKpUi();
       }
@@ -2473,31 +2928,31 @@
         document.querySelectorAll(".kp-item").forEach((item) => {
           kpCount++;
           item.id = "kpi-" + kpCount;
-          const subs = item.querySelectorAll(".ksub-k");
-          if (subs[0]) subs[0].textContent = `Poin ${kpCount} Label`;
-          if (subs[1]) subs[1].textContent = `Poin ${kpCount} Deskripsi`;
+          const ks = item.querySelectorAll(".ksub-k");
+          if (ks[0]) ks[0].textContent = "Poin " + kpCount + " Label";
+          if (ks[1]) ks[1].textContent = "Poin " + kpCount + " Deskripsi";
           const tas = item.querySelectorAll("textarea");
-          if (tas[0]) tas[0].id = `kpl${kpCount}`;
-          if (tas[1]) tas[1].id = `kpd${kpCount}`;
+          if (tas[0]) tas[0].id = "kpl" + kpCount;
+          if (tas[1]) tas[1].id = "kpd" + kpCount;
           const btn = item.querySelector(".btn-del");
-          if (btn) btn.setAttribute("onclick", `delKp(${kpCount})`);
+          if (btn) btn.setAttribute("onclick", "delKp(" + kpCount + ")");
         });
         updateKpUi();
       }
 
       function updateKpUi() {
         document.getElementById("kp-counter").textContent =
-          `${kpCount} / 5 poin`;
+          kpCount + " / 5 poin";
         document.getElementById("btn-add-kp").style.display =
           kpCount >= 5 ? "none" : "inline-flex";
       }
 
       function getKpData() {
         const items = [];
-        for (let i = 1; i <= 5; i++) {
-          const l = document.getElementById("kpl" + i)?.value.trim();
-          const d = document.getElementById("kpd" + i)?.value.trim();
-          if (l || d) items.push({ n: i, label: l || "", desc: d || "" });
+        for (let i = 1; i <= kpCount; i++) {
+          const l = document.getElementById("kpl" + i)?.value.trim() || "";
+          const d = document.getElementById("kpd" + i)?.value.trim() || "";
+          if (l || d) items.push({ n: i, label: l, desc: d });
         }
         return items;
       }
@@ -2506,103 +2961,94 @@
         const ta = document.getElementById("f-para");
         const lines = ta.value.split("\n").length;
         const cnt = document.getElementById("para-cnt");
-        const capped = Math.min(lines, 9);
-        cnt.textContent = `${capped} / 9`;
-        cnt.className =
-          "para-cnt" + (lines > 9 ? " over" : lines > 6 ? " warn" : "");
         if (lines > 9) {
-          const rows = ta.value.split("\n").slice(0, 9);
-          ta.value = rows.join("\n");
+          ta.value = ta.value.split("\n").slice(0, 9).join("\n");
         }
+        const n = Math.min(lines, 9);
+        cnt.textContent = n + "/9";
+        cnt.className = "para-cnt" + (n > 7 ? " warn" : n >= 9 ? " over" : "");
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // IMAGE LINKS
-      // ══════════════════════════════════════
-      function buildImgLinks(n) {
-        imgLinkCount = 0;
-        document.getElementById("img-link-list").innerHTML = "";
-        for (let i = 0; i < n; i++) addImgLink();
-      }
-
+      // ════════════════════════════════════════
       function addImgLink() {
         imgLinkCount++;
-        const n = imgLinkCount;
-        const list = document.getElementById("img-link-list");
+        const n = imgLinkCount,
+          list = document.getElementById("img-link-list");
         const d = document.createElement("div");
-        d.className = "img-link-item";
-        d.id = "imglink-" + n;
-        d.innerHTML = `<input type="url" id="imglink-url-${n}" placeholder="https://example.com/image.jpg"/>
-    <button class="btn-del-link" onclick="delImgLink(${n})">✕</button>`;
+        d.className = "img-link-row";
+        d.id = "ilr-" + n;
+        d.innerHTML = `<input type="url" id="il-${n}" placeholder="https://example.com/image.jpg"/>
+    <button class="btn-del-lnk" onclick="delImgLink(${n})" title="Hapus">✕</button>`;
         list.appendChild(d);
       }
 
       function delImgLink(n) {
-        document.getElementById("imglink-" + n)?.remove();
+        document.getElementById("ilr-" + n)?.remove();
       }
 
       function getImgLinks() {
         const links = [];
-        document.querySelectorAll('[id^="imglink-url-"]').forEach((inp) => {
-          const v = inp.value.trim();
-          if (v) links.push(v);
+        document.querySelectorAll('[id^="il-"]').forEach((inp) => {
+          if (inp.value.trim()) links.push(inp.value.trim());
         });
         return links;
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // ASSET AUTO-SUGGEST
-      // ══════════════════════════════════════
-      function autoSuggestAsset() {
-        clearTimeout(assetSuggestTimer);
-        assetSuggestTimer = setTimeout(() => {
-          const txt = document.getElementById("f-asset").value.toLowerCase();
-          if (!txt || txt.length < 4) return;
-          let matched = null;
-          for (const rule of ASSET_RULES) {
-            if (rule.kw.some((k) => txt.includes(k))) {
-              matched = rule;
-              break;
-            }
+      // ════════════════════════════════════════
+      function scheduleAutoSuggest() {
+        clearTimeout(suggestTimer);
+        suggestTimer = setTimeout(doAutoSuggest, 700);
+      }
+
+      function doAutoSuggest() {
+        const txt = document.getElementById("f-asset").value.toLowerCase();
+        if (!txt || txt.length < 4) return;
+        for (const rule of ASSET_RULES) {
+          if (rule.kw.some((k) => txt.includes(k))) {
+            const sl = document.getElementById("sel-light");
+            const sm = document.getElementById("sel-mat");
+            const sp = document.getElementById("sel-pose");
+            if (sl && sl.value !== "custom") sl.selectedIndex = rule.light;
+            if (sm && sm.value !== "custom") sm.selectedIndex = rule.mat;
+            if (sp && sp.value !== "custom") sp.selectedIndex = rule.pose;
+            return;
           }
-          if (!matched) return;
-          // Only set if currently not on custom
-          const selL = document.getElementById("sel-light");
-          const selM = document.getElementById("sel-mat");
-          const selP = document.getElementById("sel-pose");
-          if (selL.value !== "custom") selL.selectedIndex = matched.light;
-          if (selM.value !== "custom") selM.selectedIndex = matched.mat;
-          if (selP.value !== "custom") selP.selectedIndex = matched.pose;
-        }, 600);
+        }
       }
 
       function syncAsel(selId, customId) {
         const sel = document.getElementById(selId);
         const ta = document.getElementById(customId);
+        if (!sel || !ta) return;
         ta.style.display = sel.value === "custom" ? "block" : "none";
         if (sel.value === "custom") ta.focus();
       }
 
       function getAval(selId, customId) {
         const sel = document.getElementById(selId);
-        if (sel.value === "custom")
-          return document.getElementById(customId).value.trim() || "";
+        if (!sel) return "";
+        if (sel.value === "custom") {
+          const ta = document.getElementById(customId);
+          return ta ? ta.value.trim() : "";
+        }
         return sel.value;
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // FOOTER TOGGLE
-      // ══════════════════════════════════════
-      function toggleFooter() {
-        const on = document.getElementById("footer-toggle").checked;
-        document.getElementById("footer-fields").style.display = on
-          ? "block"
-          : "none";
+      // ════════════════════════════════════════
+      function toggleFooterFields() {
+        document.getElementById("footer-fields").style.display =
+          document.getElementById("footer-toggle").checked ? "block" : "none";
       }
 
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       // PHASE NAV
-      // ══════════════════════════════════════
+      // ════════════════════════════════════════
       function goPhase(i) {
         document
           .querySelectorAll(".panel")
@@ -2616,23 +3062,39 @@
 
       function cpBtn(id, text) {
         const b = document.getElementById(id);
-        navigator.clipboard.writeText(text).then(() => {
-          b.classList.add("ok");
-          b.textContent = "✓ Tersalin!";
-          setTimeout(() => {
-            b.classList.remove("ok");
-            b.innerHTML = "⎘ Copy";
-          }, 2200);
-        });
+        if (!b) return;
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            b.classList.add("ok");
+            b.textContent = "✓ Tersalin!";
+            setTimeout(() => {
+              b.classList.remove("ok");
+              b.innerHTML = "⎘ Copy";
+            }, 2200);
+          })
+          .catch(() => {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.cssText = "position:fixed;opacity:0;top:0;left:0";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            b.classList.add("ok");
+            b.textContent = "✓ Tersalin!";
+            setTimeout(() => {
+              b.classList.remove("ok");
+              b.innerHTML = "⎘ Copy";
+            }, 2200);
+          });
       }
 
       function makeBlock(cid, title, text, bid) {
-        const id = "cpbtn-" + bid;
-        document.getElementById(cid).innerHTML = `
-    <div class="out-block">
-      <div class="out-hdr"><span class="out-title">${title}</span><button class="cbtn" id="${id}">⎘ Copy</button></div>
-      <div class="out-txt">${esc(text)}</div>
-    </div>`;
+        const id = "cb-" + bid;
+        const wrap = document.getElementById(cid);
+        if (!wrap) return;
+        wrap.innerHTML = `<div class="out-block"><div class="out-hdr"><span class="out-ttl">${title}</span><button class="cbtn" id="${id}">⎘ Copy</button></div><div class="out-txt">${esc(text)}</div></div>`;
         document.getElementById(id).onclick = () => cpBtn(id, text);
       }
 
@@ -2643,9 +3105,6 @@
           .replace(/>/g, "&gt;");
       }
 
-      // ══════════════════════════════════════
-      // PHASE 1 — GEN ANALISIS
-      // ══════════════════════════════════════
       function genAnalisis() {
         const niche = document.getElementById("inp-niche").value.trim();
         const tone = document.getElementById("inp-tone").value;
@@ -2654,42 +3113,19 @@
           const link =
             document.getElementById("inp-link").value.trim() ||
             "[PASTE LINK DI SINI]";
-          ctx = `Analyze this content: ${link}`;
+          ctx = "Analyze this content: " + link;
         } else {
-          ctx = `Custom content:
-Type: ${document.getElementById("inp-jenis").value.trim() || "-"}
-Theme: ${document.getElementById("inp-tema").value.trim() || "-"}
-Visual elements: ${document.getElementById("inp-visual").value.trim() || "-"}
-Audience: ${document.getElementById("inp-audience").value.trim() || "-"}`;
+          ctx =
+            "Custom content:\nType: " +
+            (document.getElementById("inp-jenis").value.trim() || "-") +
+            "\nTheme: " +
+            (document.getElementById("inp-tema").value.trim() || "-") +
+            "\nVisual: " +
+            (document.getElementById("inp-visual").value.trim() || "-") +
+            "\nAudience: " +
+            (document.getElementById("inp-audience").value.trim() || "-");
         }
-
-        const p = `You are a professional content strategist for Indonesian social media.
-
-${ctx}
-${niche ? "Niche: " + niche : ""}
-Tone: ${tone}
-
-Write in natural semi-casual Bahasa Indonesia — like a smart relatable friend, punchy and hook-driven. No formal stiff language.
-
-Return ONLY this structured output. No extra commentary.
-
-TOPIC: [maks 5 kata]
-BIG IDEA: [1 kalimat insight terkuat, semi-casual, bahasa Indonesia]
-HEADLINE: [maks 8 kata · stop-scroll · gunakan angka atau pertanyaan provokatif · semi-casual]
-SUBHEADLINE: [1 kalimat pendukung · maks 12 kata · ringan dan natural]
-KEY POINT 1: [maks 4 kata · kalimat aktif · semi-casual]
-KEY POINT 2: [maks 4 kata · kalimat aktif · semi-casual]
-KEY POINT 3: [maks 4 kata · kalimat aktif · semi-casual]
-KEY POINT 4: [maks 4 kata · opsional, isi jika relevan]
-KEY POINT 5: [maks 4 kata · opsional, isi jika relevan]
-PARAGRAPH: [rangkuman 3-5 kalimat dari keseluruhan konten, bahasa Indonesia semi-casual, padat dan jelas]
-3D ASSET: [English only — cinematic: who/what, expression, outfit, specific action, environment hints]
-
-CAPTION HOOK: [1 baris · maks 10 kata · langsung relate · angka/pertanyaan/fakta]
-CAPTION BODY: [2 baris maks · insight utama · santai tapi berisi]
-CAPTION CTA: [1 baris · ajakan ringan dan natural]
-CAPTION HASHTAGS: [8 hashtag · mix niche + umum]`;
-
+        const p = `You are a professional content strategist for Indonesian social media.\n\n${ctx}\n${niche ? "Niche: " + niche : ""}\nTone: ${tone}\n\nWrite in natural semi-casual Bahasa Indonesia — like a smart relatable friend. Punchy, hook-driven.\n\nReturn ONLY this structured output. No extra commentary.\n\nTOPIC: [maks 5 kata]\nBIG IDEA: [1 kalimat insight terkuat, semi-casual]\nHEADLINE: [maks 8 kata · stop-scroll · gunakan angka atau pertanyaan provokatif]\nSUBHEADLINE: [1 kalimat pendukung · maks 12 kata · ringan · text only, no icons]\nKEY POINT 1: [maks 4 kata · kalimat aktif]\nKEY POINT 2: [maks 4 kata · kalimat aktif]\nKEY POINT 3: [maks 4 kata · kalimat aktif]\nKEY POINT 4: [maks 4 kata · opsional]\nKEY POINT 5: [maks 4 kata · opsional]\nPARAGRAPH: [rangkuman 3-5 kalimat, semi-casual, padat]\n3D ASSET: [English only — cinematic: who/what, expression, outfit, action, environment]\n\nCAPTION HOOK: [1 baris · maks 10 kata]\nCAPTION BODY: [2 baris maks · santai berisi]\nCAPTION CTA: [1 baris · ajakan ringan]\nCAPTION HASHTAGS: [8 hashtag · mix niche+umum]`;
         const w = document.getElementById("out-a-wrap");
         w.style.display = "block";
         document.getElementById("out-a-txt").textContent = p;
@@ -2697,255 +3133,280 @@ CAPTION HASHTAGS: [8 hashtag · mix niche + umum]`;
         w.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-      // ══════════════════════════════════════
-      // PHASE 2 — PARSE RAW
-      // ══════════════════════════════════════
       function parseRaw() {
         const raw = document.getElementById("raw-paste").value;
         function ext(key) {
           const m = raw.match(new RegExp("^" + key + "[:\\s]+(.+)", "im"));
           return m ? m[1].trim() : "";
         }
-
-        const hl = ext("HEADLINE");
-        if (hl) document.getElementById("f-headline").value = hl;
-        const sub = ext("SUBHEADLINE");
-        if (sub) document.getElementById("f-sub").value = sub;
-        const ast = ext("3D ASSET");
-        if (ast) document.getElementById("f-asset").value = ast;
-        const para = ext("PARAGRAPH");
-        if (para) document.getElementById("f-para").value = para;
-
-        // Parse up to 5 key points
-        let parsedKp = 0;
+        ["f-headline", "f-sub", "f-asset", "f-para"].forEach((id) => {
+          const key = {
+            "f-headline": "HEADLINE",
+            "f-sub": "SUBHEADLINE",
+            "f-asset": "3D ASSET",
+            "f-para": "PARAGRAPH",
+          }[id];
+          const v = ext(key);
+          if (v) {
+            const el = document.getElementById(id);
+            if (el) el.value = v;
+          }
+        });
         for (let i = 1; i <= 5; i++) {
-          const v = ext(`KEY POINT ${i}`);
+          const v = ext("KEY POINT " + i);
           if (!v) continue;
-          if (i > kpCount) addKp();
-          const el = document.getElementById(`kpl${i}`);
+          while (i > kpCount) addKp();
+          const el = document.getElementById("kpl" + i);
           if (el) el.value = v;
-          parsedKp = i;
         }
-
-        // Caption
-        const hook = ext("CAPTION HOOK"),
-          body = ext("CAPTION BODY"),
-          cta = ext("CAPTION CTA"),
-          tags = ext("CAPTION HASHTAGS");
-        const cap = [hook, body, cta, "", tags].filter(Boolean).join("\n");
-        if (cap) document.getElementById("f-caption").value = cap;
+        const parts = [
+          ext("CAPTION HOOK"),
+          ext("CAPTION BODY"),
+          ext("CAPTION CTA"),
+          "",
+          ext("CAPTION HASHTAGS"),
+        ].filter(Boolean);
+        if (parts.length) {
+          const el = document.getElementById("f-caption");
+          if (el) el.value = parts.join("\n");
+        }
+        doAutoSuggest();
       }
 
-      // ══════════════════════════════════════
-      // CONTENT BLOCK FOR PROMPT
-      // ══════════════════════════════════════
-      function buildContentBlock(ratio) {
+      function buildContentBlock() {
         if (contentMode === "para") {
           const para =
             document.getElementById("f-para").value.trim() ||
             "[PARAGRAF DESKRIPSI]";
-          const lines = para.split("\n").slice(0, 9).join("\n");
-          return `PARAGRAPH:
-  Text: "${lines}"
-  · Font: Poppins Regular 400 · 14–15pt · white 88% opacity
-  · Line-height: 1.75 · Letter-spacing: +0.01em · max 9 lines · left-aligned`;
+          const lines = para.split("\n").slice(0, 9);
+          const n = lines.length;
+          const fsize = n <= 3 ? "17-19pt" : n <= 5 ? "15-17pt" : "14-15pt";
+          const lh = n <= 3 ? "1.9" : "1.75";
+          const al = alignState.para === "center" ? "centered" : "left-aligned";
+          return (
+            'PARAGRAPH:\n  Text: "' +
+            lines.join("\n") +
+            '"\n  Font: Poppins Regular 400 · ' +
+            fsize +
+            " (scale up if few lines)\n  White " +
+            (n <= 3 ? "90%" : "88%") +
+            " opacity · Line-height: " +
+            lh +
+            " · " +
+            al +
+            "\n  No dead space — font fills area naturally"
+          );
         }
         const kps = getKpData();
         if (!kps.length) return "KEY POINTS: [tidak ada data]";
-        const marker = getMarkerPrompt();
-        const lines = kps
-          .map(
-            (k) => `  Card ${k.n}: ${k.label}${k.desc ? " — " + k.desc : ""}`,
-          )
+        const marker =
+          MARKER_PROMPTS[selectedMarker] || MARKER_PROMPTS["number"];
+        const cards = kps
+          .map((k) => "  • " + k.label + (k.desc ? " — " + k.desc : ""))
           .join("\n");
-        return `KEY POINTS (${kps.length} items):
-${lines}
-  Card style:
-  · Background: white 9% opacity · frosted glass · border 1px white 16% · radius 14px · padding 14px 18px
-  · Left marker: ${marker} · vertically centered
-  · Label: Poppins SemiBold 600 · 17pt · white · line-height 1.3
-  · Desc: Poppins Regular 400 · 13pt · white 65% opacity · line-height 1.7 · letter-spacing +0.01em`;
+        return (
+          "KEY POINTS (" +
+          kps.length +
+          " items):\n" +
+          cards +
+          "\n  Card: white 9% opacity frosted glass · border 1px white 16% · radius 14px · padding 14px 18px\n  Left: marker — " +
+          marker +
+          "\n  Right: Label Poppins SemiBold 600 17pt white · Desc Regular 400 13pt white 65% line-height 1.7"
+        );
       }
 
-      // ══════════════════════════════════════
-      // LAYOUT PROMPT PER RATIO
-      // ══════════════════════════════════════
-      function getLayoutPrompt(
+      function buildLayoutPrompt(
         ratio,
         hl,
+        hlAl,
         hasSub,
         sub,
+        subAl,
         hasAsset,
         assetBlock,
-        hasContent,
+        hasCont,
         contentBlock,
         hasFooter,
         footerTxt,
         footerPos,
-        accent,
+        hasLogo,
+        logoUrl,
+        logoPos,
+        acc,
+        flip,
       ) {
-        const safeM = {
-          "9:16": "48px",
-          "4:5": "44px",
-          "1:1": "44px",
-          "16:9": "60px",
-        };
-        const sm = safeM[ratio] || "48px";
-
-        const hlStyle = (pt) => `  Headline: "${hl}"
-  · Poppins ExtraBold 800 · ${pt} · white · line-height 1.15 · letter-spacing -0.01em · max 2 lines · left-aligned`;
-
-        const subStyle = (pt) =>
-          hasSub
-            ? `  Subheadline: "${sub}"
-  · Poppins Regular 400 · ${pt} · white 72% opacity · line-height 1.65 · letter-spacing +0.02em · 18px below headline`
-            : "  [No subheadline]";
-
-        const assetStr = hasAsset
-          ? `  ${assetBlock}`
-          : "  [No 3D asset — typography-focused layout]";
-
-        const footerStr = hasFooter
-          ? `── FOOTER ──
-  ${footerPos}: "${footerTxt}" · Poppins Regular · 11pt · white 36% opacity · 18px from edges`
+        const hlPt =
+          {
+            "9:16": "96-108pt",
+            "4:5": "88-96pt",
+            "1:1": "72-80pt",
+            "16:9": "72-80pt",
+          }[ratio] || "96pt";
+        const subPt =
+          { "9:16": "26pt", "4:5": "24pt", "1:1": "22pt", "16:9": "22pt" }[
+            ratio
+          ] || "24pt";
+        const hlTxt =
+          'Headline: "' +
+          hl +
+          '"\n  Poppins ExtraBold 800 · ' +
+          hlPt +
+          " · white · line-height 1.15 · letter-spacing -0.01em · text-align: " +
+          hlAl;
+        const subTxt = hasSub
+          ? 'Subheadline: "' +
+            sub +
+            '"\n  Poppins Regular 400 · ' +
+            subPt +
+            " · white 72% opacity · text-align: " +
+            subAl +
+            " · plain text only, NO icons"
+          : "";
+        const decoTxt =
+          "Background deco behind 3D asset: 1 large semi-transparent thematic element ~550pt at 10% opacity + 5-7 small contextual icons at 12% opacity. REQUIRED for depth.";
+        const assetTxt = hasAsset
+          ? "3D Asset:\n  " + assetBlock + "\n  " + decoTxt
+          : "[No 3D asset]";
+        const ftTxt = hasFooter
+          ? 'Footer: "' +
+            footerTxt +
+            '" · ' +
+            footerPos +
+            " · Poppins Regular 11pt · white 36% opacity · 18px from edges"
           : "[No footer]";
-
-        const deco = `  Background deco: 1 large semi-transparent number/letter ~550pt opacity 7%, 5-7 small contextual icons opacity 12%`;
+        const logoTxt = hasLogo
+          ? "Logo: " +
+            logoUrl +
+            " · position: " +
+            logoPos +
+            " · height ~70px auto-width · 20px from edges · do not stretch"
+          : "";
 
         if (ratio === "9:16") {
-          const hlH = hasSub ? "28%" : "22%";
-          const visH = hasAsset ? "38%" : "0%";
-          const kpH = hasContent ? (hasSub ? "30%" : "36%") : "0%";
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1920 px · 9:16 · ultra high quality
-
-━━━ VISUAL HIERARCHY LAYOUT ━━━
-Safe margins: ${sm} left and right
-
-── ZONE 1 — HEADLINE (top ${hlH}) ──
-${hlStyle("96–108pt")}
-${subStyle("26pt")}
-
-── ZONE 2 — 3D VISUAL (middle ${visH}) ──
-${assetStr}
-${hasAsset ? deco : ""}
-${hasAsset ? "  Placement: right or left · large scale · bleeds into Zone 1 bottom and Zone 3 top" : ""}
-
-${
-  hasContent
-    ? `── ZONE 3 — CONTENT (lower ${kpH}) ──
-${contentBlock}`
-    : ""
-}
-
-${footerStr}`;
+          const z1 =
+            "ZONE 1 — HEADLINE (top " +
+            (hasSub ? "28%" : "22%") +
+            "):\n" +
+            hlTxt +
+            (hasSub ? "\n" + subTxt : "");
+          const z2 = hasAsset
+            ? "ZONE 2 — 3D VISUAL (middle 36%):\n" +
+              assetTxt +
+              "\nPlacement: right or left · large scale · bleed into zones above and below"
+            : "";
+          const z3 = hasCont
+            ? "ZONE 3 — CONTENT (lower " +
+              (hasSub ? "30%" : "36%") +
+              "):\n" +
+              contentBlock
+            : "";
+          if (!flip)
+            return [z1, z2, z3, ftTxt, logoTxt].filter(Boolean).join("\n\n");
+          return [
+            hasAsset ? "ZONE 1 — 3D VISUAL:\n" + assetTxt : "",
+            "ZONE " +
+              (hasAsset ? 2 : 1) +
+              " — HEADLINE:\n" +
+              hlTxt +
+              (hasSub ? "\n" + subTxt : ""),
+            hasCont ? "ZONE 3 — CONTENT:\n" + contentBlock : "",
+            ftTxt,
+            logoTxt,
+          ]
+            .filter(Boolean)
+            .join("\n\n");
         }
-
         if (ratio === "4:5") {
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1350 px · 4:5 · ultra high quality
-
-━━━ VISUAL HIERARCHY LAYOUT ━━━
-Safe margins: ${sm} left and right
-
-── ZONE 1 — HEADLINE (top 26%, full width) ──
-${hlStyle("88–96pt")}
-${subStyle("24pt")}
-
-── SPLIT ZONE (remaining height) ──
-${
-  hasAsset
-    ? `LEFT COLUMN (55% width — 3D Asset):
-${assetStr}
-${deco}`
-    : "FULL WIDTH CONTENT:"
-}
-
-${
-  hasContent
-    ? `${hasAsset ? "RIGHT COLUMN (45% width — Content):" : ""}
-${contentBlock}
-${hasAsset ? "  Font sizes: label 15pt, desc 11pt" : ""}`
-    : ""
-}
-
-${footerStr}`;
+          const top =
+            "HEADLINE ZONE (top 26% full width):\n" +
+            hlTxt +
+            (hasSub ? "\n" + subTxt : "");
+          const left = hasAsset
+            ? "LEFT COL (55%) — 3D Asset:\n" + assetTxt
+            : "";
+          const right = hasCont
+            ? "RIGHT COL (45%) — Content:\n" +
+              contentBlock +
+              "\n  font: label 15pt desc 11pt"
+            : "";
+          if (!flip)
+            return [top, left, right, ftTxt, logoTxt]
+              .filter(Boolean)
+              .join("\n\n");
+          return [
+            top,
+            hasCont
+              ? "LEFT COL (45%) — Content:\n" +
+                contentBlock +
+                "\n  font: label 15pt desc 11pt"
+              : "",
+            hasAsset ? "RIGHT COL (55%) — 3D Asset:\n" + assetTxt : "",
+            ftTxt,
+            logoTxt,
+          ]
+            .filter(Boolean)
+            .join("\n\n");
         }
-
         if (ratio === "1:1") {
-          return `━━━ CANVAS ━━━
-Size: 1080 × 1080 px · 1:1 · ultra high quality
-
-━━━ VISUAL HIERARCHY LAYOUT ━━━
-Safe margins: ${sm} all sides
-
-── TOP ROW (top 38%, horizontal split) ──
-LEFT (60% width):
-${hlStyle("72–80pt")}
-${subStyle("22pt")}
-
-${
-  hasAsset
-    ? `RIGHT (40% width):
-${assetStr}
-  Scale: medium · max 40% of total canvas · must not overlap headline
-${deco}`
-    : ""
-}
-
-── LOWER ZONE (lower 50%) ──
-${
-  hasContent
-    ? `Full width · ${contentMode === "kp" ? "2-column grid layout" : "Paragraph centered"}
-${contentBlock}`
-    : "[Empty — typography layout only]"
-}
-
-${footerStr}`;
+          const tl = !flip
+            ? hlTxt + (hasSub ? "\n" + subTxt : "")
+            : "3D Asset:\n" + assetTxt;
+          const tr = !flip
+            ? hasAsset
+              ? "3D Asset (right 40%, max 40% canvas):\n" + assetTxt
+              : ""
+            : hlTxt + (hasSub ? "\n" + subTxt : "");
+          return (
+            "TOP ROW (38%) — LEFT 60%:\n" +
+            tl +
+            "\nTOP ROW — RIGHT 40%:\n" +
+            tr +
+            "\n\nLOWER ZONE (50%) full width " +
+            (contentMode === "kp" ? "2-col grid" : "centered para") +
+            ":\n" +
+            (hasCont ? contentBlock : "[No content]") +
+            "\n\n" +
+            ftTxt +
+            (logoTxt ? "\n" + logoTxt : "")
+          );
         }
-
         if (ratio === "16:9") {
-          return `━━━ CANVAS ━━━
-Size: 1920 × 1080 px · 16:9 · ultra high quality
-
-━━━ VISUAL HIERARCHY LAYOUT ━━━
-Safe margins: ${sm} horizontal · 48px vertical
-IMPORTANT: Keep all content within safe area — edges may crop on YouTube.
-
-── 3-COLUMN LAYOUT ──
-${
-  hasAsset
-    ? `LEFT COLUMN (30% width — 3D Asset):
-${assetStr}
-${deco}`
-    : ""
-}
-
-CENTER COLUMN (${hasAsset ? (hasContent ? "40%" : "70%") : "70%"} width):
-${hlStyle("72–80pt")}
-${subStyle("22pt")}
-
-${
-  hasContent
-    ? `RIGHT COLUMN (30% width):
-${contentBlock}
-  Font sizes: label 15pt, desc 11pt`
-    : ""
-}
-
-${footerStr}`;
+          const cols = !flip
+            ? [
+                hasAsset ? "LEFT COL (30%) — 3D Asset:\n" + assetTxt : "",
+                "CENTER COL (" +
+                  (hasAsset ? (hasCont ? "40%" : "70%") : "70%") +
+                  ") — Headline:\n" +
+                  hlTxt +
+                  (hasSub ? "\n" + subTxt : ""),
+                hasCont
+                  ? "RIGHT COL (30%) — Content:\n" +
+                    contentBlock +
+                    "\n  font: label 15pt desc 11pt"
+                  : "",
+              ]
+            : [
+                hasCont
+                  ? "LEFT COL (30%) — Content:\n" +
+                    contentBlock +
+                    "\n  font: label 15pt desc 11pt"
+                  : "",
+                "CENTER COL (" +
+                  (hasCont ? (hasAsset ? "40%" : "70%") : "70%") +
+                  ") — Headline:\n" +
+                  hlTxt +
+                  (hasSub ? "\n" + subTxt : ""),
+                hasAsset ? "RIGHT COL (30%) — 3D Asset:\n" + assetTxt : "",
+              ];
+          return [...cols, ftTxt, logoTxt].filter(Boolean).join("\n\n");
         }
         return "";
       }
 
-      // ══════════════════════════════════════
-      // PHASE 3 — GEN FINAL
-      // ══════════════════════════════════════
       function genFinal() {
         const hl =
           document.getElementById("f-headline").value.trim() || "[HEADLINE]";
-        const sub =
-          document.getElementById("f-sub").value.trim() || "[SUBHEADLINE]";
+        const sub = document.getElementById("f-sub").value.trim() || "";
         const ast =
           document.getElementById("f-asset").value.trim() || "[3D ASSET]";
         const light = getAval("sel-light", "ac-light");
@@ -2953,69 +3414,77 @@ ${footerStr}`;
         const pose = getAval("sel-pose", "ac-pose");
         const cap =
           document.getElementById("f-caption").value.trim() || "[CAPTION]";
+        const logoUrl = document.getElementById("f-logo").value.trim();
+        const logoPos = document.getElementById("logo-pos").value;
         const bg = getBgPrompt();
         const links = getImgLinks();
-        const hasSub = isChecked("comp-sub");
-        const hasAsset = isChecked("comp-asset");
-        const hasCont = isChecked("comp-content");
+        const hasSub = isOn("comp-sub"),
+          hasAsset = isOn("comp-asset"),
+          hasCont = isOn("comp-content");
         const hasFooter = document.getElementById("footer-toggle").checked;
         const footerTxt =
           document.getElementById("footer-txt").value.trim() || "";
         const footerPos = document.getElementById("footer-pos").value;
-        const content = buildContentBlock(selectedRatio);
-        const assetBlock = `Subject: ${ast}
-  Lighting: ${light}
-  Materials: ${mat}
-  Pose/action: ${pose}
-  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur
-  Effects: soft drop shadow · subtle rim glow in ${bg.acc}${
-    links.length
-      ? `
-  Reference images: ${links.join(", ")}`
-      : ""
-  }`;
-
-        const layout = getLayoutPrompt(
-          selectedRatio,
+        const flip = document.getElementById("layout-flip").checked;
+        const ratio = selRatio();
+        const ri = RATIO_INFO[ratio] || { w: 1080, h: 1920 };
+        const assetBlock =
+          "Subject: " +
+          ast +
+          "\n  Lighting: " +
+          light +
+          "\n  Materials: " +
+          mat +
+          "\n  Pose/action: " +
+          pose +
+          "\n  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur\n  Effects: soft drop shadow · subtle rim glow " +
+          bg.acc +
+          (links.length ? "\n  Reference images: " + links.join(", ") : "");
+        const contentBlock = buildContentBlock();
+        const layout = buildLayoutPrompt(
+          ratio,
           hl,
+          alignState.hl,
           hasSub,
           sub,
+          alignState.sub,
           hasAsset,
           assetBlock,
           hasCont,
-          content,
+          contentBlock,
           hasFooter,
           footerTxt,
           footerPos,
+          !!logoUrl,
+          logoUrl,
+          logoPos,
           bg.acc,
+          flip,
         );
-
-        const poster = `Create a single ready-to-post social media poster.
-NOT a mockup. NOT a template. NOT in any device frame.
-Output: finished poster only, bleeding to all 4 edges.
-
-━━━ BACKGROUND ━━━
-${bg.str}
-
-━━━ DESIGN SYSTEM ━━━
-Font: Poppins (Google Fonts)
-Accent color: ${bg.acc}
-All text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholder text
-
-${layout}
-
-━━━ FINAL RULES ━━━
-· Poster bleeds to all 4 edges — no white border
-· No device frame, no browser chrome
-· All text readable at mobile size
-· Visual hierarchy: Headline → 3D Asset → Key Points/Content → Footer
-· Consistent visual weight — nothing overpowers the whole`;
-
+        const poster =
+          "Create a single ready-to-post social media poster.\nNOT a mockup. NOT a template. NOT in any frame.\nOutput: finished poster only, bleeding to all 4 edges.\n\nCANVAS: " +
+          ri.w +
+          " × " +
+          ri.h +
+          " px · " +
+          ratio +
+          " · ultra high quality\n\nBACKGROUND:\n" +
+          bg.str +
+          "\nAdd subtle radial vignette at edges (8% darker).\n\nDESIGN SYSTEM:\nFont: Poppins (Google Fonts)\n· Headline: ExtraBold 800 · Subheadline: Regular 400 (text only, no icons)\n· Key point label: SemiBold 600 · Description/Paragraph: Regular 400\nAccent: " +
+          bg.acc +
+          "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\n\nLAYOUT:\n" +
+          layout +
+          "\n\nFINAL RULES:\n· Poster bleeds to all 4 edges — no white border\n· All text readable at mobile size\n· Visual hierarchy: Headline → 3D Asset → Content → Footer\n· Background thematic deco behind 3D asset is REQUIRED";
         goPhase(2);
-        const r = RATIOS[selectedRatio];
         makeBlock(
           "out-poster-wrap",
-          `Prompt Poster ${selectedRatio} (${r.w}×${r.h}) — Paste ke GPT-4o Image`,
+          "Prompt Poster " +
+            ratio +
+            " (" +
+            ri.w +
+            "×" +
+            ri.h +
+            ") — Paste ke GPT-4o",
           poster,
           "poster",
         );
@@ -3027,62 +3496,98 @@ ${layout}
         );
       }
 
-      // ══════════════════════════════════════
-      // PRESETS
-      // ══════════════════════════════════════
       function savePreset() {
         const name = prompt("Nama preset:");
         if (!name) return;
         const presets = JSON.parse(localStorage.getItem("ce_presets") || "[]");
         presets.push({
           name,
-          bgIdx: document.getElementById("bg-sel").value,
+          bgState: JSON.parse(JSON.stringify(bgState)),
           marker: selectedMarker,
           niche: document.getElementById("inp-niche").value,
           tone: document.getElementById("inp-tone").value,
-          ratio: selectedRatio,
+          ratio: selRatio(),
           ts: Date.now(),
         });
         localStorage.setItem("ce_presets", JSON.stringify(presets));
-        loadPresets();
-        alert(`Preset "${name}" tersimpan!`);
+        renderPresets();
+        alert('Preset "' + name + '" tersimpan!');
       }
 
-      function loadPresets() {
+      function renderPresets() {
         const presets = JSON.parse(localStorage.getItem("ce_presets") || "[]");
-        const card = document.getElementById("preset-card");
-        const row = document.getElementById("preset-row");
-        if (!presets.length) {
-          card.style.display = "none";
-          return;
-        }
-        card.style.display = "block";
-        row.innerHTML = "";
-        presets.forEach((p, i) => {
-          const chip = document.createElement("div");
-          chip.className = "pchip";
-          let bgCss = "#444";
-          if (p.bgIdx) {
-            if (p.bgIdx.startsWith("grad:")) {
-              const gr = GRADS[+p.bgIdx.split(":")[1]];
-              bgCss = `linear-gradient(135deg,${gr.from},${gr.to})`;
-            } else {
-              bgCss = SOLIDS[+p.bgIdx.split(":")[1]]?.hex || "#444";
+        ["preset-row", "preset-row2"].forEach((rowId) => {
+          const row = document.getElementById(rowId);
+          const card = document.getElementById("preset-card");
+          if (rowId === "preset-row" && card)
+            card.style.display = presets.length ? "block" : "none";
+          if (!row) return;
+          row.innerHTML = "";
+          presets.forEach((p, i) => {
+            const chip = document.createElement("div");
+            chip.className = "pchip";
+            let bgCss = "#444";
+            if (p.bgState) {
+              if (p.bgState.type === "grad" && GRADS[p.bgState.idx])
+                bgCss =
+                  "linear-gradient(135deg," +
+                  GRADS[p.bgState.idx].f +
+                  "," +
+                  GRADS[p.bgState.idx].t +
+                  ")";
+              else if (p.bgState.type === "solid" && SOLIDS[p.bgState.idx])
+                bgCss = SOLIDS[p.bgState.idx].h;
+              else if (p.bgState.type === "custom-grad")
+                bgCss =
+                  "linear-gradient(135deg," +
+                  p.bgState.from +
+                  "," +
+                  p.bgState.to +
+                  ")";
+              else if (p.bgState.type === "custom-solid") bgCss = p.bgState.hex;
             }
-          }
-          chip.innerHTML = `<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${bgCss};flex-shrink:0"></span>${p.name}<span class="pdel" onclick="delPreset(${i},event)">✕</span>`;
-          chip.onclick = (e) => {
-            if (e.target.classList.contains("pdel")) return;
-            applyPreset(p);
-          };
-          row.appendChild(chip);
+            chip.innerHTML =
+              '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:' +
+              bgCss +
+              ';flex-shrink:0"></span>' +
+              p.name +
+              '<span class="pdel" data-i="' +
+              i +
+              '">✕</span>';
+            chip.addEventListener("click", function (e) {
+              if (e.target.classList.contains("pdel")) {
+                e.stopPropagation();
+                delPreset(+e.target.dataset.i);
+              } else applyPreset(p);
+            });
+            row.appendChild(chip);
+          });
         });
       }
 
+      function loadPresets() {
+        renderPresets();
+      }
+
       function applyPreset(p) {
-        if (p.bgIdx) {
-          document.getElementById("bg-sel").value = p.bgIdx;
-          onBgChange();
+        if (p.bgState) {
+          bgState = JSON.parse(JSON.stringify(p.bgState));
+          updateBgPreview();
+          if (bgState.type === "grad") {
+            setBgTab("grad");
+            document
+              .querySelectorAll(".gc")
+              .forEach((el, j) =>
+                el.classList.toggle("sel", j === bgState.idx),
+              );
+          } else if (bgState.type === "solid") {
+            setBgTab("solid");
+            document
+              .querySelectorAll(".sc")
+              .forEach((el, j) =>
+                el.classList.toggle("sel", j === bgState.idx),
+              );
+          } else setBgTab("custom");
         }
         if (p.marker) {
           selectedMarker = p.marker;
@@ -3092,18 +3597,15 @@ ${layout}
         if (p.tone) document.getElementById("inp-tone").value = p.tone;
         if (p.ratio) {
           document.getElementById("ratio-sel").value = p.ratio;
-          selectedRatio = p.ratio;
-          drawWireframe(p.ratio);
+          onRatioChange();
         }
-        updateBgPreview();
       }
 
-      function delPreset(i, e) {
-        e.stopPropagation();
+      function delPreset(i) {
         const presets = JSON.parse(localStorage.getItem("ce_presets") || "[]");
         presets.splice(i, 1);
         localStorage.setItem("ce_presets", JSON.stringify(presets));
-        loadPresets();
+        renderPresets();
       }
 
       init();
