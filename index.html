@@ -3367,19 +3367,20 @@
         const logoPad = window._logoPad || "s";
         const logoPadPx =
           { s: "100px", m: "130px", l: "160px" }[logoPad] || "100px";
+        const logoSafeZoneMap = {
+          "top-right": "top-right corner (320px wide × 100px tall)",
+          "top-left": "top-left corner (320px wide × 100px tall)",
+          "top-center": "top-center strip (full width × 100px tall)",
+        };
         const logoSafeZone = hasLogo
           ? "LOGO SAFE ZONE: Reserve " +
-            ({
-              "top-right": "top-right corner (220px × 90px)",
-              "top-left": "top-left corner (220px × 90px)",
-              "top-center": "top-center area (full width × 90px)",
-            }[logoPos] || "top-right corner (220px × 90px)") +
-            " for the logo. No text may enter this zone."
+            (logoSafeZoneMap[logoPos] || logoSafeZoneMap["top-right"]) +
+            " for the logo — no text, no elements may enter this zone."
           : "";
         const logoTxt = hasLogo
-          ? "LOGO:\n  The logo has been uploaded as an image directly in this conversation.\n  Position: " +
+          ? "LOGO:\\n  Logo uploaded directly in this conversation.\\n  Position: " +
             logoPos +
-            " · max height 70px · width auto-proportional (do not distort)\n  20px from canvas edges · transparent background · do not recolor\n  " +
+            "\\n  Max height: 70px · Width: auto-proportional\\n  NEVER crop — if wide logo, scale down to fit fully within safe zone\\n  NEVER stretch · 20px from canvas edges · transparent background · no recolor · no shadow\\n  " +
             logoSafeZone
           : "";
         // hlTopPad received as parameter — not redeclared here
@@ -3574,14 +3575,30 @@
           flip,
           hlTopPad,
         );
+        const orientNote =
+          ri.w < ri.h
+            ? "PORTRAIT (taller than wide) — height MUST be greater than width."
+            : ri.w > ri.h
+              ? "LANDSCAPE (wider than tall) — width MUST be greater than height."
+              : "SQUARE — equal width and height.";
         const poster =
-          "Create a single ready-to-post social media poster.\nNOT a mockup. NOT a template. NOT in any frame.\nOutput: finished poster only, bleeding to all 4 edges.\n\nCANVAS: " +
+          "⚠️ STRICT OUTPUT SIZE: This image MUST be " +
+          ri.w +
+          " × " +
+          ri.h +
+          " pixels. " +
+          orientNote +
+          " Do NOT generate square or wrong orientation. Reject and regenerate if aspect ratio is wrong.\n\nCreate a single ready-to-post social media poster.\nNOT a mockup. NOT a template. NOT in any frame.\nOutput: finished poster only, bleeding to all 4 edges.\n\nCANVAS: " +
           ri.w +
           " × " +
           ri.h +
           " px · " +
           ratio +
-          " · ultra high quality\n\nBACKGROUND:\n" +
+          " · ultra high quality\nASPECT RATIO: " +
+          ratio +
+          " · " +
+          orientNote +
+          "\n\nBACKGROUND:\n" +
           bg.str +
           "\nAdd subtle radial vignette at edges (8% darker).\n\nDESIGN SYSTEM:\nFont: Poppins (Google Fonts)\n· Headline: ExtraBold 800 · Subheadline: Regular 400 (text only, no icons)\n· Key point label: SemiBold 600 · Description/Paragraph: Regular 400\nAccent: " +
           bg.acc +
