@@ -1591,13 +1591,27 @@
           <!-- CONTENT MODE -->
           <div id="sec-content" class="fbox">
             <div class="fbox-k">Konten Zona Bawah</div>
-            <div class="trow" style="margin-top: 8px; margin-bottom: 10px">
+            <div
+              style="
+                display: flex;
+                gap: 5px;
+                margin-top: 8px;
+                margin-bottom: 10px;
+                align-items: center;
+                flex-wrap: wrap;
+              "
+            >
               <div class="tbtn on" id="cm-kp" onclick="setContentMode('kp')">
                 📋 Key Points
               </div>
               <div class="tbtn" id="cm-para" onclick="setContentMode('para')">
                 📝 Paragraf
               </div>
+              <span
+                id="cm-hint"
+                style="font-size: 10px; color: var(--mu); margin-left: 2px"
+                >— Paragraf tidak digunakan</span
+              >
             </div>
             <!-- KP -->
             <div id="sec-kp">
@@ -1856,15 +1870,55 @@
 
           <!-- LOGO -->
           <div class="fbox">
-            <div class="fbox-k">
-              Logo (opsional)
+            <div class="fbox-k">Logo (opsional)</div>
+            <div
+              style="
+                background: rgba(238, 170, 17, 0.07);
+                border: 1px solid rgba(238, 170, 17, 0.2);
+                border-radius: 8px;
+                padding: 10px 12px;
+                margin-top: 6px;
+                margin-bottom: 10px;
+              "
+            >
+              <div
+                style="
+                  font-size: 11px;
+                  color: rgba(238, 170, 17, 0.9);
+                  font-weight: 600;
+                  margin-bottom: 4px;
+                "
+              >
+                💡 Cara pakai logo di GPT-4o
+              </div>
+              <div style="font-size: 11px; color: var(--mu); line-height: 1.6">
+                Upload file logo langsung ke chat GPT-4o (drag &amp; drop /
+                attachment) sebelum paste prompt.<br />GPT-4o tidak bisa akses
+                URL — file harus di-upload manual.<br />Ukuran: max height 70px,
+                lebar otomatis proporsional.
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+              "
+            >
+              <label style="margin-bottom: 0; white-space: nowrap"
+                >Posisi logo:</label
+              >
               <select
                 id="logo-pos"
                 style="
-                  font-size: 11px;
-                  padding: 3px 8px;
+                  font-size: 12px;
+                  padding: 6px 10px;
                   width: auto;
-                  border-radius: 6px;
+                  border-radius: 8px;
+                  flex: 1;
+                  min-width: 120px;
                 "
               >
                 <option value="top-right">Kanan Atas</option>
@@ -1872,23 +1926,34 @@
                 <option value="top-center">Tengah Atas</option>
               </select>
             </div>
-            <input
-              type="url"
-              id="f-logo"
-              placeholder="https://... (link URL logo)"
-              style="margin-top: 5px; font-size: 12px"
-            />
-            <p
-              class="hint"
-              style="color: rgba(238, 170, 17, 0.7); margin-top: 5px"
-            >
-              ⚠️ GPT-4o tidak bisa baca URL eksternal —
-              <strong>upload file logo langsung</strong> ke chat GPT-4o sebelum
-              kirim prompt ini.
-            </p>
-            <p class="hint">
-              Ukuran: ~70px height, proporsional. Kosong = tidak masuk prompt.
-            </p>
+            <div class="sw-row" style="margin-bottom: 0">
+              <label class="sw"
+                ><input
+                  type="checkbox"
+                  id="has-logo"
+                  onchange="toggleLogoSafeZone()" />
+                <div class="sw-track"></div
+              ></label>
+              <span class="sw-lbl"
+                >Ada logo di atas — turunkan Headline &amp; Subheadline</span
+              >
+            </div>
+            <div id="logo-padding-opts" style="display: none; margin-top: 8px">
+              <label style="margin-bottom: 5px; display: block"
+                >Jarak turun headline:</label
+              >
+              <div class="trow" style="margin-bottom: 0">
+                <div class="tbtn sm on" id="lpad-s" onclick="setLogoPad('s')">
+                  Sedikit (~100px)
+                </div>
+                <div class="tbtn sm" id="lpad-m" onclick="setLogoPad('m')">
+                  Sedang (~130px)
+                </div>
+                <div class="tbtn sm" id="lpad-l" onclick="setLogoPad('l')">
+                  Lebih jauh (~160px)
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- CAPTION -->
@@ -2889,6 +2954,12 @@
           m === "kp" ? "block" : "none";
         document.getElementById("sec-para").style.display =
           m === "para" ? "block" : "none";
+        const hint = document.getElementById("cm-hint");
+        if (hint)
+          hint.textContent =
+            m === "kp"
+              ? "— Paragraf tidak digunakan"
+              : "— Key Points tidak digunakan";
       }
 
       // ════════════════════════════════════════
@@ -3178,6 +3249,12 @@
           const el = document.getElementById("f-caption");
           if (el) el.value = parts.join("\n");
         }
+        // Auto-switch content mode based on what was parsed
+        const hasKpData = !!ext("KEY POINT 1");
+        const hasParaData = !!ext("PARAGRAPH");
+        if (hasKpData && !hasParaData) setContentMode("kp");
+        else if (hasParaData && !hasKpData) setContentMode("para");
+        // if both exist, keep current selection — user decides
         doAutoSuggest();
       }
 
@@ -3263,7 +3340,8 @@
           '"\n  Poppins ExtraBold 800 · ' +
           hlPt +
           " · white · line-height 1.15 · letter-spacing -0.01em · text-align: " +
-          hlAl;
+          hlAl +
+          (hlTopPad ? "\n  " + hlTopPad : "");
         const subTxt = hasSub
           ? 'Subheadline: "' +
             sub +
@@ -3285,12 +3363,28 @@
             footerPos +
             " · Poppins Regular 11pt · white 36% opacity · 18px from edges"
           : "[No footer]";
+        const logoPad = window._logoPad || "s";
+        const logoPadPx =
+          { s: "100px", m: "130px", l: "160px" }[logoPad] || "100px";
+        const logoSafeZone = hasLogo
+          ? "LOGO SAFE ZONE: Reserve " +
+            ({
+              "top-right": "top-right corner (220px × 90px)",
+              "top-left": "top-left corner (220px × 90px)",
+              "top-center": "top-center area (full width × 90px)",
+            }[logoPos] || "top-right corner (220px × 90px)") +
+            " for the logo. No text may enter this zone."
+          : "";
         const logoTxt = hasLogo
-          ? "LOGO PLACEMENT:\n  ⚠️ The logo image has been uploaded directly to this conversation (do not fetch from URL).\n  Reference image: " +
-            logoUrl +
-            "\n  Position: " +
+          ? "LOGO:\n  The logo has been uploaded as an image directly in this conversation.\n  Position: " +
             logoPos +
-            " · height ~70px · width auto-proportional · 20px from canvas edges\n  Render with transparent/no background · do not stretch or distort · do not recolor\n  If logo cannot be read from URL, use the uploaded image in this chat"
+            " · max height 70px · width auto-proportional (do not distort)\n  20px from canvas edges · transparent background · do not recolor\n  " +
+            logoSafeZone
+          : "";
+        const hlTopPad = hasLogo
+          ? "Top padding before headline: " +
+            logoPadPx +
+            " minimum (to clear logo area)."
           : "";
 
         if (ratio === "9:16") {
@@ -3425,10 +3519,12 @@
         const pose = getAval("sel-pose", "ac-pose");
         const cap =
           document.getElementById("f-caption").value.trim() || "[CAPTION]";
-        const logoUrl = document.getElementById("f-logo").value.trim();
+        const logoUrl = "";
         const logoPos = document.getElementById("logo-pos").value;
+        const hasLogoChecked = document.getElementById("has-logo").checked;
         const bg = getBgPrompt();
         const links = getImgLinks();
+        const hasLogo = hasLogoChecked;
         const hasSub = isOn("comp-sub"),
           hasAsset = isOn("comp-asset"),
           hasCont = isOn("comp-content");
@@ -3616,6 +3712,24 @@
         presets.splice(i, 1);
         localStorage.setItem("ce_presets", JSON.stringify(presets));
         renderPresets();
+      }
+
+      // ════════════════════════════════════════
+      // LOGO SAFE ZONE
+      // ════════════════════════════════════════
+      function toggleLogoSafeZone() {
+        const on = document.getElementById("has-logo").checked;
+        document.getElementById("logo-padding-opts").style.display = on
+          ? "block"
+          : "none";
+      }
+
+      function setLogoPad(val) {
+        window._logoPad = val;
+        document.querySelectorAll("#logo-padding-opts .tbtn").forEach((b) => {
+          const v = b.id.replace("lpad-", "");
+          b.classList.toggle("on", v === val);
+        });
       }
 
       init();
