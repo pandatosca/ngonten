@@ -1843,13 +1843,34 @@
                 ></textarea>
               </div>
             </div>
-            <!-- IMAGE LINKS -->
-            <div style="margin-top: 10px">
-              <div class="asub-k" style="margin-bottom: 5px">
-                Link Gambar Referensi (opsional)
+            <!-- IMAGE UPLOADS -->
+            <div style="margin-top: 12px">
+              <div class="asub-k" style="margin-bottom: 6px">
+                Upload Images ke GPT-4o
               </div>
-              <div class="img-link-list" id="img-link-list"></div>
-              <button class="btn-add-lnk" onclick="addImgLink()">
+              <div
+                style="
+                  background: rgba(79, 179, 179, 0.07);
+                  border: 1px solid rgba(79, 179, 179, 0.18);
+                  border-radius: 8px;
+                  padding: 9px 11px;
+                  margin-bottom: 8px;
+                  font-size: 11px;
+                  color: #5ec8c8;
+                  line-height: 1.6;
+                "
+              >
+                💡 Upload gambar ke GPT-4o <strong>sesuai urutan</strong> di
+                bawah sebelum paste prompt.<br />
+                GPT-4o mengidentifikasi gambar berdasarkan urutan upload, bukan
+                nama file.
+              </div>
+              <div id="img-upload-list"></div>
+              <button
+                class="btn-add-lnk"
+                id="btn-add-img"
+                onclick="addImgSlot()"
+              >
                 <svg
                   width="10"
                   height="10"
@@ -1860,11 +1881,11 @@
                 >
                   <path d="M12 5v14M5 12h14" />
                 </svg>
-                Tambah Link
+                Tambah Slot Image
               </button>
-              <p class="hint">
-                Gambar publik digunakan GPT-4o sebagai referensi gaya/komposisi.
-              </p>
+              <div class="hint" style="margin-top: 5px">
+                Maks 4 image. Urutan upload = urutan di prompt.
+              </div>
             </div>
           </div>
 
@@ -2409,7 +2430,7 @@
         buildMarkerRow("basic");
         buildGreetGrid();
         buildKpList(3);
-        addImgLink();
+        addImgSlot(); // default: 1 logo slot
         drawWireframe("9:16");
         updateBgPreview();
         loadPresets();
@@ -3051,28 +3072,111 @@
       // ════════════════════════════════════════
       // IMAGE LINKS
       // ════════════════════════════════════════
-      function addImgLink() {
-        imgLinkCount++;
-        const n = imgLinkCount,
-          list = document.getElementById("img-link-list");
+      // IMAGE SLOT FUNCTIONS
+      const IMG_FUNCS = [
+        {
+          v: "logo",
+          l: "🏷️ Logo",
+          hint: "Diletakkan sesuai posisi logo yang dipilih",
+        },
+        {
+          v: "bg-layer",
+          l: "🖼️ Background Layer",
+          hint: "Dijadikan background 10% opacity, fade to edges",
+        },
+        {
+          v: "style-ref",
+          l: "🎨 Style Reference",
+          hint: "Inspirasi mood, warna, dan gaya visual",
+        },
+        {
+          v: "asset-ref",
+          l: "📦 Asset Reference",
+          hint: "Referensi gaya/komposisi 3D asset",
+        },
+      ];
+
+      function addImgSlot() {
+        const list = document.getElementById("img-upload-list");
+        const n = list.children.length + 1;
+        if (n > 4) {
+          alert("Maksimal 4 image slot");
+          return;
+        }
+        const opts = IMG_FUNCS.map(
+          (f, i) =>
+            `<option value="${f.v}"${i === 0 && n === 1 ? " selected" : i === 1 && n === 2 ? " selected" : i === 2 && n === 3 ? " selected" : i === 3 && n === 4 ? " selected" : ""}>${f.l}</option>`,
+        ).join("");
         const d = document.createElement("div");
         d.className = "img-link-row";
-        d.id = "ilr-" + n;
-        d.innerHTML = `<input type="url" id="il-${n}" placeholder="https://example.com/image.jpg"/>
-    <button class="btn-del-lnk" onclick="delImgLink(${n})" title="Hapus">✕</button>`;
+        d.id = "ius-" + n;
+        d.style.cssText =
+          "display:flex;flex-direction:column;gap:5px;background:var(--s3);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;margin-bottom:6px";
+        d.innerHTML = `
+    <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+      <span style="font-size:10px;font-weight:700;color:var(--ac);min-width:55px">Image ${n}</span>
+      <select id="if-${n}" onchange="updateImgHint(${n})" style="font-size:11px;padding:4px 8px;border-radius:6px;flex:1;min-width:140px">${opts}</select>
+      <button class="btn-del-lnk" onclick="delImgSlot(${n})" title="Hapus">✕</button>
+    </div>
+    <div id="ih-${n}" style="font-size:10px;color:var(--tl);padding-left:2px">${IMG_FUNCS[n <= 4 ? n - 1 : 0].hint}</div>`;
         list.appendChild(d);
+        updateAddBtn();
       }
 
-      function delImgLink(n) {
-        document.getElementById("ilr-" + n)?.remove();
+      function updateImgHint(n) {
+        const sel = document.getElementById("if-" + n);
+        const f = IMG_FUNCS.find((f) => f.v === sel?.value);
+        const hint = document.getElementById("ih-" + n);
+        if (hint && f) hint.textContent = f.hint;
       }
 
-      function getImgLinks() {
-        const links = [];
-        document.querySelectorAll('[id^="il-"]').forEach((inp) => {
-          if (inp.value.trim()) links.push(inp.value.trim());
+      function delImgSlot(n) {
+        document.getElementById("ius-" + n)?.remove();
+        // Renumber remaining
+        let i = 0;
+        document.querySelectorAll('[id^="ius-"]').forEach((el) => {
+          i++;
+          el.id = "ius-" + i;
+          const lbl = el.querySelector("span");
+          const sel = el.querySelector("select");
+          const hint = el.querySelector('[id^="ih-"]');
+          const btn = el.querySelector(".btn-del-lnk");
+          if (lbl) lbl.textContent = "Image " + i;
+          if (sel) sel.id = "if-" + i;
+          if (hint) hint.id = "ih-" + i;
+          if (btn) btn.setAttribute("onclick", "delImgSlot(" + i + ")");
+          sel?.removeEventListener("change", null);
+          if (sel) sel.setAttribute("onchange", "updateImgHint(" + i + ")");
         });
-        return links;
+        updateAddBtn();
+      }
+
+      function updateAddBtn() {
+        const list = document.getElementById("img-upload-list");
+        const btn = document.getElementById("btn-add-img");
+        if (btn)
+          btn.style.display =
+            list && list.children.length >= 4 ? "none" : "inline-flex";
+      }
+
+      function getImgSlots() {
+        const slots = [];
+        document.querySelectorAll('[id^="ius-"]').forEach((el, i) => {
+          const n = i + 1;
+          const sel = document.getElementById("if-" + n);
+          if (sel)
+            slots.push({
+              n,
+              func: sel.value,
+              label: IMG_FUNCS.find((f) => f.v === sel.value)?.l || sel.value,
+            });
+        });
+        return slots;
+      }
+
+      // Keep getImgLinks as alias returning empty (no more URL fields)
+      function getImgLinks() {
+        return [];
       }
 
       // ════════════════════════════════════════
@@ -3378,9 +3482,15 @@
             " for the logo — no text, no elements may enter this zone."
           : "";
         const logoTxt = hasLogo
-          ? "LOGO:\\n  Logo uploaded directly in this conversation.\\n  Position: " +
-            logoPos +
-            "\\n  Max height: 70px · Width: auto-proportional\\n  NEVER crop — if wide logo, scale down to fit fully within safe zone\\n  NEVER stretch · 20px from canvas edges · transparent background · no recolor · no shadow\\n  " +
+          ? "LOGO:\\n  " +
+            (logoSlot
+              ? "Image " +
+                logoSlot.n +
+                " (uploaded in this conversation) is the logo."
+              : "Logo uploaded in this conversation.") +
+            "\\n  Position: " +
+            document.getElementById("logo-pos").value +
+            "\\n  Max height: 70px · Width: auto-proportional\\n  NEVER crop — scale down to fit within safe zone if wide\\n  NEVER stretch · transparent background — do NOT add black box or background fill\\n  White logo elements must appear on the poster background, not on black fill\\n  " +
             logoSafeZone
           : "";
         // hlTopPad received as parameter — not redeclared here
@@ -3533,6 +3643,42 @@
         const flip = document.getElementById("layout-flip").checked;
         const ratio = selRatio();
         const ri = RATIO_INFO[ratio] || { w: 1080, h: 1920 };
+        const imgSlots = getImgSlots();
+        // Build per-slot instructions
+        const imgInstructions = imgSlots
+          .map((s) => {
+            if (s.func === "logo") return null; // handled separately by logoTxt
+            if (s.func === "bg-layer")
+              return (
+                "Image " +
+                s.n +
+                " (uploaded): Use as full-bleed background texture layer\n  · Opacity: 10–15% · Desaturate to near-grayscale · Gaussian blur 3–5px\n  · Fade to transparent at all 4 edges (vignette) — no hard frame or border\n  · Blend seamlessly into background color"
+              );
+            if (s.func === "style-ref")
+              return (
+                "Image " +
+                s.n +
+                " (uploaded): Use as mood/color/style reference — match the visual atmosphere, color palette, and design quality"
+              );
+            if (s.func === "asset-ref")
+              return (
+                "Image " +
+                s.n +
+                " (uploaded): Use as reference for the 3D asset style, composition, and visual detail"
+              );
+            return null;
+          })
+          .filter(Boolean);
+        // Logo slot number
+        const logoSlot = imgSlots.find((s) => s.func === "logo");
+        const logoImgNote = logoSlot
+          ? "Image " +
+            logoSlot.n +
+            " (uploaded) is the LOGO — " +
+            (document.getElementById("has-logo")?.checked
+              ? "place at " + document.getElementById("logo-pos").value
+              : "logo uploaded for reference")
+          : "";
         const assetBlock =
           "Subject: " +
           ast +
@@ -3544,7 +3690,7 @@
           pose +
           "\n  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur\n  Effects: soft drop shadow · subtle rim glow " +
           bg.acc +
-          (links.length ? "\n  Reference images: " + links.join(", ") : "");
+          (imgInstructions.length ? "\n  " + imgInstructions.join("\n  ") : "");
         const contentBlock = buildContentBlock();
         const _logoPad = window._logoPad || "s";
         const _logoPadPx =
@@ -3604,7 +3750,24 @@
           bg.acc +
           "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\n\nLAYOUT:\n" +
           layout +
-          "\n\nFINAL RULES:\n· Poster bleeds to all 4 edges — no white border\n· All text readable at mobile size\n· Visual hierarchy: Headline → 3D Asset → Content → Footer\n· Background thematic deco behind 3D asset is REQUIRED";
+          "\n\nIMAGE UPLOAD ORDER (follow exactly):\n" +
+          (imgSlots.length
+            ? imgSlots
+                .map(
+                  (s) =>
+                    "  · Image " +
+                    s.n +
+                    ": " +
+                    s.label +
+                    (s.func === "logo"
+                      ? " → place at " +
+                        (document.getElementById("logo-pos")?.value ||
+                          "top-right")
+                      : ""),
+                )
+                .join("\n")
+            : "  [No images specified]") +
+          "\n\nFINAL RULES:\n· Poster bleeds to all 4 edges — no white border\n· All text readable at mobile size\n· Visual hierarchy: Headline → 3D Asset → Content → Footer\n· Background thematic deco behind 3D asset is REQUIRED\n· For logo: transparent areas must NOT be filled with black or any color";
         goPhase(2);
         // Logo reminder + output
         const posterWrap = document.getElementById("out-poster-wrap");
