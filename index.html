@@ -1671,7 +1671,7 @@
               id="f-asset"
               rows="2"
               style="margin-top: 4px"
-              placeholder="Deskripsi objek/karakter (Inggris) — e.g. confident woman holding glowing smartphone"
+              placeholder="Deskripsi spesifik objek/karakter (Inggris) — e.g. MacBook Pro laptop displaying HR dashboard with data charts, placed on reflective surface with golden glow"
               oninput="scheduleAutoSuggest()"
             ></textarea>
             <div class="asset-grid">
@@ -3622,7 +3622,8 @@
           document.getElementById("f-headline").value.trim() || "[HEADLINE]";
         const sub = document.getElementById("f-sub").value.trim() || "";
         const ast =
-          document.getElementById("f-asset").value.trim() || "[3D ASSET]";
+          document.getElementById("f-asset").value.trim() ||
+          "A professional 3D rendered asset most relevant to the content topic — auto-generate the best fitting visual based on the headline and key points above, hyperrealistic quality";
         const light = getAval("sel-light", "ac-light");
         const mat = getAval("sel-mat", "ac-mat");
         const pose = getAval("sel-pose", "ac-pose");
@@ -3673,11 +3674,17 @@
         // Logo slot number
         const logoSlot = imgSlots.find((s) => s.func === "logo");
         const logoImgNote = logoSlot
-          ? "Image " +
-            logoSlot.n +
-            " (uploaded) is the LOGO — " +
-            (hasLogo ? "place at " + logoPos : "logo uploaded for reference")
-          : "";
+          ? hasLogo
+            ? "Image " +
+              logoSlot.n +
+              " (uploaded) is the LOGO — place at " +
+              logoPos
+            : "Image " +
+              logoSlot.n +
+              " uploaded as logo reference — placement disabled"
+          : hasLogo
+            ? "⚠️ Logo placement enabled but no logo image slot assigned — add Image slot with Logo function"
+            : "";
         const assetBlock =
           "Subject: " +
           ast +
@@ -3760,9 +3767,9 @@
                     ": " +
                     s.label +
                     (s.func === "logo"
-                      ? " → place at " +
-                        (document.getElementById("logo-pos")?.value ||
-                          "top-right")
+                      ? hasLogo
+                        ? " → place at " + logoPos + " (position from settings)"
+                        : " → uploaded as logo reference (placement OFF — enable checkbox to activate)"
                       : ""),
                 )
                 .join("\n")
