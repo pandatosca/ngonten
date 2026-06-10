@@ -1878,6 +1878,14 @@
               placeholder="https://... (link URL logo)"
               style="margin-top: 5px; font-size: 12px"
             />
+            <p
+              class="hint"
+              style="color: rgba(238, 170, 17, 0.7); margin-top: 5px"
+            >
+              ⚠️ GPT-4o tidak bisa baca URL eksternal —
+              <strong>upload file logo langsung</strong> ke chat GPT-4o sebelum
+              kirim prompt ini.
+            </p>
             <p class="hint">
               Ukuran: ~70px height, proporsional. Kosong = tidak masuk prompt.
             </p>
@@ -3183,18 +3191,21 @@
           const fsize = n <= 3 ? "17-19pt" : n <= 5 ? "15-17pt" : "14-15pt";
           const lh = n <= 3 ? "1.9" : "1.75";
           const al = alignState.para === "center" ? "centered" : "left-aligned";
+          const alignInstruction =
+            alignState.para === "center"
+              ? "Text alignment: centered"
+              : "Text alignment: STRICTLY left-aligned (ragged right edge). DO NOT justify. DO NOT center. Every line starts flush from the left margin.";
           return (
             'PARAGRAPH:\n  Text: "' +
             lines.join("\n") +
             '"\n  Font: Poppins Regular 400 · ' +
             fsize +
-            " (scale up if few lines)\n  White " +
+            " (scale up if few lines — no dead space)\n  White " +
             (n <= 3 ? "90%" : "88%") +
             " opacity · Line-height: " +
             lh +
-            " · " +
-            al +
-            "\n  No dead space — font fills area naturally"
+            "\n  " +
+            alignInstruction
           );
         }
         const kps = getKpData();
@@ -3263,7 +3274,7 @@
             " · plain text only, NO icons"
           : "";
         const decoTxt =
-          "Background deco behind 3D asset: 1 large semi-transparent thematic element ~550pt at 10% opacity + 5-7 small contextual icons at 12% opacity. REQUIRED for depth.";
+          "BACKGROUND DECORATION (REQUIRED — do not skip, must be visible):\n  Behind the 3D asset, render these at low opacity to add depth:\n  · 1 large thematic decorative element ~550pt · white or accent color · opacity 10–12% · centered behind main visual\n    (auto-select based on content: Islamic→geometric mandala/arabesque, Tech→circuit/hexagon, Health→leaf/cross, Business→abstract geometric, Nature→botanical, Celebration→confetti/stars)\n  · 5–7 small contextual icons matching the content theme · scattered naturally · opacity 11–13% · slightly defocused/blurred\n  · These elements MUST be clearly present — they are integral to the design depth";
         const assetTxt = hasAsset
           ? "3D Asset:\n  " + assetBlock + "\n  " + decoTxt
           : "[No 3D asset]";
@@ -3275,11 +3286,11 @@
             " · Poppins Regular 11pt · white 36% opacity · 18px from edges"
           : "[No footer]";
         const logoTxt = hasLogo
-          ? "Logo: " +
+          ? "LOGO PLACEMENT:\n  ⚠️ The logo image has been uploaded directly to this conversation (do not fetch from URL).\n  Reference image: " +
             logoUrl +
-            " · position: " +
+            "\n  Position: " +
             logoPos +
-            " · height ~70px auto-width · 20px from edges · do not stretch"
+            " · height ~70px · width auto-proportional · 20px from canvas edges\n  Render with transparent/no background · do not stretch or distort · do not recolor\n  If logo cannot be read from URL, use the uploaded image in this chat"
           : "";
 
         if (ratio === "9:16") {
@@ -3476,18 +3487,17 @@
           layout +
           "\n\nFINAL RULES:\n· Poster bleeds to all 4 edges — no white border\n· All text readable at mobile size\n· Visual hierarchy: Headline → 3D Asset → Content → Footer\n· Background thematic deco behind 3D asset is REQUIRED";
         goPhase(2);
-        makeBlock(
-          "out-poster-wrap",
-          "Prompt Poster " +
-            ratio +
-            " (" +
-            ri.w +
-            "×" +
-            ri.h +
-            ") — Paste ke GPT-4o",
-          poster,
-          "poster",
-        );
+        // Logo reminder + output
+        const posterWrap = document.getElementById("out-poster-wrap");
+        let logoWarning = "";
+        if (hasLogo) {
+          logoWarning = `<div style="background:rgba(238,170,17,.08);border:1px solid rgba(238,170,17,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(238,170,17,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
+        }
+        const rid = "cb-poster";
+        posterWrap.innerHTML =
+          logoWarning +
+          `<div class="out-block"><div class="out-hdr"><span class="out-ttl">Prompt Poster ${ratio} (${ri.w}×${ri.h}) — Paste ke GPT-4o</span><button class="cbtn" id="${rid}">⎘ Copy</button></div><div class="out-txt">${esc(poster)}</div></div>`;
+        document.getElementById(rid).onclick = () => cpBtn(rid, poster);
         makeBlock(
           "out-caption-wrap",
           "Caption TikTok / WA — Siap Copas",
