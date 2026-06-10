@@ -3427,6 +3427,7 @@
         acc,
         flip,
         hlTopPad,
+        logoSlotN,
       ) {
         const hlPt =
           {
@@ -3675,9 +3676,7 @@
           ? "Image " +
             logoSlot.n +
             " (uploaded) is the LOGO — " +
-            (document.getElementById("has-logo")?.checked
-              ? "place at " + document.getElementById("logo-pos").value
-              : "logo uploaded for reference")
+            (hasLogo ? "place at " + logoPos : "logo uploaded for reference")
           : "";
         const assetBlock =
           "Subject: " +
@@ -3720,6 +3719,7 @@
           bg.acc,
           flip,
           hlTopPad,
+          logoSlot ? logoSlot.n : null,
         );
         const orientNote =
           ri.w < ri.h
