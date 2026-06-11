@@ -3836,6 +3836,11 @@
           niche: document.getElementById("inp-niche").value,
           tone: document.getElementById("inp-tone").value,
           ratio: selRatio(),
+          footerOn: document.getElementById("footer-toggle").checked,
+          footerTxt: document.getElementById("footer-txt").value,
+          footerPos: document.getElementById("footer-pos").value,
+          logoOn: document.getElementById("has-logo").checked,
+          logoPos: document.getElementById("logo-pos").value,
           ts: Date.now(),
         });
         localStorage.setItem("ce_presets", JSON.stringify(presets));
@@ -3928,6 +3933,19 @@
           document.getElementById("ratio-sel").value = p.ratio;
           onRatioChange();
         }
+        if (typeof p.footerOn === "boolean") {
+          document.getElementById("footer-toggle").checked = p.footerOn;
+          toggleFooterFields();
+        }
+        if (p.footerTxt !== undefined)
+          document.getElementById("footer-txt").value = p.footerTxt;
+        if (p.footerPos)
+          document.getElementById("footer-pos").value = p.footerPos;
+        if (typeof p.logoOn === "boolean") {
+          document.getElementById("has-logo").checked = p.logoOn;
+          toggleLogoSafeZone();
+        }
+        if (p.logoPos) document.getElementById("logo-pos").value = p.logoPos;
       }
 
       function delPreset(i) {
