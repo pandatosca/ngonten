@@ -3094,6 +3094,11 @@
           l: "📦 Asset Reference",
           hint: "Referensi gaya/komposisi 3D asset",
         },
+        {
+          v: "asset-main",
+          l: "⭐ Visual Utama (pakai image ini)",
+          hint: "Image ini DIPAKAI langsung sebagai visual utama poster",
+        },
       ];
 
       function addImgSlot() {
@@ -3667,6 +3672,12 @@
                 s.n +
                 " (uploaded): Use as reference for the 3D asset style, composition, and visual detail"
               );
+            if (s.func === "asset-main")
+              return (
+                "Image " +
+                s.n +
+                " (uploaded): THIS IMAGE IS THE MAIN VISUAL — reproduce its subject faithfully as the hero element of the poster. Do NOT invent or substitute a different object/character. Keep its identity, shapes, and colors recognizable; you may relight and integrate it into the poster background"
+              );
             return null;
           })
           .filter(Boolean);
@@ -3691,12 +3702,21 @@
           : hasLogo
             ? "⚠️ Logo placement enabled but no logo image slot assigned — add Image slot with Logo function"
             : "";
+        const assetMainSlot = imgSlots.find((s) => s.func === "asset-main");
         const assetBlock =
           "Subject: " +
-          ast +
-          '\n  Relevance: must be a specific, content-accurate visual that directly illustrates the headline "' +
-          hl +
-          '" — avoid generic/unrelated objects\n  Lighting: ' +
+          (assetMainSlot
+            ? "USE UPLOADED IMAGE " +
+              assetMainSlot.n +
+              " as the main visual (see image instructions below)" +
+              (document.getElementById("f-asset").value.trim()
+                ? " — context: " + ast
+                : "")
+            : ast +
+              '\n  Relevance: must be a specific, content-accurate visual that directly illustrates the headline "' +
+              hl +
+              '" — avoid generic/unrelated objects') +
+          "\n  Lighting: " +
           light +
           "\n  Materials: " +
           mat +
