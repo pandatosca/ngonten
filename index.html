@@ -3698,7 +3698,7 @@
               logoPos
             : "Image " +
               logoSlot.n +
-              " uploaded as logo reference — placement disabled"
+              " is a logo file but logo placement is DISABLED — IGNORE this image completely, do NOT render it anywhere on the poster"
           : hasLogo
             ? "⚠️ Logo placement enabled but no logo image slot assigned — add Image slot with Logo function"
             : "";
@@ -3799,7 +3799,7 @@
                     (s.func === "logo"
                       ? hasLogo
                         ? " → place at " + logoPos + " (position from settings)"
-                        : " → uploaded as logo reference (placement OFF — enable checkbox to activate)"
+                        : " → logo placement DISABLED — IGNORE this image, do NOT render it anywhere"
                       : ""),
                 )
                 .join("\n")
