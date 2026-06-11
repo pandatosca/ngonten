@@ -1665,7 +1665,30 @@
 
           <!-- 3D ASSET -->
           <div id="sec-asset" class="fbox">
-            <div class="fbox-k">3D Asset — Visual Utama</div>
+            <div
+              class="fbox-k"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <span>3D Asset — Visual Utama</span>
+              <button
+                type="button"
+                class="btn-sec"
+                onclick="resetAsset()"
+                title="Kosongkan deskripsi & kembalikan dropdown ke default"
+                style="
+                  margin: 0;
+                  padding: 3px 10px;
+                  font-size: 11px;
+                  width: auto;
+                "
+              >
+                ↺ Reset
+              </button>
+            </div>
             <textarea
               class="fbox-v"
               id="f-asset"
@@ -1832,6 +1855,11 @@
                   </option>
                   <option value="looking at phone, thumb scrolling, relatable">
                     📱 On Phone
+                  </option>
+                  <option
+                    value="static hero object composition — centered or three-quarter angle toward viewer, slight levitation/float, NO human figure or human pose"
+                  >
+                    🧊 Objek Statis (non-manusia)
                   </option>
                   <option value="custom">✏️ Custom...</option>
                 </select>
@@ -3192,20 +3220,55 @@
         suggestTimer = setTimeout(doAutoSuggest, 700);
       }
 
+      const HUMAN_KW = [
+        "woman", "wanita", "girl", "female", "man", "pria", "male", "guy",
+        "person", "orang", "people", "human", "manusia", "model", "anak",
+        "kid", "child", "athlete", "atlet", "chef", "dokter", "doctor",
+        "guru", "teacher", "karyawan", "worker", "character", "karakter",
+        "mascot", "maskot", "robot humanoid", "humanoid",
+      ];
+      const OBJECT_POSE_IDX = 9; // 🧊 Objek Statis (non-manusia)
+
+      function isHumanSubject(txt) {
+        return HUMAN_KW.some((k) => txt.includes(k));
+      }
+
       function doAutoSuggest() {
         const txt = document.getElementById("f-asset").value.toLowerCase();
         if (!txt || txt.length < 4) return;
+        const sl = document.getElementById("sel-light");
+        const sm = document.getElementById("sel-mat");
+        const sp = document.getElementById("sel-pose");
+        const human = isHumanSubject(txt);
         for (const rule of ASSET_RULES) {
           if (rule.kw.some((k) => txt.includes(k))) {
-            const sl = document.getElementById("sel-light");
-            const sm = document.getElementById("sel-mat");
-            const sp = document.getElementById("sel-pose");
             if (sl && sl.value !== "custom") sl.selectedIndex = rule.light;
             if (sm && sm.value !== "custom") sm.selectedIndex = rule.mat;
-            if (sp && sp.value !== "custom") sp.selectedIndex = rule.pose;
+            if (sp && sp.value !== "custom")
+              sp.selectedIndex = human ? rule.pose : OBJECT_POSE_IDX;
             return;
           }
         }
+        // No rule matched — still fix pose for non-human subjects
+        if (!human && sp && sp.value !== "custom")
+          sp.selectedIndex = OBJECT_POSE_IDX;
+      }
+
+      function resetAsset() {
+        document.getElementById("f-asset").value = "";
+        [
+          ["sel-light", "ac-light"],
+          ["sel-mat", "ac-mat"],
+          ["sel-pose", "ac-pose"],
+        ].forEach(([selId, taId]) => {
+          const sel = document.getElementById(selId);
+          const ta = document.getElementById(taId);
+          if (sel) sel.selectedIndex = 0;
+          if (ta) {
+            ta.value = "";
+            ta.style.display = "none";
+          }
+        });
       }
 
       function syncAsel(selId, customId) {
@@ -3544,9 +3607,7 @@
             ? "LEFT COL (55%) — 3D Asset:\n" + assetTxt
             : "";
           const right = hasCont
-            ? "RIGHT COL (45%) — Content:\n" +
-              contentBlock +
-              "\n  font: label 15pt desc 11pt"
+            ? "RIGHT COL (45%) — Content:\n" + contentBlock
             : "";
           if (!flip)
             return [top, left, right, ftTxt, logoTxt]
@@ -3554,11 +3615,7 @@
               .join("\n\n");
           return [
             top,
-            hasCont
-              ? "LEFT COL (45%) — Content:\n" +
-                contentBlock +
-                "\n  font: label 15pt desc 11pt"
-              : "",
+            hasCont ? "LEFT COL (45%) — Content:\n" + contentBlock : "",
             hasAsset ? "RIGHT COL (55%) — 3D Asset:\n" + assetTxt : "",
             ftTxt,
             logoTxt,
@@ -3599,16 +3656,12 @@
                   hlTxt +
                   (hasSub ? "\n" + subTxt : ""),
                 hasCont
-                  ? "RIGHT COL (30%) — Content:\n" +
-                    contentBlock +
-                    "\n  font: label 15pt desc 11pt"
+                  ? "RIGHT COL (30%) — Content:\n" + contentBlock
                   : "",
               ]
             : [
                 hasCont
-                  ? "LEFT COL (30%) — Content:\n" +
-                    contentBlock +
-                    "\n  font: label 15pt desc 11pt"
+                  ? "LEFT COL (30%) — Content:\n" + contentBlock
                   : "",
                 "CENTER COL (" +
                   (hasCont ? (hasAsset ? "40%" : "70%") : "70%") +
