@@ -3484,9 +3484,9 @@
           : "";
         const logoTxt = hasLogo
           ? "LOGO:\\n  " +
-            (logoSlot
+            (logoSlotN
               ? "Image " +
-                logoSlot.n +
+                logoSlotN +
                 " (uploaded in this conversation) is the logo."
               : "Logo uploaded in this conversation.") +
             "\\n  Position: " +
@@ -3623,7 +3623,11 @@
         const sub = document.getElementById("f-sub").value.trim() || "";
         const ast =
           document.getElementById("f-asset").value.trim() ||
-          "A professional 3D rendered asset most relevant to the content topic — auto-generate the best fitting visual based on the headline and key points above, hyperrealistic quality";
+          'A professional 3D rendered asset that visually represents the exact topic of "' +
+            hl +
+            '"' +
+            (sub ? ' / "' + sub + '"' : "") +
+            " — must be a specific, recognizable object/scene/icon directly tied to this topic (not a generic abstract shape), hyperrealistic quality";
         const light = getAval("sel-light", "ac-light");
         const mat = getAval("sel-mat", "ac-mat");
         const pose = getAval("sel-pose", "ac-pose");
@@ -3650,12 +3654,7 @@
         const imgInstructions = imgSlots
           .map((s) => {
             if (s.func === "logo") return null; // handled separately by logoTxt
-            if (s.func === "bg-layer")
-              return (
-                "Image " +
-                s.n +
-                " (uploaded): Use as full-bleed background texture layer\n  · Opacity: 10–15% · Desaturate to near-grayscale · Gaussian blur 3–5px\n  · Fade to transparent at all 4 edges (vignette) — no hard frame or border\n  · Blend seamlessly into background color"
-              );
+            if (s.func === "bg-layer") return null; // handled separately by bgLayerTxt (full poster background)
             if (s.func === "style-ref")
               return (
                 "Image " +
@@ -3671,6 +3670,13 @@
             return null;
           })
           .filter(Boolean);
+        // Background image layer (full poster background, independent of 3D asset)
+        const bgLayerSlot = imgSlots.find((s) => s.func === "bg-layer");
+        const bgLayerTxt = bgLayerSlot
+          ? "\nBACKGROUND IMAGE LAYER:\n  Image " +
+            bgLayerSlot.n +
+            " (uploaded): Use as a full-bleed background texture layer behind ALL elements (behind the 3D asset, text, and cards)\n  · Opacity: 10–15% · Desaturate to near-grayscale · Gaussian blur 3–5px\n  · Fade to transparent (vignette) at all 4 edges — no hard frame or border\n  · Blend seamlessly into the background color/gradient — must remain visible across the whole canvas, not hidden behind other elements"
+          : "";
         // Logo slot number
         const logoSlot = imgSlots.find((s) => s.func === "logo");
         const logoImgNote = logoSlot
@@ -3688,7 +3694,9 @@
         const assetBlock =
           "Subject: " +
           ast +
-          "\n  Lighting: " +
+          '\n  Relevance: must be a specific, content-accurate visual that directly illustrates the headline "' +
+          hl +
+          '" — avoid generic/unrelated objects\n  Lighting: ' +
           light +
           "\n  Materials: " +
           mat +
@@ -3753,9 +3761,11 @@
           orientNote +
           "\n\nBACKGROUND:\n" +
           bg.str +
-          "\nAdd subtle radial vignette at edges (8% darker).\n\nDESIGN SYSTEM:\nFont: Poppins (Google Fonts)\n· Headline: ExtraBold 800 · Subheadline: Regular 400 (text only, no icons)\n· Key point label: SemiBold 600 · Description/Paragraph: Regular 400\nAccent: " +
+          "\nAdd subtle radial vignette at edges (8% darker)." +
+          bgLayerTxt +
+          "\n\nDESIGN SYSTEM:\nFont: Poppins (Google Fonts)\n· Headline: ExtraBold 800 · Subheadline: Regular 400 (text only, no icons)\n· Key point label: SemiBold 600 · Description/Paragraph: Regular 400\nAccent: " +
           bg.acc +
-          "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\n\nLAYOUT:\n" +
+          "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\nTypography rendering: ultra-sharp, crisp vector-quality edges on all text · high contrast against background · NO blur, glow, or soft-focus on any text or numbers · fully legible at 100% zoom\n\nLAYOUT:\n" +
           layout +
           "\n\nIMAGE UPLOAD ORDER (follow exactly):\n" +
           (imgSlots.length
