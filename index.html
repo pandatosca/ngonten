@@ -467,11 +467,57 @@
       /* RATIO */
       .ratio-wrap {
         display: flex;
-        gap: 12px;
+        gap: 16px;
         align-items: flex-start;
       }
       .ratio-sel-col {
         flex: 1;
+      }
+      .ratio-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .ratio-opt {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        background: var(--s3);
+        border: 1px solid var(--bd);
+        border-radius: var(--r3);
+        padding: 10px 12px;
+        cursor: pointer;
+        color: var(--tx);
+        font-family: inherit;
+        text-align: left;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+      }
+      .ratio-opt:hover {
+        border-color: var(--bd2);
+      }
+      .ratio-opt.on {
+        border-color: var(--ac);
+        background: rgba(238, 170, 17, 0.08);
+      }
+      .ro-ratio {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .ratio-opt.on .ro-ratio {
+        color: var(--ac);
+      }
+      .ro-name {
+        font-size: 11px;
+        color: var(--mu);
+      }
+      .ro-px {
+        font-size: 10px;
+        color: var(--mu2);
       }
       .ratio-wf-col {
         width: 100px;
@@ -1342,17 +1388,55 @@
           <div class="clabel">Ukuran &amp; Rasio Poster</div>
           <div class="ratio-wrap">
             <div class="ratio-sel-col">
-              <select id="ratio-sel" onchange="onRatioChange()">
-                <option value="9:16">
-                  9:16 — Reels / TikTok / Stories (1080×1920)
-                </option>
-                <option value="4:5">4:5 — IG Feed Portrait (1080×1350)</option>
-                <option value="1:1">1:1 — Square Feed (1080×1080)</option>
-                <option value="16:9">
-                  16:9 — YouTube / LinkedIn (1920×1080)
-                </option>
+              <select id="ratio-sel" style="display: none">
+                <option value="9:16" selected>9:16</option>
+                <option value="4:5">4:5</option>
+                <option value="1:1">1:1</option>
+                <option value="16:9">16:9</option>
               </select>
-              <div class="hint" id="ratio-hint" style="margin-top: 6px">
+              <div class="ratio-grid">
+                <button
+                  type="button"
+                  class="ratio-opt on"
+                  data-r="9:16"
+                  onclick="setRatio('9:16')"
+                >
+                  <span class="ro-ratio">9:16</span>
+                  <span class="ro-name">Reels · TikTok · Story</span>
+                  <span class="ro-px">1080 × 1920</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="4:5"
+                  onclick="setRatio('4:5')"
+                >
+                  <span class="ro-ratio">4:5</span>
+                  <span class="ro-name">IG Feed Portrait</span>
+                  <span class="ro-px">1080 × 1350</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="1:1"
+                  onclick="setRatio('1:1')"
+                >
+                  <span class="ro-ratio">1:1</span>
+                  <span class="ro-name">Square Feed</span>
+                  <span class="ro-px">1080 × 1080</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="16:9"
+                  onclick="setRatio('16:9')"
+                >
+                  <span class="ro-ratio">16:9</span>
+                  <span class="ro-name">YouTube · LinkedIn</span>
+                  <span class="ro-px">1920 × 1080</span>
+                </button>
+              </div>
+              <div class="hint" id="ratio-hint" style="margin-top: 8px">
                 Instagram Reels, TikTok, Stories
               </div>
             </div>
@@ -1521,6 +1605,16 @@
               ></label>
               <span class="sw-lbl"
                 >Flip Layout: 3D Asset di atas, Headline di tengah</span
+              >
+            </div>
+            <div class="sw-row" style="margin-top: 8px">
+              <label class="sw"
+                ><input type="checkbox" id="hybrid-toggle" />
+                <div class="sw-track"></div
+              ></label>
+              <span class="sw-lbl"
+                >Mode Hybrid: zona konten dikosongkan — teks ditempel manual di
+                Canva/Figma (hasil teks 100% tajam)</span
               >
             </div>
           </div>
@@ -2062,10 +2156,35 @@
               id="preset-row2"
               style="margin-bottom: 8px"
             ></div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <button
+                class="btn-sec"
+                onclick="exportPresets()"
+                title="Download semua preset sebagai file JSON (backup / pindah device)"
+                style="margin-top: 0; flex: 1; min-width: 120px"
+              >
+                ⬇ Export Preset
+              </button>
+              <button
+                class="btn-sec"
+                onclick="document.getElementById('preset-file').click()"
+                title="Muat preset dari file JSON hasil export"
+                style="margin-top: 0; flex: 1; min-width: 120px"
+              >
+                ⬆ Import Preset
+              </button>
+              <input
+                type="file"
+                id="preset-file"
+                accept=".json,application/json"
+                style="display: none"
+                onchange="importPresets(this)"
+              />
+            </div>
             <button
               class="btn-sec"
               onclick="savePreset()"
-              style="margin-top: 0"
+              style="margin-top: 8px"
             >
               💾 Simpan Konfigurasi sebagai Preset
             </button>
@@ -2106,6 +2225,7 @@
           langsung paste ke TikTok / WA.
         </div>
         <div id="out-poster-wrap"></div>
+        <div id="out-hybrid-wrap"></div>
         <div id="out-caption-wrap"></div>
         <button class="btn-sec" onclick="goPhase(1)">← Edit Detail</button>
         <button class="btn-sec" style="margin-top: 8px" onclick="goPhase(0)">
@@ -2462,6 +2582,7 @@
         drawWireframe("9:16");
         updateBgPreview();
         loadPresets();
+        maybeShowDraftBanner();
       }
 
       // ════════════════════════════════════════
@@ -2624,10 +2745,18 @@
         return document.getElementById("ratio-sel").value;
       }
 
+      function setRatio(v) {
+        document.getElementById("ratio-sel").value = v;
+        onRatioChange();
+      }
+
       function onRatioChange() {
         const r = selRatio();
         const info = RATIO_INFO[r];
         document.getElementById("ratio-hint").textContent = info ? info.p : "";
+        document
+          .querySelectorAll(".ratio-opt")
+          .forEach((b) => b.classList.toggle("on", b.dataset.r === r));
         drawWireframe(r);
       }
 
@@ -3778,7 +3907,11 @@
           "\n  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur\n  Effects: soft drop shadow · subtle rim glow " +
           bg.acc +
           (imgInstructions.length ? "\n  " + imgInstructions.join("\n  ") : "");
-        const contentBlock = buildContentBlock();
+        const hybrid =
+          document.getElementById("hybrid-toggle")?.checked || false;
+        const contentBlock = hybrid
+          ? "CONTENT ZONE (HYBRID MODE — RESERVED EMPTY SPACE):\n  Keep this entire zone as CLEAN EMPTY SPACE — absolutely NO text, NO placeholder boxes, NO lorem ipsum here.\n  Only the background color/gradient and subtle decoration may flow through this area.\n  Keep it visually calm and uncluttered — real text will be overlaid manually in post-production."
+          : buildContentBlock();
         const _logoPad = window._logoPad || "s";
         const _logoPadPx =
           { s: "100px", m: "130px", l: "160px" }[_logoPad] || "100px";
@@ -3798,7 +3931,7 @@
           assetBlock,
           hasCont,
           contentBlock,
-          hasFooter,
+          hasFooter && !hybrid,
           footerTxt,
           footerPos,
           hasLogo,
@@ -3870,6 +4003,24 @@
           logoWarning +
           `<div class="out-block"><div class="out-hdr"><span class="out-ttl">Prompt Poster ${ratio} (${ri.w}×${ri.h}) — Paste ke GPT-4o</span><button class="cbtn" id="${rid}">⎘ Copy</button></div><div class="out-txt">${esc(poster)}</div></div>`;
         document.getElementById(rid).onclick = () => cpBtn(rid, poster);
+        if (hybrid && hasCont) {
+          const kps = getKpData();
+          const manualTxt =
+            (contentMode === "para"
+              ? document.getElementById("f-para").value.trim()
+              : kps
+                  .map((k) => "• " + k.label + (k.desc ? " — " + k.desc : ""))
+                  .join("\n")) +
+            (hasFooter && footerTxt ? "\n\nFooter: " + footerTxt : "");
+          makeBlock(
+            "out-hybrid-wrap",
+            "Mode Hybrid — Teks Konten untuk Ditempel di Canva (font: Poppins)",
+            manualTxt || "[Konten belum diisi]",
+            "hybrid",
+          );
+        } else {
+          document.getElementById("out-hybrid-wrap").innerHTML = "";
+        }
         makeBlock(
           "out-caption-wrap",
           "Caption TikTok / WA — Siap Copas",
@@ -4001,12 +4152,182 @@
         if (p.logoPos) document.getElementById("logo-pos").value = p.logoPos;
       }
 
+      function exportPresets() {
+        const raw = localStorage.getItem("ce_presets") || "[]";
+        if (!JSON.parse(raw).length) {
+          alert("Belum ada preset untuk di-export.");
+          return;
+        }
+        const blob = new Blob([raw], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "presets-ngonten.json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }
+
+      function importPresets(inp) {
+        const f = inp.files[0];
+        if (!f) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const incoming = JSON.parse(reader.result);
+            if (!Array.isArray(incoming)) throw new Error("not array");
+            const cur = JSON.parse(localStorage.getItem("ce_presets") || "[]");
+            let added = 0;
+            incoming.forEach((p) => {
+              if (p && p.name && !cur.some((c) => c.name === p.name)) {
+                cur.push(p);
+                added++;
+              }
+            });
+            localStorage.setItem("ce_presets", JSON.stringify(cur));
+            renderPresets();
+            const skipped = incoming.length - added;
+            alert(
+              added +
+                " preset berhasil di-import." +
+                (skipped ? " " + skipped + " dilewati (nama sudah ada)." : ""),
+            );
+          } catch (e) {
+            alert("File tidak valid — gunakan file JSON hasil Export Preset.");
+          }
+          inp.value = "";
+        };
+        reader.readAsText(f);
+      }
+
       function delPreset(i) {
         const presets = JSON.parse(localStorage.getItem("ce_presets") || "[]");
         presets.splice(i, 1);
         localStorage.setItem("ce_presets", JSON.stringify(presets));
         renderPresets();
       }
+
+      // ════════════════════════════════════════
+      // AUTO-SAVE DRAFT
+      // ════════════════════════════════════════
+      const DRAFT_KEY = "ce_draft";
+      let draftTimer = null;
+
+      function scheduleDraft() {
+        clearTimeout(draftTimer);
+        draftTimer = setTimeout(saveDraft, 2000);
+      }
+
+      function saveDraft() {
+        const d = {
+          fields: {},
+          checks: {},
+          comps: {},
+          kpCount,
+          imgFuncs: getImgSlots().map((s) => s.func),
+          bgState,
+          marker: selectedMarker,
+          contentMode,
+          inputMode,
+          alignState,
+          logoPad: window._logoPad || "s",
+          ts: Date.now(),
+        };
+        document
+          .querySelectorAll("input[id],textarea[id],select[id]")
+          .forEach((el) => {
+            if (el.type === "file") return;
+            if (el.type === "checkbox") d.checks[el.id] = el.checked;
+            else d.fields[el.id] = el.value;
+          });
+        ["comp-sub", "comp-asset", "comp-content"].forEach(
+          (id) => (d.comps[id] = isOn(id)),
+        );
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+      }
+
+      function restoreDraft() {
+        const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+        if (!d) return;
+        if (d.kpCount) buildKpList(d.kpCount);
+        if (Array.isArray(d.imgFuncs)) {
+          document.getElementById("img-upload-list").innerHTML = "";
+          d.imgFuncs.forEach(() => addImgSlot());
+          d.imgFuncs.forEach((f, i) => {
+            const sel = document.getElementById("if-" + (i + 1));
+            if (sel) {
+              sel.value = f;
+              updateImgHint(i + 1);
+            }
+          });
+        }
+        Object.entries(d.fields || {}).forEach(([id, v]) => {
+          const el = document.getElementById(id);
+          if (el) el.value = v;
+        });
+        Object.entries(d.checks || {}).forEach(([id, v]) => {
+          const el = document.getElementById(id);
+          if (el) el.checked = v;
+        });
+        Object.entries(d.comps || {}).forEach(([id, on]) => {
+          const el = document.getElementById(id);
+          if (el && isOn(id) !== on) toggleComp(el);
+        });
+        if (d.bgState) applyPreset({ bgState: d.bgState });
+        if (d.marker) {
+          selectedMarker = d.marker;
+          buildMarkerRow(markerCat);
+        }
+        if (d.contentMode) setContentMode(d.contentMode);
+        if (d.inputMode) setMode(d.inputMode);
+        if (d.alignState) {
+          alignState = d.alignState;
+          ["hl", "sub", "para"].forEach((f) =>
+            setAlign(f, alignState[f] || "left"),
+          );
+        }
+        if (d.logoPad) setLogoPad(d.logoPad);
+        toggleFooterFields();
+        toggleLogoSafeZone();
+        onRatioChange();
+        countPara();
+        dismissDraftBanner();
+      }
+
+      function discardDraft() {
+        localStorage.removeItem(DRAFT_KEY);
+        dismissDraftBanner();
+      }
+
+      function dismissDraftBanner() {
+        document.getElementById("draft-banner")?.remove();
+      }
+
+      function maybeShowDraftBanner() {
+        let d = null;
+        try {
+          d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+        } catch (e) {}
+        if (!d || !d.ts) return;
+        const mins = Math.round((Date.now() - d.ts) / 60000);
+        const age =
+          mins < 1
+            ? "baru saja"
+            : mins < 60
+              ? mins + " menit lalu"
+              : Math.round(mins / 60) + " jam lalu";
+        const b = document.createElement("div");
+        b.id = "draft-banner";
+        b.style.cssText =
+          "background:rgba(79,179,179,.1);border:1px solid rgba(79,179,179,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap";
+        b.innerHTML =
+          '<span style="flex:1">📝 Ada draft tersimpan (' +
+          age +
+          ')</span><button class="btn-sec" style="margin:0;width:auto;padding:5px 14px;font-size:11px" onclick="restoreDraft()">↩ Pulihkan</button><button class="btn-sec" style="margin:0;width:auto;padding:5px 14px;font-size:11px" onclick="discardDraft()">✕ Buang</button>';
+        const wrap = document.querySelector(".wrap");
+        wrap.insertBefore(b, wrap.firstChild);
+      }
+
+      document.addEventListener("input", scheduleDraft);
+      document.addEventListener("change", scheduleDraft);
 
       // ════════════════════════════════════════
       // LOGO SAFE ZONE
