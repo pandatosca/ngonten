@@ -1903,6 +1903,21 @@
                 <option value="faithful">🪞 Faithful (sama persis aslinya)</option>
               </select>
             </div>
+            <div class="asub" style="margin-top: 8px">
+              <div class="asub-k">Dekorasi Background (di belakang visual)</div>
+              <select class="asel" id="sel-deco">
+                <option value="none">🚫 Polos (tanpa dekorasi)</option>
+                <option value="auto" selected>🪄 Auto (ikut konten)</option>
+                <option value="tech">💻 Tech — circuit/hexagon</option>
+                <option value="finance">💰 Finansial — koin/grafik</option>
+                <option value="health">🩺 Kesehatan — daun/medis</option>
+                <option value="business">📊 Bisnis — geometris abstrak</option>
+                <option value="nature">🌿 Alam — botani/daun</option>
+                <option value="geometric">🕌 Islami — geometris/arabesque</option>
+                <option value="celebration">🎉 Perayaan — confetti/bintang</option>
+                <option value="food">🍽️ Kuliner — makanan</option>
+              </select>
+            </div>
             <div class="asset-grid">
               <div class="asub">
                 <div class="asub-k">Lighting / Mood</div>
@@ -2192,6 +2207,18 @@
               <span class="sw-lbl"
                 >Ada logo di atas — turunkan Headline &amp; Subheadline</span
               >
+            </div>
+            <div id="logo-manual-wrap" style="display: none; margin-top: 8px">
+              <div class="sw-row" style="margin-bottom: 0">
+                <label class="sw"
+                  ><input type="checkbox" id="logo-manual" checked />
+                  <div class="sw-track"></div
+                ></label>
+                <span class="sw-lbl"
+                  >Kosongkan area logo — GPT tidak menggambar logo, kamu tempel
+                  logo asli manual (anti-berubah)</span
+                >
+              </div>
             </div>
             <div id="logo-padding-opts" style="display: none; margin-top: 8px">
               <label style="margin-bottom: 5px; display: block"
@@ -3858,8 +3885,25 @@
             subAl +
             " · plain text only, NO icons"
           : "";
+        const decoMap = {
+          tech: "tech circuit-board lines and hexagon grid pattern",
+          finance: "coins, upward growth chart and currency symbols",
+          health: "leaves, medical cross and a subtle heartbeat line",
+          business: "abstract geometric business shapes (triangles, grids)",
+          nature: "botanical leaves and organic nature pattern",
+          geometric: "Islamic geometric mandala / arabesque line pattern",
+          celebration: "confetti, stars and festive sparkles",
+          food: "culinary / food-themed line icons",
+        };
+        const deco = document.getElementById("sel-deco")?.value || "auto";
         const decoTxt =
-          "BACKGROUND DECORATION (REQUIRED — do not skip, must be visible):\n  Behind the 3D asset, render these at low opacity to add depth:\n  · 1 large thematic decorative element ~550pt · white or accent color · opacity 10–12% · centered behind main visual\n    (auto-select based on content: Islamic→geometric mandala/arabesque, Tech→circuit/hexagon, Health→leaf/cross, Business→abstract geometric, Nature→botanical, Celebration→confetti/stars)\n  · 5–7 small contextual icons matching the content theme · scattered naturally · opacity 11–13% · slightly defocused/blurred\n  · These elements MUST be clearly present — they are integral to the design depth";
+          deco === "none"
+            ? "BACKGROUND: keep clean — NO decorative icons or patterns behind the asset. Only the plain background gradient/solid (plus the required edge vignette)."
+            : "BACKGROUND DECORATION (subtle, must stay behind the main visual — never overpower it):\n  Behind the 3D asset, render: " +
+              (deco === "auto"
+                ? "a thematic motif matching the content (Tech→circuit/hexagon, Finance→coins/chart, Health→leaf/cross, Business→abstract geometric, Nature→botanical, Celebration→confetti, Food→culinary icons)"
+                : decoMap[deco] || decoMap.business) +
+              "\n  · 1 large element ~550pt · white or accent color · opacity 10–12% · centered behind main visual\n  · 5–7 small matching icons · scattered naturally · opacity 11–13% · slightly defocused/blurred\n  · Decorative only — must remain low-contrast and clearly secondary to the 3D asset";
         const assetTxt = hasAsset
           ? "3D Asset:\n  " + assetBlock + "\n  " + decoTxt
           : "[No 3D asset]";
@@ -3883,18 +3927,25 @@
             (logoSafeZoneMap[logoPos] || logoSafeZoneMap["top-right"]) +
             " for the logo — no text, no elements may enter this zone."
           : "";
-        const logoTxt = hasLogo
-          ? "LOGO:\\n  " +
-            (logoSlotN
-              ? "Image " +
-                logoSlotN +
-                " (uploaded in this conversation) is the logo."
-              : "Logo uploaded in this conversation.") +
-            "\\n  Position: " +
-            document.getElementById("logo-pos").value +
-            "\\n  Max height: 70px · Width: auto-proportional\\n  NEVER crop — scale down to fit within safe zone if wide\\n  NEVER stretch · transparent background — do NOT add black box or background fill\\n  White logo elements must appear on the poster background, not on black fill\\n  " +
-            logoSafeZone
-          : "";
+        const logoManual =
+          document.getElementById("logo-manual")?.checked || false;
+        const logoTxt = !hasLogo
+          ? ""
+          : logoManual
+            ? "LOGO AREA (RESERVE EMPTY — do NOT draw any logo):\\n  Leave a CLEAN EMPTY area at " +
+              document.getElementById("logo-pos").value +
+              " (per safe zone below). Do NOT render, draw, or invent any logo, icon, text, or graphic there — keep it as plain background only. The real logo will be pasted in manually afterward.\\n  " +
+              logoSafeZone
+            : "LOGO:\\n  " +
+              (logoSlotN
+                ? "Image " +
+                  logoSlotN +
+                  " (uploaded in this conversation) is the logo."
+                : "Logo uploaded in this conversation.") +
+              "\\n  Position: " +
+              document.getElementById("logo-pos").value +
+              "\\n  Max height: 70px · Width: auto-proportional\\n  NEVER crop — scale down to fit within safe zone if wide\\n  NEVER stretch · transparent background — do NOT add black box or background fill\\n  White logo elements must appear on the poster background, not on black fill\\n  " +
+              logoSafeZone;
         // hlTopPad received as parameter — not redeclared here
 
         if (ratio === "9:16") {
@@ -4250,8 +4301,12 @@
         goPhase(2);
         // Logo reminder + output
         const posterWrap = document.getElementById("out-poster-wrap");
+        const logoManualOn =
+          document.getElementById("logo-manual")?.checked || false;
         let logoWarning = "";
-        if (hasLogo) {
+        if (hasLogo && logoManualOn) {
+          logoWarning = `<div style="background:rgba(94,139,145,.1);border:1px solid rgba(94,139,145,.35);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:var(--tl);line-height:1.6">🪧 <strong>Mode logo manual:</strong> GPT akan mengosongkan area logo (tidak menggambar). Setelah poster jadi, tempel file logo aslimu di area itu pakai Canva/Figma — hasil logo dijamin tidak berubah.</div>`;
+        } else if (hasLogo) {
           logoWarning = `<div style="background:rgba(173,100,9,.08);border:1px solid rgba(173,100,9,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(173,100,9,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
         }
         const rid = "cb-poster";
@@ -4315,6 +4370,7 @@
           footerTxt: document.getElementById("footer-txt").value,
           footerPos: document.getElementById("footer-pos").value,
           logoOn: document.getElementById("has-logo").checked,
+          logoManual: document.getElementById("logo-manual").checked,
           logoPos: document.getElementById("logo-pos").value,
           ts: Date.now(),
         });
@@ -4424,6 +4480,8 @@
           document.getElementById("has-logo").checked = p.logoOn;
           toggleLogoSafeZone();
         }
+        if (typeof p.logoManual === "boolean")
+          document.getElementById("logo-manual").checked = p.logoManual;
         if (p.logoPos) document.getElementById("logo-pos").value = p.logoPos;
       }
 
@@ -4613,6 +4671,9 @@
       function toggleLogoSafeZone() {
         const on = document.getElementById("has-logo").checked;
         document.getElementById("logo-padding-opts").style.display = on
+          ? "block"
+          : "none";
+        document.getElementById("logo-manual-wrap").style.display = on
           ? "block"
           : "none";
       }
