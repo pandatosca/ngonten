@@ -124,7 +124,8 @@
         z-index: 1;
         max-width: 880px;
         margin: 0 auto;
-        padding: 36px 16px 80px;
+        padding: clamp(20px, 4vw, 36px) clamp(12px, 3vw, 16px)
+          clamp(56px, 10vw, 80px);
       }
 
       /* HEADER */
@@ -620,6 +621,16 @@
         font-size: 5px;
         color: rgba(255, 255, 255, 0.25);
       }
+      .wfz-img {
+        background: rgba(173, 100, 9, 0.16);
+        border: 1px solid rgba(173, 100, 9, 0.4);
+        color: rgba(201, 131, 28, 0.9);
+      }
+      .wfz-man {
+        background: rgba(94, 139, 145, 0.12);
+        border: 1px dashed var(--tl);
+        color: var(--tl);
+      }
 
       /* MARKER */
       .mcat-row {
@@ -634,6 +645,65 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
+      }
+      .estatus-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 11px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+      .estatus-lbl {
+        flex: 1;
+        min-width: 110px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .estatus-lbl small {
+        color: var(--mu2);
+        font-weight: 400;
+        font-size: 10px;
+      }
+      .seg {
+        display: inline-flex;
+        border: 1px solid var(--bd2);
+        border-radius: var(--r3);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .seg-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+        font-weight: 500;
+        background: transparent;
+        color: var(--mu);
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .seg-btn + .seg-btn {
+        border-left: 1px solid var(--bd2);
+      }
+      .seg-btn.on-img {
+        background: var(--ac);
+        color: #fff;
+      }
+      .seg-btn.on-man {
+        background: var(--tl);
+        color: #fff;
+      }
+      .seg-btn.on-off {
+        background: var(--s3);
+        color: var(--tx);
       }
       .comp-item {
         display: flex;
@@ -1248,6 +1318,23 @@
         .pbtn {
           font-size: 10px;
           padding: 8px 2px;
+          gap: 3px;
+        }
+        .pbtn .pnum {
+          width: 16px;
+          height: 16px;
+          font-size: 9px;
+        }
+        .parr {
+          padding: 0;
+          font-size: 9px;
+        }
+        .estatus-lbl {
+          min-width: 90px;
+          font-size: 12px;
+        }
+        .seg-btn {
+          padding: 5px 8px;
         }
         .ratio-grid {
           gap: 6px;
@@ -1300,15 +1387,19 @@
 
       <div class="phase-bar">
         <button class="pbtn active" id="pbtn-0" onclick="goPhase(0)">
-          <span class="pnum">1</span>&nbsp;Input
+          <span class="pnum">1</span>&nbsp;Brief
         </button>
         <span class="parr">›</span>
         <button class="pbtn" id="pbtn-1" onclick="goPhase(1)">
-          <span class="pnum">2</span>&nbsp;Detail
+          <span class="pnum">2</span>&nbsp;Kanvas
         </button>
         <span class="parr">›</span>
         <button class="pbtn" id="pbtn-2" onclick="goPhase(2)">
-          <span class="pnum">3</span>&nbsp;Prompt
+          <span class="pnum">3</span>&nbsp;Elemen
+        </button>
+        <span class="parr">›</span>
+        <button class="pbtn" id="pbtn-3" onclick="goPhase(3)">
+          <span class="pnum">4</span>&nbsp;Hasil
         </button>
       </div>
 
@@ -1426,7 +1517,7 @@
             <div class="out-txt" id="out-a-txt"></div>
           </div>
           <button class="btn-sec" onclick="goPhase(1)">
-            Sudah dapat hasil? → Lanjut Isi Detail
+            Lanjut ke Kanvas →
           </button>
         </div>
 
@@ -1447,123 +1538,6 @@
 
       <!-- ═══════════════════ PHASE 2 ═══════════════════ -->
       <div class="panel" id="phase-1">
-        <div class="info">
-          <svg
-            width="14"
-            height="14"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 8v4M12 16h.01" />
-          </svg>
-          Paste output ChatGPT → otomatis ter-parse ke semua field. Centang
-          komponen yang ingin tampil di poster.
-        </div>
-
-        <!-- RAW PASTE -->
-        <div class="card">
-          <div class="clabel">Paste Hasil ChatGPT (Raw)</div>
-          <textarea
-            id="raw-paste"
-            style="min-height: 90px; font-size: 12px"
-            placeholder="Paste output ChatGPT di sini...&#10;HEADLINE: ...&#10;KEY POINT 1: ..."
-            oninput="parseRaw()"
-          ></textarea>
-          <p class="hint">Auto-parse ke semua field.</p>
-        </div>
-
-        <!-- KOMPONEN CHECKLIST -->
-        <div class="card">
-          <div class="clabel">Komponen Poster</div>
-          <div class="comp-list">
-            <div class="comp-item on disabled" id="comp-hl">
-              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
-              <span class="comp-lbl">Headline</span
-              ><span class="comp-sub">Wajib</span>
-            </div>
-            <div class="comp-item on" id="comp-sub" onclick="toggleComp(this)">
-              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
-              <span class="comp-lbl">Subheadline</span
-              ><span class="comp-sub">Kalimat pendukung (text only)</span>
-            </div>
-            <div
-              class="comp-item on"
-              id="comp-asset"
-              onclick="toggleComp(this)"
-            >
-              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
-              <span class="comp-lbl">3D Asset / Visual Utama</span
-              ><span class="comp-sub">Elemen visual 3D</span>
-            </div>
-            <div
-              class="comp-item on"
-              id="comp-content"
-              onclick="toggleComp(this)"
-            >
-              <div class="comp-cb"><div class="comp-cb-inner">✓</div></div>
-              <span class="comp-lbl">Key Points / Paragraf</span
-              ><span class="comp-sub">Zona konten bawah</span>
-            </div>
-          </div>
-
-          <!-- LAYOUT FLIP -->
-          <div
-            style="
-              margin-top: 12px;
-              padding-top: 12px;
-              border-top: 1px solid var(--bd);
-            "
-          >
-            <div class="sw-row">
-              <label class="sw"
-                ><input
-                  type="checkbox"
-                  id="layout-flip"
-                  onchange="drawWireframe(selRatio())" />
-                <div class="sw-track"></div
-              ></label>
-              <span class="sw-lbl"
-                >Flip Layout: 3D Asset di atas, Headline di tengah</span
-              >
-            </div>
-            <div class="sw-row" style="margin-top: 8px">
-              <label class="sw"
-                ><input
-                  type="checkbox"
-                  id="hybrid-toggle"
-                  onchange="onModeToggle('hybrid')" />
-                <div class="sw-track"></div
-              ></label>
-              <span class="sw-lbl"
-                >Mode Hybrid: zona konten dikosongkan — teks ditempel manual di
-                Canva/Figma (hasil teks 100% tajam)</span
-              >
-            </div>
-            <div class="sw-row" style="margin-top: 8px">
-              <label class="sw"
-                ><input
-                  type="checkbox"
-                  id="full-image-toggle"
-                  onchange="onModeToggle('full')" />
-                <div class="sw-track"></div
-              ></label>
-              <span class="sw-lbl"
-                >Mode Full Image: hanya visual saja — semua teks dimatikan, sisa
-                frame dibiarkan kosong (siap diisi manual)</span
-              >
-            </div>
-            <div id="fullimg-pos-wrap" style="display: none; margin-top: 10px">
-              <label style="margin-bottom: 6px; display: block"
-                >Posisi Visual</label
-              >
-              <div class="trow" id="fullimg-pos-row" style="margin-bottom: 0"></div>
-            </div>
-          </div>
-        </div>
-
         <!-- RASIO -->
         <div class="card">
           <div class="clabel">Ukuran &amp; Rasio Poster</div>
@@ -1620,10 +1594,6 @@
               <div class="hint" id="ratio-hint" style="margin-top: 8px">
                 Instagram Reels, TikTok, Stories
               </div>
-            </div>
-            <div class="ratio-wf-col">
-              <div class="ratio-wf-lbl">Preview Layout</div>
-              <div class="ratio-canvas" id="ratio-canvas"></div>
             </div>
           </div>
         </div>
@@ -1715,6 +1685,123 @@
                 />
               </div>
               <button class="btn-apply" onclick="applySolid()">Terapkan</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-gen" onclick="goPhase(2)">
+          Lanjut ke Elemen &rarr;
+        </button>
+        <button class="btn-sec" onclick="goPhase(0)">&larr; Kembali ke Brief</button>
+
+        </div>
+
+        <div class="panel" id="phase-2">
+        <div class="info">
+          <svg
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+          Paste output ChatGPT → otomatis ter-parse ke semua field. Centang
+          komponen yang ingin tampil di poster.
+        </div>
+
+        <!-- RAW PASTE -->
+        <div class="card">
+          <div class="clabel">Paste Hasil ChatGPT (Raw)</div>
+          <textarea
+            id="raw-paste"
+            style="min-height: 90px; font-size: 12px"
+            placeholder="Paste output ChatGPT di sini...&#10;HEADLINE: ...&#10;KEY POINT 1: ..."
+            oninput="parseRaw()"
+          ></textarea>
+          <p class="hint">Auto-parse ke semua field.</p>
+        </div>
+
+        <!-- KOMPONEN CHECKLIST -->
+        <div class="card">
+          <div class="clabel">Komponen Poster</div>
+          <p class="hint" style="margin: -4px 0 12px">
+            Tiap elemen: <b>Di gambar</b> = digambar AI · <b>Manual</b> = zona
+            dikosongkan untuk kamu tempel sendiri di Canva · <b>Off</b> = tidak
+            ada.
+          </p>
+          <div id="elem-status-list"></div>
+          <div
+            style="
+              margin-top: 12px;
+              display: flex;
+              gap: 14px;
+              align-items: center;
+              flex-wrap: wrap;
+            "
+          >
+            <div>
+              <div class="ratio-wf-lbl">Preview layout</div>
+              <div class="ratio-canvas" id="ratio-canvas"></div>
+            </div>
+            <div
+              style="
+                font-size: 11px;
+                color: var(--mu);
+                display: flex;
+                flex-direction: column;
+                gap: 7px;
+              "
+            >
+              <span style="display: flex; align-items: center; gap: 7px"
+                ><span
+                  style="
+                    width: 13px;
+                    height: 13px;
+                    border-radius: 3px;
+                    background: rgba(173, 100, 9, 0.16);
+                    border: 1px solid rgba(173, 100, 9, 0.4);
+                  "
+                ></span
+                >Di gambar (AI)</span
+              >
+              <span style="display: flex; align-items: center; gap: 7px"
+                ><span
+                  style="
+                    width: 13px;
+                    height: 13px;
+                    border-radius: 3px;
+                    background: rgba(94, 139, 145, 0.12);
+                    border: 1px dashed var(--tl);
+                  "
+                ></span
+                >Manual — disisakan kosong</span
+              >
+            </div>
+          </div>
+
+          <!-- LAYOUT FLIP -->
+          <div
+            style="
+              margin-top: 12px;
+              padding-top: 12px;
+              border-top: 1px solid var(--bd);
+            "
+          >
+            <div class="sw-row">
+              <label class="sw"
+                ><input
+                  type="checkbox"
+                  id="layout-flip"
+                  onchange="drawWireframe(selRatio())" />
+                <div class="sw-track"></div
+              ></label>
+              <span class="sw-lbl"
+                >Flip Layout: 3D Asset di atas, Headline di tengah</span
+              >
             </div>
           </div>
         </div>
@@ -2367,11 +2454,11 @@
           </svg>
           Generate Prompt Poster &amp; Caption Final
         </button>
-        <button class="btn-sec" onclick="goPhase(0)">← Kembali ke Input</button>
+        <button class="btn-sec" onclick="goPhase(1)">← Kembali ke Kanvas</button>
       </div>
 
       <!-- ═══════════════════ PHASE 3 ═══════════════════ -->
-      <div class="panel" id="phase-2">
+      <div class="panel" id="phase-3">
         <div class="info">
           <svg
             width="14"
@@ -2390,7 +2477,7 @@
         <div id="out-poster-wrap"></div>
         <div id="out-hybrid-wrap"></div>
         <div id="out-caption-wrap"></div>
-        <button class="btn-sec" onclick="goPhase(1)">← Edit Detail</button>
+        <button class="btn-sec" onclick="goPhase(2)">← Edit Elemen</button>
         <button class="btn-sec" style="margin-top: 8px" onclick="goPhase(0)">
           ← Mulai dari Awal
         </button>
@@ -2730,7 +2817,62 @@
       let imgLinkCount = 0;
       let suggestTimer = null;
       let alignState = { hl: "left", sub: "left", para: "left" };
-      let fullImgPos = "bottom";
+      // Per-element status: 'gambar' (AI render) | 'manual' (reserve empty, paste in Canva) | 'off'
+      let elemState = { hl: "gambar", sub: "gambar", asset: "gambar", cont: "gambar" };
+      const ELEMS = [
+        { k: "hl", label: "Headline", note: "focal point", sec: "sec-hl" },
+        { k: "sub", label: "Subheadline", note: "kalimat pendukung", sec: "sec-sub" },
+        { k: "asset", label: "Visual utama", note: "3D / gambar", sec: "sec-asset" },
+        { k: "cont", label: "Konten / paragraf", note: "zona bawah", sec: "sec-content" },
+      ];
+
+      function buildElemStatus() {
+        const list = document.getElementById("elem-status-list");
+        if (!list) return;
+        list.innerHTML = "";
+        ELEMS.forEach((e) => {
+          const st = elemState[e.k];
+          const row = document.createElement("div");
+          row.className = "estatus-row";
+          row.innerHTML =
+            '<span class="estatus-lbl">' +
+            e.label +
+            " <small>" +
+            e.note +
+            '</small></span><span class="seg">' +
+            '<button class="seg-btn' +
+            (st === "gambar" ? " on-img" : "") +
+            "\" onclick=\"setElemState('" +
+            e.k +
+            "','gambar')\">Di gambar</button>" +
+            '<button class="seg-btn' +
+            (st === "manual" ? " on-man" : "") +
+            "\" onclick=\"setElemState('" +
+            e.k +
+            "','manual')\">Manual</button>" +
+            '<button class="seg-btn' +
+            (st === "off" ? " on-off" : "") +
+            "\" onclick=\"setElemState('" +
+            e.k +
+            "','off')\">Off</button></span>";
+          list.appendChild(row);
+        });
+      }
+
+      function setElemState(k, v) {
+        elemState[k] = v;
+        const e = ELEMS.find((x) => x.k === k);
+        if (e) {
+          const sec = document.getElementById(e.sec);
+          if (sec) sec.style.display = v === "off" ? "none" : "block";
+        }
+        buildElemStatus();
+        drawWireframe(selRatio());
+      }
+
+      function est(k) {
+        return elemState[k] || "off";
+      }
 
       // ════════════════════════════════════════
       // INIT
@@ -2743,8 +2885,8 @@
         buildGreetGrid();
         buildKpList(3);
         addImgSlot(); // default: 1 logo slot
+        buildElemStatus();
         drawWireframe("9:16");
-        buildFullImgPositions();
         onFooterPreset();
         updateBgPreview();
         loadPresets();
@@ -2928,52 +3070,6 @@
           .querySelectorAll(".ratio-opt")
           .forEach((b) => b.classList.toggle("on", b.dataset.r === r));
         drawWireframe(r);
-        buildFullImgPositions();
-      }
-
-      // Position options depend on ratio
-      const FULLIMG_POS = {
-        "9:16": [
-          { v: "top", l: "↑ Atas" },
-          { v: "center", l: "◎ Tengah" },
-          { v: "bottom", l: "↓ Bawah" },
-        ],
-        "16:9": [
-          { v: "left", l: "← Kiri (½ frame)" },
-          { v: "right", l: "→ Kanan (½ frame)" },
-        ],
-        "1:1": [{ v: "bottom", l: "↓ Bawah" }],
-        "4:5": [{ v: "bottom", l: "↓ Bawah" }],
-      };
-
-      function buildFullImgPositions() {
-        const row = document.getElementById("fullimg-pos-row");
-        if (!row) return;
-        const opts = FULLIMG_POS[selRatio()] || FULLIMG_POS["9:16"];
-        if (!opts.some((o) => o.v === fullImgPos)) fullImgPos = opts[0].v;
-        row.innerHTML = "";
-        opts.forEach((o) => {
-          const b = document.createElement("div");
-          b.className = "tbtn" + (o.v === fullImgPos ? " on" : "");
-          b.textContent = o.l;
-          b.onclick = () => {
-            fullImgPos = o.v;
-            buildFullImgPositions();
-          };
-          row.appendChild(b);
-        });
-      }
-
-      function onModeToggle(which) {
-        const hy = document.getElementById("hybrid-toggle");
-        const fi = document.getElementById("full-image-toggle");
-        // mutually exclusive
-        if (which === "hybrid" && hy.checked) fi.checked = false;
-        if (which === "full" && fi.checked) hy.checked = false;
-        document.getElementById("fullimg-pos-wrap").style.display = fi.checked
-          ? "block"
-          : "none";
-        if (fi.checked) buildFullImgPositions();
       }
 
       function drawWireframe(ratio) {
@@ -2998,10 +3094,14 @@
           hasAsset = isOn("comp-asset"),
           hasCont = isOn("comp-content");
         const flip = document.getElementById("layout-flip")?.checked || false;
+        const zoneKey = { hl: "hl", vs: "asset", kp: "cont" };
         getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip).forEach(
           (z) => {
             const el = document.createElement("div");
-            el.className = "wfz " + z.c;
+            const type = z.c.trim().split(/\s+/).pop();
+            const k = zoneKey[type];
+            const cls = k && est(k) === "manual" ? "wfz-man" : "wfz-img";
+            el.className = "wfz " + cls;
             el.style.cssText = `left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;`;
             el.textContent = z.t;
             c.appendChild(el);
@@ -3313,28 +3413,20 @@
       // ════════════════════════════════════════
       // COMPONENT TOGGLE
       // ════════════════════════════════════════
-      function toggleComp(el) {
-        if (el.classList.contains("disabled")) return;
-        const wasOn = el.classList.contains("on");
-        el.classList.toggle("on");
-        const id = el.id;
-        if (id === "comp-sub")
-          document.getElementById("sec-sub").style.display = !wasOn
-            ? "block"
-            : "none";
-        if (id === "comp-asset")
-          document.getElementById("sec-asset").style.display = !wasOn
-            ? "block"
-            : "none";
-        if (id === "comp-content")
-          document.getElementById("sec-content").style.display = !wasOn
-            ? "block"
-            : "none";
-        drawWireframe(selRatio());
-      }
+      const COMP_KEY = {
+        "comp-hl": "hl",
+        "comp-sub": "sub",
+        "comp-asset": "asset",
+        "comp-content": "cont",
+      };
 
       function isOn(id) {
+        if (COMP_KEY[id]) return est(COMP_KEY[id]) !== "off";
         return document.getElementById(id)?.classList.contains("on") || false;
+      }
+
+      function isManual(id) {
+        return COMP_KEY[id] ? est(COMP_KEY[id]) === "manual" : false;
       }
 
       // ════════════════════════════════════════
@@ -3868,23 +3960,32 @@
           { "9:16": "26pt", "4:5": "24pt", "1:1": "22pt", "16:9": "22pt" }[
             ratio
           ] || "24pt";
+        const hlManual = est("hl") === "manual";
+        const subManual = est("sub") === "manual";
         const hlTxt =
-          'Headline: "' +
-          hl +
-          '"\n  Poppins ExtraBold 800 · ' +
-          hlPt +
-          " · white · line-height 1.15 · letter-spacing -0.01em · text-align: " +
-          hlAl +
-          (hlTopPad ? "\n  " + hlTopPad : "");
-        const subTxt = hasSub
-          ? 'Subheadline: "' +
-            sub +
-            '"\n  Poppins Regular 400 · ' +
-            subPt +
-            " · white 72% opacity · text-align: " +
-            subAl +
-            " · plain text only, NO icons"
-          : "";
+          est("hl") === "off"
+            ? ""
+            : hlManual
+              ? "Headline area: RESERVE A CLEAN EMPTY BAND at top (height of a headline) — draw NO text/letters here. The headline will be added manually later." +
+                (hlTopPad ? "\n  " + hlTopPad : "")
+              : 'Headline: "' +
+                hl +
+                '"\n  Poppins ExtraBold 800 · ' +
+                hlPt +
+                " · white · line-height 1.15 · letter-spacing -0.01em · text-align: " +
+                hlAl +
+                (hlTopPad ? "\n  " + hlTopPad : "");
+        const subTxt = !hasSub
+          ? ""
+          : subManual
+            ? "Subheadline area: RESERVE one CLEAN EMPTY line under the headline — draw NO text. Added manually later."
+            : 'Subheadline: "' +
+              sub +
+              '"\n  Poppins Regular 400 · ' +
+              subPt +
+              " · white 72% opacity · text-align: " +
+              subAl +
+              " · plain text only, NO icons";
         const decoMap = {
           tech: "tech circuit-board lines and hexagon grid pattern",
           finance: "coins, upward growth chart and currency symbols",
@@ -3904,9 +4005,11 @@
                 ? "a thematic motif matching the content (Tech→circuit/hexagon, Finance→coins/chart, Health→leaf/cross, Business→abstract geometric, Nature→botanical, Celebration→confetti, Food→culinary icons)"
                 : decoMap[deco] || decoMap.business) +
               "\n  · 1 large element ~550pt · white or accent color · opacity 10–12% · centered behind main visual\n  · 5–7 small matching icons · scattered naturally · opacity 11–13% · slightly defocused/blurred\n  · Decorative only — must remain low-contrast and clearly secondary to the 3D asset";
-        const assetTxt = hasAsset
-          ? "3D Asset:\n  " + assetBlock + "\n  " + decoTxt
-          : "[No 3D asset]";
+        const assetTxt = !hasAsset
+          ? "[No 3D asset]"
+          : est("asset") === "manual"
+            ? "Visual area: RESERVE CLEAN EMPTY SPACE for the main visual — draw NOTHING here (no object, no decoration). The image will be placed manually later."
+            : "3D Asset:\n  " + assetBlock + "\n  " + decoTxt;
         const ftTxt = hasFooter
           ? 'Footer: "' +
             footerTxt +
@@ -4059,35 +4162,6 @@
         return "";
       }
 
-      function buildFullImageLayout(ratio, pos, assetBlock) {
-        const region = {
-          top: "the TOP ~45% band of the canvas (anchored to the top edge)",
-          center: "a CENTERED horizontal band ~50% of the canvas height (vertically centered)",
-          bottom: "the BOTTOM ~50% of the canvas (anchored to the bottom edge)",
-          left: "the LEFT HALF of the canvas (~50% width, full height)",
-          right: "the RIGHT HALF of the canvas (~50% width, full height)",
-        };
-        const emptyNote = {
-          top: "The bottom ~55% is CLEAN EMPTY background.",
-          center: "The areas above and below are CLEAN EMPTY background.",
-          bottom: "The top ~50% is CLEAN EMPTY background.",
-          left: "The right half is CLEAN EMPTY background.",
-          right: "The left half is CLEAN EMPTY background.",
-        };
-        return (
-          "FULL-IMAGE LAYOUT — SINGLE VISUAL ONLY, ABSOLUTELY NO TEXT ANYWHERE:\n" +
-          "  Render ONLY the main visual below. NO headline, NO subheadline, NO body text, NO key points, NO footer, NO logo, NO cards, NO captions — zero text of any kind.\n" +
-          "  Place the main visual in " +
-          (region[pos] || region.bottom) +
-          ".\n  " +
-          (emptyNote[pos] || emptyNote.bottom) +
-          " — only the background color/gradient (and subtle decoration) fills the empty area, kept calm and uncluttered for manual text overlay later.\n" +
-          "  The visual must NOT bleed text into the empty zone.\n\n" +
-          "MAIN VISUAL:\n  " +
-          assetBlock
-        );
-      }
-
       function genFinal() {
         const hl =
           document.getElementById("f-headline").value.trim() || "[HEADLINE]";
@@ -4210,12 +4284,14 @@
           "\n  Effects: soft drop shadow · subtle rim glow " +
           bg.acc +
           (imgInstructions.length ? "\n  " + imgInstructions.join("\n  ") : "");
-        const hybrid =
-          document.getElementById("hybrid-toggle")?.checked || false;
-        const fullImg =
-          document.getElementById("full-image-toggle")?.checked || false;
-        const contentBlock = hybrid
-          ? "CONTENT ZONE (HYBRID MODE — RESERVED EMPTY SPACE):\n  Keep this entire zone as CLEAN EMPTY SPACE — absolutely NO text, NO placeholder boxes, NO lorem ipsum here.\n  Only the background color/gradient and subtle decoration may flow through this area.\n  Keep it visually calm and uncluttered — real text will be overlaid manually in post-production."
+        const contManual = est("cont") === "manual";
+        const anyManual =
+          est("hl") === "manual" ||
+          est("sub") === "manual" ||
+          est("asset") === "manual" ||
+          contManual;
+        const contentBlock = contManual
+          ? "CONTENT ZONE — RESERVE CLEAN EMPTY SPACE:\n  Keep this entire zone as CLEAN EMPTY SPACE — absolutely NO text, NO placeholder boxes, NO lorem ipsum here.\n  Only the background color/gradient and subtle decoration may flow through this area.\n  Keep it visually calm and uncluttered — real text will be overlaid manually in post-production."
           : buildContentBlock();
         const _logoPad = window._logoPad || "s";
         const _logoPadPx =
@@ -4225,30 +4301,28 @@
             _logoPadPx +
             " minimum (to clear logo area)."
           : "";
-        const layout = fullImg
-          ? buildFullImageLayout(ratio, fullImgPos, assetBlock)
-          : buildLayoutPrompt(
-              ratio,
-              hl,
-              alignState.hl,
-              hasSub,
-              sub,
-              alignState.sub,
-              hasAsset,
-              assetBlock,
-              hasCont,
-              contentBlock,
-              hasFooter && !hybrid,
-              footerTxt,
-              footerPos,
-              hasLogo,
-              logoUrl,
-              logoPos,
-              bg.acc,
-              flip,
-              hlTopPad,
-              logoSlot ? logoSlot.n : null,
-            );
+        const layout = buildLayoutPrompt(
+          ratio,
+          hl,
+          alignState.hl,
+          hasSub,
+          sub,
+          alignState.sub,
+          hasAsset,
+          assetBlock,
+          hasCont,
+          contentBlock,
+          hasFooter,
+          footerTxt,
+          footerPos,
+          hasLogo,
+          logoUrl,
+          logoPos,
+          bg.acc,
+          flip,
+          hlTopPad,
+          logoSlot ? logoSlot.n : null,
+        );
         const orientNote =
           ri.w < ri.h
             ? "PORTRAIT (taller than wide) — height MUST be greater than width."
@@ -4298,7 +4372,7 @@
                 .join("\n")
             : "  [No images specified]") +
           "\n\nFINAL RULES:\n· Poster bleeds to all 4 edges — no white border\n· All text readable at mobile size\n· Visual hierarchy: Headline → 3D Asset → Content → Footer\n· Background thematic deco behind 3D asset is REQUIRED\n· For logo: transparent areas must NOT be filled with black or any color";
-        goPhase(2);
+        goPhase(3);
         // Logo reminder + output
         const posterWrap = document.getElementById("out-poster-wrap");
         const logoManualOn =
@@ -4314,7 +4388,7 @@
           logoWarning +
           `<div class="out-block"><div class="out-hdr"><span class="out-ttl">Prompt Poster ${ratio} (${ri.w}×${ri.h}) — Paste ke GPT-4o</span><button class="cbtn" id="${rid}">⎘ Copy</button></div><div class="out-txt">${esc(poster)}</div></div>`;
         document.getElementById(rid).onclick = () => cpBtn(rid, poster);
-        if (hybrid || fullImg) {
+        if (anyManual) {
           const kps = getKpData();
           const contentTxt =
             contentMode === "para"
@@ -4322,25 +4396,22 @@
               : kps
                   .map((k) => "• " + k.label + (k.desc ? " — " + k.desc : ""))
                   .join("\n");
-          // Full Image: poster has NO text at all → export everything for manual overlay
-          // Hybrid: headline/sub stay in poster → export only content + footer
-          const parts = fullImg
-            ? [
-                hl && hl !== "[HEADLINE]" ? "Headline: " + hl : "",
-                hasSub && sub ? "Subheadline: " + sub : "",
-                hasCont && contentTxt ? contentTxt : "",
-                hasFooter && footerTxt ? "Footer: " + footerTxt : "",
-              ]
-            : [
-                hasCont && contentTxt ? contentTxt : "",
-                hasFooter && footerTxt ? "Footer: " + footerTxt : "",
-              ];
+          // Gather only the elements marked "Manual" — they're reserved-empty in the poster
+          const parts = [
+            est("hl") === "manual" && hl && hl !== "[HEADLINE]"
+              ? "Headline: " + hl
+              : "",
+            est("sub") === "manual" && sub ? "Subheadline: " + sub : "",
+            est("asset") === "manual"
+              ? "Visual: tempel gambar/asset sendiri di zona kosong"
+              : "",
+            contManual && contentTxt ? contentTxt : "",
+          ];
           const manualTxt = parts.filter(Boolean).join("\n\n");
           makeBlock(
             "out-hybrid-wrap",
-            (fullImg ? "Mode Full Image" : "Mode Hybrid") +
-              " — Teks untuk Ditempel Manual di Canva (font: Poppins)",
-            manualTxt || "[Konten belum diisi]",
+            "Teks jadi — ketik/tempel manual di Canva (font: Poppins)",
+            manualTxt || "[Belum ada isi untuk elemen Manual]",
             "hybrid",
           );
         } else {
@@ -4553,7 +4624,7 @@
         const d = {
           fields: {},
           checks: {},
-          comps: {},
+          elemState: { ...elemState },
           kpCount,
           imgFuncs: getImgSlots().map((s) => s.func),
           bgState,
@@ -4571,9 +4642,6 @@
             if (el.type === "checkbox") d.checks[el.id] = el.checked;
             else d.fields[el.id] = el.value;
           });
-        ["comp-sub", "comp-asset", "comp-content"].forEach(
-          (id) => (d.comps[id] = isOn(id)),
-        );
         localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
       }
 
@@ -4600,10 +4668,17 @@
           const el = document.getElementById(id);
           if (el) el.checked = v;
         });
-        Object.entries(d.comps || {}).forEach(([id, on]) => {
-          const el = document.getElementById(id);
-          if (el && isOn(id) !== on) toggleComp(el);
-        });
+        if (d.elemState) {
+          ["hl", "sub", "asset", "cont"].forEach((k) => {
+            if (d.elemState[k]) elemState[k] = d.elemState[k];
+          });
+          ELEMS.forEach((e) => {
+            const sec = document.getElementById(e.sec);
+            if (sec)
+              sec.style.display = elemState[e.k] === "off" ? "none" : "block";
+          });
+          buildElemStatus();
+        }
         if (d.bgState) applyPreset({ bgState: d.bgState });
         if (d.marker) {
           selectedMarker = d.marker;
@@ -4622,8 +4697,6 @@
         toggleLogoSafeZone();
         onRatioChange();
         onFooterPreset();
-        onModeToggle("hybrid");
-        onModeToggle("full");
         countPara();
         dismissDraftBanner();
       }
