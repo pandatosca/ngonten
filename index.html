@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Engine Pro</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,25 +17,74 @@
         padding: 0;
       }
       :root {
-        --bg: #09080f;
-        --s1: #121020;
-        --s2: #1a1729;
-        --s3: #232035;
-        --bd: rgba(255, 255, 255, 0.07);
-        --bd2: rgba(255, 255, 255, 0.14);
-        --tx: #ede8f8;
-        --mu: rgba(237, 232, 248, 0.46);
-        --mu2: rgba(237, 232, 248, 0.22);
-        --ac: #eeaa11;
-        --pk: #bb3381;
-        --tl: #4fb3b3;
-        --gn: #4fc88c;
+        /* Harvest Slate — dark */
+        --bg: #1e1d1b;
+        --s1: #262421;
+        --s2: #2d2b27;
+        --s3: #35322d;
+        --bd: rgba(224, 220, 217, 0.08);
+        --bd2: rgba(224, 220, 217, 0.16);
+        --tx: #e0dcd9;
+        --mu: rgba(224, 220, 217, 0.52);
+        --mu2: rgba(224, 220, 217, 0.26);
+        --ac: #c9831c;
+        --pk: #315e64;
+        --tl: #5e8b91;
+        --gn: #5e8b91;
         --r: 12px;
         --r2: 10px;
         --r3: 8px;
       }
+      body.light {
+        /* Harvest Slate — light */
+        --bg: #e0dcd9;
+        --s1: #eceae6;
+        --s2: #e4e1dc;
+        --s3: #f5f3f0;
+        --bd: rgba(42, 83, 89, 0.16);
+        --bd2: rgba(42, 83, 89, 0.3);
+        --tx: #26241f;
+        --mu: rgba(38, 36, 31, 0.56);
+        --mu2: rgba(38, 36, 31, 0.34);
+        --ac: #ad6409;
+        --pk: #315e64;
+        --tl: #2a5359;
+        --gn: #2a5359;
+      }
+      body.light .pnum {
+        background: rgba(0, 0, 0, 0.07);
+      }
+      body.light .pbtn.active {
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+      }
+      body.light .orb {
+        opacity: 0.55;
+      }
+      .theme-btn {
+        position: fixed;
+        top: 14px;
+        right: 14px;
+        z-index: 10;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--bd2);
+        background: var(--s1);
+        color: var(--tx);
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .theme-btn:hover {
+        border-color: var(--ac);
+      }
       body {
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         background: var(--bg);
         color: var(--tx);
         min-height: 100vh;
@@ -53,7 +102,7 @@
         height: 400px;
         background: radial-gradient(
           circle,
-          rgba(238, 170, 17, 0.09),
+          rgba(173, 100, 9, 0.09),
           transparent
         );
         top: -140px;
@@ -64,7 +113,7 @@
         height: 480px;
         background: radial-gradient(
           circle,
-          rgba(187, 51, 129, 0.07),
+          rgba(49, 94, 100, 0.07),
           transparent
         );
         bottom: -160px;
@@ -83,8 +132,8 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(238, 170, 17, 0.1);
-        border: 1px solid rgba(238, 170, 17, 0.2);
+        background: rgba(173, 100, 9, 0.1);
+        border: 1px solid rgba(173, 100, 9, 0.2);
         color: var(--ac);
         font-size: 10px;
         font-weight: 600;
@@ -95,11 +144,11 @@
         margin-bottom: 12px;
       }
       h1 {
-        font-family: "Syne", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: clamp(22px, 4vw, 40px);
         font-weight: 800;
         line-height: 1.05;
-        background: linear-gradient(135deg, #eeaa11, #bb3381 55%, #4fb3b3);
+        background: linear-gradient(135deg, #ad6409, #315e64);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -134,7 +183,7 @@
         background: transparent;
         color: var(--mu);
         cursor: pointer;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
@@ -159,11 +208,11 @@
         transition: all 0.2s;
       }
       .pbtn.active .pnum {
-        background: linear-gradient(135deg, #eeaa11, #bb3381);
+        background: linear-gradient(135deg, #ad6409, #315e64);
         color: #fff;
       }
       .pbtn.done .pnum {
-        background: rgba(79, 200, 140, 0.18);
+        background: rgba(94, 139, 145, 0.18);
         color: var(--gn);
       }
       .pbtn.done {
@@ -188,7 +237,7 @@
         border: 1px solid var(--bd);
         border-radius: var(--r);
         padding: 18px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .clabel {
         font-size: 10px;
@@ -222,7 +271,7 @@
         background: var(--s2);
         color: var(--mu);
         cursor: pointer;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 12px;
         font-weight: 500;
         transition: all 0.2s;
@@ -234,8 +283,8 @@
         color: var(--tx);
       }
       .tbtn.on {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
+        border-color: rgba(173, 100, 9, 0.6);
+        background: rgba(173, 100, 9, 0.08);
         color: var(--ac);
       }
       .tbtn.sm {
@@ -273,7 +322,7 @@
         color: var(--tx);
         border-radius: var(--r2);
         padding: 9px 12px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 13px;
         outline: none;
         transition: border-color 0.2s;
@@ -284,7 +333,7 @@
       input:focus,
       textarea:focus,
       select:focus {
-        border-color: rgba(238, 170, 17, 0.4);
+        border-color: rgba(173, 100, 9, 0.4);
       }
       textarea {
         line-height: 1.6;
@@ -312,11 +361,11 @@
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
       }
       .bg-tab.on {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
+        border-color: rgba(173, 100, 9, 0.6);
+        background: rgba(173, 100, 9, 0.08);
         color: var(--ac);
       }
 
@@ -350,7 +399,7 @@
       }
       .gc.sel {
         border-color: var(--ac);
-        box-shadow: 0 0 8px rgba(238, 170, 17, 0.3);
+        box-shadow: 0 0 8px rgba(173, 100, 9, 0.3);
       }
       .gc-sw {
         width: 100%;
@@ -370,7 +419,7 @@
         border-radius: var(--r3);
         cursor: pointer;
         margin-top: 4px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         transition: all 0.2s;
         width: 100%;
       }
@@ -398,7 +447,7 @@
       }
       .sc.sel {
         border-color: var(--ac);
-        box-shadow: 0 0 8px rgba(238, 170, 17, 0.3);
+        box-shadow: 0 0 8px rgba(173, 100, 9, 0.3);
       }
       .sc-sw {
         height: 36px;
@@ -442,26 +491,26 @@
         background: transparent;
         border: none;
         color: var(--tx);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 12px;
         outline: none;
         width: 100%;
       }
       .btn-apply {
-        background: rgba(238, 170, 17, 0.12);
-        border: 1px solid rgba(238, 170, 17, 0.3);
+        background: rgba(173, 100, 9, 0.12);
+        border: 1px solid rgba(173, 100, 9, 0.3);
         color: var(--ac);
         font-size: 11px;
         font-weight: 600;
         padding: 7px 12px;
         border-radius: var(--r3);
         cursor: pointer;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         white-space: nowrap;
         transition: all 0.2s;
       }
       .btn-apply:hover {
-        background: rgba(238, 170, 17, 0.22);
+        background: rgba(173, 100, 9, 0.22);
       }
 
       /* RATIO */
@@ -500,10 +549,10 @@
       }
       .ratio-opt.on {
         border-color: var(--ac);
-        background: rgba(238, 170, 17, 0.08);
+        background: rgba(173, 100, 9, 0.08);
       }
       .ro-ratio {
-        font-family: "Syne", sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 800;
         font-size: 16px;
         line-height: 1.2;
@@ -551,19 +600,19 @@
         line-height: 1.2;
       }
       .wfz.hl {
-        background: rgba(238, 170, 17, 0.1);
-        border-color: rgba(238, 170, 17, 0.28);
-        color: rgba(238, 170, 17, 0.7);
+        background: rgba(173, 100, 9, 0.1);
+        border-color: rgba(173, 100, 9, 0.28);
+        color: rgba(173, 100, 9, 0.7);
       }
       .wfz.vs {
-        background: rgba(187, 51, 129, 0.08);
-        border-color: rgba(187, 51, 129, 0.22);
-        color: rgba(187, 51, 129, 0.6);
+        background: rgba(49, 94, 100, 0.08);
+        border-color: rgba(49, 94, 100, 0.22);
+        color: rgba(49, 94, 100, 0.6);
       }
       .wfz.kp {
-        background: rgba(79, 179, 179, 0.06);
-        border-color: rgba(79, 179, 179, 0.18);
-        color: rgba(79, 179, 179, 0.55);
+        background: rgba(94, 139, 145, 0.06);
+        border-color: rgba(94, 139, 145, 0.18);
+        color: rgba(94, 139, 145, 0.55);
       }
       .wfz.ft {
         background: rgba(255, 255, 255, 0.03);
@@ -599,8 +648,8 @@
         user-select: none;
       }
       .comp-item.on {
-        border-color: rgba(238, 170, 17, 0.4);
-        background: rgba(238, 170, 17, 0.04);
+        border-color: rgba(173, 100, 9, 0.4);
+        background: rgba(173, 100, 9, 0.04);
       }
       .comp-item.disabled {
         opacity: 0.45;
@@ -679,7 +728,7 @@
         background: transparent;
         border: none;
         outline: none;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         resize: none;
         line-height: 1.45;
       }
@@ -701,8 +750,8 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(79, 179, 179, 0.07);
-        border: 1px dashed rgba(79, 179, 179, 0.25);
+        background: rgba(94, 139, 145, 0.07);
+        border: 1px dashed rgba(94, 139, 145, 0.25);
         color: var(--tl);
         font-size: 11px;
         padding: 5px 11px;
@@ -710,10 +759,10 @@
         cursor: pointer;
         margin-top: 5px;
         transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
       }
       .btn-add:hover {
-        background: rgba(79, 179, 179, 0.14);
+        background: rgba(94, 139, 145, 0.14);
       }
       .kp-counter {
         font-size: 10px;
@@ -769,7 +818,7 @@
         color: var(--tx);
         border-radius: 6px;
         padding: 6px 8px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 11px;
         outline: none;
         cursor: pointer;
@@ -777,7 +826,7 @@
         appearance: none;
       }
       .asel:focus {
-        border-color: rgba(238, 170, 17, 0.4);
+        border-color: rgba(173, 100, 9, 0.4);
       }
       .acustom {
         display: none;
@@ -788,14 +837,14 @@
         color: var(--tx);
         border-radius: 6px;
         padding: 6px 8px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 11px;
         outline: none;
         resize: none;
         line-height: 1.4;
       }
       .acustom:focus {
-        border-color: rgba(238, 170, 17, 0.4);
+        border-color: rgba(173, 100, 9, 0.4);
       }
 
       /* IMG LINKS */
@@ -832,8 +881,8 @@
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        background: rgba(79, 179, 179, 0.07);
-        border: 1px dashed rgba(79, 179, 179, 0.25);
+        background: rgba(94, 139, 145, 0.07);
+        border: 1px dashed rgba(94, 139, 145, 0.25);
         color: var(--tl);
         font-size: 10px;
         padding: 4px 10px;
@@ -841,7 +890,7 @@
         cursor: pointer;
         margin-top: 4px;
         transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
       }
 
       /* ALIGN OPTS */
@@ -860,11 +909,11 @@
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
       }
       .align-btn.on {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
+        border-color: rgba(173, 100, 9, 0.6);
+        background: rgba(173, 100, 9, 0.08);
         color: var(--ac);
       }
 
@@ -897,8 +946,8 @@
         transition: all 0.2s;
       }
       .sw input:checked + .sw-track {
-        background: rgba(238, 170, 17, 0.2);
-        border-color: rgba(238, 170, 17, 0.4);
+        background: rgba(173, 100, 9, 0.2);
+        border-color: rgba(173, 100, 9, 0.4);
       }
       .sw-track::after {
         content: "";
@@ -947,8 +996,8 @@
         color: var(--tx);
       }
       .gchip.on {
-        border-color: rgba(238, 170, 17, 0.6);
-        background: rgba(238, 170, 17, 0.08);
+        border-color: rgba(173, 100, 9, 0.6);
+        background: rgba(173, 100, 9, 0.08);
         color: var(--ac);
       }
 
@@ -958,9 +1007,9 @@
         align-items: center;
         justify-content: center;
         gap: 7px;
-        background: linear-gradient(135deg, #eeaa11, #bb3381);
+        background: linear-gradient(135deg, #ad6409, #315e64);
         color: #fff;
-        font-family: "Syne", sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 700;
         font-size: 14px;
         padding: 13px 20px;
@@ -985,9 +1034,9 @@
         justify-content: center;
         gap: 6px;
         background: var(--s2);
-        border: 1px solid rgba(238, 170, 17, 0.28);
+        border: 1px solid rgba(173, 100, 9, 0.28);
         color: var(--ac);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 600;
         font-size: 12px;
         padding: 10px 16px;
@@ -998,7 +1047,7 @@
         transition: all 0.2s;
       }
       .btn-sec:hover {
-        background: rgba(238, 170, 17, 0.07);
+        background: rgba(173, 100, 9, 0.07);
       }
 
       /* INLINE FIELD BOX */
@@ -1011,7 +1060,7 @@
         transition: border-color 0.2s;
       }
       .fbox:focus-within {
-        border-color: rgba(238, 170, 17, 0.35);
+        border-color: rgba(173, 100, 9, 0.35);
       }
       .fbox-k {
         font-size: 10px;
@@ -1033,7 +1082,7 @@
         background: transparent;
         border: none;
         outline: none;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         resize: none;
         line-height: 1.5;
       }
@@ -1071,19 +1120,19 @@
         padding: 4px 9px;
         border-radius: 5px;
         cursor: pointer;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         transition: all 0.15s;
         white-space: nowrap;
       }
       .cbtn:hover {
-        background: rgba(238, 170, 17, 0.1);
+        background: rgba(173, 100, 9, 0.1);
         color: var(--ac);
-        border-color: rgba(238, 170, 17, 0.28);
+        border-color: rgba(173, 100, 9, 0.28);
       }
       .cbtn.ok {
-        background: rgba(79, 200, 140, 0.1);
+        background: rgba(94, 139, 145, 0.1);
         color: var(--gn);
-        border-color: rgba(79, 200, 140, 0.28);
+        border-color: rgba(94, 139, 145, 0.28);
       }
       .out-txt {
         padding: 14px;
@@ -1101,9 +1150,9 @@
         display: flex;
         align-items: flex-start;
         gap: 7px;
-        background: rgba(79, 179, 179, 0.06);
-        border: 1px solid rgba(79, 179, 179, 0.16);
-        color: #5ec8c8;
+        background: rgba(94, 139, 145, 0.06);
+        border: 1px solid rgba(94, 139, 145, 0.16);
+        color: #7fa8ad;
         font-size: 11px;
         padding: 9px 12px;
         border-radius: var(--r3);
@@ -1182,6 +1231,30 @@
       }
 
       @media (max-width: 600px) {
+        .wrap {
+          padding: 24px 12px 64px;
+        }
+        .card {
+          padding: 14px;
+          margin-bottom: 10px;
+        }
+        .theme-btn {
+          top: 10px;
+          right: 10px;
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+        }
+        .pbtn {
+          font-size: 10px;
+          padding: 8px 2px;
+        }
+        .ratio-grid {
+          gap: 6px;
+        }
+        .ratio-opt {
+          padding: 8px 10px;
+        }
         .frow,
         .frow.tri {
           grid-template-columns: 1fr;
@@ -1210,6 +1283,14 @@
   <body>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
+    <button
+      class="theme-btn"
+      id="theme-btn"
+      onclick="toggleTheme()"
+      title="Ganti tema gelap/terang"
+    >
+      ☀️
+    </button>
     <div class="wrap">
       <div class="badge">◆ Content Engine Pro</div>
       <h1>Poster Generator</h1>
@@ -1336,12 +1417,12 @@
                 <div
                   class="hex-prev"
                   id="hp1"
-                  style="background: #eeaa11"
+                  style="background: #ad6409"
                 ></div>
                 <input
                   type="text"
                   id="hx1"
-                  value="#EEAA11"
+                  value="#AD6409"
                   maxlength="7"
                   oninput="hprev('hx1', 'hp1')"
                 />
@@ -1351,12 +1432,12 @@
                 <div
                   class="hex-prev"
                   id="hp2"
-                  style="background: #bb3381"
+                  style="background: #315e64"
                 ></div>
                 <input
                   type="text"
                   id="hx2"
-                  value="#BB3381"
+                  value="#315E64"
                   maxlength="7"
                   oninput="hprev('hx2', 'hp2')"
                 />
@@ -1368,12 +1449,12 @@
                 <div
                   class="hex-prev"
                   id="hps"
-                  style="background: #2b3681"
+                  style="background: #2a5359"
                 ></div>
                 <input
                   type="text"
                   id="hxs"
-                  value="#2b3681"
+                  value="#2A5359"
                   maxlength="7"
                   oninput="hprev('hxs', 'hps')"
                 />
@@ -1972,13 +2053,13 @@
               </div>
               <div
                 style="
-                  background: rgba(79, 179, 179, 0.07);
-                  border: 1px solid rgba(79, 179, 179, 0.18);
+                  background: rgba(94, 139, 145, 0.07);
+                  border: 1px solid rgba(94, 139, 145, 0.18);
                   border-radius: 8px;
                   padding: 9px 11px;
                   margin-bottom: 8px;
                   font-size: 11px;
-                  color: #5ec8c8;
+                  color: #7fa8ad;
                   line-height: 1.6;
                 "
               >
@@ -2016,8 +2097,8 @@
             <div class="fbox-k">Logo (opsional)</div>
             <div
               style="
-                background: rgba(238, 170, 17, 0.07);
-                border: 1px solid rgba(238, 170, 17, 0.2);
+                background: rgba(173, 100, 9, 0.07);
+                border: 1px solid rgba(173, 100, 9, 0.2);
                 border-radius: 8px;
                 padding: 10px 12px;
                 margin-top: 6px;
@@ -2027,7 +2108,7 @@
               <div
                 style="
                   font-size: 11px;
-                  color: rgba(238, 170, 17, 0.9);
+                  color: rgba(173, 100, 9, 0.9);
                   font-weight: 600;
                   margin-bottom: 4px;
                 "
@@ -2583,6 +2664,10 @@
         updateBgPreview();
         loadPresets();
         maybeShowDraftBanner();
+        if (localStorage.getItem("ce_theme") === "light") {
+          document.body.classList.add("light");
+          document.getElementById("theme-btn").textContent = "🌙";
+        }
       }
 
       // ════════════════════════════════════════
@@ -3996,7 +4081,7 @@
         const posterWrap = document.getElementById("out-poster-wrap");
         let logoWarning = "";
         if (hasLogo) {
-          logoWarning = `<div style="background:rgba(238,170,17,.08);border:1px solid rgba(238,170,17,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(238,170,17,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
+          logoWarning = `<div style="background:rgba(173,100,9,.08);border:1px solid rgba(173,100,9,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(173,100,9,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
         }
         const rid = "cb-poster";
         posterWrap.innerHTML =
@@ -4317,7 +4402,7 @@
         const b = document.createElement("div");
         b.id = "draft-banner";
         b.style.cssText =
-          "background:rgba(79,179,179,.1);border:1px solid rgba(79,179,179,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap";
+          "background:rgba(94,139,145,.1);border:1px solid rgba(94,139,145,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap";
         b.innerHTML =
           '<span style="flex:1">📝 Ada draft tersimpan (' +
           age +
@@ -4337,6 +4422,12 @@
         document.getElementById("logo-padding-opts").style.display = on
           ? "block"
           : "none";
+      }
+
+      function toggleTheme() {
+        const light = document.body.classList.toggle("light");
+        localStorage.setItem("ce_theme", light ? "light" : "dark");
+        document.getElementById("theme-btn").textContent = light ? "🌙" : "☀️";
       }
 
       function setLogoPad(val) {
