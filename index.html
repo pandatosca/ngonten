@@ -1531,13 +1531,35 @@
             </div>
             <div class="sw-row" style="margin-top: 8px">
               <label class="sw"
-                ><input type="checkbox" id="hybrid-toggle" />
+                ><input
+                  type="checkbox"
+                  id="hybrid-toggle"
+                  onchange="onModeToggle('hybrid')" />
                 <div class="sw-track"></div
               ></label>
               <span class="sw-lbl"
                 >Mode Hybrid: zona konten dikosongkan — teks ditempel manual di
                 Canva/Figma (hasil teks 100% tajam)</span
               >
+            </div>
+            <div class="sw-row" style="margin-top: 8px">
+              <label class="sw"
+                ><input
+                  type="checkbox"
+                  id="full-image-toggle"
+                  onchange="onModeToggle('full')" />
+                <div class="sw-track"></div
+              ></label>
+              <span class="sw-lbl"
+                >Mode Full Image: hanya visual saja — semua teks dimatikan, sisa
+                frame dibiarkan kosong (siap diisi manual)</span
+              >
+            </div>
+            <div id="fullimg-pos-wrap" style="display: none; margin-top: 10px">
+              <label style="margin-bottom: 6px; display: block"
+                >Posisi Visual</label
+              >
+              <div class="trow" id="fullimg-pos-row" style="margin-bottom: 0"></div>
             </div>
           </div>
         </div>
@@ -1868,6 +1890,19 @@
               placeholder="Deskripsi spesifik objek/karakter (Inggris) — e.g. MacBook Pro laptop displaying HR dashboard with data charts, placed on reflective surface with golden glow"
               oninput="scheduleAutoSuggest()"
             ></textarea>
+            <div class="asub" style="margin-top: 8px">
+              <div class="asub-k">
+                Gaya Reproduksi
+                <span style="color: var(--mu2); font-weight: 400"
+                  >(jika pakai image ⭐ Visual Utama)</span
+                >
+              </div>
+              <select class="asel" id="sel-repro">
+                <option value="iso">📐 Isometric 3D (rapi/clean)</option>
+                <option value="3d">🧊 3D Realistic (hyperrealistic)</option>
+                <option value="faithful">🪞 Faithful (sama persis aslinya)</option>
+              </select>
+            </div>
             <div class="asset-grid">
               <div class="asub">
                 <div class="asub-k">Lighting / Mood</div>
@@ -2214,8 +2249,17 @@
           <div id="footer-fields" class="footer-settings">
             <div class="frow">
               <div>
-                <label>Teks Footer</label
-                ><input type="text" id="footer-txt" value="2026@HERRY" />
+                <label>Teks Footer</label>
+                <select id="footer-preset" onchange="onFooterPreset()">
+                  <option value="sales@satelit-sejahtera.id | satelit-sejahtera.id">
+                    satelit-sejahtera.id
+                  </option>
+                  <option value="herryahmadi.com">herryahmadi.com</option>
+                  <option value="info@gitsconsulting.com | gitsconsulting.com">
+                    gitsconsulting.com
+                  </option>
+                  <option value="__custom">✏️ Custom...</option>
+                </select>
               </div>
               <div>
                 <label>Posisi</label>
@@ -2226,6 +2270,13 @@
                 </select>
               </div>
             </div>
+            <input
+              type="text"
+              id="footer-txt"
+              value="2026@HERRY"
+              placeholder="Teks footer custom..."
+              style="display: none; margin-top: 8px"
+            />
           </div>
 
           <div
@@ -2652,6 +2703,7 @@
       let imgLinkCount = 0;
       let suggestTimer = null;
       let alignState = { hl: "left", sub: "left", para: "left" };
+      let fullImgPos = "bottom";
 
       // ════════════════════════════════════════
       // INIT
@@ -2665,6 +2717,8 @@
         buildKpList(3);
         addImgSlot(); // default: 1 logo slot
         drawWireframe("9:16");
+        buildFullImgPositions();
+        onFooterPreset();
         updateBgPreview();
         loadPresets();
         maybeShowDraftBanner();
@@ -2847,6 +2901,52 @@
           .querySelectorAll(".ratio-opt")
           .forEach((b) => b.classList.toggle("on", b.dataset.r === r));
         drawWireframe(r);
+        buildFullImgPositions();
+      }
+
+      // Position options depend on ratio
+      const FULLIMG_POS = {
+        "9:16": [
+          { v: "top", l: "↑ Atas" },
+          { v: "center", l: "◎ Tengah" },
+          { v: "bottom", l: "↓ Bawah" },
+        ],
+        "16:9": [
+          { v: "left", l: "← Kiri (½ frame)" },
+          { v: "right", l: "→ Kanan (½ frame)" },
+        ],
+        "1:1": [{ v: "bottom", l: "↓ Bawah" }],
+        "4:5": [{ v: "bottom", l: "↓ Bawah" }],
+      };
+
+      function buildFullImgPositions() {
+        const row = document.getElementById("fullimg-pos-row");
+        if (!row) return;
+        const opts = FULLIMG_POS[selRatio()] || FULLIMG_POS["9:16"];
+        if (!opts.some((o) => o.v === fullImgPos)) fullImgPos = opts[0].v;
+        row.innerHTML = "";
+        opts.forEach((o) => {
+          const b = document.createElement("div");
+          b.className = "tbtn" + (o.v === fullImgPos ? " on" : "");
+          b.textContent = o.l;
+          b.onclick = () => {
+            fullImgPos = o.v;
+            buildFullImgPositions();
+          };
+          row.appendChild(b);
+        });
+      }
+
+      function onModeToggle(which) {
+        const hy = document.getElementById("hybrid-toggle");
+        const fi = document.getElementById("full-image-toggle");
+        // mutually exclusive
+        if (which === "hybrid" && hy.checked) fi.checked = false;
+        if (which === "full" && fi.checked) hy.checked = false;
+        document.getElementById("fullimg-pos-wrap").style.display = fi.checked
+          ? "block"
+          : "none";
+        if (fi.checked) buildFullImgPositions();
       }
 
       function drawWireframe(ratio) {
@@ -3515,6 +3615,21 @@
           document.getElementById("footer-toggle").checked ? "block" : "none";
       }
 
+      function onFooterPreset() {
+        const isCustom =
+          document.getElementById("footer-preset").value === "__custom";
+        document.getElementById("footer-txt").style.display = isCustom
+          ? "block"
+          : "none";
+      }
+
+      function getFooterText() {
+        const sel = document.getElementById("footer-preset").value;
+        if (sel === "__custom")
+          return document.getElementById("footer-txt").value.trim();
+        return sel;
+      }
+
       // ════════════════════════════════════════
       // PHASE NAV
       // ════════════════════════════════════════
@@ -3893,6 +4008,35 @@
         return "";
       }
 
+      function buildFullImageLayout(ratio, pos, assetBlock) {
+        const region = {
+          top: "the TOP ~45% band of the canvas (anchored to the top edge)",
+          center: "a CENTERED horizontal band ~50% of the canvas height (vertically centered)",
+          bottom: "the BOTTOM ~50% of the canvas (anchored to the bottom edge)",
+          left: "the LEFT HALF of the canvas (~50% width, full height)",
+          right: "the RIGHT HALF of the canvas (~50% width, full height)",
+        };
+        const emptyNote = {
+          top: "The bottom ~55% is CLEAN EMPTY background.",
+          center: "The areas above and below are CLEAN EMPTY background.",
+          bottom: "The top ~50% is CLEAN EMPTY background.",
+          left: "The right half is CLEAN EMPTY background.",
+          right: "The left half is CLEAN EMPTY background.",
+        };
+        return (
+          "FULL-IMAGE LAYOUT — SINGLE VISUAL ONLY, ABSOLUTELY NO TEXT ANYWHERE:\n" +
+          "  Render ONLY the main visual below. NO headline, NO subheadline, NO body text, NO key points, NO footer, NO logo, NO cards, NO captions — zero text of any kind.\n" +
+          "  Place the main visual in " +
+          (region[pos] || region.bottom) +
+          ".\n  " +
+          (emptyNote[pos] || emptyNote.bottom) +
+          " — only the background color/gradient (and subtle decoration) fills the empty area, kept calm and uncluttered for manual text overlay later.\n" +
+          "  The visual must NOT bleed text into the empty zone.\n\n" +
+          "MAIN VISUAL:\n  " +
+          assetBlock
+        );
+      }
+
       function genFinal() {
         const hl =
           document.getElementById("f-headline").value.trim() || "[HEADLINE]";
@@ -3919,10 +4063,10 @@
           hasAsset = isOn("comp-asset"),
           hasCont = isOn("comp-content");
         const hasFooter = document.getElementById("footer-toggle").checked;
-        const footerTxt =
-          document.getElementById("footer-txt").value.trim() || "";
+        const footerTxt = getFooterText();
         const footerPos = document.getElementById("footer-pos").value;
         const flip = document.getElementById("layout-flip").checked;
+        const reproStyle = document.getElementById("sel-repro")?.value || "iso";
         const ratio = selRatio();
         const ri = RATIO_INFO[ratio] || { w: 1080, h: 1920 };
         const imgSlots = getImgSlots();
@@ -3943,12 +4087,19 @@
                 s.n +
                 " (uploaded): Use as reference for the 3D asset style, composition, and visual detail"
               );
-            if (s.func === "asset-main")
-              return (
+            if (s.func === "asset-main") {
+              const base =
                 "Image " +
                 s.n +
-                " (uploaded): THIS IMAGE IS THE MAIN VISUAL — reproduce its subject faithfully as the hero element of the poster. Do NOT invent or substitute a different object/character. Keep its identity, shapes, and colors recognizable; you may relight and integrate it into the poster background"
-              );
+                " (uploaded): THIS IMAGE IS THE MAIN VISUAL — its subject is the hero element. Do NOT invent or substitute a different object/character; keep its identity, key shapes, and colors recognizable. ";
+              const styleNote = {
+                iso: "Recreate the subject as a clean, high-quality ISOMETRIC 3D rendered asset — true isometric view (~30–45° angle), polished 3D-icon / game-asset look, soft studio lighting, subtle contact shadow, crisp edges. Stylize into a premium isometric 3D render.",
+                "3d": "Recreate the subject as a hyperrealistic 3D rendered asset (octane quality), realistic materials and lighting, soft depth-of-field. Relight and integrate cleanly into the poster.",
+                faithful:
+                  "Reproduce the subject faithfully and photographically as-is; you may relight and integrate it into the poster background, but do not restyle it.",
+              };
+              return base + (styleNote[reproStyle] || styleNote.iso);
+            }
             return null;
           })
           .filter(Boolean);
@@ -3974,12 +4125,23 @@
             ? "⚠️ Logo placement enabled but no logo image slot assigned — add Image slot with Logo function"
             : "";
         const assetMainSlot = imgSlots.find((s) => s.func === "asset-main");
+        const reproLabel = {
+          iso: "reproduced as a clean ISOMETRIC 3D asset",
+          "3d": "reproduced as a hyperrealistic 3D asset",
+          faithful: "reproduced faithfully",
+        };
+        const renderLine =
+          assetMainSlot && reproStyle === "iso"
+            ? "\n  Render: isometric 3D · clean studio render · crisp edges · subtle contact shadow"
+            : "\n  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur";
         const assetBlock =
           "Subject: " +
           (assetMainSlot
             ? "USE UPLOADED IMAGE " +
               assetMainSlot.n +
-              " as the main visual (see image instructions below)" +
+              " as the main visual, " +
+              (reproLabel[reproStyle] || reproLabel.iso) +
+              " (see image instructions below)" +
               (document.getElementById("f-asset").value.trim()
                 ? " — context: " + ast
                 : "")
@@ -3991,13 +4153,16 @@
           light +
           "\n  Materials: " +
           mat +
-          "\n  Pose/action: " +
-          pose +
-          "\n  Render: hyperrealistic 3D · octane quality · depth-of-field bg blur\n  Effects: soft drop shadow · subtle rim glow " +
+          // Pose/action only meaningful for generated (non-uploaded) subjects
+          (assetMainSlot ? "" : "\n  Pose/action: " + pose) +
+          renderLine +
+          "\n  Effects: soft drop shadow · subtle rim glow " +
           bg.acc +
           (imgInstructions.length ? "\n  " + imgInstructions.join("\n  ") : "");
         const hybrid =
           document.getElementById("hybrid-toggle")?.checked || false;
+        const fullImg =
+          document.getElementById("full-image-toggle")?.checked || false;
         const contentBlock = hybrid
           ? "CONTENT ZONE (HYBRID MODE — RESERVED EMPTY SPACE):\n  Keep this entire zone as CLEAN EMPTY SPACE — absolutely NO text, NO placeholder boxes, NO lorem ipsum here.\n  Only the background color/gradient and subtle decoration may flow through this area.\n  Keep it visually calm and uncluttered — real text will be overlaid manually in post-production."
           : buildContentBlock();
@@ -4009,28 +4174,30 @@
             _logoPadPx +
             " minimum (to clear logo area)."
           : "";
-        const layout = buildLayoutPrompt(
-          ratio,
-          hl,
-          alignState.hl,
-          hasSub,
-          sub,
-          alignState.sub,
-          hasAsset,
-          assetBlock,
-          hasCont,
-          contentBlock,
-          hasFooter && !hybrid,
-          footerTxt,
-          footerPos,
-          hasLogo,
-          logoUrl,
-          logoPos,
-          bg.acc,
-          flip,
-          hlTopPad,
-          logoSlot ? logoSlot.n : null,
-        );
+        const layout = fullImg
+          ? buildFullImageLayout(ratio, fullImgPos, assetBlock)
+          : buildLayoutPrompt(
+              ratio,
+              hl,
+              alignState.hl,
+              hasSub,
+              sub,
+              alignState.sub,
+              hasAsset,
+              assetBlock,
+              hasCont,
+              contentBlock,
+              hasFooter && !hybrid,
+              footerTxt,
+              footerPos,
+              hasLogo,
+              logoUrl,
+              logoPos,
+              bg.acc,
+              flip,
+              hlTopPad,
+              logoSlot ? logoSlot.n : null,
+            );
         const orientNote =
           ri.w < ri.h
             ? "PORTRAIT (taller than wide) — height MUST be greater than width."
@@ -4092,18 +4259,32 @@
           logoWarning +
           `<div class="out-block"><div class="out-hdr"><span class="out-ttl">Prompt Poster ${ratio} (${ri.w}×${ri.h}) — Paste ke GPT-4o</span><button class="cbtn" id="${rid}">⎘ Copy</button></div><div class="out-txt">${esc(poster)}</div></div>`;
         document.getElementById(rid).onclick = () => cpBtn(rid, poster);
-        if (hybrid && hasCont) {
+        if (hybrid || fullImg) {
           const kps = getKpData();
-          const manualTxt =
-            (contentMode === "para"
+          const contentTxt =
+            contentMode === "para"
               ? document.getElementById("f-para").value.trim()
               : kps
                   .map((k) => "• " + k.label + (k.desc ? " — " + k.desc : ""))
-                  .join("\n")) +
-            (hasFooter && footerTxt ? "\n\nFooter: " + footerTxt : "");
+                  .join("\n");
+          // Full Image: poster has NO text at all → export everything for manual overlay
+          // Hybrid: headline/sub stay in poster → export only content + footer
+          const parts = fullImg
+            ? [
+                hl && hl !== "[HEADLINE]" ? "Headline: " + hl : "",
+                hasSub && sub ? "Subheadline: " + sub : "",
+                hasCont && contentTxt ? contentTxt : "",
+                hasFooter && footerTxt ? "Footer: " + footerTxt : "",
+              ]
+            : [
+                hasCont && contentTxt ? contentTxt : "",
+                hasFooter && footerTxt ? "Footer: " + footerTxt : "",
+              ];
+          const manualTxt = parts.filter(Boolean).join("\n\n");
           makeBlock(
             "out-hybrid-wrap",
-            "Mode Hybrid — Teks Konten untuk Ditempel di Canva (font: Poppins)",
+            (fullImg ? "Mode Full Image" : "Mode Hybrid") +
+              " — Teks untuk Ditempel Manual di Canva (font: Poppins)",
             manualTxt || "[Konten belum diisi]",
             "hybrid",
           );
@@ -4130,6 +4311,7 @@
           tone: document.getElementById("inp-tone").value,
           ratio: selRatio(),
           footerOn: document.getElementById("footer-toggle").checked,
+          footerPreset: document.getElementById("footer-preset").value,
           footerTxt: document.getElementById("footer-txt").value,
           footerPos: document.getElementById("footer-pos").value,
           logoOn: document.getElementById("has-logo").checked,
@@ -4232,6 +4414,10 @@
         }
         if (p.footerTxt !== undefined)
           document.getElementById("footer-txt").value = p.footerTxt;
+        if (p.footerPreset) {
+          document.getElementById("footer-preset").value = p.footerPreset;
+          onFooterPreset();
+        }
         if (p.footerPos)
           document.getElementById("footer-pos").value = p.footerPos;
         if (typeof p.logoOn === "boolean") {
@@ -4377,6 +4563,9 @@
         toggleFooterFields();
         toggleLogoSafeZone();
         onRatioChange();
+        onFooterPreset();
+        onModeToggle("hybrid");
+        onModeToggle("full");
         countPara();
         dismissDraftBanner();
       }
