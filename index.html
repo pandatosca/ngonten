@@ -1373,164 +1373,12 @@
           </div>
         </div>
 
-        <!-- BACKGROUND -->
-        <div class="card">
-          <div class="clabel">Background Poster</div>
-          <div class="bg-bar" id="bg-bar"></div>
-          <div class="bg-tabs">
-            <button class="bg-tab on" onclick="setBgTab('grad')">
-              Gradient
-            </button>
-            <button class="bg-tab" onclick="setBgTab('solid')">Solid</button>
-            <button class="bg-tab" onclick="setBgTab('custom')">
-              Custom Hex
-            </button>
-          </div>
-          <!-- GRADIENT -->
-          <div id="bg-grad-sec">
-            <div class="grad-grid" id="grad-grid-a"></div>
-            <div class="grad-grid" id="grad-grid-b" style="display: none"></div>
-            <button
-              class="grad-more-btn"
-              id="grad-more-btn"
-              onclick="toggleMoreGrads()"
-            >
-              ▼ Lihat lebih banyak
-            </button>
-          </div>
-          <!-- SOLID -->
-          <div id="bg-solid-sec" style="display: none">
-            <div class="solid-grid" id="solid-grid"></div>
-          </div>
-          <!-- CUSTOM -->
-          <div id="bg-custom-sec" style="display: none">
-            <div class="trow" style="margin-bottom: 8px">
-              <div class="tbtn on" id="cm-g" onclick="setCustomMode('grad')">
-                Gradient
-              </div>
-              <div class="tbtn" id="cm-s" onclick="setCustomMode('solid')">
-                Solid
-              </div>
-            </div>
-            <div id="cr-grad" class="hex-row">
-              <div class="hex-inp-w">
-                <div
-                  class="hex-prev"
-                  id="hp1"
-                  style="background: #ad6409"
-                ></div>
-                <input
-                  type="text"
-                  id="hx1"
-                  value="#AD6409"
-                  maxlength="7"
-                  oninput="hprev('hx1', 'hp1')"
-                />
-              </div>
-              <span style="color: var(--mu); font-size: 12px">→</span>
-              <div class="hex-inp-w">
-                <div
-                  class="hex-prev"
-                  id="hp2"
-                  style="background: #315e64"
-                ></div>
-                <input
-                  type="text"
-                  id="hx2"
-                  value="#315E64"
-                  maxlength="7"
-                  oninput="hprev('hx2', 'hp2')"
-                />
-              </div>
-              <button class="btn-apply" onclick="applyGrad()">Terapkan</button>
-            </div>
-            <div id="cr-solid" class="hex-row" style="display: none">
-              <div class="hex-inp-w">
-                <div
-                  class="hex-prev"
-                  id="hps"
-                  style="background: #2a5359"
-                ></div>
-                <input
-                  type="text"
-                  id="hxs"
-                  value="#2A5359"
-                  maxlength="7"
-                  oninput="hprev('hxs', 'hps')"
-                />
-              </div>
-              <button class="btn-apply" onclick="applySolid()">Terapkan</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- RASIO -->
-        <div class="card">
-          <div class="clabel">Ukuran &amp; Rasio Poster</div>
-          <div class="ratio-wrap">
-            <div class="ratio-sel-col">
-              <select id="ratio-sel" style="display: none">
-                <option value="9:16" selected>9:16</option>
-                <option value="4:5">4:5</option>
-                <option value="1:1">1:1</option>
-                <option value="16:9">16:9</option>
-              </select>
-              <div class="ratio-grid">
-                <button
-                  type="button"
-                  class="ratio-opt on"
-                  data-r="9:16"
-                  onclick="setRatio('9:16')"
-                >
-                  <span class="ro-ratio">9:16</span>
-                  <span class="ro-name">Reels · TikTok · Story</span>
-                  <span class="ro-px">1080 × 1920</span>
-                </button>
-                <button
-                  type="button"
-                  class="ratio-opt"
-                  data-r="4:5"
-                  onclick="setRatio('4:5')"
-                >
-                  <span class="ro-ratio">4:5</span>
-                  <span class="ro-name">IG Feed Portrait</span>
-                  <span class="ro-px">1080 × 1350</span>
-                </button>
-                <button
-                  type="button"
-                  class="ratio-opt"
-                  data-r="1:1"
-                  onclick="setRatio('1:1')"
-                >
-                  <span class="ro-ratio">1:1</span>
-                  <span class="ro-name">Square Feed</span>
-                  <span class="ro-px">1080 × 1080</span>
-                </button>
-                <button
-                  type="button"
-                  class="ratio-opt"
-                  data-r="16:9"
-                  onclick="setRatio('16:9')"
-                >
-                  <span class="ro-ratio">16:9</span>
-                  <span class="ro-name">YouTube · LinkedIn</span>
-                  <span class="ro-px">1920 × 1080</span>
-                </button>
-              </div>
-              <div class="hint" id="ratio-hint" style="margin-top: 8px">
-                Instagram Reels, TikTok, Stories
-              </div>
-            </div>
-            <div class="ratio-wf-col">
-              <div class="ratio-wf-lbl">Preview Layout</div>
-              <div class="ratio-canvas" id="ratio-canvas"></div>
-            </div>
-          </div>
-        </div>
-
         <!-- PREFERENSI -->
         <div class="card">
           <div class="clabel">Preferensi Konten</div>
+          <p class="hint" style="margin: -4px 0 12px">
+            Niche &amp; Tone ikut menentukan hasil Prompt Analisis di bawah.
+          </p>
           <div class="frow">
             <div>
               <label>Niche / Industri</label
@@ -1558,13 +1406,6 @@
                 <option value="warm, celebratory and festive">Perayaan</option>
               </select>
             </div>
-          </div>
-          <div style="margin-top: 10px">
-            <label style="margin-bottom: 7px; display: block"
-              >Marker Key Points</label
-            >
-            <div class="mcat-row" id="mcat-row"></div>
-            <div class="trow" id="marker-row" style="margin-bottom: 0"></div>
           </div>
         </div>
 
@@ -1697,6 +1538,161 @@
                 >Mode Hybrid: zona konten dikosongkan — teks ditempel manual di
                 Canva/Figma (hasil teks 100% tajam)</span
               >
+            </div>
+          </div>
+        </div>
+
+        <!-- RASIO -->
+        <div class="card">
+          <div class="clabel">Ukuran &amp; Rasio Poster</div>
+          <div class="ratio-wrap">
+            <div class="ratio-sel-col">
+              <select id="ratio-sel" style="display: none">
+                <option value="9:16" selected>9:16</option>
+                <option value="4:5">4:5</option>
+                <option value="1:1">1:1</option>
+                <option value="16:9">16:9</option>
+              </select>
+              <div class="ratio-grid">
+                <button
+                  type="button"
+                  class="ratio-opt on"
+                  data-r="9:16"
+                  onclick="setRatio('9:16')"
+                >
+                  <span class="ro-ratio">9:16</span>
+                  <span class="ro-name">Reels · TikTok · Story</span>
+                  <span class="ro-px">1080 × 1920</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="4:5"
+                  onclick="setRatio('4:5')"
+                >
+                  <span class="ro-ratio">4:5</span>
+                  <span class="ro-name">IG Feed Portrait</span>
+                  <span class="ro-px">1080 × 1350</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="1:1"
+                  onclick="setRatio('1:1')"
+                >
+                  <span class="ro-ratio">1:1</span>
+                  <span class="ro-name">Square Feed</span>
+                  <span class="ro-px">1080 × 1080</span>
+                </button>
+                <button
+                  type="button"
+                  class="ratio-opt"
+                  data-r="16:9"
+                  onclick="setRatio('16:9')"
+                >
+                  <span class="ro-ratio">16:9</span>
+                  <span class="ro-name">YouTube · LinkedIn</span>
+                  <span class="ro-px">1920 × 1080</span>
+                </button>
+              </div>
+              <div class="hint" id="ratio-hint" style="margin-top: 8px">
+                Instagram Reels, TikTok, Stories
+              </div>
+            </div>
+            <div class="ratio-wf-col">
+              <div class="ratio-wf-lbl">Preview Layout</div>
+              <div class="ratio-canvas" id="ratio-canvas"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BACKGROUND -->
+        <div class="card">
+          <div class="clabel">Background Poster</div>
+          <div class="bg-bar" id="bg-bar"></div>
+          <div class="bg-tabs">
+            <button class="bg-tab on" onclick="setBgTab('grad')">
+              Gradient
+            </button>
+            <button class="bg-tab" onclick="setBgTab('solid')">Solid</button>
+            <button class="bg-tab" onclick="setBgTab('custom')">
+              Custom Hex
+            </button>
+          </div>
+          <!-- GRADIENT -->
+          <div id="bg-grad-sec">
+            <div class="grad-grid" id="grad-grid-a"></div>
+            <div class="grad-grid" id="grad-grid-b" style="display: none"></div>
+            <button
+              class="grad-more-btn"
+              id="grad-more-btn"
+              onclick="toggleMoreGrads()"
+            >
+              ▼ Lihat lebih banyak
+            </button>
+          </div>
+          <!-- SOLID -->
+          <div id="bg-solid-sec" style="display: none">
+            <div class="solid-grid" id="solid-grid"></div>
+          </div>
+          <!-- CUSTOM -->
+          <div id="bg-custom-sec" style="display: none">
+            <div class="trow" style="margin-bottom: 8px">
+              <div class="tbtn on" id="cm-g" onclick="setCustomMode('grad')">
+                Gradient
+              </div>
+              <div class="tbtn" id="cm-s" onclick="setCustomMode('solid')">
+                Solid
+              </div>
+            </div>
+            <div id="cr-grad" class="hex-row">
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hp1"
+                  style="background: #ad6409"
+                ></div>
+                <input
+                  type="text"
+                  id="hx1"
+                  value="#AD6409"
+                  maxlength="7"
+                  oninput="hprev('hx1', 'hp1')"
+                />
+              </div>
+              <span style="color: var(--mu); font-size: 12px">→</span>
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hp2"
+                  style="background: #315e64"
+                ></div>
+                <input
+                  type="text"
+                  id="hx2"
+                  value="#315E64"
+                  maxlength="7"
+                  oninput="hprev('hx2', 'hp2')"
+                />
+              </div>
+              <button class="btn-apply" onclick="applyGrad()">Terapkan</button>
+            </div>
+            <div id="cr-solid" class="hex-row" style="display: none">
+              <div class="hex-inp-w">
+                <div
+                  class="hex-prev"
+                  id="hps"
+                  style="background: #2a5359"
+                ></div>
+                <input
+                  type="text"
+                  id="hxs"
+                  value="#2A5359"
+                  maxlength="7"
+                  oninput="hprev('hxs', 'hps')"
+                />
+              </div>
+              <button class="btn-apply" onclick="applySolid()">Terapkan</button>
             </div>
           </div>
         </div>
@@ -2191,6 +2187,14 @@
               placeholder="Hook + 2 baris insight + CTA + hashtag..."
             ></textarea>
           </div>
+        </div>
+
+        <!-- MARKER (poster) -->
+        <div class="card">
+          <div class="clabel">Marker Key Points</div>
+          <div class="mcat-row" id="mcat-row"></div>
+          <div class="trow" id="marker-row" style="margin-bottom: 0"></div>
+          <p class="hint" style="margin-top: 8px">Hanya dipakai jika konten memakai mode Key Points (bukan Paragraf).</p>
         </div>
 
         <!-- FOOTER POSTER -->
