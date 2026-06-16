@@ -129,7 +129,8 @@
         background: var(--bg);
         color: var(--tx);
         min-height: 100vh;
-        font-size: 14px;
+        font-size: 15px;
+        line-height: 1.5;
       }
       .orb {
         position: fixed;
@@ -198,8 +199,8 @@
       }
       .sub {
         color: var(--mu);
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 15px;
+        line-height: 1.55;
         margin-bottom: 28px;
       }
 
@@ -283,7 +284,7 @@
         box-shadow: var(--shadow-sm);
       }
       .clabel {
-        font-size: 10px;
+        font-size: 11.5px;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -350,7 +351,7 @@
       }
       label {
         display: block;
-        font-size: 11px;
+        font-size: 13px;
         color: var(--mu);
         margin-bottom: 4px;
         font-weight: 500;
@@ -382,10 +383,10 @@
         line-height: 1.6;
       }
       .hint {
-        font-size: 10px;
+        font-size: 12.5px;
         color: var(--mu);
         margin-top: 4px;
-        line-height: 1.5;
+        line-height: 1.55;
       }
 
       /* BG TABS */
@@ -3132,12 +3133,13 @@
         c.style.height = ch + "px";
         c.innerHTML = "";
         const p = 2;
-        const hasSub = isOn("comp-sub"),
+        const hasHl = isOn("comp-hl"),
+          hasSub = isOn("comp-sub"),
           hasAsset = isOn("comp-asset"),
           hasCont = isOn("comp-content");
         const flip = document.getElementById("layout-flip")?.checked || false;
         const zoneKey = { hl: "hl", vs: "asset", kp: "cont" };
-        getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip).forEach(
+        getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip, hasHl).forEach(
           (z) => {
             const el = document.createElement("div");
             const type = z.c.trim().split(/\s+/).pop();
@@ -3151,60 +3153,29 @@
         );
       }
 
-      function getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip) {
+      function getWfZones(ratio, cw, ch, p, hasSub, hasAsset, hasCont, flip, hasHl) {
         const z = [];
+        if (hasHl === undefined) hasHl = true;
         if (ratio === "9:16") {
-          const hlH = Math.round(ch * (hasSub ? 0.26 : 0.2));
-          const visH = hasAsset ? Math.round(ch * 0.38) : 0;
-          const kpH = hasCont ? Math.max(ch - hlH - visH - p * 4, 20) : 0;
-          if (!flip) {
-            z.push({
-              x: p,
-              y: p,
-              w: cw - p * 2,
-              h: hlH,
-              c: "hl",
-              t: "HL" + (hasSub ? "+Sub" : ""),
-            });
-            if (hasAsset)
-              z.push({
-                x: p,
-                y: hlH + p,
-                w: cw - p * 2,
-                h: visH,
-                c: "vs",
-                t: "3D",
-              });
-            if (hasCont)
-              z.push({
-                x: p,
-                y: hlH + visH + p * 2,
-                w: cw - p * 2,
-                h: kpH,
-                c: "kp",
-                t: "KP",
-              });
-          } else {
-            if (hasAsset)
-              z.push({ x: p, y: p, w: cw - p * 2, h: visH, c: "vs", t: "3D" });
-            z.push({
-              x: p,
-              y: (hasAsset ? visH : 0) + p,
-              w: cw - p * 2,
-              h: hlH,
-              c: "hl",
-              t: "HL",
-            });
-            if (hasCont)
-              z.push({
-                x: p,
-                y: (hasAsset ? visH : 0) + hlH + p * 2,
-                w: cw - p * 2,
-                h: kpH,
-                c: "kp",
-                t: "KP",
-              });
-          }
+          // Proportional vertical fill — active zones share the whole frame
+          const W = { hl: hasSub ? 1.15 : 1, vs: 2.3, kp: 1.9 };
+          const label = {
+            hl: "HL" + (hasSub ? "+Sub" : ""),
+            vs: "3D",
+            kp: "KP",
+          };
+          const order = flip ? ["vs", "hl", "kp"] : ["hl", "vs", "kp"];
+          const present = order.filter((t) =>
+            t === "hl" ? hasHl : t === "vs" ? hasAsset : hasCont,
+          );
+          const totalW = present.reduce((s, t) => s + W[t], 0) || 1;
+          const avail = ch - p * 2 - Math.max(present.length - 1, 0) * p;
+          let y = p;
+          present.forEach((t) => {
+            const h = Math.round((avail * W[t]) / totalW);
+            z.push({ x: p, y, w: cw - p * 2, h, c: t, t: label[t] });
+            y += h + p;
+          });
           z.push({ x: cw - 22, y: ch - 8, w: 20, h: 6, c: "ft", t: "FT" });
         } else if (ratio === "4:5") {
           const hlH = Math.round(ch * 0.26),
@@ -4394,7 +4365,7 @@
           bgLayerTxt +
           "\n\nDESIGN SYSTEM:\nFont: Poppins (Google Fonts)\n· Headline: ExtraBold 800 · Subheadline: Regular 400 (text only, no icons)\n· Key point label: SemiBold 600 · Description/Paragraph: Regular 400\nAccent: " +
           bg.acc +
-          "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\nTypography rendering: ultra-sharp, crisp vector-quality edges on all text · high contrast against background · NO blur, glow, or soft-focus on any text or numbers · fully legible at 100% zoom\n\nLAYOUT:\n" +
+          "\nAll text in Bahasa Indonesia · Zero lorem ipsum · Zero placeholders\nTypography rendering: ultra-sharp, crisp vector-quality edges on all text · high contrast against background · NO blur, glow, or soft-focus on any text or numbers · fully legible at 100% zoom\n\nLAYOUT:\nFILL THE ENTIRE CANVAS — distribute the active zones to occupy the full frame top-to-bottom with balanced spacing; NO large empty/dead areas. Scale each zone proportionally to its importance (main visual largest). Zones marked RESERVE EMPTY still take their proportional space but stay blank for manual overlay.\n" +
           layout +
           "\n\nIMAGE UPLOAD ORDER (follow exactly):\n" +
           (imgSlots.length
