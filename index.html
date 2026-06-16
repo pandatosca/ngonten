@@ -612,11 +612,6 @@
         font-size: 10px;
         color: var(--mu2);
       }
-      .ratio-wf-col {
-        width: 100px;
-        flex-shrink: 0;
-        text-align: center;
-      }
       .ratio-wf-lbl {
         font-size: 10px;
         color: var(--mu2);
@@ -643,27 +638,6 @@
         text-align: center;
         line-height: 1.2;
       }
-      .wfz.hl {
-        background: rgba(21, 194, 251, 0.1);
-        border-color: rgba(21, 194, 251, 0.28);
-        color: rgba(21, 194, 251, 0.7);
-      }
-      .wfz.vs {
-        background: rgba(14, 128, 166, 0.08);
-        border-color: rgba(14, 128, 166, 0.22);
-        color: rgba(14, 128, 166, 0.6);
-      }
-      .wfz.kp {
-        background: rgba(154, 161, 173, 0.06);
-        border-color: rgba(154, 161, 173, 0.18);
-        color: rgba(154, 161, 173, 0.55);
-      }
-      .wfz.ft {
-        background: rgba(255, 255, 255, 0.03);
-        border-color: rgba(255, 255, 255, 0.08);
-        font-size: 5px;
-        color: rgba(255, 255, 255, 0.25);
-      }
       .wfz-img {
         background: rgba(21, 194, 251, 0.16);
         border: 1px solid rgba(21, 194, 251, 0.4);
@@ -684,10 +658,36 @@
       }
 
       /* COMPONENT CHECKLIST */
-      .comp-list {
+      .kanvas-chip {
         display: flex;
-        flex-direction: column;
-        gap: 6px;
+        align-items: center;
+        gap: 10px;
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r2);
+        padding: 8px 12px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 13px;
+        box-shadow: var(--shadow-sm);
+      }
+      .kanvas-chip:hover {
+        border-color: var(--bd2);
+      }
+      .kc-sw {
+        width: 26px;
+        height: 26px;
+        border-radius: var(--r3);
+        flex-shrink: 0;
+        border: 1px solid var(--bd2);
+      }
+      .kc-txt {
+        font-weight: 500;
+      }
+      .kc-edit {
+        margin-left: auto;
+        color: var(--ac);
+        font-size: 12px;
       }
       .estatus-row {
         display: flex;
@@ -747,64 +747,6 @@
       .seg-btn.on-off {
         background: var(--s3);
         color: var(--tx);
-      }
-      .comp-item {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding: 8px 11px;
-        background: var(--s2);
-        border: 1.5px solid var(--bd);
-        border-radius: var(--r2);
-        cursor: pointer;
-        transition: all 0.2s;
-        user-select: none;
-      }
-      .comp-item.on {
-        border-color: rgba(21, 194, 251, 0.4);
-        background: rgba(21, 194, 251, 0.04);
-      }
-      .comp-item.disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-      }
-      .comp-cb {
-        width: 15px;
-        height: 15px;
-        border-radius: 4px;
-        border: 2px solid var(--mu2);
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-      }
-      .comp-item.on .comp-cb {
-        background: var(--ac);
-        border-color: var(--ac);
-      }
-      .comp-cb-inner {
-        display: none;
-        color: #000;
-        font-size: 9px;
-        font-weight: 900;
-        line-height: 1;
-      }
-      .comp-item.on .comp-cb-inner {
-        display: block;
-      }
-      .comp-lbl {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--mu);
-      }
-      .comp-item.on .comp-lbl {
-        color: var(--tx);
-      }
-      .comp-sub {
-        font-size: 10px;
-        color: var(--mu2);
-        margin-left: auto;
       }
 
       /* KP */
@@ -1732,6 +1674,24 @@
           </div>
         </div>
 
+        <!-- DEKORASI -->
+        <div class="card">
+          <div class="clabel">Dekorasi Background</div>
+          <select class="asel" id="sel-deco" style="width: 100%">
+            <option value="none">🚫 Polos (tanpa dekorasi)</option>
+            <option value="auto" selected>🪄 Auto (ikut konten)</option>
+            <option value="tech">💻 Tech — circuit/hexagon</option>
+            <option value="finance">💰 Finansial — koin/grafik</option>
+            <option value="health">🩺 Kesehatan — daun/medis</option>
+            <option value="business">📊 Bisnis — geometris abstrak</option>
+            <option value="nature">🌿 Alam — botani/daun</option>
+            <option value="geometric">🕌 Islami — geometris/arabesque</option>
+            <option value="celebration">🎉 Perayaan — confetti/bintang</option>
+            <option value="food">🍽️ Kuliner — makanan</option>
+          </select>
+          <p class="hint">Pola tipis di belakang visual utama.</p>
+        </div>
+
         <button class="btn-gen" onclick="goPhase(2)">
           Lanjut ke Elemen &rarr;
         </button>
@@ -1754,6 +1714,12 @@
           </svg>
           Paste output ChatGPT → otomatis ter-parse ke semua field. Centang
           komponen yang ingin tampil di poster.
+        </div>
+
+        <div class="kanvas-chip" onclick="goPhase(1)" title="Ubah di Kanvas">
+          <span class="kc-sw" id="kc-sw"></span>
+          <span class="kc-txt" id="kc-txt">9:16</span>
+          <span class="kc-edit">Ubah di Kanvas ›</span>
         </div>
 
         <!-- RAW PASTE -->
@@ -2031,21 +1997,6 @@
                 <option value="iso">📐 Isometric 3D (rapi/clean)</option>
                 <option value="3d">🧊 3D Realistic (hyperrealistic)</option>
                 <option value="faithful">🪞 Faithful (sama persis aslinya)</option>
-              </select>
-            </div>
-            <div class="asub" style="margin-top: 8px">
-              <div class="asub-k">Dekorasi Background (di belakang visual)</div>
-              <select class="asel" id="sel-deco">
-                <option value="none">🚫 Polos (tanpa dekorasi)</option>
-                <option value="auto" selected>🪄 Auto (ikut konten)</option>
-                <option value="tech">💻 Tech — circuit/hexagon</option>
-                <option value="finance">💰 Finansial — koin/grafik</option>
-                <option value="health">🩺 Kesehatan — daun/medis</option>
-                <option value="business">📊 Bisnis — geometris abstrak</option>
-                <option value="nature">🌿 Alam — botani/daun</option>
-                <option value="geometric">🕌 Islami — geometris/arabesque</option>
-                <option value="celebration">🎉 Perayaan — confetti/bintang</option>
-                <option value="food">🍽️ Kuliner — makanan</option>
               </select>
             </div>
             <div class="asset-grid">
@@ -3178,97 +3129,76 @@
           });
           z.push({ x: cw - 22, y: ch - 8, w: 20, h: 6, c: "ft", t: "FT" });
         } else if (ratio === "4:5") {
-          const hlH = Math.round(ch * 0.26),
-            midH = ch - hlH - p * 3;
-          const asW = hasAsset ? Math.round(cw * 0.55) : 0;
-          z.push({ x: p, y: p, w: cw - p * 2, h: hlH, c: "hl", t: "HL" });
-          if (!flip) {
-            if (hasAsset)
-              z.push({
-                x: p,
-                y: hlH + p,
-                w: asW - 2,
-                h: midH,
-                c: "vs",
-                t: "3D",
-              });
-            if (hasCont)
-              z.push({
-                x: asW + 2,
-                y: hlH + p,
-                w: cw - asW - p - 2,
-                h: midH,
-                c: "kp",
-                t: "KP",
-              });
-            else if (!hasAsset)
-              z.push({
-                x: p,
-                y: hlH + p,
-                w: cw - p * 2,
-                h: midH,
-                c: "kp",
-                t: "KP",
-              });
-          } else {
-            if (hasCont)
-              z.push({
-                x: p,
-                y: hlH + p,
-                w: cw - asW - p - 2,
-                h: midH,
-                c: "kp",
-                t: "KP",
-              });
-            if (hasAsset)
-              z.push({
-                x: cw - asW - 2,
-                y: hlH + p,
-                w: asW - 2,
-                h: midH,
-                c: "vs",
-                t: "3D",
-              });
+          const midPresent = (flip ? ["kp", "vs"] : ["vs", "kp"]).filter((t) =>
+            t === "vs" ? hasAsset : hasCont,
+          );
+          const hlH = hasHl
+            ? midPresent.length
+              ? Math.round(ch * 0.24)
+              : ch - p * 2
+            : 0;
+          if (hasHl)
+            z.push({
+              x: p,
+              y: p,
+              w: cw - p * 2,
+              h: hlH,
+              c: "hl",
+              t: "HL" + (hasSub ? "+Sub" : ""),
+            });
+          if (midPresent.length) {
+            const Wm = { vs: 1.7, kp: 1 };
+            const tot = midPresent.reduce((a, t) => a + Wm[t], 0);
+            const midY = hasHl ? hlH + p : p;
+            const midH = ch - midY - p;
+            const availW = cw - p * 2 - (midPresent.length - 1) * p;
+            let x = p;
+            midPresent.forEach((t) => {
+              const w = Math.round((availW * Wm[t]) / tot);
+              z.push({ x, y: midY, w, h: midH, c: t, t: t === "vs" ? "3D" : "KP" });
+              x += w + p;
+            });
           }
           z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
         } else if (ratio === "1:1") {
-          const topH = Math.round(ch * 0.38),
-            hlW = Math.round(cw * 0.58),
-            kpH = ch - topH - p * 3;
-          if (!flip) {
-            z.push({ x: p, y: p, w: hlW - 2, h: topH, c: "hl", t: "HL" });
-            if (hasAsset)
-              z.push({
-                x: hlW + 1,
-                y: p,
-                w: cw - hlW - p - 1,
-                h: topH,
-                c: "vs",
-                t: "3D",
-              });
+          const topPresent = (flip ? ["vs", "hl"] : ["hl", "vs"]).filter((t) =>
+            t === "hl" ? hasHl : hasAsset,
+          );
+          const hasTop = topPresent.length > 0;
+          let topH, kpH;
+          if (hasTop && hasCont) {
+            const tw = hasAsset ? 2.4 : 1.6;
+            topH = Math.round(((ch - p * 3) * tw) / (tw + 1.8));
+            kpH = ch - p * 3 - topH;
+          } else if (hasTop) {
+            topH = ch - p * 2;
+            kpH = 0;
           } else {
-            if (hasAsset)
+            topH = 0;
+            kpH = ch - p * 2;
+          }
+          if (hasTop) {
+            const Wt = { hl: 1, vs: 1.8 };
+            const tot = topPresent.reduce((a, t) => a + Wt[t], 0);
+            const availW = cw - p * 2 - (topPresent.length - 1) * p;
+            let x = p;
+            topPresent.forEach((t) => {
+              const w = Math.round((availW * Wt[t]) / tot);
               z.push({
-                x: p,
+                x,
                 y: p,
-                w: cw - hlW - p - 1,
+                w,
                 h: topH,
-                c: "vs",
-                t: "3D",
+                c: t,
+                t: t === "hl" ? "HL" + (hasSub ? "+Sub" : "") : "3D",
               });
-            z.push({
-              x: cw - hlW + 1,
-              y: p,
-              w: hlW - 2,
-              h: topH,
-              c: "hl",
-              t: "HL",
+              x += w + p;
             });
           }
           if (hasCont)
             z.push({
               x: p,
-              y: topH + p,
+              y: hasTop ? topH + p : p,
               w: cw - p * 2,
               h: kpH,
               c: "kp",
@@ -3276,64 +3206,26 @@
             });
           z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
         } else if (ratio === "16:9") {
-          const asW = hasAsset ? Math.round(cw * 0.28) : 0,
-            kpW = hasCont ? Math.round(cw * 0.28) : 0;
-          const hlW = cw - asW - kpW - p * 2;
-          if (!flip) {
-            if (hasAsset)
-              z.push({
-                x: p,
-                y: p,
-                w: asW - 2,
-                h: ch - p * 2,
-                c: "vs",
-                t: "3D",
-              });
+          const order = flip ? ["kp", "hl", "vs"] : ["vs", "hl", "kp"];
+          const present = order.filter((t) =>
+            t === "hl" ? hasHl : t === "vs" ? hasAsset : hasCont,
+          );
+          const Wc = { hl: 1.6, vs: 2, kp: 1.4 };
+          const tot = present.reduce((a, t) => a + Wc[t], 0) || 1;
+          const availW = cw - p * 2 - Math.max(present.length - 1, 0) * p;
+          let x = p;
+          present.forEach((t) => {
+            const w = Math.round((availW * Wc[t]) / tot);
             z.push({
-              x: asW + p,
+              x,
               y: p,
-              w: hlW - 2,
+              w,
               h: ch - p * 2,
-              c: "hl",
-              t: "HL",
+              c: t,
+              t: t === "hl" ? "HL" + (hasSub ? "+Sub" : "") : t === "vs" ? "3D" : "KP",
             });
-            if (hasCont)
-              z.push({
-                x: asW + hlW + p,
-                y: p,
-                w: kpW - 2,
-                h: ch - p * 2,
-                c: "kp",
-                t: "KP",
-              });
-          } else {
-            if (hasCont)
-              z.push({
-                x: p,
-                y: p,
-                w: kpW - 2,
-                h: ch - p * 2,
-                c: "kp",
-                t: "KP",
-              });
-            z.push({
-              x: kpW + p,
-              y: p,
-              w: hlW - 2,
-              h: ch - p * 2,
-              c: "hl",
-              t: "HL",
-            });
-            if (hasAsset)
-              z.push({
-                x: kpW + hlW + p,
-                y: p,
-                w: asW - 2,
-                h: ch - p * 2,
-                c: "vs",
-                t: "3D",
-              });
-          }
+            x += w + p;
+          });
           z.push({ x: cw - 22, y: ch - 7, w: 20, h: 6, c: "ft", t: "FT" });
         }
         return z.map((zz) => ({ ...zz, c: "wfz " + zz.c }));
@@ -3765,6 +3657,13 @@
       // ════════════════════════════════════════
       // PHASE NAV
       // ════════════════════════════════════════
+      function renderKanvasChip() {
+        const sw = document.getElementById("kc-sw");
+        const txt = document.getElementById("kc-txt");
+        if (sw) sw.style.background = getBgCSS();
+        if (txt) txt.textContent = selRatio();
+      }
+
       function goPhase(i) {
         document
           .querySelectorAll(".panel")
@@ -3773,6 +3672,7 @@
           b.classList.toggle("active", idx === i);
           idx < i ? b.classList.add("done") : b.classList.remove("done");
         });
+        if (i === 2) renderKanvasChip();
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
