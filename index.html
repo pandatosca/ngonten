@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Engine Pro</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,39 +17,79 @@
         padding: 0;
       }
       :root {
-        /* Harvest Slate — dark */
-        --bg: #1e1d1b;
-        --s1: #262421;
-        --s2: #2d2b27;
-        --s3: #35322d;
-        --bd: rgba(224, 220, 217, 0.08);
-        --bd2: rgba(224, 220, 217, 0.16);
-        --tx: #e0dcd9;
-        --mu: rgba(224, 220, 217, 0.52);
-        --mu2: rgba(224, 220, 217, 0.26);
-        --ac: #c9831c;
-        --pk: #315e64;
-        --tl: #5e8b91;
-        --gn: #5e8b91;
-        --r: 12px;
+        /* Herry UI — primary (cyan) */
+        --primary-50: #f3fcff;
+        --primary-100: #e3f8ff;
+        --primary-200: #b9edfe;
+        --primary-300: #85dffd;
+        --primary-400: #4dd1fc;
+        --primary-500: #15c2fb;
+        --primary-600: #12a3d3;
+        --primary-700: #0e80a6;
+        --primary-800: #0a5973;
+        --primary-900: #063646;
+        --neutral-50: #f8f9fb;
+        --neutral-100: #eff1f4;
+        --neutral-200: #e1e4ea;
+        --neutral-300: #cbd0d9;
+        --neutral-400: #9aa1ad;
+        --neutral-500: #6c7280;
+        --neutral-600: #4a4f59;
+        --neutral-700: #363a42;
+        --neutral-800: #22252b;
+        --neutral-900: #14161a;
+        /* surfaces — dark */
+        --bg: #14161a;
+        --s1: #1b1e24;
+        --s2: #22252b;
+        --s3: #2b2f37;
+        --bd: rgba(225, 228, 234, 0.08);
+        --bd2: rgba(225, 228, 234, 0.16);
+        --tx: #f8f9fb;
+        --mu: rgba(248, 249, 251, 0.56);
+        --mu2: rgba(248, 249, 251, 0.3);
+        --ac: #15c2fb;
+        --pk: #0e80a6;
+        --tl: #9aa1ad;
+        --gn: #15c2fb;
+        /* radius (r=1) */
+        --r: 14px;
         --r2: 10px;
-        --r3: 8px;
+        --r3: 6px;
+        /* spacing — 4px · density 1.2 */
+        --s-1: 5px;
+        --s-2: 10px;
+        --s-3: 14px;
+        --s-4: 19px;
+        --s-5: 24px;
+        --s-6: 29px;
+        --s-8: 38px;
+        --s-10: 48px;
+        --s-12: 58px;
+        --s-16: 77px;
+        /* elevation */
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18), 0 1px 3px rgba(0, 0, 0, 0.28);
+        --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+        --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
       }
       body.light {
-        /* Harvest Slate — light */
-        --bg: #e0dcd9;
-        --s1: #eceae6;
-        --s2: #e4e1dc;
-        --s3: #f5f3f0;
-        --bd: rgba(42, 83, 89, 0.16);
-        --bd2: rgba(42, 83, 89, 0.3);
-        --tx: #26241f;
-        --mu: rgba(38, 36, 31, 0.56);
-        --mu2: rgba(38, 36, 31, 0.34);
-        --ac: #ad6409;
-        --pk: #315e64;
-        --tl: #2a5359;
-        --gn: #2a5359;
+        /* Herry UI — light */
+        --bg: #eff1f4;
+        --s1: #ffffff;
+        --s2: #f8f9fb;
+        --s3: #ffffff;
+        --bd: rgba(20, 22, 26, 0.1);
+        --bd2: rgba(20, 22, 26, 0.18);
+        --tx: #14161a;
+        --mu: rgba(20, 22, 26, 0.56);
+        --mu2: rgba(20, 22, 26, 0.34);
+        --ac: #12a3d3;
+        --pk: #0e80a6;
+        --tl: #6c7280;
+        --gn: #12a3d3;
+        --shadow-sm: 0 1px 2px rgba(20, 22, 26, 0.06), 0 1px 3px rgba(20, 22, 26, 0.1);
+        --shadow-md: 0 6px 18px rgba(20, 22, 26, 0.12);
+        --shadow-lg: 0 16px 40px rgba(20, 22, 26, 0.2);
       }
       body.light .pnum {
         background: rgba(0, 0, 0, 0.07);
@@ -76,6 +116,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: var(--shadow-md);
         transition:
           background 0.2s,
           border-color 0.2s;
@@ -84,7 +125,7 @@
         border-color: var(--ac);
       }
       body {
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         background: var(--bg);
         color: var(--tx);
         min-height: 100vh;
@@ -102,7 +143,7 @@
         height: 400px;
         background: radial-gradient(
           circle,
-          rgba(173, 100, 9, 0.09),
+          rgba(21, 194, 251, 0.09),
           transparent
         );
         top: -140px;
@@ -113,7 +154,7 @@
         height: 480px;
         background: radial-gradient(
           circle,
-          rgba(49, 94, 100, 0.07),
+          rgba(14, 128, 166, 0.07),
           transparent
         );
         bottom: -160px;
@@ -133,8 +174,8 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(173, 100, 9, 0.1);
-        border: 1px solid rgba(173, 100, 9, 0.2);
+        background: rgba(21, 194, 251, 0.1);
+        border: 1px solid rgba(21, 194, 251, 0.2);
         color: var(--ac);
         font-size: 10px;
         font-weight: 600;
@@ -145,11 +186,11 @@
         margin-bottom: 12px;
       }
       h1 {
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: clamp(22px, 4vw, 40px);
         font-weight: 800;
         line-height: 1.05;
-        background: linear-gradient(135deg, #ad6409, #315e64);
+        background: linear-gradient(135deg, #15c2fb, #0e80a6);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -184,7 +225,7 @@
         background: transparent;
         color: var(--mu);
         cursor: pointer;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
@@ -209,11 +250,11 @@
         transition: all 0.2s;
       }
       .pbtn.active .pnum {
-        background: linear-gradient(135deg, #ad6409, #315e64);
+        background: linear-gradient(135deg, #15c2fb, #0e80a6);
         color: #fff;
       }
       .pbtn.done .pnum {
-        background: rgba(94, 139, 145, 0.18);
+        background: rgba(154, 161, 173, 0.18);
         color: var(--gn);
       }
       .pbtn.done {
@@ -239,6 +280,7 @@
         border-radius: var(--r);
         padding: 18px;
         margin-bottom: 12px;
+        box-shadow: var(--shadow-sm);
       }
       .clabel {
         font-size: 10px;
@@ -272,7 +314,7 @@
         background: var(--s2);
         color: var(--mu);
         cursor: pointer;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 12px;
         font-weight: 500;
         transition: all 0.2s;
@@ -284,8 +326,8 @@
         color: var(--tx);
       }
       .tbtn.on {
-        border-color: rgba(173, 100, 9, 0.6);
-        background: rgba(173, 100, 9, 0.08);
+        border-color: rgba(21, 194, 251, 0.6);
+        background: rgba(21, 194, 251, 0.08);
         color: var(--ac);
       }
       .tbtn.sm {
@@ -323,7 +365,7 @@
         color: var(--tx);
         border-radius: var(--r2);
         padding: 9px 12px;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 13px;
         outline: none;
         transition: border-color 0.2s;
@@ -334,7 +376,7 @@
       input:focus,
       textarea:focus,
       select:focus {
-        border-color: rgba(173, 100, 9, 0.4);
+        border-color: rgba(21, 194, 251, 0.4);
       }
       textarea {
         line-height: 1.6;
@@ -362,11 +404,11 @@
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
       .bg-tab.on {
-        border-color: rgba(173, 100, 9, 0.6);
-        background: rgba(173, 100, 9, 0.08);
+        border-color: rgba(21, 194, 251, 0.6);
+        background: rgba(21, 194, 251, 0.08);
         color: var(--ac);
       }
 
@@ -400,7 +442,7 @@
       }
       .gc.sel {
         border-color: var(--ac);
-        box-shadow: 0 0 8px rgba(173, 100, 9, 0.3);
+        box-shadow: 0 0 8px rgba(21, 194, 251, 0.3);
       }
       .gc-sw {
         width: 100%;
@@ -420,7 +462,7 @@
         border-radius: var(--r3);
         cursor: pointer;
         margin-top: 4px;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         transition: all 0.2s;
         width: 100%;
       }
@@ -448,7 +490,7 @@
       }
       .sc.sel {
         border-color: var(--ac);
-        box-shadow: 0 0 8px rgba(173, 100, 9, 0.3);
+        box-shadow: 0 0 8px rgba(21, 194, 251, 0.3);
       }
       .sc-sw {
         height: 36px;
@@ -492,26 +534,26 @@
         background: transparent;
         border: none;
         color: var(--tx);
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 12px;
         outline: none;
         width: 100%;
       }
       .btn-apply {
-        background: rgba(173, 100, 9, 0.12);
-        border: 1px solid rgba(173, 100, 9, 0.3);
+        background: rgba(21, 194, 251, 0.12);
+        border: 1px solid rgba(21, 194, 251, 0.3);
         color: var(--ac);
         font-size: 11px;
         font-weight: 600;
         padding: 7px 12px;
         border-radius: var(--r3);
         cursor: pointer;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         white-space: nowrap;
         transition: all 0.2s;
       }
       .btn-apply:hover {
-        background: rgba(173, 100, 9, 0.22);
+        background: rgba(21, 194, 251, 0.22);
       }
 
       /* RATIO */
@@ -550,10 +592,10 @@
       }
       .ratio-opt.on {
         border-color: var(--ac);
-        background: rgba(173, 100, 9, 0.08);
+        background: rgba(21, 194, 251, 0.08);
       }
       .ro-ratio {
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-weight: 800;
         font-size: 16px;
         line-height: 1.2;
@@ -601,19 +643,19 @@
         line-height: 1.2;
       }
       .wfz.hl {
-        background: rgba(173, 100, 9, 0.1);
-        border-color: rgba(173, 100, 9, 0.28);
-        color: rgba(173, 100, 9, 0.7);
+        background: rgba(21, 194, 251, 0.1);
+        border-color: rgba(21, 194, 251, 0.28);
+        color: rgba(21, 194, 251, 0.7);
       }
       .wfz.vs {
-        background: rgba(49, 94, 100, 0.08);
-        border-color: rgba(49, 94, 100, 0.22);
-        color: rgba(49, 94, 100, 0.6);
+        background: rgba(14, 128, 166, 0.08);
+        border-color: rgba(14, 128, 166, 0.22);
+        color: rgba(14, 128, 166, 0.6);
       }
       .wfz.kp {
-        background: rgba(94, 139, 145, 0.06);
-        border-color: rgba(94, 139, 145, 0.18);
-        color: rgba(94, 139, 145, 0.55);
+        background: rgba(154, 161, 173, 0.06);
+        border-color: rgba(154, 161, 173, 0.18);
+        color: rgba(154, 161, 173, 0.55);
       }
       .wfz.ft {
         background: rgba(255, 255, 255, 0.03);
@@ -622,12 +664,12 @@
         color: rgba(255, 255, 255, 0.25);
       }
       .wfz-img {
-        background: rgba(173, 100, 9, 0.16);
-        border: 1px solid rgba(173, 100, 9, 0.4);
-        color: rgba(201, 131, 28, 0.9);
+        background: rgba(21, 194, 251, 0.16);
+        border: 1px solid rgba(21, 194, 251, 0.4);
+        color: rgba(77, 209, 252, 0.9);
       }
       .wfz-man {
-        background: rgba(94, 139, 145, 0.12);
+        background: rgba(154, 161, 173, 0.12);
         border: 1px dashed var(--tl);
         color: var(--tl);
       }
@@ -718,8 +760,8 @@
         user-select: none;
       }
       .comp-item.on {
-        border-color: rgba(173, 100, 9, 0.4);
-        background: rgba(173, 100, 9, 0.04);
+        border-color: rgba(21, 194, 251, 0.4);
+        background: rgba(21, 194, 251, 0.04);
       }
       .comp-item.disabled {
         opacity: 0.45;
@@ -798,7 +840,7 @@
         background: transparent;
         border: none;
         outline: none;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         resize: none;
         line-height: 1.45;
       }
@@ -820,8 +862,8 @@
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: rgba(94, 139, 145, 0.07);
-        border: 1px dashed rgba(94, 139, 145, 0.25);
+        background: rgba(154, 161, 173, 0.07);
+        border: 1px dashed rgba(154, 161, 173, 0.25);
         color: var(--tl);
         font-size: 11px;
         padding: 5px 11px;
@@ -829,10 +871,10 @@
         cursor: pointer;
         margin-top: 5px;
         transition: all 0.2s;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
       .btn-add:hover {
-        background: rgba(94, 139, 145, 0.14);
+        background: rgba(154, 161, 173, 0.14);
       }
       .kp-counter {
         font-size: 10px;
@@ -888,7 +930,7 @@
         color: var(--tx);
         border-radius: 6px;
         padding: 6px 8px;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 11px;
         outline: none;
         cursor: pointer;
@@ -896,7 +938,7 @@
         appearance: none;
       }
       .asel:focus {
-        border-color: rgba(173, 100, 9, 0.4);
+        border-color: rgba(21, 194, 251, 0.4);
       }
       .acustom {
         display: none;
@@ -907,14 +949,14 @@
         color: var(--tx);
         border-radius: 6px;
         padding: 6px 8px;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 11px;
         outline: none;
         resize: none;
         line-height: 1.4;
       }
       .acustom:focus {
-        border-color: rgba(173, 100, 9, 0.4);
+        border-color: rgba(21, 194, 251, 0.4);
       }
 
       /* IMG LINKS */
@@ -951,8 +993,8 @@
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        background: rgba(94, 139, 145, 0.07);
-        border: 1px dashed rgba(94, 139, 145, 0.25);
+        background: rgba(154, 161, 173, 0.07);
+        border: 1px dashed rgba(154, 161, 173, 0.25);
         color: var(--tl);
         font-size: 10px;
         padding: 4px 10px;
@@ -960,7 +1002,7 @@
         cursor: pointer;
         margin-top: 4px;
         transition: all 0.2s;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
 
       /* ALIGN OPTS */
@@ -979,11 +1021,11 @@
         font-size: 11px;
         font-weight: 500;
         transition: all 0.2s;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
       }
       .align-btn.on {
-        border-color: rgba(173, 100, 9, 0.6);
-        background: rgba(173, 100, 9, 0.08);
+        border-color: rgba(21, 194, 251, 0.6);
+        background: rgba(21, 194, 251, 0.08);
         color: var(--ac);
       }
 
@@ -1016,8 +1058,8 @@
         transition: all 0.2s;
       }
       .sw input:checked + .sw-track {
-        background: rgba(173, 100, 9, 0.2);
-        border-color: rgba(173, 100, 9, 0.4);
+        background: rgba(21, 194, 251, 0.2);
+        border-color: rgba(21, 194, 251, 0.4);
       }
       .sw-track::after {
         content: "";
@@ -1066,8 +1108,8 @@
         color: var(--tx);
       }
       .gchip.on {
-        border-color: rgba(173, 100, 9, 0.6);
-        background: rgba(173, 100, 9, 0.08);
+        border-color: rgba(21, 194, 251, 0.6);
+        background: rgba(21, 194, 251, 0.08);
         color: var(--ac);
       }
 
@@ -1077,9 +1119,9 @@
         align-items: center;
         justify-content: center;
         gap: 7px;
-        background: linear-gradient(135deg, #ad6409, #315e64);
+        background: linear-gradient(135deg, #15c2fb, #0e80a6);
         color: #fff;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-weight: 700;
         font-size: 14px;
         padding: 13px 20px;
@@ -1104,9 +1146,9 @@
         justify-content: center;
         gap: 6px;
         background: var(--s2);
-        border: 1px solid rgba(173, 100, 9, 0.28);
+        border: 1px solid rgba(21, 194, 251, 0.28);
         color: var(--ac);
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         font-weight: 600;
         font-size: 12px;
         padding: 10px 16px;
@@ -1117,7 +1159,7 @@
         transition: all 0.2s;
       }
       .btn-sec:hover {
-        background: rgba(173, 100, 9, 0.07);
+        background: rgba(21, 194, 251, 0.07);
       }
 
       /* INLINE FIELD BOX */
@@ -1130,7 +1172,7 @@
         transition: border-color 0.2s;
       }
       .fbox:focus-within {
-        border-color: rgba(173, 100, 9, 0.35);
+        border-color: rgba(21, 194, 251, 0.35);
       }
       .fbox-k {
         font-size: 10px;
@@ -1152,7 +1194,7 @@
         background: transparent;
         border: none;
         outline: none;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         resize: none;
         line-height: 1.5;
       }
@@ -1190,19 +1232,19 @@
         padding: 4px 9px;
         border-radius: 5px;
         cursor: pointer;
-        font-family: "Inter", sans-serif;
+        font-family: "Plus Jakarta Sans", sans-serif;
         transition: all 0.15s;
         white-space: nowrap;
       }
       .cbtn:hover {
-        background: rgba(173, 100, 9, 0.1);
+        background: rgba(21, 194, 251, 0.1);
         color: var(--ac);
-        border-color: rgba(173, 100, 9, 0.28);
+        border-color: rgba(21, 194, 251, 0.28);
       }
       .cbtn.ok {
-        background: rgba(94, 139, 145, 0.1);
+        background: rgba(154, 161, 173, 0.1);
         color: var(--gn);
-        border-color: rgba(94, 139, 145, 0.28);
+        border-color: rgba(154, 161, 173, 0.28);
       }
       .out-txt {
         padding: 14px;
@@ -1220,9 +1262,9 @@
         display: flex;
         align-items: flex-start;
         gap: 7px;
-        background: rgba(94, 139, 145, 0.06);
-        border: 1px solid rgba(94, 139, 145, 0.16);
-        color: #7fa8ad;
+        background: rgba(154, 161, 173, 0.06);
+        border: 1px solid rgba(154, 161, 173, 0.16);
+        color: #85dffd;
         font-size: 11px;
         padding: 9px 12px;
         border-radius: var(--r3);
@@ -1762,8 +1804,8 @@
                     width: 13px;
                     height: 13px;
                     border-radius: 3px;
-                    background: rgba(173, 100, 9, 0.16);
-                    border: 1px solid rgba(173, 100, 9, 0.4);
+                    background: rgba(21, 194, 251, 0.16);
+                    border: 1px solid rgba(21, 194, 251, 0.4);
                   "
                 ></span
                 >Di gambar (AI)</span
@@ -1774,7 +1816,7 @@
                     width: 13px;
                     height: 13px;
                     border-radius: 3px;
-                    background: rgba(94, 139, 145, 0.12);
+                    background: rgba(154, 161, 173, 0.12);
                     border: 1px dashed var(--tl);
                   "
                 ></span
@@ -2186,13 +2228,13 @@
               </div>
               <div
                 style="
-                  background: rgba(94, 139, 145, 0.07);
-                  border: 1px solid rgba(94, 139, 145, 0.18);
+                  background: rgba(154, 161, 173, 0.07);
+                  border: 1px solid rgba(154, 161, 173, 0.18);
                   border-radius: 8px;
                   padding: 9px 11px;
                   margin-bottom: 8px;
                   font-size: 11px;
-                  color: #7fa8ad;
+                  color: #85dffd;
                   line-height: 1.6;
                 "
               >
@@ -2230,8 +2272,8 @@
             <div class="fbox-k">Logo (opsional)</div>
             <div
               style="
-                background: rgba(173, 100, 9, 0.07);
-                border: 1px solid rgba(173, 100, 9, 0.2);
+                background: rgba(21, 194, 251, 0.07);
+                border: 1px solid rgba(21, 194, 251, 0.2);
                 border-radius: 8px;
                 padding: 10px 12px;
                 margin-top: 6px;
@@ -2241,7 +2283,7 @@
               <div
                 style="
                   font-size: 11px;
-                  color: rgba(173, 100, 9, 0.9);
+                  color: rgba(21, 194, 251, 0.9);
                   font-weight: 600;
                   margin-bottom: 4px;
                 "
@@ -4379,9 +4421,9 @@
           document.getElementById("logo-manual")?.checked || false;
         let logoWarning = "";
         if (hasLogo && logoManualOn) {
-          logoWarning = `<div style="background:rgba(94,139,145,.1);border:1px solid rgba(94,139,145,.35);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:var(--tl);line-height:1.6">🪧 <strong>Mode logo manual:</strong> GPT akan mengosongkan area logo (tidak menggambar). Setelah poster jadi, tempel file logo aslimu di area itu pakai Canva/Figma — hasil logo dijamin tidak berubah.</div>`;
+          logoWarning = `<div style="background:rgba(154,161,173,.1);border:1px solid rgba(154,161,173,.35);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:var(--tl);line-height:1.6">🪧 <strong>Mode logo manual:</strong> GPT akan mengosongkan area logo (tidak menggambar). Setelah poster jadi, tempel file logo aslimu di area itu pakai Canva/Figma — hasil logo dijamin tidak berubah.</div>`;
         } else if (hasLogo) {
-          logoWarning = `<div style="background:rgba(173,100,9,.08);border:1px solid rgba(173,100,9,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(173,100,9,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
+          logoWarning = `<div style="background:rgba(21,194,251,.08);border:1px solid rgba(21,194,251,.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:12px;color:rgba(21,194,251,.9);line-height:1.6">⚠️ <strong>Sebelum paste prompt:</strong> Upload file logo langsung ke chat GPT-4o dulu (drag &amp; drop atau klik attachment). GPT-4o tidak bisa akses URL logo dari internet.</div>`;
         }
         const rid = "cb-poster";
         posterWrap.innerHTML =
@@ -4726,7 +4768,7 @@
         const b = document.createElement("div");
         b.id = "draft-banner";
         b.style.cssText =
-          "background:rgba(94,139,145,.1);border:1px solid rgba(94,139,145,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap";
+          "background:rgba(154,161,173,.1);border:1px solid rgba(154,161,173,.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap";
         b.innerHTML =
           '<span style="flex:1">📝 Ada draft tersimpan (' +
           age +
